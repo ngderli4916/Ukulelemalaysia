@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ukulele Engraving</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600&family=Caveat:wght@400;600&family=Dancing+Script:wght@500;700&family=Playfair+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Great+Vibes&family=Pacifico&family=Sacramento&family=Allura&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Cinzel:wght@500;700&family=Bodoni+Moda:ital@0;1&family=Marcellus&family=DM+Serif+Display:ital@0;1&family=Parisienne&display=swap">
+<style>
+  :root {
+    --ink: #1d1d1f;
+    --ink-2: #424245;
+    --muted: #86868b;
+    --hair: #d2d2d7;
+    --hair-2: #e8e8ed;
+    --panel: #f5f5f7;
+    --panel-2: #fafafc;
+    --page: #fbfbfd;
+    --accent: #0071e3;
+    --accent-press: #0077ed;
+    --wood: #b88457;
+    --wood-2: #8b5a2b;
+    --wood-3: #d9a575;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "PingFang SC", "Noto Sans SC", sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01";
+    letter-spacing: -0.01em;
+  }
+  img { display: block; max-width: 100%; }
+
+  /* ———————————————————— Nav ———————————————————— */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: saturate(180%) blur(22px);
+    -webkit-backdrop-filter: saturate(180%) blur(22px);
+    background: rgba(251,251,253,0.78);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px;
+    font-size: 13px; color: var(--ink-2);
+  }
+  .nav-left { display: flex; gap: 28px; align-items: center; }
+  .nav-logo { display: flex; align-items: center; gap: 8px; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
+  .nav-logo svg { width: 22px; height: 28px; color: var(--ink); }
+  .nav a { color: inherit; text-decoration: none; opacity: 0.85; }
+  .nav a:hover { opacity: 1; }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-right { display: flex; gap: 20px; align-items: center; }
+  .nav-cta {
+    background: var(--ink); color: #fff; padding: 7px 14px; border-radius: 980px;
+    font-size: 12px;
+  }
+
+  /* ———————————————————— Typography ———————————————————— */
+  .eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--muted); font-weight: 500;
+  }
+  .display {
+    font-family: "Instrument Serif", "Noto Serif SC", "Songti SC", serif;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 0.95;
+  }
+  .cn { font-family: "Noto Serif SC", "Songti SC", serif; font-weight: 400; }
+  .cn-sans { font-family: "Noto Sans SC", "PingFang SC", sans-serif; }
+  .mono { font-family: "Space Mono", ui-monospace, "SF Mono", monospace; }
+
+  /* ———————————————————— Layout ———————————————————— */
+  section { padding: 120px 24px; }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  .wrap-narrow { max-width: 900px; margin: 0 auto; }
+
+  /* ———————————————————— Hero ———————————————————— */
+  .hero { padding: 88px 24px 120px; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center;
+  }
+  .hero-img {
+    aspect-ratio: 4/5; width: 100%;
+    border-radius: 4px;
+    position: relative; overflow: hidden;
+    background: #eadfce;
+  }
+  .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-copy h1 {
+    margin: 0;
+    font-size: clamp(64px, 9vw, 128px);
+  }
+  .hero-copy h1 em { font-style: italic; color: var(--muted); }
+  .hero-copy .sub {
+    font-family: "Noto Serif SC", "Songti SC", serif;
+    font-size: clamp(28px, 3.2vw, 44px);
+    letter-spacing: 0.02em;
+    margin-top: 16px;
+    color: var(--ink-2);
+  }
+  .hero-copy .lede {
+    margin-top: 40px;
+    font-size: 18px; line-height: 1.5; color: var(--ink-2);
+    max-width: 420px;
+  }
+  .hero-meta {
+    margin-top: 40px;
+    display: flex; gap: 32px;
+    font-size: 12px; color: var(--muted);
+    font-family: "Space Mono", monospace;
+  }
+  .hero-meta span b { color: var(--ink); font-weight: 500; }
+
+  /* ———————————————————— Section heading ———————————————————— */
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 56px; gap: 40px; }
+  .sec-head-left h2 {
+    margin: 8px 0 0;
+    font-family: "Instrument Serif", "Noto Serif SC", serif;
+    font-size: clamp(44px, 5.5vw, 72px);
+    font-weight: 400; letter-spacing: -0.02em; line-height: 1;
+  }
+  .sec-head-left .sub-cn {
+    font-family: "Noto Serif SC", serif; font-size: 20px; color: var(--muted); margin-top: 12px;
+  }
+  .sec-head-right {
+    max-width: 380px; color: var(--ink-2); font-size: 15px; line-height: 1.55;
+    padding-top: 10px;
+  }
+
+  /* Highlighted CTA inside section heading right-column */
+  .play-cta {
+    margin-top: 20px;
+    padding: 14px 16px;
+    background: #FFF7E8;
+    color: var(--ink);
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    display: flex; align-items: center; gap: 12px;
+    font-family: "Instrument Serif", serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+    box-shadow: 0 10px 24px -18px rgba(199,128,52,0.55);
+    animation: play-cta-bob 2.4s ease-in-out infinite;
+  }
+  .play-cta-arrow {
+    flex: 0 0 auto;
+    font-family: "Space Mono", monospace;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 1;
+    width: 28px; height: 28px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    animation: play-cta-arrow 1.6s ease-in-out infinite;
+  }
+  .play-cta-text { flex: 1; }
+  @keyframes play-cta-bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-3px); }
+  }
+  @keyframes play-cta-arrow {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(3px); }
+  }
+
+  /* ———————————————————— Configurator ———————————————————— */
+  .config {
+    background: var(--panel);
+    border-radius: 28px;
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: stretch;
+  }
+  .config-preview {
+    background: #fff;
+    border-radius: 20px;
+    aspect-ratio: 2/3;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
+  }
+  .uke-svg { width: 69%; height: auto; max-height: 100%; }
+
+  .preview-caption {
+    position: absolute; bottom: 16px; left: 16px;
+    font-family: "Space Mono", monospace;
+    font-size: 10px; color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .preview-view-toggle {
+    position: absolute; top: 16px; right: 16px;
+    display: flex; gap: 6px;
+    background: rgba(245,245,247,0.9); padding: 4px; border-radius: 980px;
+    font-size: 11px;
+  }
+  .preview-view-toggle button {
+    appearance: none; border: 0; background: transparent;
+    padding: 6px 12px; border-radius: 980px; cursor: pointer;
+    color: var(--ink-2); font: inherit; font-size: 11px;
+  }
+  .preview-view-toggle button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+
+  .config-controls { display: flex; flex-direction: column; gap: 28px; }
+  .step {
+    border-top: 1px solid var(--hair);
+    padding-top: 24px;
+  }
+  .step:first-child { border-top: 0; padding-top: 0; }
+  .step-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; }
+  .step-num {
+    font-family: "Space Mono", monospace;
+    font-size: 11px; color: var(--muted); letter-spacing: 0.08em;
+  }
+  .step-title { font-size: 19px; font-weight: 500; letter-spacing: -0.01em; margin: 0; }
+  .step-title .cnmark { color: var(--muted); font-weight: 400; font-family: "Noto Serif SC", serif; margin-left: 8px; font-size: 15px; }
+  .step-value { font-size: 13px; color: var(--muted); font-family: "Space Mono", monospace; }
+
+  /* Text input */
+  .text-input {
+    position: relative;
+  }
+  .text-input input {
+    width: 100%;
+    border: 1px solid var(--hair);
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 18px;
+    font: inherit; font-size: 17px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .text-input input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(0,113,227,0.12);
+  }
+  .text-input .hint {
+    display: flex; justify-content: space-between; margin-top: 8px;
+    font-size: 12px; color: var(--muted); font-family: "Space Mono", monospace;
+  }
+
+  /* Font picker */
+  .font-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  }
+  .font-chip {
+    border: 1px solid var(--hair);
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 12px 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: all .15s;
+    position: relative;
+  }
+  .font-chip:hover { border-color: var(--muted); }
+  .font-chip.on {
+    border-color: var(--ink);
+    box-shadow: 0 0 0 1px var(--ink) inset;
+  }
+  .font-chip .sample {
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .font-chip .label {
+    margin-top: 10px; font-size: 11px; color: var(--muted);
+    font-family: "Space Mono", monospace; letter-spacing: 0.04em;
+  }
+
+  /* Location chips */
+  .loc-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .loc-chip {
+    border: 1px solid var(--hair);
+    background: #fff;
+    border-radius: 980px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--ink-2);
+    transition: all .15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .loc-chip:hover { border-color: var(--muted); }
+  .loc-chip.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .loc-chip .cnmark { font-family: "Noto Sans SC", sans-serif; font-size: 12px; opacity: 0.7; }
+
+  /* Position & angle sliders */
+  .pos-controls { display: flex; flex-direction: column; gap: 14px; }
+  .pos-row { display: flex; flex-direction: column; gap: 6px; }
+  .pos-label {
+    display: flex; align-items: baseline; justify-content: space-between;
+    font-family: "Space Mono", monospace; font-size: 12px;
+    color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .pos-label em {
+    font-style: normal; color: var(--ink); font-weight: 500;
+    font-variant-numeric: tabular-nums; letter-spacing: 0;
+  }
+  .pos-row input[type="range"] {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 2px; background: var(--hair);
+    border-radius: 2px; outline: none; cursor: pointer;
+  }
+  .pos-row input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--ink); border: 2px solid #fff;
+    box-shadow: 0 0 0 1px var(--ink);
+  }
+  .pos-row input[type="range"]::-moz-range-thumb {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--ink); border: 2px solid #fff;
+    box-shadow: 0 0 0 1px var(--ink);
+  }
+
+  /* Buttons */
+  .btn {
+    appearance: none; border: 0; cursor: pointer;
+    padding: 14px 28px; border-radius: 980px;
+    font: inherit; font-size: 15px; font-weight: 400;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-press); }
+  .btn-ghost { background: transparent; color: var(--accent); padding-left: 0; padding-right: 0; }
+  .btn-ghost::after { content: " ›"; }
+  .price-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 20px; border-top: 1px solid var(--hair);
+  }
+  .price {
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  .price b { font-size: 22px; font-weight: 500; letter-spacing: -0.01em; }
+  .price span { font-size: 12px; color: var(--muted); font-family: "Space Mono", monospace; }
+
+  /* ———————————————————— Location Zones on ukulele ———————————————————— */
+  .zone {
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 1.5;
+    stroke-dasharray: 3 3;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .zone:hover { stroke: var(--accent); fill: rgba(0,113,227,0.06); }
+  .zone.on { stroke: var(--ink); fill: rgba(29,29,31,0.04); }
+
+  /* ———————————————————— Positioning section ———————————————————— */
+  .pos-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .pos-dot {
+    aspect-ratio: 1; border-radius: 50%;
+    background:
+      repeating-linear-gradient(45deg, #e9dcc7 0 2px, #e2d2b7 2px 8px),
+      #e2d2b7;
+    position: relative;
+    border: 1px solid var(--hair-2);
+    cursor: pointer;
+    transition: transform .2s;
+  }
+  .pos-dot:hover { transform: scale(1.05); }
+  .pos-dot.on { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .pos-dot::after {
+    content: attr(data-pos);
+    position: absolute; inset: auto 0 -24px 0;
+    text-align: center; font-size: 10px;
+    font-family: "Space Mono", monospace;
+    color: var(--muted);
+  }
+
+  .pos-preview {
+    margin-top: 64px;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .pos-card {
+    aspect-ratio: 4/3; border-radius: 16px;
+    background: #e4d3b9;
+    position: relative; overflow: hidden;
+    border: 1px solid var(--hair-2);
+  }
+  .pos-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pos-card .tag {
+    position: absolute; left: 14px; top: 14px;
+    background: rgba(255,255,255,0.9);
+    padding: 4px 10px; border-radius: 980px;
+    font-size: 11px; font-family: "Space Mono", monospace; color: var(--ink);
+  }
+  .pos-card .cap {
+    position: absolute; left: 14px; bottom: 14px;
+    font-family: "Space Mono", monospace; font-size: 10px; color: rgba(0,0,0,0.5);
+    background: rgba(255,255,255,0.7); padding: 3px 8px; border-radius: 2px;
+  }
+
+  /* ———————————————————— Samples gallery ———————————————————— */
+  .samples {
+    background: var(--panel);
+  }
+  .sample-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .sample-card {
+    aspect-ratio: 1;
+    background: #d9c5a3;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    transition: transform .3s;
+    border: 1px solid rgba(0,0,0,0.04);
+    cursor: pointer;
+  }
+  .sample-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
+  .sample-card:hover img { transform: scale(1.04); }
+  .sample-card:hover { transform: translateY(-2px); }
+  .sample-card .mono-tag {
+    position: absolute; left: 12px; bottom: 12px;
+    font-family: "Space Mono", monospace; font-size: 10px;
+    color: #fff;
+    background: rgba(0,0,0,0.45);
+    padding: 3px 7px; border-radius: 2px;
+    backdrop-filter: blur(6px);
+  }
+
+  /* ———————————————————— Carousel ———————————————————— */
+  .carousel-wrap { margin-top: 40px; }
+  .carousel {
+    display: flex; gap: 20px;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    padding-bottom: 12px;
+    scrollbar-width: none;
+  }
+  .carousel::-webkit-scrollbar { display: none; }
+  .carousel > * {
+    flex: 0 0 calc((100% - 60px) / 4);
+    scroll-snap-align: start;
+  }
+  .carousel-dots { display: flex; gap: 6px; justify-content: center; margin-top: 20px; }
+  .carousel-dots b {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--hair); transition: all .2s;
+  }
+  .carousel-dots b.on { background: var(--ink); width: 20px; border-radius: 3px; }
+  .carousel-ctrls {
+    display: flex; gap: 10px; align-items: center; justify-content: flex-end;
+    margin-top: 8px;
+  }
+  .carousel-ctrls button {
+    appearance: none; border: 1px solid var(--hair); background: #fff;
+    width: 36px; height: 36px; border-radius: 50%;
+    cursor: pointer; color: var(--ink-2);
+    font-size: 14px;
+  }
+  .carousel-ctrls button:hover { border-color: var(--ink); color: var(--ink); }
+
+  /* ———————————————————— Name preview ———————————————————— */
+  .namepreview {
+    margin-top: 48px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    background: #fff;
+    border: 1px solid var(--hair-2);
+    border-radius: 28px;
+    padding: 48px;
+  }
+  .namepreview h3 {
+    font-family: "Instrument Serif", serif;
+    font-weight: 400;
+    font-size: 40px; margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .namepreview .cn-note {
+    color: var(--muted); font-family: "Noto Serif SC", serif; font-size: 16px;
+    margin-bottom: 28px;
+  }
+  .np-list { display: flex; flex-direction: column; }
+  .np-list-left { margin-top: 24px; }
+  .np-row {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--hair-2);
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px;
+  }
+  .np-row:last-child { border-bottom: 0; }
+  .np-name {
+    font-size: 28px; letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .np-label {
+    font-family: "Space Mono", monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: 0.05em;
+  }
+
+  /* ———————————————————— Footer ———————————————————— */
+  footer {
+    padding: 56px 24px 64px;
+    background: var(--panel-2);
+    border-top: 1px solid var(--hair-2);
+    font-size: 12px; color: var(--muted);
+  }
+  .foot-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+  .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
+  .foot-links a { color: inherit; text-decoration: none; }
+  .foot-links a:hover { color: var(--ink); }
+
+  /* ———————————————————— Fade-in scroll reveal ———————————————————— */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ———————————————————— Tweaks panel root (starter will mount its own DOM) ———————————————————— */
+
+  /* ———————————————————— Responsive ———————————————————— */
+  @media (max-width: 900px) {
+    section { padding: 72px 20px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .config { grid-template-columns: 1fr; padding: 24px; gap: 28px; }
+    .sec-head { flex-direction: column; gap: 20px; }
+    .pos-grid { grid-template-columns: repeat(4, 1fr); }
+    .pos-preview { grid-template-columns: 1fr; }
+    .sample-grid { grid-template-columns: repeat(2, 1fr); }
+    .carousel > * { flex-basis: 70%; }
+    .namepreview { grid-template-columns: 1fr; padding: 28px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ───────── Nav ───────── -->
+<nav class="nav" data-screen-label="Nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a class="nav-logo" href="#top">
+        <svg viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Mini ukulele silhouette logo -->
+          <path d="M 13 2 L 19 2 L 20 8 L 12 8 Z" fill="currentColor" opacity="0.85"/>
+          <rect x="14.5" y="8" width="3" height="14" fill="currentColor" opacity="0.7"/>
+          <path d="M 16 22 C 22 22, 26 25, 26 30 C 26 35, 22 38, 16 38 C 10 38, 6 35, 6 30 C 6 25, 10 22, 16 22 Z" fill="currentColor"/>
+          <circle cx="16" cy="30" r="2.6" fill="#fbfbfd"/>
+        </svg>
+        <span>Ukunili <em style="font-style:normal; color: var(--muted); font-weight: 400;">· Engraved</em></span>
+      </a>
+      <div class="nav-links">
+        <a href="#design">Design</a>
+        <a href="#place">Placement</a>
+        <a href="#samples">Samples</a>
+        <a href="#preview">Preview</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <span class="mono" style="font-size:11px;">1 – 3 working days</span>
+      <a href="#design" class="nav-cta">Customize</a>
+    </div>
+  </div>
+</nav>
+
+<a id="top"></a>
+
+<!-- ───────── Hero ───────── -->
+<section class="hero" data-screen-label="01 Hero">
+  <div class="wrap hero-grid">
+    <div class="hero-img reveal" aria-label="Ukulele engraved — hero">
+      <img src="https://static.wixstatic.com/media/65da77_f1d2a3999f724f78901b054ee8a1007c~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_f1d2a3999f724f78901b054ee8a1007c~mv2.jpg" alt="Engraved ukulele" loading="eager" />
+    </div>
+    <div class="hero-copy reveal">
+      <div class="eyebrow">Personal Engraving</div>
+      <h1 class="display">Make it<br><em>yours.</em></h1>
+      <p class="lede">Add a name, a line of poetry, a date that matters. Complimentary on every ukulele, delivered in three working days.</p>
+      <div class="hero-meta">
+        <span><b>Free</b></span>
+        <span><b>1 – 3 days</b></span>
+        <span><b>20+ fonts</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── Configurator ───────── -->
+<section id="design" data-screen-label="02 Configurator">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-head-left">
+        <div class="eyebrow">Step 01 — Design</div>
+        <h2>Design the inscription.</h2>
+      </div>
+      <div class="sec-head-right">
+        Type your name, choose a typeface, pick where it lives on the instrument.
+        Every change updates the live preview — what you see is what gets engraved.
+        <div class="play-cta">
+          <span class="play-cta-arrow">↓</span>
+          <span class="play-cta-text">Play around with the settings below to preview your engraving</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="config reveal" id="configurator"><!-- JS-driven --></div>
+  </div>
+</section>
+
+<!-- ───────── Placement ───────── -->
+<section id="place" style="background: var(--panel-2);" data-screen-label="03 Placement">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-head-left">
+        <div class="eyebrow">Step 02 — Placement</div>
+        <h2>Where should it live?</h2>
+      </div>
+      <div class="sec-head-right">
+        Each position carries a different feeling — discreet at the heel, proud on the headstock.
+        Tap any dot to preview it in place.
+      </div>
+    </div>
+
+    <div class="pos-grid reveal" id="posGrid"></div>
+
+    <div class="pos-preview reveal">
+      <div class="pos-card">
+        <img src="https://static.wixstatic.com/media/65da77_76efd500a6004a5ca13e42df6223d907~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_76efd500a6004a5ca13e42df6223d907~mv2.jpg" alt="Headstock engraving" />
+        <span class="tag">Headstock</span>
+      </div>
+      <div class="pos-card">
+        <img src="https://static.wixstatic.com/media/65da77_fd1391ab31bd4c8e88b98ab4417b7eb8~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_fd1391ab31bd4c8e88b98ab4417b7eb8~mv2.jpg" alt="Body engraving" />
+        <span class="tag">Body</span>
+      </div>
+      <div class="pos-card">
+        <img src="https://static.wixstatic.com/media/65da77_849cecbcb5d4474bb646ce11063f9220~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_849cecbcb5d4474bb646ce11063f9220~mv2.jpg" alt="Back panel engraving" />
+        <span class="tag">Back panel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── Samples ───────── -->
+<section class="samples" id="samples" data-screen-label="04 Samples">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-head-left">
+        <div class="eyebrow">Step 03 — Inspiration</div>
+        <h2>Twelve, recently engraved.</h2>
+      </div>
+      <div class="sec-head-right">
+        A small gallery of what customers have done lately — names, initials,
+        a line of Tang poetry, a birthdate that matters.
+      </div>
+    </div>
+
+    <div class="sample-grid reveal" id="sampleGrid"></div>
+  </div>
+</section>
+
+<!-- ───────── Preview / Name preview ───────── -->
+<section id="preview" data-screen-label="05 Preview">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-head-left">
+        <div class="eyebrow">Step 04 — Preview</div>
+        <h2>See your name, in every style.</h2>
+      </div>
+      <div class="sec-head-right">
+        Not sure which typeface fits? Type once — see it in all of them.
+      </div>
+    </div>
+
+    <div class="namepreview reveal">
+      <div>
+        <h3>Name Preview</h3>
+        <div class="cn-note">Live, instant</div>
+        <div class="text-input">
+          <input id="npInput" type="text" value="Ocean Blue" maxlength="50" />
+          <div class="hint"><span>Up to 50 characters</span><span id="npCount">10 / 50</span></div>
+        </div>
+        <div class="np-list np-list-left" id="npListLeft"></div>
+      </div>
+      <div class="np-list" id="npList"></div>
+    </div>
+
+    <div style="margin-top: 48px; display:flex; justify-content: flex-end; align-items:center; flex-wrap: wrap; gap: 16px;" class="reveal">
+      <div style="display:flex; gap: 12px; align-items: center;">
+        <button class="btn btn-ghost">Save draft</button>
+        <button class="btn btn-primary">Add to bag</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div>© 2026 Ukunili Music Sdn Bhd · Handcrafted in Malaysia</div>
+    <div class="foot-links">
+      <a href="#">Shipping</a>
+      <a href="#">Care</a>
+      <a href="#">Warranty</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ───────── Scripts ───────── -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="configurator.jsx"></script>
+<script>
+  // Static, non-React enhancements: position grid, samples grid, carousel, name preview, scroll reveal
+  (function () {
+    // ——— position dots ———
+    const positions = [
+      "Headstock", "Body front", "Back panel",
+      "Heel", "Inside body", "Side edge",
+    ];
+    const grid = document.getElementById("posGrid");
+    positions.forEach((p, i) => {
+      const d = document.createElement("div");
+      d.className = "pos-dot" + (i === 1 ? " on" : "");
+      d.setAttribute("data-pos", String(i + 1).padStart(2, "0") + " · " + p);
+      d.addEventListener("click", () => {
+        grid.querySelectorAll(".pos-dot").forEach(x => x.classList.remove("on"));
+        d.classList.add("on");
+      });
+      grid.appendChild(d);
+    });
+
+    // ——— samples (real photos from source) ———
+    const samples = [
+      { src: "https://static.wixstatic.com/media/65da77_fa61df02d17f454985938296cd6ee0b8~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/65da77_fa61df02d17f454985938296cd6ee0b8~mv2.jpg", tag: "001 · headstock" },
+      { src: "https://static.wixstatic.com/media/65da77_e02c9014dc1b43b9947d164351690101~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/65da77_e02c9014dc1b43b9947d164351690101~mv2.jpg", tag: "002 · back" },
+      { src: "https://static.wixstatic.com/media/65da77_e7bf1d269b724cbbbb29d86e39956138~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/65da77_e7bf1d269b724cbbbb29d86e39956138~mv2.jpg", tag: "003 · heel" },
+      { src: "https://static.wixstatic.com/media/65da77_fd291b8f6ae741259acd105b73ddf050~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/65da77_fd291b8f6ae741259acd105b73ddf050~mv2.jpg", tag: "004 · inside" },
+      { src: "https://static.wixstatic.com/media/65da77_3b2192e544ed4efaa0d25341d73e122a~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_3b2192e544ed4efaa0d25341d73e122a~mv2.jpg", tag: "005 · headstock" },
+      { src: "https://static.wixstatic.com/media/65da77_8f50f8c5a72e453fa5b5b9e152ef3041~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_8f50f8c5a72e453fa5b5b9e152ef3041~mv2.jpg", tag: "006 · body" },
+      { src: "https://static.wixstatic.com/media/65da77_2bbbdbe53e5e40d396d961e3cd753926~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_2bbbdbe53e5e40d396d961e3cd753926~mv2.jpg", tag: "007 · side" },
+      { src: "https://static.wixstatic.com/media/65da77_d0686e22515b407883e6c7b2b20adad2~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_d0686e22515b407883e6c7b2b20adad2~mv2.jpg", tag: "008 · back" },
+      { src: "https://static.wixstatic.com/media/65da77_9070c47a03c4444eb1d21b839b373248~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_9070c47a03c4444eb1d21b839b373248~mv2.jpg", tag: "009 · headstock" },
+      { src: "https://static.wixstatic.com/media/65da77_f51773770c0c4acaac52159ad56d129a~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/65da77_f51773770c0c4acaac52159ad56d129a~mv2.jpg", tag: "010 · heel" },
+      { src: "https://static.wixstatic.com/media/65da77_ee1851e20e4a45afb19b835cf7e4bfbf~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/65da77_ee1851e20e4a45afb19b835cf7e4bfbf~mv2.jpg", tag: "011 · inside" },
+      { src: "https://static.wixstatic.com/media/65da77_4efe0608c4e64d55b9b4c05bef6f50bb~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/65da77_4efe0608c4e64d55b9b4c05bef6f50bb~mv2.jpg", tag: "012 · body" },
+    ];
+    const sg = document.getElementById("sampleGrid");
+    samples.forEach(s => {
+      const el = document.createElement("div");
+      el.className = "sample-card";
+      el.innerHTML = `<img src="${s.src}" alt="${s.tag}" loading="lazy" /><span class="mono-tag">${s.tag}</span>`;
+      sg.appendChild(el);
+    });
+
+    // ——— name preview in multiple fonts ———
+    const npFonts = [
+      { family: '"Instrument Serif", serif',                        label: "Instrument — Editorial serif" },
+      { family: '"Playfair Display", serif; font-style: italic',    label: "Playfair Italic — Classic editorial" },
+      { family: '"Cormorant Garamond", serif; font-style: italic',  label: "Cormorant — Refined italic" },
+      { family: '"Bodoni Moda", serif; font-style: italic',         label: "Bodoni — High-contrast serif" },
+      { family: '"DM Serif Display", serif',                        label: "DM Serif — Display serif" },
+      { family: '"Cinzel", serif',                                  label: "Cinzel — Engraved capitals" },
+      { family: '"Marcellus", serif',                               label: "Marcellus — Classical roman" },
+      { family: '"Caveat", cursive',                                label: "Caveat — Handwritten" },
+      { family: '"Dancing Script", cursive',                        label: "Dancing — Flowing script" },
+      { family: '"Great Vibes", cursive',                           label: "Great Vibes — Formal script" },
+      { family: '"Allura", cursive',                                label: "Allura — Calligraphic script" },
+      { family: '"Sacramento", cursive',                            label: "Sacramento — Casual script" },
+    ];
+    const npList = document.getElementById("npList");
+    const npInput = document.getElementById("npInput");
+    const npCount = document.getElementById("npCount");
+    const npListLeft = document.getElementById("npListLeft");
+    function renderNp() {
+      npList.innerHTML = "";
+      npListLeft.innerHTML = "";
+      const val = npInput.value || "—";
+      npCount.textContent = `${npInput.value.length} / 50`;
+      npFonts.forEach((f, i) => {
+        const row = document.createElement("div");
+        row.className = "np-row";
+        row.innerHTML = `<div class="np-name" style="font-family:${f.family}">${escapeHtml(val)}</div><div class="np-label">${f.label}</div>`;
+        (i < 4 ? npListLeft : npList).appendChild(row);
+      });
+    }
+    function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    npInput.addEventListener("input", () => {
+      document.dispatchEvent(new CustomEvent("engrave:np-input", { detail: npInput.value }));
+      renderNp();
+    });
+    // Cross-sync with configurator text
+    document.addEventListener("engrave:text-change", (e) => {
+      if (npInput.value !== e.detail) { npInput.value = e.detail || ""; renderNp(); }
+    });
+    renderNp();
+
+    // ——— scroll reveal ———
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  })();
+</script>
+
+</body>
+</html>
