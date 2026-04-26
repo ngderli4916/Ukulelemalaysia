@@ -1,818 +1,1279 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ukulele Engraving</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ukulele Malaysia — Ukulele, Brand Stories & Buying Guides</title>
+<meta name="description" content="Malaysia's home for the ukulele. Discover Ukunili and UMA, learn how to choose your first ukulele, tune like a pro, and shop with confidence." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600&family=Caveat:wght@400;600&family=Dancing+Script:wght@500;700&family=Playfair+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Great+Vibes&family=Pacifico&family=Sacramento&family=Allura&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Cinzel:wght@500;700&family=Bodoni+Moda:ital@0;1&family=Marcellus&family=DM+Serif+Display:ital@0;1&family=Parisienne&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
+  /* ============== UKULELE MALAYSIA STYLE SYSTEM ============== */
   :root {
-    --ink: #1d1d1f;
-    --ink-2: #424245;
-    --muted: #86868b;
-    --hair: #d2d2d7;
-    --hair-2: #e8e8ed;
-    --panel: #f5f5f7;
-    --panel-2: #fafafc;
-    --page: #fbfbfd;
-    --accent: #0071e3;
-    --accent-press: #0077ed;
-    --wood: #b88457;
-    --wood-2: #8b5a2b;
-    --wood-3: #d9a575;
+    --bg: #fbf7f1;
+    --bg-warm: #f5ede0;
+    --ink: #1a1612;
+    --ink-soft: #4a3f35;
+    --ink-mute: #7a6b5d;
+    --line: #e8dcc8;
+    --terracotta: #c2410c;
+    --terracotta-soft: #ea580c;
+    --terracotta-bg: #fef3e8;
+    --gold: #b88746;
+    --cream: #fef9f0;
+
+    --serif: 'Fraunces', 'Noto Sans SC', Georgia, serif;
+    --sans: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+    --cn: 'Noto Sans SC', 'Inter', system-ui, sans-serif;
   }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
   html { scroll-behavior: smooth; }
+
   body {
-    background: var(--page);
+    font-family: var(--sans);
+    background: var(--bg);
     color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "PingFang SC", "Noto Sans SC", sans-serif;
-    font-weight: 400;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    font-feature-settings: "ss01";
-    letter-spacing: -0.01em;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 8% 12%, rgba(194, 65, 12, 0.05) 0%, transparent 45%),
+      radial-gradient(circle at 92% 88%, rgba(184, 135, 70, 0.06) 0%, transparent 45%);
   }
-  img { display: block; max-width: 100%; }
 
-  /* ———————————————————— Nav ———————————————————— */
-  .nav {
-    position: sticky; top: 0; z-index: 50;
-    backdrop-filter: saturate(180%) blur(22px);
-    -webkit-backdrop-filter: saturate(180%) blur(22px);
-    background: rgba(251,251,253,0.78);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+  body[lang="zh"] { font-family: var(--cn); }
+
+  /* ============== HEADER ============== */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(251, 247, 241, 0.85);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid rgba(232, 220, 200, 0.6);
   }
-  .nav-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 14px 24px;
-    font-size: 13px; color: var(--ink-2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
-  .nav-left { display: flex; gap: 28px; align-items: center; }
-  .nav-logo { display: flex; align-items: center; gap: 8px; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
-  .nav-logo svg { width: 22px; height: 28px; color: var(--ink); }
-  .nav a { color: inherit; text-decoration: none; opacity: 0.85; }
-  .nav a:hover { opacity: 1; }
-  .nav-links { display: flex; gap: 24px; }
-  .nav-right { display: flex; gap: 20px; align-items: center; }
-  .nav-cta {
-    background: var(--ink); color: #fff; padding: 7px 14px; border-radius: 980px;
-    font-size: 12px;
-  }
-
-  /* ———————————————————— Typography ———————————————————— */
-  .eyebrow {
-    font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em;
-    color: var(--muted); font-weight: 500;
-  }
-  .display {
-    font-family: "Instrument Serif", "Noto Serif SC", "Songti SC", serif;
-    font-weight: 400;
-    letter-spacing: -0.025em;
-    line-height: 0.95;
-  }
-  .cn { font-family: "Noto Serif SC", "Songti SC", serif; font-weight: 400; }
-  .cn-sans { font-family: "Noto Sans SC", "PingFang SC", sans-serif; }
-  .mono { font-family: "Space Mono", ui-monospace, "SF Mono", monospace; }
-
-  /* ———————————————————— Layout ———————————————————— */
-  section { padding: 120px 24px; }
-  .wrap { max-width: 1200px; margin: 0 auto; }
-  .wrap-narrow { max-width: 900px; margin: 0 auto; }
-
-  /* ———————————————————— Hero ———————————————————— */
-  .hero { padding: 88px 24px 120px; }
-  .hero-grid {
-    display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center;
-  }
-  .hero-img {
-    aspect-ratio: 4/5; width: 100%;
-    border-radius: 4px;
-    position: relative; overflow: hidden;
-    background: #eadfce;
-  }
-  .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .hero-copy h1 {
-    margin: 0;
-    font-size: clamp(64px, 9vw, 128px);
-  }
-  .hero-copy h1 em { font-style: italic; color: var(--muted); }
-  .hero-copy .sub {
-    font-family: "Noto Serif SC", "Songti SC", serif;
-    font-size: clamp(28px, 3.2vw, 44px);
-    letter-spacing: 0.02em;
-    margin-top: 16px;
-    color: var(--ink-2);
-  }
-  .hero-copy .lede {
-    margin-top: 40px;
-    font-size: 18px; line-height: 1.5; color: var(--ink-2);
-    max-width: 420px;
-  }
-  .hero-meta {
-    margin-top: 40px;
-    display: flex; gap: 32px;
-    font-size: 12px; color: var(--muted);
-    font-family: "Space Mono", monospace;
-  }
-  .hero-meta span b { color: var(--ink); font-weight: 500; }
-
-  /* ———————————————————— Section heading ———————————————————— */
-  .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 56px; gap: 40px; }
-  .sec-head-left h2 {
-    margin: 8px 0 0;
-    font-family: "Instrument Serif", "Noto Serif SC", serif;
-    font-size: clamp(44px, 5.5vw, 72px);
-    font-weight: 400; letter-spacing: -0.02em; line-height: 1;
-  }
-  .sec-head-left .sub-cn {
-    font-family: "Noto Serif SC", serif; font-size: 20px; color: var(--muted); margin-top: 12px;
-  }
-  .sec-head-right {
-    max-width: 380px; color: var(--ink-2); font-size: 15px; line-height: 1.55;
-    padding-top: 10px;
-  }
-
-  /* Highlighted CTA inside section heading right-column */
-  .play-cta {
-    margin-top: 20px;
-    padding: 14px 16px;
-    background: #FFF7E8;
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
     color: var(--ink);
-    border: 1px solid var(--accent);
+  }
+  .brand-mark {
+    width: 36px; height: 36px;
+    background: var(--terracotta);
+    color: white;
     border-radius: 10px;
-    display: flex; align-items: center; gap: 12px;
-    font-family: "Instrument Serif", serif;
-    font-style: italic;
-    font-size: 17px;
-    line-height: 1.35;
-    letter-spacing: -0.005em;
-    box-shadow: 0 10px 24px -18px rgba(199,128,52,0.55);
-    animation: play-cta-bob 2.4s ease-in-out infinite;
-  }
-  .play-cta-arrow {
-    flex: 0 0 auto;
-    font-family: "Space Mono", monospace;
-    font-style: normal;
-    font-size: 18px;
-    line-height: 1;
-    width: 28px; height: 28px;
-    display: inline-flex; align-items: center; justify-content: center;
-    background: var(--accent);
-    color: #fff;
-    border-radius: 50%;
-    animation: play-cta-arrow 1.6s ease-in-out infinite;
-  }
-  .play-cta-text { flex: 1; }
-  @keyframes play-cta-bob {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-3px); }
-  }
-  @keyframes play-cta-arrow {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(3px); }
-  }
-
-  /* ———————————————————— Configurator ———————————————————— */
-  .config {
-    background: var(--panel);
-    border-radius: 28px;
-    padding: 48px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: stretch;
+    place-items: center;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 20px;
+    box-shadow: 0 4px 12px -4px rgba(194, 65, 12, 0.4);
   }
-  .config-preview {
-    background: #fff;
-    border-radius: 20px;
-    aspect-ratio: 2/3;
-    position: relative;
-    overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
+  .brand-name {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: -0.01em;
   }
-  .uke-svg { width: 69%; height: auto; max-height: 100%; }
+  .lang-switcher {
+    display: flex;
+    background: var(--bg-warm);
+    padding: 4px;
+    border-radius: 999px;
+    gap: 2px;
+  }
+  .lang-btn {
+    border: 0;
+    background: transparent;
+    padding: 6px 14px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .lang-btn:hover { color: var(--ink); }
+  .lang-btn.active {
+    background: var(--ink);
+    color: white;
+  }
 
-  .preview-caption {
-    position: absolute; bottom: 16px; left: 16px;
-    font-family: "Space Mono", monospace;
-    font-size: 10px; color: var(--muted);
-    letter-spacing: 0.04em;
+  /* ============== LAYOUT ============== */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
   }
-  .preview-view-toggle {
-    position: absolute; top: 16px; right: 16px;
-    display: flex; gap: 6px;
-    background: rgba(245,245,247,0.9); padding: 4px; border-radius: 980px;
-    font-size: 11px;
-  }
-  .preview-view-toggle button {
-    appearance: none; border: 0; background: transparent;
-    padding: 6px 12px; border-radius: 980px; cursor: pointer;
-    color: var(--ink-2); font: inherit; font-size: 11px;
-  }
-  .preview-view-toggle button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
 
-  .config-controls { display: flex; flex-direction: column; gap: 28px; }
-  .step {
-    border-top: 1px solid var(--hair);
-    padding-top: 24px;
-  }
-  .step:first-child { border-top: 0; padding-top: 0; }
-  .step-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; }
-  .step-num {
-    font-family: "Space Mono", monospace;
-    font-size: 11px; color: var(--muted); letter-spacing: 0.08em;
-  }
-  .step-title { font-size: 19px; font-weight: 500; letter-spacing: -0.01em; margin: 0; }
-  .step-title .cnmark { color: var(--muted); font-weight: 400; font-family: "Noto Serif SC", serif; margin-left: 8px; font-size: 15px; }
-  .step-value { font-size: 13px; color: var(--muted); font-family: "Space Mono", monospace; }
-
-  /* Text input */
-  .text-input {
+  /* ============== HERO ============== */
+  .hero {
+    padding: 80px 24px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
     position: relative;
   }
-  .text-input input {
-    width: 100%;
-    border: 1px solid var(--hair);
-    background: #fff;
-    border-radius: 12px;
-    padding: 16px 18px;
-    font: inherit; font-size: 17px;
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 70px;
+    align-items: center;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 24px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--terracotta);
+  }
+
+  h1.hero-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(44px, 6.5vw, 84px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
     color: var(--ink);
-    letter-spacing: -0.01em;
-    outline: none;
-    transition: border-color .15s, box-shadow .15s;
-  }
-  .text-input input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 4px rgba(0,113,227,0.12);
-  }
-  .text-input .hint {
-    display: flex; justify-content: space-between; margin-top: 8px;
-    font-size: 12px; color: var(--muted); font-family: "Space Mono", monospace;
-  }
-
-  /* Font picker */
-  .font-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
-  }
-  .font-chip {
-    border: 1px solid var(--hair);
-    background: #fff;
-    border-radius: 12px;
-    padding: 16px 12px 12px;
-    cursor: pointer;
-    text-align: center;
-    transition: all .15s;
-    position: relative;
-  }
-  .font-chip:hover { border-color: var(--muted); }
-  .font-chip.on {
-    border-color: var(--ink);
-    box-shadow: 0 0 0 1px var(--ink) inset;
-  }
-  .font-chip .sample {
-    font-size: 26px;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1;
-  }
-  .font-chip .label {
-    margin-top: 10px; font-size: 11px; color: var(--muted);
-    font-family: "Space Mono", monospace; letter-spacing: 0.04em;
-  }
-
-  /* Location chips */
-  .loc-row { display: flex; gap: 8px; flex-wrap: wrap; }
-  .loc-chip {
-    border: 1px solid var(--hair);
-    background: #fff;
-    border-radius: 980px;
-    padding: 10px 16px;
-    cursor: pointer;
-    font-size: 14px;
-    color: var(--ink-2);
-    transition: all .15s;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .loc-chip:hover { border-color: var(--muted); }
-  .loc-chip.on { background: var(--ink); border-color: var(--ink); color: #fff; }
-  .loc-chip .cnmark { font-family: "Noto Sans SC", sans-serif; font-size: 12px; opacity: 0.7; }
-
-  /* Position & angle sliders */
-  .pos-controls { display: flex; flex-direction: column; gap: 14px; }
-  .pos-row { display: flex; flex-direction: column; gap: 6px; }
-  .pos-label {
-    display: flex; align-items: baseline; justify-content: space-between;
-    font-family: "Space Mono", monospace; font-size: 12px;
-    color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase;
-  }
-  .pos-label em {
-    font-style: normal; color: var(--ink); font-weight: 500;
-    font-variant-numeric: tabular-nums; letter-spacing: 0;
-  }
-  .pos-row input[type="range"] {
-    -webkit-appearance: none; appearance: none;
-    width: 100%; height: 2px; background: var(--hair);
-    border-radius: 2px; outline: none; cursor: pointer;
-  }
-  .pos-row input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none; appearance: none;
-    width: 16px; height: 16px; border-radius: 50%;
-    background: var(--ink); border: 2px solid #fff;
-    box-shadow: 0 0 0 1px var(--ink);
-  }
-  .pos-row input[type="range"]::-moz-range-thumb {
-    width: 14px; height: 14px; border-radius: 50%;
-    background: var(--ink); border: 2px solid #fff;
-    box-shadow: 0 0 0 1px var(--ink);
-  }
-
-  /* Buttons */
-  .btn {
-    appearance: none; border: 0; cursor: pointer;
-    padding: 14px 28px; border-radius: 980px;
-    font: inherit; font-size: 15px; font-weight: 400;
-  }
-  .btn-primary { background: var(--accent); color: #fff; }
-  .btn-primary:hover { background: var(--accent-press); }
-  .btn-ghost { background: transparent; color: var(--accent); padding-left: 0; padding-right: 0; }
-  .btn-ghost::after { content: " ›"; }
-  .price-row {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-top: 20px; border-top: 1px solid var(--hair);
-  }
-  .price {
-    display: flex; align-items: baseline; gap: 12px;
-  }
-  .price b { font-size: 22px; font-weight: 500; letter-spacing: -0.01em; }
-  .price span { font-size: 12px; color: var(--muted); font-family: "Space Mono", monospace; }
-
-  /* ———————————————————— Location Zones on ukulele ———————————————————— */
-  .zone {
-    fill: transparent;
-    stroke: transparent;
-    stroke-width: 1.5;
-    stroke-dasharray: 3 3;
-    cursor: pointer;
-    transition: all .2s;
-  }
-  .zone:hover { stroke: var(--accent); fill: rgba(0,113,227,0.06); }
-  .zone.on { stroke: var(--ink); fill: rgba(29,29,31,0.04); }
-
-  /* ———————————————————— Positioning section ———————————————————— */
-  .pos-grid {
-    display: grid; grid-template-columns: repeat(6, 1fr);
-    gap: 12px;
-    margin-top: 48px;
-  }
-  .pos-dot {
-    aspect-ratio: 1; border-radius: 50%;
-    background:
-      repeating-linear-gradient(45deg, #e9dcc7 0 2px, #e2d2b7 2px 8px),
-      #e2d2b7;
-    position: relative;
-    border: 1px solid var(--hair-2);
-    cursor: pointer;
-    transition: transform .2s;
-  }
-  .pos-dot:hover { transform: scale(1.05); }
-  .pos-dot.on { outline: 2px solid var(--ink); outline-offset: 3px; }
-  .pos-dot::after {
-    content: attr(data-pos);
-    position: absolute; inset: auto 0 -24px 0;
-    text-align: center; font-size: 10px;
-    font-family: "Space Mono", monospace;
-    color: var(--muted);
-  }
-
-  .pos-preview {
-    margin-top: 64px;
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .pos-card {
-    aspect-ratio: 4/3; border-radius: 16px;
-    background: #e4d3b9;
-    position: relative; overflow: hidden;
-    border: 1px solid var(--hair-2);
-  }
-  .pos-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .pos-card .tag {
-    position: absolute; left: 14px; top: 14px;
-    background: rgba(255,255,255,0.9);
-    padding: 4px 10px; border-radius: 980px;
-    font-size: 11px; font-family: "Space Mono", monospace; color: var(--ink);
-  }
-  .pos-card .cap {
-    position: absolute; left: 14px; bottom: 14px;
-    font-family: "Space Mono", monospace; font-size: 10px; color: rgba(0,0,0,0.5);
-    background: rgba(255,255,255,0.7); padding: 3px 8px; border-radius: 2px;
-  }
-
-  /* ———————————————————— Samples gallery ———————————————————— */
-  .samples {
-    background: var(--panel);
-  }
-  .sample-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-  .sample-card {
-    aspect-ratio: 1;
-    background: #d9c5a3;
-    border-radius: 16px;
-    overflow: hidden;
-    position: relative;
-    transition: transform .3s;
-    border: 1px solid rgba(0,0,0,0.04);
-    cursor: pointer;
-  }
-  .sample-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
-  .sample-card:hover img { transform: scale(1.04); }
-  .sample-card:hover { transform: translateY(-2px); }
-  .sample-card .mono-tag {
-    position: absolute; left: 12px; bottom: 12px;
-    font-family: "Space Mono", monospace; font-size: 10px;
-    color: #fff;
-    background: rgba(0,0,0,0.45);
-    padding: 3px 7px; border-radius: 2px;
-    backdrop-filter: blur(6px);
-  }
-
-  /* ———————————————————— Carousel ———————————————————— */
-  .carousel-wrap { margin-top: 40px; }
-  .carousel {
-    display: flex; gap: 20px;
-    overflow-x: auto; scroll-snap-type: x mandatory;
-    padding-bottom: 12px;
-    scrollbar-width: none;
-  }
-  .carousel::-webkit-scrollbar { display: none; }
-  .carousel > * {
-    flex: 0 0 calc((100% - 60px) / 4);
-    scroll-snap-align: start;
-  }
-  .carousel-dots { display: flex; gap: 6px; justify-content: center; margin-top: 20px; }
-  .carousel-dots b {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--hair); transition: all .2s;
-  }
-  .carousel-dots b.on { background: var(--ink); width: 20px; border-radius: 3px; }
-  .carousel-ctrls {
-    display: flex; gap: 10px; align-items: center; justify-content: flex-end;
-    margin-top: 8px;
-  }
-  .carousel-ctrls button {
-    appearance: none; border: 1px solid var(--hair); background: #fff;
-    width: 36px; height: 36px; border-radius: 50%;
-    cursor: pointer; color: var(--ink-2);
-    font-size: 14px;
-  }
-  .carousel-ctrls button:hover { border-color: var(--ink); color: var(--ink); }
-
-  /* ———————————————————— Name preview ———————————————————— */
-  .namepreview {
-    margin-top: 48px;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    background: #fff;
-    border: 1px solid var(--hair-2);
-    border-radius: 28px;
-    padding: 48px;
-  }
-  .namepreview h3 {
-    font-family: "Instrument Serif", serif;
-    font-weight: 400;
-    font-size: 40px; margin: 0 0 8px;
-    letter-spacing: -0.01em;
-  }
-  .namepreview .cn-note {
-    color: var(--muted); font-family: "Noto Serif SC", serif; font-size: 16px;
     margin-bottom: 28px;
   }
-  .np-list { display: flex; flex-direction: column; }
-  .np-list-left { margin-top: 24px; }
-  .np-row {
-    padding: 16px 0;
-    border-bottom: 1px solid var(--hair-2);
-    display: flex; align-items: baseline; justify-content: space-between;
-    gap: 16px;
+  h1.hero-title em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--terracotta);
   }
-  .np-row:last-child { border-bottom: 0; }
-  .np-name {
-    font-size: 28px; letter-spacing: -0.01em;
+  .hero-sub {
+    font-size: clamp(16px, 1.6vw, 19px);
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: 520px;
+    margin-bottom: 36px;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 26px;
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    border: 0;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: white;
+  }
+  .btn-primary:hover {
+    background: var(--terracotta);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -10px rgba(194, 65, 12, 0.5);
+  }
+  .btn-ghost {
+    background: transparent;
     color: var(--ink);
+    border: 1.5px solid var(--ink);
   }
-  .np-label {
-    font-family: "Space Mono", monospace; font-size: 11px;
-    color: var(--muted); letter-spacing: 0.05em;
+  .btn-ghost:hover {
+    background: var(--ink);
+    color: white;
   }
 
-  /* ———————————————————— Footer ———————————————————— */
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 4/5;
+    border-radius: 28px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--terracotta) 0%, #8b2e08 100%);
+    box-shadow:
+      0 30px 60px -20px rgba(26, 22, 18, 0.25),
+      0 0 0 1px rgba(255,255,255,0.1) inset;
+  }
+  .hero-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: luminosity;
+    opacity: 0.85;
+  }
+  .hero-badge {
+    position: absolute;
+    bottom: 22px;
+    left: 22px;
+    right: 22px;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    padding: 18px 22px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero-badge-dot {
+    width: 10px; height: 10px;
+    background: #16a34a;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.2);
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.2); }
+    50% { box-shadow: 0 0 0 8px rgba(22, 163, 74, 0); }
+  }
+  .hero-badge-text {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .hero-badge-text strong { font-weight: 600; display: block; }
+  .hero-badge-text span { color: var(--ink-mute); font-size: 12px; }
+
+  /* ============== STATS BAR ============== */
+  .stats {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 36px 0;
+    margin-top: 40px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 500;
+    color: var(--terracotta);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  /* ============== SECTIONS ============== */
+  .section {
+    padding: 90px 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .section-num {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--terracotta);
+    font-style: italic;
+  }
+  .section-title-tag {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .section-divider {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+    min-width: 60px;
+  }
+  h2.section-h {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(34px, 4.5vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 18px;
+    max-width: 720px;
+  }
+  h2.section-h em {
+    font-style: italic;
+    color: var(--terracotta);
+    font-weight: 500;
+  }
+  .section-lead {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 640px;
+    line-height: 1.6;
+    margin-bottom: 50px;
+  }
+
+  /* ============== EXPLORE GRID ============== */
+  .explore-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 22px;
+  }
+  .explore-card {
+    position: relative;
+    background: white;
+    border-radius: 22px;
+    padding: 32px 30px;
+    border: 1px solid var(--line);
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 280px;
+  }
+  .explore-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 50px -20px rgba(26, 22, 18, 0.18);
+    border-color: var(--terracotta);
+  }
+  .explore-card.span-7 { grid-column: span 7; }
+  .explore-card.span-5 { grid-column: span 5; }
+  .explore-card.span-6 { grid-column: span 6; }
+  .explore-card.span-4 { grid-column: span 4; }
+  .explore-card.span-8 { grid-column: span 8; }
+
+  .card-num {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--terracotta);
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  .card-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .card-title em {
+    font-style: italic;
+    color: var(--terracotta);
+    font-weight: 500;
+  }
+  .card-desc {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+  .card-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--terracotta);
+    transition: gap 0.25s ease;
+  }
+  .explore-card:hover .card-arrow { gap: 14px; }
+
+  .card-image {
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 180px;
+    height: 180px;
+    background: var(--terracotta-bg);
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: 0;
+  }
+  .explore-card > * { position: relative; z-index: 1; }
+
+  /* Featured — bigger, dark variant */
+  .explore-card.featured {
+    background: linear-gradient(135deg, #1a1612 0%, #2d2520 100%);
+    color: var(--cream);
+    border-color: transparent;
+  }
+  .explore-card.featured .card-title { color: var(--cream); }
+  .explore-card.featured .card-title em { color: #f59e0b; }
+  .explore-card.featured .card-desc { color: rgba(254, 249, 240, 0.75); }
+  .explore-card.featured .card-num { color: #f59e0b; }
+  .explore-card.featured .card-arrow { color: #f59e0b; }
+  .explore-card.featured .card-image {
+    background: rgba(245, 158, 11, 0.15);
+  }
+  .featured-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+  .featured-tag .dot {
+    width: 6px; height: 6px;
+    background: #f59e0b;
+    border-radius: 50%;
+    animation: pulse-gold 2s infinite;
+  }
+  @keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }
+    50% { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
+  }
+
+  /* ============== BRANDS SECTION ============== */
+  .brands-section {
+    background: var(--bg-warm);
+    padding: 100px 0;
+    margin: 60px 0 0;
+  }
+  .brands-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 40px;
+  }
+  .brand-card {
+    background: white;
+    border-radius: 24px;
+    padding: 44px 38px;
+    border: 1px solid var(--line);
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .brand-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 50px -20px rgba(26, 22, 18, 0.18);
+  }
+  .brand-card-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 18px;
+  }
+  .brand-card h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .brand-card p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 26px;
+  }
+  .brand-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--terracotta);
+    transition: gap 0.25s ease;
+  }
+  .brand-card:hover .brand-card-link { gap: 14px; }
+
+  /* ============== PROCESS SECTION ============== */
+  .process-section {
+    padding: 100px 0;
+  }
+  .process-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 50px;
+    border-top: 1px solid var(--line);
+  }
+  .process-item {
+    display: grid;
+    grid-template-columns: 60px 1fr 1.4fr 50px;
+    gap: 30px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+    text-decoration: none;
+    color: var(--ink);
+    transition: padding 0.3s ease;
+  }
+  .process-item:hover {
+    padding-left: 14px;
+    padding-right: 14px;
+    background: linear-gradient(90deg, transparent 0%, var(--terracotta-bg) 50%, transparent 100%);
+  }
+  .process-num {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--terracotta);
+    font-style: italic;
+  }
+  .process-title {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .process-desc {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .process-arrow {
+    font-size: 22px;
+    color: var(--ink-mute);
+    transition: all 0.3s ease;
+    text-align: right;
+  }
+  .process-item:hover .process-arrow {
+    color: var(--terracotta);
+    transform: translateX(6px);
+  }
+
+  /* ============== FINAL CTA ============== */
+  .final-cta {
+    margin: 60px 24px 80px;
+    background: linear-gradient(135deg, #1a1612 0%, #2d2520 60%, #3d2f24 100%);
+    border-radius: 32px;
+    padding: 80px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .final-cta::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(194, 65, 12, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .final-cta > * { position: relative; z-index: 1; }
+
+  .final-cta-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #f59e0b;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .final-cta-eyebrow::before, .final-cta-eyebrow::after {
+    content: '';
+    width: 24px; height: 1px;
+    background: #f59e0b;
+  }
+  .final-cta h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.1;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .final-cta h2 em {
+    font-style: italic;
+    color: #f59e0b;
+    font-weight: 500;
+  }
+  .final-cta p {
+    color: rgba(254, 249, 240, 0.78);
+    font-size: 17px;
+    max-width: 560px;
+    margin: 0 auto 36px;
+    line-height: 1.6;
+  }
+  .final-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 17px 32px;
+    background: #f59e0b;
+    color: #1a1612;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+  .final-cta-btn:hover {
+    background: #fbbf24;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -10px rgba(245, 158, 11, 0.6);
+  }
+
+  /* ============== FOOTER ============== */
   footer {
-    padding: 56px 24px 64px;
-    background: var(--panel-2);
-    border-top: 1px solid var(--hair-2);
-    font-size: 12px; color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding: 50px 24px 40px;
+    background: var(--bg-warm);
   }
-  .foot-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
-  .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
-  .foot-links a { color: inherit; text-decoration: none; }
-  .foot-links a:hover { color: var(--ink); }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 50px;
+  }
+  .footer-brand {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .footer-tagline {
+    font-size: 14px;
+    color: var(--ink-mute);
+    line-height: 1.6;
+    max-width: 320px;
+  }
+  .footer-col h4 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.2s ease;
+  }
+  .footer-col a:hover { color: var(--terracotta); }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-mute);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
 
-  /* ———————————————————— Fade-in scroll reveal ———————————————————— */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
-  .reveal.in { opacity: 1; transform: none; }
+  /* ============== LANGUAGE SWITCHING ============== */
+  .lang-content { display: none; }
+  .lang-content.active { display: block; }
+  body[lang="en"] [data-i18n="en"],
+  body[lang="ms"] [data-i18n="ms"],
+  body[lang="zh"] [data-i18n="zh"] { display: inline; }
+  body[lang="en"] [data-i18n="ms"], body[lang="en"] [data-i18n="zh"],
+  body[lang="ms"] [data-i18n="en"], body[lang="ms"] [data-i18n="zh"],
+  body[lang="zh"] [data-i18n="en"], body[lang="zh"] [data-i18n="ms"] { display: none; }
 
-  /* ———————————————————— Tweaks panel root (starter will mount its own DOM) ———————————————————— */
-
-  /* ———————————————————— Responsive ———————————————————— */
+  /* ============== RESPONSIVE ============== */
   @media (max-width: 900px) {
-    section { padding: 72px 20px; }
-    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-    .config { grid-template-columns: 1fr; padding: 24px; gap: 28px; }
-    .sec-head { flex-direction: column; gap: 20px; }
-    .pos-grid { grid-template-columns: repeat(4, 1fr); }
-    .pos-preview { grid-template-columns: 1fr; }
-    .sample-grid { grid-template-columns: repeat(2, 1fr); }
-    .carousel > * { flex-basis: 70%; }
-    .namepreview { grid-template-columns: 1fr; padding: 28px; }
-    .nav-links { display: none; }
+    .hero { padding: 50px 24px 40px; }
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .hero-visual { aspect-ratio: 4/4; max-height: 420px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .explore-grid { gap: 16px; }
+    .explore-card.span-7,
+    .explore-card.span-5,
+    .explore-card.span-6,
+    .explore-card.span-4,
+    .explore-card.span-8 { grid-column: span 12; }
+    .brands-grid { grid-template-columns: 1fr; }
+    .process-item {
+      grid-template-columns: 40px 1fr 30px;
+      gap: 16px;
+    }
+    .process-desc { grid-column: 2 / 3; padding-top: 4px; }
+    .section { padding: 60px 0; }
+    .brands-section, .process-section { padding: 70px 0; }
+    .final-cta { padding: 60px 28px; margin: 40px 16px 60px; border-radius: 24px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 540px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .stat-num { font-size: 36px; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .hero-actions .btn { justify-content: center; }
   }
 </style>
 </head>
-<body>
+<body lang="en">
 
-<!-- ───────── Nav ───────── -->
-<nav class="nav" data-screen-label="Nav">
-  <div class="nav-inner">
-    <div class="nav-left">
-      <a class="nav-logo" href="#top">
-        <svg viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- Mini ukulele silhouette logo -->
-          <path d="M 13 2 L 19 2 L 20 8 L 12 8 Z" fill="currentColor" opacity="0.85"/>
-          <rect x="14.5" y="8" width="3" height="14" fill="currentColor" opacity="0.7"/>
-          <path d="M 16 22 C 22 22, 26 25, 26 30 C 26 35, 22 38, 16 38 C 10 38, 6 35, 6 30 C 6 25, 10 22, 16 22 Z" fill="currentColor"/>
-          <circle cx="16" cy="30" r="2.6" fill="#fbfbfd"/>
-        </svg>
-        <span>Ukunili <em style="font-style:normal; color: var(--muted); font-weight: 400;">· Engraved</em></span>
-      </a>
-      <div class="nav-links">
-        <a href="#design">Design</a>
-        <a href="#place">Placement</a>
-        <a href="#samples">Samples</a>
-        <a href="#preview">Preview</a>
-      </div>
-    </div>
-    <div class="nav-right">
-      <span class="mono" style="font-size:11px;">1 – 3 working days</span>
-      <a href="#design" class="nav-cta">Customize</a>
+<!-- ============== HEADER ============== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="brand">
+      <div class="brand-mark">U</div>
+      <div class="brand-name">Ukulele Malaysia</div>
+    </a>
+    <div class="lang-switcher" role="tablist">
+      <button class="lang-btn active" data-set-lang="en">EN</button>
+      <button class="lang-btn" data-set-lang="ms">BM</button>
+      <button class="lang-btn" data-set-lang="zh">中文</button>
     </div>
   </div>
-</nav>
+</header>
 
-<a id="top"></a>
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">
+        <span data-i18n="en">Made for the Malaysian player</span>
+        <span data-i18n="ms">Dibuat untuk pemain Malaysia</span>
+        <span data-i18n="zh">为马来西亚琴友而生</span>
+      </div>
 
-<!-- ───────── Hero ───────── -->
-<section class="hero" data-screen-label="01 Hero">
-  <div class="wrap hero-grid">
-    <div class="hero-img reveal" aria-label="Ukulele engraved — hero">
-      <img src="https://static.wixstatic.com/media/65da77_f1d2a3999f724f78901b054ee8a1007c~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_f1d2a3999f724f78901b054ee8a1007c~mv2.jpg" alt="Engraved ukulele" loading="eager" />
-    </div>
-    <div class="hero-copy reveal">
-      <div class="eyebrow">Personal Engraving</div>
-      <h1 class="display">Make it<br><em>yours.</em></h1>
-      <p class="lede">Add a name, a line of poetry, a date that matters. Complimentary on every ukulele, delivered in three working days.</p>
-      <div class="hero-meta">
-        <span><b>Free</b></span>
-        <span><b>1 – 3 days</b></span>
-        <span><b>20+ fonts</b></span>
+      <h1 class="hero-title">
+        <span data-i18n="en">The ukulele, made <em>simple, warm</em>, and yours.</span>
+        <span data-i18n="ms">Ukulele, dibuat <em>mudah, hangat</em>, dan benar-benar milik anda.</span>
+        <span data-i18n="zh">乌克丽丽,从此<em>简单、温暖</em>、属于你。</span>
+      </h1>
+
+      <p class="hero-sub">
+        <span data-i18n="en">From your first chord to a fully-engraved heirloom — discover the brands, learn the basics, and shop ukuleles built for Malaysia.</span>
+        <span data-i18n="ms">Daripada kord pertama anda kepada ukulele berukir tersuai — terokai jenama, pelajari asas, dan beli ukulele yang dibuat untuk Malaysia.</span>
+        <span data-i18n="zh">从第一个和弦,到一把刻有专属铭文的传家之作 — 探索品牌、掌握入门、选购真正为马来西亚而做的乌克丽丽。</span>
+      </p>
+
+      <div class="hero-actions">
+        <a href="/how-to-buy-ukulele" class="btn btn-primary">
+          <span data-i18n="en">Find your first ukulele</span>
+          <span data-i18n="ms">Cari ukulele pertama anda</span>
+          <span data-i18n="zh">找到你的第一把乌克丽丽</span>
+          <span>→</span>
+        </a>
+        <a href="/ukunili" class="btn btn-ghost">
+          <span data-i18n="en">Shop Ukunili</span>
+          <span data-i18n="ms">Beli Ukunili</span>
+          <span data-i18n="zh">选购 Ukunili</span>
+        </a>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ───────── Configurator ───────── -->
-<section id="design" data-screen-label="02 Configurator">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-head-left">
-        <div class="eyebrow">Step 01 — Design</div>
-        <h2>Design the inscription.</h2>
-      </div>
-      <div class="sec-head-right">
-        Type your name, choose a typeface, pick where it lives on the instrument.
-        Every change updates the live preview — what you see is what gets engraved.
-        <div class="play-cta">
-          <span class="play-cta-arrow">↓</span>
-          <span class="play-cta-text">Play around with the settings below to preview your engraving</span>
+    <div class="hero-visual">
+      <img src="https://pub-7d99bb5e00394a4d9831699e2ec8574d.r2.dev/UkuleleTuning.png" alt="Ukunili Ukulele" />
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <div class="hero-badge-text">
+          <span data-i18n="en"><strong>Free shipping in Malaysia</strong><span>On orders RM150 and above</span></span>
+          <span data-i18n="ms"><strong>Penghantaran percuma di Malaysia</strong><span>Pesanan RM150 ke atas</span></span>
+          <span data-i18n="zh"><strong>马来西亚境内免运费</strong><span>订单满 RM150</span></span>
         </div>
       </div>
     </div>
-
-    <div class="config reveal" id="configurator"><!-- JS-driven --></div>
   </div>
 </section>
 
-<!-- ───────── Placement ───────── -->
-<section id="place" style="background: var(--panel-2);" data-screen-label="03 Placement">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-head-left">
-        <div class="eyebrow">Step 02 — Placement</div>
-        <h2>Where should it live?</h2>
-      </div>
-      <div class="sec-head-right">
-        Each position carries a different feeling — discreet at the heel, proud on the headstock.
-        Tap any dot to preview it in place.
-      </div>
-    </div>
-
-    <div class="pos-grid reveal" id="posGrid"></div>
-
-    <div class="pos-preview reveal">
-      <div class="pos-card">
-        <img src="https://static.wixstatic.com/media/65da77_76efd500a6004a5ca13e42df6223d907~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_76efd500a6004a5ca13e42df6223d907~mv2.jpg" alt="Headstock engraving" />
-        <span class="tag">Headstock</span>
-      </div>
-      <div class="pos-card">
-        <img src="https://static.wixstatic.com/media/65da77_fd1391ab31bd4c8e88b98ab4417b7eb8~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_fd1391ab31bd4c8e88b98ab4417b7eb8~mv2.jpg" alt="Body engraving" />
-        <span class="tag">Body</span>
-      </div>
-      <div class="pos-card">
-        <img src="https://static.wixstatic.com/media/65da77_849cecbcb5d4474bb646ce11063f9220~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_849cecbcb5d4474bb646ce11063f9220~mv2.jpg" alt="Back panel engraving" />
-        <span class="tag">Back panel</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ───────── Samples ───────── -->
-<section class="samples" id="samples" data-screen-label="04 Samples">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-head-left">
-        <div class="eyebrow">Step 03 — Inspiration</div>
-        <h2>Twelve, recently engraved.</h2>
-      </div>
-      <div class="sec-head-right">
-        A small gallery of what customers have done lately — names, initials,
-        a line of Tang poetry, a birthdate that matters.
-      </div>
-    </div>
-
-    <div class="sample-grid reveal" id="sampleGrid"></div>
-  </div>
-</section>
-
-<!-- ───────── Preview / Name preview ───────── -->
-<section id="preview" data-screen-label="05 Preview">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-head-left">
-        <div class="eyebrow">Step 04 — Preview</div>
-        <h2>See your name, in every style.</h2>
-      </div>
-      <div class="sec-head-right">
-        Not sure which typeface fits? Type once — see it in all of them.
-      </div>
-    </div>
-
-    <div class="namepreview reveal">
+<!-- ============== STATS ============== -->
+<div class="container">
+  <div class="stats">
+    <div class="stats-grid">
       <div>
-        <h3>Name Preview</h3>
-        <div class="cn-note">Live, instant</div>
-        <div class="text-input">
-          <input id="npInput" type="text" value="Ocean Blue" maxlength="50" />
-          <div class="hint"><span>Up to 50 characters</span><span id="npCount">10 / 50</span></div>
-        </div>
-        <div class="np-list np-list-left" id="npListLeft"></div>
+        <div class="stat-num">2</div>
+        <div class="stat-label" data-i18n="en">Original Brands</div>
+        <div class="stat-label" data-i18n="ms">Jenama Asli</div>
+        <div class="stat-label" data-i18n="zh">原创品牌</div>
       </div>
-      <div class="np-list" id="npList"></div>
+      <div>
+        <div class="stat-num">20K+</div>
+        <div class="stat-label" data-i18n="en">Engravings Made</div>
+        <div class="stat-label" data-i18n="ms">Ukiran Tersuai</div>
+        <div class="stat-label" data-i18n="zh">专属雕刻</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label" data-i18n="en">Languages</div>
+        <div class="stat-label" data-i18n="ms">Bahasa</div>
+        <div class="stat-label" data-i18n="zh">支持语言</div>
+      </div>
+      <div>
+        <div class="stat-num">10+</div>
+        <div class="stat-label" data-i18n="en">Years of Service</div>
+        <div class="stat-label" data-i18n="ms">Tahun Berkhidmat</div>
+        <div class="stat-label" data-i18n="zh">年用心服务</div>
+      </div>
     </div>
+  </div>
+</div>
 
-    <div style="margin-top: 48px; display:flex; justify-content: flex-end; align-items:center; flex-wrap: wrap; gap: 16px;" class="reveal">
-      <div style="display:flex; gap: 12px; align-items: center;">
-        <button class="btn btn-ghost">Save draft</button>
-        <button class="btn btn-primary">Add to bag</button>
-      </div>
+<!-- ============== EXPLORE ============== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-num">— 01</span>
+      <span class="section-title-tag">
+        <span data-i18n="en">Explore</span>
+        <span data-i18n="ms">Terokai</span>
+        <span data-i18n="zh">探索</span>
+      </span>
+      <div class="section-divider"></div>
+    </div>
+    <h2 class="section-h">
+      <span data-i18n="en">Everything you need, <em>in one place</em>.</span>
+      <span data-i18n="ms">Semua yang anda perlukan, <em>di satu tempat</em>.</span>
+      <span data-i18n="zh">你需要的一切,<em>都在这里</em>。</span>
+    </h2>
+    <p class="section-lead">
+      <span data-i18n="en">Whether you're choosing your first ukulele or comparing models, our guides walk you through every step.</span>
+      <span data-i18n="ms">Sama ada anda memilih ukulele pertama atau membandingkan model, panduan kami akan memandu anda langkah demi langkah.</span>
+      <span data-i18n="zh">不论你是挑选第一把,还是在比较不同型号 — 我们的指南都会一步步陪你走完。</span>
+    </p>
+
+    <div class="explore-grid">
+      <!-- Featured: Buying guide -->
+      <a href="/how-to-buy-ukulele" class="explore-card featured span-7">
+        <span class="featured-tag"><span class="dot"></span>
+          <span data-i18n="en">Most Popular</span>
+          <span data-i18n="ms">Paling Popular</span>
+          <span data-i18n="zh">最多人看</span>
+        </span>
+        <div class="card-num">No. 01</div>
+        <h3 class="card-title">
+          <span data-i18n="en">How to <em>buy</em> your first ukulele.</span>
+          <span data-i18n="ms">Cara <em>membeli</em> ukulele pertama anda.</span>
+          <span data-i18n="zh">如何<em>挑选</em>第一把乌克丽丽。</span>
+        </h3>
+        <p class="card-desc">
+          <span data-i18n="en">Soprano, concert, or tenor? Mahogany or laminate? A friendly walkthrough of sizes, brands, and what actually matters for beginners.</span>
+          <span data-i18n="ms">Soprano, concert atau tenor? Mahogani atau lapisan? Panduan mesra mengenai saiz, jenama, dan apa yang penting untuk pemula.</span>
+          <span data-i18n="zh">21寸、23寸还是26寸?桃花心木还是合板?我们用最简单的方式带你认识尺寸、品牌,和初学者真正在意的事。</span>
+        </p>
+        <div class="card-arrow">
+          <span data-i18n="en">Read the buying guide</span>
+          <span data-i18n="ms">Baca panduan pembelian</span>
+          <span data-i18n="zh">阅读选购指南</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <!-- Tuning -->
+      <a href="/ukulele-tuning" class="explore-card span-5">
+        <div class="card-image"></div>
+        <div class="card-num">No. 02</div>
+        <h3 class="card-title">
+          <span data-i18n="en">Why is my ukulele <em>out of tune?</em></span>
+          <span data-i18n="ms">Mengapa ukulele saya <em>tidak bertala?</em></span>
+          <span data-i18n="zh">为什么我的乌克丽丽<em>总是走音?</em></span>
+        </h3>
+        <p class="card-desc">
+          <span data-i18n="en">New strings need stretching. Here's how to tune properly — and why it gets easier after the first week.</span>
+          <span data-i18n="ms">Tali baharu perlu diregangkan. Cara untuk menalakannya dengan betul — dan kenapa ia semakin mudah selepas minggu pertama.</span>
+          <span data-i18n="zh">新弦需要拉伸,我们教你正确调音的方法,以及为什么一周后会越来越稳。</span>
+        </p>
+        <div class="card-arrow">
+          <span data-i18n="en">Tune like a pro</span>
+          <span data-i18n="ms">Tala seperti pro</span>
+          <span data-i18n="zh">学会专业调音</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <!-- 2330 Series -->
+      <a href="/2330-series" class="explore-card span-6">
+        <div class="card-image"></div>
+        <div class="card-num">No. 03</div>
+        <h3 class="card-title">
+          <span data-i18n="en">2330 Series — <em>side by side</em>.</span>
+          <span data-i18n="ms">Siri 2330 — <em>perbandingan</em>.</span>
+          <span data-i18n="zh">2330 系列 — <em>详细比较</em>。</span>
+        </h3>
+        <p class="card-desc">
+          <span data-i18n="en">The 2330M, 2330B and 2330L compared. Wood, design, tuning pegs and engraving — see all three models clearly.</span>
+          <span data-i18n="ms">2330M, 2330B dan 2330L dibandingkan. Kayu, reka bentuk, tuning peg dan ukiran — lihat semua tiga model dengan jelas.</span>
+          <span data-i18n="zh">2330M、2330B、2330L 三款并排比较 — 用料、设计、调音弦钮、雕刻,一次看清楚。</span>
+        </p>
+        <div class="card-arrow">
+          <span data-i18n="en">Compare the series</span>
+          <span data-i18n="ms">Bandingkan siri</span>
+          <span data-i18n="zh">查看系列比较</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <!-- Ukunili Hub -->
+      <a href="/ukunili" class="explore-card span-6">
+        <div class="card-image"></div>
+        <div class="card-num">No. 04</div>
+        <h3 class="card-title">
+          <span data-i18n="en">Ukunili — <em>everything in one link</em>.</span>
+          <span data-i18n="ms">Ukunili — <em>semuanya satu pautan</em>.</span>
+          <span data-i18n="zh">Ukunili — <em>一站式连接</em>。</span>
+        </h3>
+        <p class="card-desc">
+          <span data-i18n="en">Shop online, follow our socials, chat on WhatsApp — all of Ukunili gathered in one tidy hub page.</span>
+          <span data-i18n="ms">Beli dalam talian, ikuti media sosial, sembang di WhatsApp — semua Ukunili di satu halaman kemas.</span>
+          <span data-i18n="zh">线上选购、关注我们、WhatsApp 联络 — 所有 Ukunili 入口都集中在这里。</span>
+        </p>
+        <div class="card-arrow">
+          <span data-i18n="en">Visit the hub</span>
+          <span data-i18n="ms">Lawat pusat</span>
+          <span data-i18n="zh">前往主页</span>
+          <span>→</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="foot-inner">
-    <div>© 2026 Ukunili Music Sdn Bhd · Handcrafted in Malaysia</div>
-    <div class="foot-links">
-      <a href="#">Shipping</a>
-      <a href="#">Care</a>
-      <a href="#">Warranty</a>
-      <a href="#">Contact</a>
+<!-- ============== BRANDS ============== -->
+<section class="brands-section section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-num">— 02</span>
+      <span class="section-title-tag">
+        <span data-i18n="en">Our Brands</span>
+        <span data-i18n="ms">Jenama Kami</span>
+        <span data-i18n="zh">品牌系列</span>
+      </span>
+      <div class="section-divider"></div>
     </div>
+    <h2 class="section-h">
+      <span data-i18n="en">Two original brands, <em>made for you</em>.</span>
+      <span data-i18n="ms">Dua jenama asli, <em>dibuat untuk anda</em>.</span>
+      <span data-i18n="zh">两个原创品牌,<em>专为你打造</em>。</span>
+    </h2>
+    <p class="section-lead">
+      <span data-i18n="en">We design and curate every Ukunili and UMA ukulele with players in Malaysia in mind — humid climate, learner-friendly action, and lasting tone.</span>
+      <span data-i18n="ms">Kami mereka dan memilih setiap ukulele Ukunili dan UMA dengan pemain Malaysia dalam fikiran — iklim lembap, aksi mesra pemula, dan bunyi tahan lama.</span>
+      <span data-i18n="zh">从马来西亚的潮湿气候、初学者的舒适手感,到耐久的音色 — 每一把 Ukunili 与 UMA,都为本地琴友而设计。</span>
+    </p>
+
+    <div class="brands-grid">
+      <a href="/ukunili" class="brand-card">
+        <div class="brand-card-tag">
+          <span data-i18n="en">Flagship Brand</span>
+          <span data-i18n="ms">Jenama Utama</span>
+          <span data-i18n="zh">主打品牌</span>
+        </div>
+        <h3>Ukunili</h3>
+        <p>
+          <span data-i18n="en">Warm tone, solid build, and Malaysia's most-loved engraving service. From entry-level to keepsake-quality.</span>
+          <span data-i18n="ms">Bunyi hangat, binaan kukuh, dan perkhidmatan ukiran tersuai paling digemari di Malaysia. Dari peringkat permulaan ke kualiti kenang-kenangan.</span>
+          <span data-i18n="zh">音色温暖、做工扎实,以及全马最受欢迎的雕刻服务。从入门款,到值得珍藏的纪念之作。</span>
+        </p>
+        <div class="brand-card-link">
+          <span data-i18n="en">Explore Ukunili</span>
+          <span data-i18n="ms">Terokai Ukunili</span>
+          <span data-i18n="zh">了解 Ukunili</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a href="/how-to-buy-ukulele" class="brand-card">
+        <div class="brand-card-tag">
+          <span data-i18n="en">Premium Line</span>
+          <span data-i18n="ms">Barisan Premium</span>
+          <span data-i18n="zh">精品系列</span>
+        </div>
+        <h3>UMA</h3>
+        <p>
+          <span data-i18n="en">A more refined voice — for players ready to step up. Premium woods, careful finish, and a tone that opens up over time.</span>
+          <span data-i18n="ms">Suara yang lebih halus — untuk pemain yang bersedia naik taraf. Kayu premium, kemasan teliti, dan bunyi yang semakin matang dengan masa.</span>
+          <span data-i18n="zh">更细腻的音色 — 适合想要进阶的琴友。高级木料、细致打磨,声音也会随时间越来越通透。</span>
+        </p>
+        <div class="brand-card-link">
+          <span data-i18n="en">Learn about UMA</span>
+          <span data-i18n="ms">Ketahui tentang UMA</span>
+          <span data-i18n="zh">认识 UMA</span>
+          <span>→</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== HOW IT WORKS ============== -->
+<section class="process-section section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-num">— 03</span>
+      <span class="section-title-tag">
+        <span data-i18n="en">How it Works</span>
+        <span data-i18n="ms">Bagaimana Ia Berfungsi</span>
+        <span data-i18n="zh">购买流程</span>
+      </span>
+      <div class="section-divider"></div>
+    </div>
+    <h2 class="section-h">
+      <span data-i18n="en">From <em>click</em> to your front door.</span>
+      <span data-i18n="ms">Dari <em>klik</em> ke pintu depan anda.</span>
+      <span data-i18n="zh">从<em>下单</em>到送上家门。</span>
+    </h2>
+
+    <div class="process-list">
+      <a href="/how-to-buy-ukulele" class="process-item">
+        <div class="process-num">01</div>
+        <div class="process-title">
+          <span data-i18n="en">Choose your ukulele</span>
+          <span data-i18n="ms">Pilih ukulele anda</span>
+          <span data-i18n="zh">选一把适合的乌克丽丽</span>
+        </div>
+        <div class="process-desc">
+          <span data-i18n="en">Use our buying guide to pick the right size, wood and brand for you.</span>
+          <span data-i18n="ms">Gunakan panduan pembelian kami untuk memilih saiz, kayu dan jenama yang sesuai.</span>
+          <span data-i18n="zh">参考我们的选购指南,挑出最适合你的尺寸、木材与品牌。</span>
+        </div>
+        <div class="process-arrow">→</div>
+      </a>
+      <a href="/ukunili" class="process-item">
+        <div class="process-num">02</div>
+        <div class="process-title">
+          <span data-i18n="en">Order online or chat us</span>
+          <span data-i18n="ms">Pesan dalam talian atau hubungi kami</span>
+          <span data-i18n="zh">线上下单,或直接联络我们</span>
+        </div>
+        <div class="process-desc">
+          <span data-i18n="en">Buy from our store or message us on WhatsApp — we reply fast.</span>
+          <span data-i18n="ms">Beli dari kedai kami atau hantar mesej di WhatsApp — kami balas cepat.</span>
+          <span data-i18n="zh">在官网选购,或在 WhatsApp 留言 — 我们回复很快。</span>
+        </div>
+        <div class="process-arrow">→</div>
+      </a>
+      <a href="/payment-info" class="process-item">
+        <div class="process-num">03</div>
+        <div class="process-title">
+          <span data-i18n="en">Pay securely</span>
+          <span data-i18n="ms">Bayar dengan selamat</span>
+          <span data-i18n="zh">安全付款</span>
+        </div>
+        <div class="process-desc">
+          <span data-i18n="en">DuitNow QR, Touch 'n Go, or bank transfer. Send proof of payment via WhatsApp.</span>
+          <span data-i18n="ms">DuitNow QR, Touch 'n Go atau pindah bank. Hantar bukti pembayaran melalui WhatsApp.</span>
+          <span data-i18n="zh">DuitNow QR、Touch 'n Go 或银行转账,付款后用 WhatsApp 传送收据。</span>
+        </div>
+        <div class="process-arrow">→</div>
+      </a>
+      <a href="/ukulele-tuning" class="process-item">
+        <div class="process-num">04</div>
+        <div class="process-title">
+          <span data-i18n="en">Tune up & start playing</span>
+          <span data-i18n="ms">Tala dan mula bermain</span>
+          <span data-i18n="zh">调音,开始演奏</span>
+        </div>
+        <div class="process-desc">
+          <span data-i18n="en">We guide you through tuning so you can start strumming the same day it arrives.</span>
+          <span data-i18n="ms">Kami akan memandu anda menalakan ukulele supaya anda boleh mula bermain pada hari ia tiba.</span>
+          <span data-i18n="zh">我们会教你调音,让你拿到当天就能开始弹奏。</span>
+        </div>
+        <div class="process-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FINAL CTA — Engraving (per project rule) ============== -->
+<section class="final-cta">
+  <div class="final-cta-eyebrow">
+    <span data-i18n="en">Exclusive to Ukunili</span>
+    <span data-i18n="ms">Eksklusif Ukunili</span>
+    <span data-i18n="zh">Ukunili 专属服务</span>
+  </div>
+  <h2>
+    <span data-i18n="en">Make it <em>truly yours</em> — custom engraving on every Ukunili.</span>
+    <span data-i18n="ms">Jadikan ia <em>benar-benar milik anda</em> — ukiran tersuai pada setiap Ukunili.</span>
+    <span data-i18n="zh">让它<em>真正属于你</em> — 每一把 Ukunili 都可订制雕刻。</span>
+  </h2>
+  <p>
+    <span data-i18n="en">Engrave your name, a meaningful message, or your own design directly into the wood. The perfect personal touch — or an unforgettable gift.</span>
+    <span data-i18n="ms">Ukir nama anda, mesej peribadi, atau reka bentuk anda sendiri terus pada kayu. Sentuhan peribadi yang sempurna — atau hadiah yang tidak akan dilupakan.</span>
+    <span data-i18n="zh">在琴身刻上你的名字、一段有意义的字句,或你自己的设计 — 是最贴心的个人化,也是最难忘的礼物。</span>
+  </p>
+  <a href="/Ukunili-engrave" class="final-cta-btn">
+    <span data-i18n="en">Start your engraving</span>
+    <span data-i18n="ms">Mula ukiran anda</span>
+    <span data-i18n="zh">开始你的专属雕刻</span>
+    <span>→</span>
+  </a>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Ukulele Malaysia</div>
+      <p class="footer-tagline">
+        <span data-i18n="en">Malaysia's home for the ukulele. Original brands, honest guides, and warm tone — for every player.</span>
+        <span data-i18n="ms">Rumah ukulele Malaysia. Jenama asli, panduan jujur, dan bunyi hangat — untuk setiap pemain.</span>
+        <span data-i18n="zh">马来西亚的乌克丽丽之家。原创品牌、真心指南、温暖音色 — 给每一位琴友。</span>
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>
+        <span data-i18n="en">Explore</span>
+        <span data-i18n="ms">Terokai</span>
+        <span data-i18n="zh">探索</span>
+      </h4>
+      <a href="/how-to-buy-ukulele"><span data-i18n="en">Buying Guide</span><span data-i18n="ms">Panduan Pembelian</span><span data-i18n="zh">选购指南</span></a>
+      <a href="/ukulele-tuning"><span data-i18n="en">Tuning Guide</span><span data-i18n="ms">Panduan Talaan</span><span data-i18n="zh">调音指南</span></a>
+      <a href="/2330-series"><span data-i18n="en">2330 Series</span><span data-i18n="ms">Siri 2330</span><span data-i18n="zh">2330 系列</span></a>
+    </div>
+    <div class="footer-col">
+      <h4>
+        <span data-i18n="en">Brands</span>
+        <span data-i18n="ms">Jenama</span>
+        <span data-i18n="zh">品牌</span>
+      </h4>
+      <a href="/ukunili">Ukunili</a>
+      <a href="/Ukunili-engrave">
+        <span data-i18n="en">Engraving Service</span>
+        <span data-i18n="ms">Perkhidmatan Ukiran</span>
+        <span data-i18n="zh">雕刻服务</span>
+      </a>
+    </div>
+    <div class="footer-col">
+      <h4>
+        <span data-i18n="en">Connect</span>
+        <span data-i18n="ms">Hubungi</span>
+        <span data-i18n="zh">联络</span>
+      </h4>
+      <a href="https://wa.me/60183877972">WhatsApp</a>
+      <a href="/payment-info">
+        <span data-i18n="en">Payment Info</span>
+        <span data-i18n="ms">Maklumat Pembayaran</span>
+        <span data-i18n="zh">付款方式</span>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Ukulele Malaysia.
+      <span data-i18n="en">All rights reserved.</span>
+      <span data-i18n="ms">Hak cipta terpelihara.</span>
+      <span data-i18n="zh">版权所有。</span>
+    </div>
+    <div>Made in Malaysia 🇲🇾</div>
   </div>
 </footer>
 
-<!-- ───────── Scripts ───────── -->
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script type="text/babel" src="configurator.jsx"></script>
 <script>
-  // Static, non-React enhancements: position grid, samples grid, carousel, name preview, scroll reveal
-  (function () {
-    // ——— position dots ———
-    const positions = [
-      "Headstock", "Body front", "Back panel",
-      "Heel", "Inside body", "Side edge",
-    ];
-    const grid = document.getElementById("posGrid");
-    positions.forEach((p, i) => {
-      const d = document.createElement("div");
-      d.className = "pos-dot" + (i === 1 ? " on" : "");
-      d.setAttribute("data-pos", String(i + 1).padStart(2, "0") + " · " + p);
-      d.addEventListener("click", () => {
-        grid.querySelectorAll(".pos-dot").forEach(x => x.classList.remove("on"));
-        d.classList.add("on");
-      });
-      grid.appendChild(d);
-    });
+  // ============== LANGUAGE SWITCHING ==============
+  const buttons = document.querySelectorAll('.lang-btn');
+  const body = document.body;
 
-    // ——— samples (real photos from source) ———
-    const samples = [
-      { src: "https://static.wixstatic.com/media/65da77_fa61df02d17f454985938296cd6ee0b8~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/65da77_fa61df02d17f454985938296cd6ee0b8~mv2.jpg", tag: "001 · headstock" },
-      { src: "https://static.wixstatic.com/media/65da77_e02c9014dc1b43b9947d164351690101~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/65da77_e02c9014dc1b43b9947d164351690101~mv2.jpg", tag: "002 · back" },
-      { src: "https://static.wixstatic.com/media/65da77_e7bf1d269b724cbbbb29d86e39956138~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/65da77_e7bf1d269b724cbbbb29d86e39956138~mv2.jpg", tag: "003 · heel" },
-      { src: "https://static.wixstatic.com/media/65da77_fd291b8f6ae741259acd105b73ddf050~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/65da77_fd291b8f6ae741259acd105b73ddf050~mv2.jpg", tag: "004 · inside" },
-      { src: "https://static.wixstatic.com/media/65da77_3b2192e544ed4efaa0d25341d73e122a~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_3b2192e544ed4efaa0d25341d73e122a~mv2.jpg", tag: "005 · headstock" },
-      { src: "https://static.wixstatic.com/media/65da77_8f50f8c5a72e453fa5b5b9e152ef3041~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_8f50f8c5a72e453fa5b5b9e152ef3041~mv2.jpg", tag: "006 · body" },
-      { src: "https://static.wixstatic.com/media/65da77_2bbbdbe53e5e40d396d961e3cd753926~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_2bbbdbe53e5e40d396d961e3cd753926~mv2.jpg", tag: "007 · side" },
-      { src: "https://static.wixstatic.com/media/65da77_d0686e22515b407883e6c7b2b20adad2~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_d0686e22515b407883e6c7b2b20adad2~mv2.jpg", tag: "008 · back" },
-      { src: "https://static.wixstatic.com/media/65da77_9070c47a03c4444eb1d21b839b373248~mv2.jpg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/65da77_9070c47a03c4444eb1d21b839b373248~mv2.jpg", tag: "009 · headstock" },
-      { src: "https://static.wixstatic.com/media/65da77_f51773770c0c4acaac52159ad56d129a~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/65da77_f51773770c0c4acaac52159ad56d129a~mv2.jpg", tag: "010 · heel" },
-      { src: "https://static.wixstatic.com/media/65da77_ee1851e20e4a45afb19b835cf7e4bfbf~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/65da77_ee1851e20e4a45afb19b835cf7e4bfbf~mv2.jpg", tag: "011 · inside" },
-      { src: "https://static.wixstatic.com/media/65da77_4efe0608c4e64d55b9b4c05bef6f50bb~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/65da77_4efe0608c4e64d55b9b4c05bef6f50bb~mv2.jpg", tag: "012 · body" },
-    ];
-    const sg = document.getElementById("sampleGrid");
-    samples.forEach(s => {
-      const el = document.createElement("div");
-      el.className = "sample-card";
-      el.innerHTML = `<img src="${s.src}" alt="${s.tag}" loading="lazy" /><span class="mono-tag">${s.tag}</span>`;
-      sg.appendChild(el);
-    });
+  function setLang(lang) {
+    body.setAttribute('lang', lang === 'zh' ? 'zh' : (lang === 'ms' ? 'ms' : 'en'));
+    document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : (lang === 'ms' ? 'ms' : 'en'));
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.setLang === lang));
+    try { sessionStorage.setItem('preferredLang', lang); } catch(e) {}
+  }
 
-    // ——— name preview in multiple fonts ———
-    const npFonts = [
-      { family: '"Instrument Serif", serif',                        label: "Instrument — Editorial serif" },
-      { family: '"Playfair Display", serif; font-style: italic',    label: "Playfair Italic — Classic editorial" },
-      { family: '"Cormorant Garamond", serif; font-style: italic',  label: "Cormorant — Refined italic" },
-      { family: '"Bodoni Moda", serif; font-style: italic',         label: "Bodoni — High-contrast serif" },
-      { family: '"DM Serif Display", serif',                        label: "DM Serif — Display serif" },
-      { family: '"Cinzel", serif',                                  label: "Cinzel — Engraved capitals" },
-      { family: '"Marcellus", serif',                               label: "Marcellus — Classical roman" },
-      { family: '"Caveat", cursive',                                label: "Caveat — Handwritten" },
-      { family: '"Dancing Script", cursive',                        label: "Dancing — Flowing script" },
-      { family: '"Great Vibes", cursive',                           label: "Great Vibes — Formal script" },
-      { family: '"Allura", cursive',                                label: "Allura — Calligraphic script" },
-      { family: '"Sacramento", cursive',                            label: "Sacramento — Casual script" },
-    ];
-    const npList = document.getElementById("npList");
-    const npInput = document.getElementById("npInput");
-    const npCount = document.getElementById("npCount");
-    const npListLeft = document.getElementById("npListLeft");
-    function renderNp() {
-      npList.innerHTML = "";
-      npListLeft.innerHTML = "";
-      const val = npInput.value || "—";
-      npCount.textContent = `${npInput.value.length} / 50`;
-      npFonts.forEach((f, i) => {
-        const row = document.createElement("div");
-        row.className = "np-row";
-        row.innerHTML = `<div class="np-name" style="font-family:${f.family}">${escapeHtml(val)}</div><div class="np-label">${f.label}</div>`;
-        (i < 4 ? npListLeft : npList).appendChild(row);
-      });
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.dataset.setLang));
+  });
+
+  // Restore saved language
+  try {
+    const saved = sessionStorage.getItem('preferredLang');
+    if (saved && ['en','ms','zh'].includes(saved)) setLang(saved);
+    else {
+      // Auto-detect
+      const userLang = (navigator.language || 'en').toLowerCase();
+      if (userLang.startsWith('zh')) setLang('zh');
+      else if (userLang.startsWith('ms') || userLang.startsWith('id')) setLang('ms');
     }
-    function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-    npInput.addEventListener("input", () => {
-      document.dispatchEvent(new CustomEvent("engrave:np-input", { detail: npInput.value }));
-      renderNp();
-    });
-    // Cross-sync with configurator text
-    document.addEventListener("engrave:text-change", (e) => {
-      if (npInput.value !== e.detail) { npInput.value = e.detail || ""; renderNp(); }
-    });
-    renderNp();
+  } catch(e) {}
 
-    // ——— scroll reveal ———
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
-  })();
+  // ============== SCROLL REVEAL ==============
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
 </script>
 
 </body>
