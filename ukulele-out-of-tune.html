@@ -197,20 +197,68 @@
     color: var(--ink-soft);
   }
 
-  .hero-img-wrap {
-    max-width: 760px;
+  /* ========== HERO ANIMATION (out-of-tune music) ========== */
+  .hero-animation {
+    max-width: 920px;
     margin: 32px auto 0;
+    padding: 28px 24px;
+    background: #fff;
+    border: 1px solid var(--line);
     border-radius: var(--radius-lg);
-    overflow: hidden;
     box-shadow: var(--shadow-lg);
-    aspect-ratio: 16/9;
-    background: var(--bg-soft);
+    overflow: hidden;
   }
-  .hero-img-wrap img {
+  .hero-animation svg {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    display: block;
   }
+
+  /* Music animation keyframes */
+  @keyframes staffWave {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25%      { transform: translateY(-3px) rotate(0.3deg); }
+    50%      { transform: translateY(2px) rotate(-0.2deg); }
+    75%      { transform: translateY(-1px) rotate(0.4deg); }
+  }
+  @keyframes noteBob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-4px); }
+  }
+  @keyframes noteShake {
+    0%   { transform: translate(0,0) rotate(0deg); }
+    20%  { transform: translate(3px,-2px) rotate(8deg); }
+    40%  { transform: translate(-2px,3px) rotate(-12deg); }
+    60%  { transform: translate(4px,1px) rotate(15deg); }
+    80%  { transform: translate(-3px,-2px) rotate(-8deg); }
+    100% { transform: translate(0,0) rotate(0deg); }
+  }
+  @keyframes driftAway {
+    0%   { transform: translate(0,0) rotate(0deg) scale(1); opacity: 1; }
+    50%  { transform: translate(20px,-15px) rotate(180deg) scale(1.1); opacity: 0.7; }
+    100% { transform: translate(40px,-30px) rotate(360deg) scale(0.9); opacity: 0.4; }
+  }
+  @keyframes clefSway {
+    0%, 100% { transform: rotate(0deg); }
+    50%      { transform: rotate(-2deg); }
+  }
+
+  .staff       { animation: staffWave 3s ease-in-out infinite; transform-origin: left center; }
+  .clef        { animation: clefSway 4s ease-in-out infinite; transform-origin: 90px 350px; }
+  .note-stable { animation: noteBob 1.2s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+  .note-shaky  { animation: noteShake 0.4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+  .note-drift  { animation: driftAway 3s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.3s; }
+  .delay-3 { animation-delay: 0.5s; }
+  .delay-4 { animation-delay: 0.2s; }
+  .delay-5 { animation-delay: 0.6s; }
+  .delay-6 { animation-delay: 0.4s; }
+  .delay-7 { animation-delay: 0.8s; }
+  .delay-8 { animation-delay: 0.15s; }
+  .delay-9 { animation-delay: 0.45s; }
+  .delay-10{ animation-delay: 0.7s; }
 
   /* ========== SECTIONS ========== */
   main { position: relative; z-index: 1; }
@@ -404,6 +452,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; transition: none; }
+    .staff, .clef, .note-stable, .note-shaky, .note-drift { animation: none; }
     * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 
@@ -416,6 +465,7 @@
     .cta-section { padding: 44px 24px; margin: 40px 16px 60px; }
     .steps li { padding: 14px 0 14px 50px; font-size: 16px; }
     .tip-box { padding: 22px 20px; }
+    .hero-animation { padding: 16px 12px; margin: 24px 16px 0; }
   }
 </style>
 </head>
@@ -453,8 +503,170 @@
       <span data-i18n="ms">Baru beli ukulele dan talanya tidak stabil? Jangan risau — ini perkara biasa. Ini sebabnya, dan cara menyelesaikannya.</span>
       <span data-i18n="zh">刚买的Ukulele一直走音?别担心——这完全正常。让我们看看原因,以及该怎么解决。</span>
     </p>
-    <div class="hero-img-wrap">
-      <img src="https://static.wixstatic.com/media/af041b_cf8e1ed81fa04805bcfd87caeb35b9ad~mv2.jpg/v1/fill/w_1200,h_676,al_c,q_85,enc_avif,quality_auto/af041b_cf8e1ed81fa04805bcfd87caeb35b9ad~mv2.jpg" alt="Ukulele close-up" />
+
+    <!-- ANIMATED HERO: out-of-tune music notation -->
+    <div class="hero-animation" aria-hidden="true">
+      <svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg">
+        <!-- Wavy 5-line staff -->
+        <g class="staff" stroke="#1f1a14" stroke-width="2.5" fill="none">
+          <path d="M 50,300 Q 300,290 500,310 T 900,300 T 1150,320" />
+          <path d="M 50,330 Q 300,320 500,340 T 900,330 T 1150,350" />
+          <path d="M 50,360 Q 300,350 500,370 T 900,360 T 1150,380" />
+          <path d="M 50,390 Q 300,380 500,400 T 900,390 T 1150,410" />
+          <path d="M 50,420 Q 300,410 500,430 T 900,420 T 1150,440" />
+        </g>
+
+        <!-- Treble clef -->
+        <g class="clef" fill="#1f1a14">
+          <path d="M 95,250
+                   C 95,230 110,215 130,215
+                   C 155,215 170,240 170,265
+                   C 170,295 145,320 120,340
+                   C 95,360 80,385 80,415
+                   C 80,445 105,470 135,470
+                   C 165,470 185,445 185,420
+                   C 185,400 170,385 150,385
+                   C 135,385 125,395 125,410
+                   C 125,420 132,428 142,428
+                   L 142,420
+                   C 138,420 134,416 134,410
+                   C 134,402 142,397 150,400
+                   C 165,403 175,415 175,430
+                   C 175,455 155,475 130,475
+                   C 100,475 75,450 75,415
+                   C 75,375 110,355 135,335
+                   C 160,315 185,290 185,260
+                   C 185,230 165,205 135,205
+                   C 105,205 85,225 85,250
+                   Z" />
+          <line x1="135" y1="215" x2="135" y2="560" stroke="#1f1a14" stroke-width="6"/>
+          <circle cx="135" cy="555" r="12" fill="#1f1a14"/>
+        </g>
+
+        <!-- Time signature 3/4 -->
+        <g fill="#1f1a14" font-family="serif" font-weight="bold" font-size="60">
+          <text x="220" y="345">3</text>
+          <text x="220" y="410">4</text>
+        </g>
+
+        <!-- Stable notes (left side - in tune) -->
+        <g class="note-stable delay-1">
+          <ellipse cx="320" cy="370" rx="14" ry="10" fill="#1f1a14" transform="rotate(-20 320 370)"/>
+          <line x1="333" y1="368" x2="333" y2="305" stroke="#1f1a14" stroke-width="3"/>
+        </g>
+
+        <g class="note-stable delay-2">
+          <ellipse cx="380" cy="385" rx="14" ry="10" fill="#1f1a14" transform="rotate(-20 380 385)"/>
+          <line x1="393" y1="383" x2="393" y2="320" stroke="#1f1a14" stroke-width="3"/>
+          <path d="M 393,320 Q 415,330 410,355" stroke="#1f1a14" stroke-width="3" fill="none"/>
+        </g>
+
+        <g class="note-stable delay-3">
+          <ellipse cx="450" cy="355" rx="14" ry="10" fill="#1f1a14" transform="rotate(-20 450 355)"/>
+          <line x1="463" y1="353" x2="463" y2="290" stroke="#1f1a14" stroke-width="3"/>
+        </g>
+
+        <g class="note-stable delay-4">
+          <ellipse cx="510" cy="395" rx="14" ry="10" fill="#1f1a14" transform="rotate(-20 510 395)"/>
+          <ellipse cx="560" cy="380" rx="14" ry="10" fill="#1f1a14" transform="rotate(-20 560 380)"/>
+          <line x1="523" y1="393" x2="523" y2="325" stroke="#1f1a14" stroke-width="3"/>
+          <line x1="573" y1="378" x2="573" y2="310" stroke="#1f1a14" stroke-width="3"/>
+          <rect x="521" y="310" width="54" height="6" fill="#1f1a14"/>
+        </g>
+
+        <!-- Transition zone -->
+        <g class="note-shaky delay-5">
+          <ellipse cx="640" cy="365" rx="14" ry="10" fill="#1f1a14" transform="rotate(-15 640 365)"/>
+          <line x1="653" y1="363" x2="653" y2="300" stroke="#1f1a14" stroke-width="3"/>
+        </g>
+
+        <g class="note-shaky delay-6">
+          <ellipse cx="710" cy="380" rx="14" ry="10" fill="#1f1a14" transform="rotate(-25 710 380)"/>
+          <line x1="723" y1="378" x2="723" y2="315" stroke="#1f1a14" stroke-width="3"/>
+          <path d="M 723,315 Q 745,325 740,350" stroke="#1f1a14" stroke-width="3" fill="none"/>
+        </g>
+
+        <!-- Wonky dynamic marking -->
+        <g class="note-shaky delay-7" font-family="serif" font-style="italic" font-size="32" font-weight="bold" fill="#c2410c">
+          <text x="800" y="160">mf</text>
+        </g>
+
+        <!-- Chaotic out-of-tune notes -->
+        <g class="note-drift delay-1">
+          <ellipse cx="900" cy="300" rx="13" ry="9" fill="none" stroke="#1f1a14" stroke-width="3"/>
+        </g>
+
+        <g class="note-drift delay-3">
+          <ellipse cx="1000" cy="430" rx="13" ry="9" fill="none" stroke="#1f1a14" stroke-width="3"/>
+        </g>
+
+        <g class="note-shaky delay-8">
+          <ellipse cx="850" cy="420" rx="14" ry="10" fill="#1f1a14" transform="rotate(35 850 420)"/>
+          <line x1="863" y1="418" x2="868" y2="355" stroke="#1f1a14" stroke-width="3"/>
+        </g>
+
+        <g class="note-drift delay-2">
+          <ellipse cx="950" cy="220" rx="12" ry="9" fill="#1f1a14" transform="rotate(45 950 220)"/>
+          <line x1="961" y1="216" x2="975" y2="170" stroke="#1f1a14" stroke-width="2.5"/>
+        </g>
+
+        <g class="note-drift delay-4">
+          <ellipse cx="1080" cy="180" rx="12" ry="9" fill="#1f1a14" transform="rotate(-30 1080 180)"/>
+          <line x1="1091" y1="176" x2="1095" y2="130" stroke="#1f1a14" stroke-width="2.5"/>
+          <path d="M 1095,130 Q 1115,140 1112,160" stroke="#1f1a14" stroke-width="2.5" fill="none"/>
+        </g>
+
+        <g class="note-drift delay-5">
+          <ellipse cx="1100" cy="280" rx="12" ry="9" fill="#1f1a14" transform="rotate(60 1100 280)"/>
+          <line x1="1111" y1="276" x2="1118" y2="225" stroke="#1f1a14" stroke-width="2.5"/>
+        </g>
+
+        <g class="note-drift delay-6">
+          <ellipse cx="1050" cy="500" rx="12" ry="9" fill="#1f1a14" transform="rotate(-40 1050 500)"/>
+          <line x1="1061" y1="496" x2="1068" y2="445" stroke="#1f1a14" stroke-width="2.5"/>
+        </g>
+
+        <g class="note-drift delay-7">
+          <ellipse cx="1140" cy="380" rx="12" ry="9" fill="#1f1a14" transform="rotate(20 1140 380)"/>
+          <line x1="1151" y1="376" x2="1155" y2="325" stroke="#1f1a14" stroke-width="2.5"/>
+        </g>
+
+        <!-- Dissonant X-marks (terracotta) -->
+        <g class="note-shaky delay-9" stroke="#c2410c" stroke-width="3" fill="none">
+          <line x1="880" y1="250" x2="895" y2="265"/>
+          <line x1="895" y1="250" x2="880" y2="265"/>
+        </g>
+        <g class="note-drift delay-10" stroke="#c2410c" stroke-width="3" fill="none">
+          <line x1="970" y1="350" x2="985" y2="365"/>
+          <line x1="985" y1="350" x2="970" y2="365"/>
+        </g>
+        <g class="note-drift delay-2" stroke="#c2410c" stroke-width="3" fill="none">
+          <line x1="1020" y1="120" x2="1035" y2="135"/>
+          <line x1="1035" y1="120" x2="1020" y2="135"/>
+        </g>
+        <g class="note-shaky delay-4" stroke="#c2410c" stroke-width="3" fill="none">
+          <line x1="1130" y1="250" x2="1145" y2="265"/>
+          <line x1="1145" y1="250" x2="1130" y2="265"/>
+        </g>
+        <g class="note-drift delay-6" stroke="#c2410c" stroke-width="3" fill="none">
+          <line x1="940" y1="480" x2="955" y2="495"/>
+          <line x1="955" y1="480" x2="940" y2="495"/>
+        </g>
+        <g class="note-drift delay-8" stroke="#c2410c" stroke-width="3" fill="none">
+          <line x1="1110" y1="560" x2="1125" y2="575"/>
+          <line x1="1125" y1="560" x2="1110" y2="575"/>
+        </g>
+
+        <!-- Wavy ribbon trails -->
+        <g fill="none" stroke="#1f1a14" stroke-width="2" opacity="0.7">
+          <path class="staff" d="M 900,300 Q 1000,250 1080,200 T 1180,140">
+            <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2s" repeatCount="indefinite"/>
+          </path>
+          <path class="staff" d="M 950,400 Q 1050,470 1100,520 T 1180,580">
+            <animate attributeName="opacity" values="0.5;0.2;0.5" dur="2.5s" repeatCount="indefinite"/>
+          </path>
+        </g>
+      </svg>
     </div>
   </section>
 
@@ -477,9 +689,6 @@
       <span data-i18n="ms">Ini adalah tempoh penyesuaian biasa untuk mana-mana alat muzik bertali nylon yang baharu. Ia bukan kecacatan, dan ukulele anda tidak rosak.</span>
       <span data-i18n="zh">这是任何使用尼龙弦的新乐器都会经历的正常磨合期。这不是瑕疵,你的Ukulele没有坏。</span>
     </p>
-    <div class="step-img-wrap">
-      <img src="https://images.unsplash.com/photo-1525201548942-d8732f6617a0?w=1200&q=80&auto=format&fit=crop" alt="New nylon ukulele strings" />
-    </div>
   </section>
 
   <!-- SECTION 2 — THE FIX -->
@@ -521,7 +730,7 @@
     </ol>
 
     <div class="step-img-wrap">
-      <img src="https://images.unsplash.com/photo-1619296091057-0b41bdf17ed2?w=1200&q=80&auto=format&fit=crop" alt="Clip-on chromatic tuner on ukulele headstock" />
+      <img src="https://pub-7d99bb5e00394a4d9831699e2ec8574d.r2.dev/UkuleleTuning.png" alt="Clip-on chromatic tuner on ukulele headstock" />
     </div>
 
     <div class="tip-box">
@@ -583,7 +792,6 @@
     btn.addEventListener('click', () => setLang(btn.dataset.setLang));
   });
 
-  // Reveal on scroll
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
