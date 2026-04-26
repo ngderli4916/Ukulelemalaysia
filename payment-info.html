@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Payment Details — Ukulele Malaysia</title>
+<meta name="description" content="Complete your payment to Ukunili Music Sdn Bhd via DuitNow QR, Maybank transfer, or Touch 'n Go eWallet, then send proof via WhatsApp." />
+
+<!-- Tailwind via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          ink:    '#1A1814',
+          paper:  '#FAF8F4',
+          cream:  '#F4EFE6',
+          warm:   '#E8DFD0',
+          accent: '#D97757',
+          accent2:'#C46544',
+          mute:   '#6B665E',
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-feature-settings: "ss01", "ss02"; }
+
+  .paper-bg {
+    background-color: #FAF8F4;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(217,119,87,0.05) 0, transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(217,119,87,0.04) 0, transparent 40%);
+  }
+
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .rise { animation: riseIn 0.6s ease-out both; }
+  .delay-1 { animation-delay: 0.05s; }
+  .delay-2 { animation-delay: 0.15s; }
+  .delay-3 { animation-delay: 0.25s; }
+  .delay-4 { animation-delay: 0.35s; }
+
+  .tab-pill { transition: all 0.25s ease; }
+  .tab-pill[aria-selected="true"] {
+    background: #1A1814;
+    color: #FAF8F4;
+    box-shadow: 0 4px 14px rgba(26,24,20,0.18);
+  }
+  .tab-pill[aria-selected="false"]:hover { background: #F4EFE6; }
+
+  .panel { display: none; }
+  .panel.active { display: block; animation: riseIn 0.4s ease-out both; }
+
+  .copy-btn.copied {
+    background: #10B981 !important;
+    color: white !important;
+  }
+
+  .ornament {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #C9C0AE, transparent);
+  }
+
+  @keyframes pulseRing {
+    0%   { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45); }
+    70%  { box-shadow: 0 0 0 14px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  }
+  .pulse { animation: pulseRing 2s infinite; }
+</style>
+</head>
+
+<body class="paper-bg text-ink font-sans antialiased min-h-screen">
+
+  <header class="border-b border-warm/60 backdrop-blur-sm sticky top-0 z-40 bg-paper/85">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 group">
+        <span class="font-display font-semibold text-xl tracking-tight">Ukulele Malaysia</span>
+      </a>
+      <a href="/" class="text-sm text-mute hover:text-ink transition-colors flex items-center gap-1.5">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to store
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-5 sm:px-8 py-10 sm:py-16">
+
+    <!-- Hero -->
+    <section class="rise delay-1 text-center sm:text-left">
+      <p class="text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-3">汇款资料 · Payment Details</p>
+      <h1 class="font-display font-medium text-4xl sm:text-5xl leading-[1.05] tracking-tight mb-3">
+        Complete your <em class="text-accent not-italic font-normal italic">payment</em>
+      </h1>
+      <p class="text-mute text-base sm:text-lg max-w-xl leading-relaxed mx-auto sm:mx-0">
+        Thank you for choosing Ukulele Malaysia. Pick your preferred payment method below — it only takes a minute.
+      </p>
+    </section>
+
+    <!-- Payment method tabs -->
+    <section class="rise delay-2 mt-10">
+      <div class="flex items-center gap-2 mb-4 overflow-x-auto pb-1 -mx-1 px-1" role="tablist">
+        <button class="tab-pill text-sm font-medium px-4 py-2.5 rounded-full whitespace-nowrap" role="tab" aria-selected="true" data-tab="qr">DuitNow QR</button>
+        <button class="tab-pill text-sm font-medium px-4 py-2.5 rounded-full whitespace-nowrap" role="tab" aria-selected="false" data-tab="tng">Touch 'n Go</button>
+        <button class="tab-pill text-sm font-medium px-4 py-2.5 rounded-full whitespace-nowrap" role="tab" aria-selected="false" data-tab="bank">Bank Transfer</button>
+      </div>
+
+      <!-- QR Panel -->
+      <div class="panel active" data-panel="qr">
+        <div class="bg-white border border-warm rounded-2xl p-6 sm:p-8">
+          <div class="grid sm:grid-cols-[auto_1fr] gap-6 sm:gap-8 items-center">
+            <div class="bg-gradient-to-br from-cream to-warm/60 p-3 rounded-xl mx-auto sm:mx-0">
+              <img src="https://static.wixstatic.com/media/675942_56ae7102bc764cd39ae61fc5ace491ed~mv2.jpg/v1/fill/w_409,h_657,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E7%85%A7%E7%89%87%2019-12-22%20%E4%B8%8A%E5%8D%8811%2020%2001.jpg" alt="DuitNow QR Code — Ukunili Music Sdn Bhd" class="w-56 h-auto object-contain bg-white rounded-lg" />
+            </div>
+            <div>
+              <span class="inline-block bg-pink-50 text-pink-700 text-xs font-semibold px-2.5 py-1 rounded-full mb-3">DuitNow QR · Malaysia National QR</span>
+              <h2 class="font-display text-2xl font-medium mb-2">Scan with any banking app</h2>
+              <p class="text-mute text-sm leading-relaxed mb-4">
+                Open Maybank, CIMB, Public Bank, RHB, Hong Leong, MAE, TNG, GrabPay, Boost, or any DuitNow-enabled app and scan this QR.
+              </p>
+              <p class="text-xs text-mute mb-4">Merchant: <span class="text-ink font-medium">Ukunili Music Sdn Bhd</span></p>
+              <a href="https://static.wixstatic.com/media/675942_56ae7102bc764cd39ae61fc5ace491ed~mv2.jpg" download="duitnow-qr.jpg" target="_blank" class="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent2 transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Save QR to phone
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bank Panel -->
+      <div class="panel" data-panel="bank">
+        <div class="bg-white border border-warm rounded-2xl p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-12 h-12 bg-yellow-400 rounded-xl flex items-center justify-center font-bold text-ink text-xl">M</div>
+            <div>
+              <p class="text-xs font-semibold text-mute tracking-wide uppercase">Maybank Berhad</p>
+              <h2 class="font-display text-xl font-medium">Bank Transfer</h2>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="bg-cream/60 rounded-xl p-4">
+              <p class="text-xs font-medium text-mute mb-1">Account Name</p>
+              <p class="font-medium text-ink">Ukunili Music Sdn Bhd</p>
+            </div>
+            <div class="bg-cream/60 rounded-xl p-4 flex items-center justify-between gap-3">
+              <div class="min-w-0">
+                <p class="text-xs font-medium text-mute mb-1">Account Number</p>
+                <p class="font-mono font-medium text-ink text-lg tracking-wide truncate" id="accountNumber">562227367904</p>
+              </div>
+              <button class="copy-btn flex-shrink-0 bg-ink text-paper text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-ink/90 transition-colors flex items-center gap-2" data-copy="562227367904">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span class="copy-label">Copy</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-5 pt-5 border-t border-warm/70 flex items-start gap-3 text-sm text-mute">
+            <svg class="flex-shrink-0 mt-0.5 text-accent" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <p>Transfer via Maybank2u, MAE, or any bank's online banking. Please send us the bank slip on WhatsApp once paid.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TNG Panel -->
+      <div class="panel" data-panel="tng">
+        <div class="bg-white border border-warm rounded-2xl p-6 sm:p-8">
+          <div class="grid sm:grid-cols-[auto_1fr] gap-6 sm:gap-8 items-center">
+            <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-xl mx-auto sm:mx-0">
+              <img src="https://static.wixstatic.com/media/675942_bc4362769f284ea68faab257aec2ce78~mv2.jpg/v1/fill/w_406,h_601,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Ukunili%20Music%20SDN%20BHD%202.jpg" alt="Touch 'n Go eWallet QR — Ukunili Music Sdn Bhd" class="w-56 h-auto object-contain bg-white rounded-lg" />
+            </div>
+            <div>
+              <span class="inline-block bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full mb-3">Touch 'n Go eWallet</span>
+              <h2 class="font-display text-2xl font-medium mb-2">Pay with TNG</h2>
+              <ol class="text-mute text-sm leading-relaxed space-y-2 mb-4 list-decimal list-inside">
+                <li>Open the TNG eWallet app and tap <strong class="text-ink">Scan</strong></li>
+                <li>Scan the QR code on the left</li>
+                <li>Enter the amount and your PIN</li>
+              </ol>
+              <p class="text-xs text-mute mb-4">Merchant: <span class="text-ink font-medium">Ukunili Music Sdn. Bhd.</span></p>
+              <a href="https://static.wixstatic.com/media/675942_bc4362769f284ea68faab257aec2ce78~mv2.jpg" download="tng-qr.jpg" target="_blank" class="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent2 transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Save QR to phone
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ornament my-14"></div>
+
+    <!-- Step 2: Send proof via WhatsApp -->
+    <section class="rise delay-3">
+      <div class="flex items-center gap-3 mb-3 justify-center sm:justify-start">
+        <span class="bg-ink text-paper text-xs font-semibold w-6 h-6 rounded-full flex items-center justify-center">2</span>
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-mute">After Payment · 汇款后</p>
+      </div>
+
+      <div class="bg-white border border-warm rounded-2xl p-6 sm:p-8 text-center">
+        <h2 class="font-display text-3xl sm:text-4xl font-medium tracking-tight mb-3">
+          Send us your <em class="text-accent not-italic italic font-normal">proof of payment</em>
+        </h2>
+        <p class="text-mute mb-6 max-w-lg mx-auto leading-relaxed">
+          Once paid, please WhatsApp us a screenshot of your payment along with your name, contact, and delivery address.
+        </p>
+
+        <a href="https://wa.me/60183877972?text=Hi%20Ukulele%20Malaysia%2C%20I%20have%20made%20a%20payment.%20Here%20are%20my%20details%3A%0A%0AName%20(%E5%90%8D%E5%AD%97)%3A%20%0AContact%20(%E7%94%B5%E8%AF%9D)%3A%20%0AAddress%20(%E5%9C%B0%E5%9D%80)%3A%20%0A%0A(Please%20attach%20bank%20slip%20%2F%20%E8%AF%B7%E9%99%84%E4%B8%8A%E6%B1%87%E6%AC%BE%E5%87%AD%E8%AF%81)" target="_blank" rel="noopener" class="pulse inline-flex items-center gap-2.5 bg-emerald-600 text-white font-medium px-7 py-4 rounded-full hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-600/20">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Send Proof on WhatsApp
+        </a>
+
+        <div class="mt-7 pt-6 border-t border-warm/70 max-w-md mx-auto">
+          <p class="text-xs font-semibold tracking-wide uppercase text-mute mb-3">Please include · 请发</p>
+          <ul class="text-sm text-ink space-y-2 text-left inline-block">
+            <li class="flex items-center gap-2">
+              <svg width="16" height="16" class="text-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Bank slip / 发票</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg width="16" height="16" class="text-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Name / 名字</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg width="16" height="16" class="text-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Contact / 电话</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg width="16" height="16" class="text-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Delivery address / 地址</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Need help / Contact -->
+    <section class="rise delay-4 mt-14">
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-mute mb-4 text-center">Need Help? · 联系我们</p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+
+        <a href="https://wa.me/60183877972" target="_blank" rel="noopener" class="group bg-white border border-warm hover:border-emerald-500 rounded-xl p-5 flex items-center gap-3 transition-all hover:shadow-md">
+          <div class="w-11 h-11 bg-emerald-50 group-hover:bg-emerald-100 rounded-lg flex items-center justify-center transition-colors flex-shrink-0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#10B981"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div class="min-w-0">
+            <p class="text-xs font-medium text-mute">WhatsApp</p>
+            <p class="font-medium text-ink text-sm truncate">+60 18-387 7972</p>
+          </div>
+        </a>
+
+        <a href="https://www.m.me/ukunili" target="_blank" rel="noopener" class="group bg-white border border-warm hover:border-blue-500 rounded-xl p-5 flex items-center gap-3 transition-all hover:shadow-md">
+          <div class="w-11 h-11 bg-blue-50 group-hover:bg-blue-100 rounded-lg flex items-center justify-center transition-colors flex-shrink-0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#1877F2"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.652V24l4.088-2.242c1.092.3 2.246.464 3.443.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/></svg>
+          </div>
+          <div class="min-w-0">
+            <p class="text-xs font-medium text-mute">Facebook</p>
+            <p class="font-medium text-ink text-sm truncate">m.me/ukunili</p>
+          </div>
+        </a>
+
+        <a href="mailto:askukunili@hotmail.com" class="group bg-white border border-warm hover:border-accent rounded-xl p-5 flex items-center gap-3 transition-all hover:shadow-md">
+          <div class="w-11 h-11 bg-cream group-hover:bg-warm rounded-lg flex items-center justify-center transition-colors flex-shrink-0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D97757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="min-w-0">
+            <p class="text-xs font-medium text-mute">Email</p>
+            <p class="font-medium text-ink text-sm truncate">askukunili@hotmail.com</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <p class="text-xs text-mute mt-12 text-center">© <span id="year"></span> Ukunili Music Sdn Bhd. All rights reserved.</p>
+
+  </main>
+
+<script>
+  const tabs = document.querySelectorAll('.tab-pill');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      tabs.forEach(x => x.setAttribute('aria-selected', 'false'));
+      t.setAttribute('aria-selected', 'true');
+      const target = t.dataset.tab;
+      panels.forEach(p => p.classList.toggle('active', p.dataset.panel === target));
+    });
+  });
+
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy);
+        const label = btn.querySelector('.copy-label');
+        const orig = label.textContent;
+        btn.classList.add('copied');
+        label.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          label.textContent = orig;
+        }, 1500);
+      } catch (e) {
+        alert('Could not copy. Account number: ' + btn.dataset.copy);
+      }
+    });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
