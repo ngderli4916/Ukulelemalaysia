@@ -4,10 +4,10 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Guitar Name Printing | Ukulele Malaysia</title>
-<meta name="description" content="Personalise your guitar with a custom name print. Width 1.2cm × Length 15cm. Add icons, logos or cartoon. Send us your design via WhatsApp.">
+<meta name="description" content="Personalise your guitar with a custom name print. Live preview, 12 fonts to choose from. Send your design via WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,600;9..144,0,700;9..144,1,400;9..144,1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,600;9..144,0,700;9..144,1,400;9..144,1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Abril+Fatface&family=Chicle&family=Covered+By+Your+Grace&family=Damion&family=Mouse+Memoirs&family=Permanent+Marker&family=DM+Serif+Display&family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -65,7 +65,8 @@ body{
 .lang-pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
 
 /* LAYOUT */
-.container{max-width:880px;margin:0 auto;padding:0 24px}
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
+.container-narrow{max-width:880px;margin:0 auto;padding:0 24px}
 
 /* HERO */
 .hero{padding:80px 0 56px;text-align:center;position:relative}
@@ -130,61 +131,183 @@ body{
 .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
 .gallery-item:hover img{transform:scale(1.05)}
 
-/* CALLOUT */
-.callout{
-  background:var(--bg-soft);border:1px solid var(--line);border-left:4px solid var(--accent);
-  border-radius:var(--r);padding:20px 24px;margin-bottom:32px;
-  display:flex;gap:14px;align-items:flex-start;
+/* ─────────── LIVE PREVIEW SECTION ─────────── */
+.preview-wrap{
+  display:grid;grid-template-columns:1fr 1.1fr;gap:32px;
+  align-items:start;
 }
-.callout-icon{
-  flex-shrink:0;width:28px;height:28px;background:var(--accent);color:#fff;
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-family:'Fraunces',serif;font-weight:700;font-size:15px;
-}
-.callout-text{font-size:14px;color:var(--ink-soft);line-height:1.55}
-.callout-text strong{color:var(--ink);font-weight:600}
+@media(max-width:880px){.preview-wrap{grid-template-columns:1fr;gap:24px}}
 
-/* STEPS */
-.steps{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:600px){.steps{grid-template-columns:1fr}}
-.step-card{
+.guitar-stage{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  padding:28px;
+  box-shadow:var(--shadow-sm);
+  position:sticky;top:80px;
+  display:flex;flex-direction:column;align-items:center;
+}
+@media(max-width:880px){.guitar-stage{position:static}}
+.guitar-stage-label{
+  font-family:'Space Mono',monospace;
+  font-size:11px;font-weight:700;letter-spacing:.08em;
+  color:var(--ink-mute);margin-bottom:14px;text-transform:uppercase;
+  align-self:flex-start;
+}
+.guitar-svg{width:100%;max-width:340px;height:auto;display:block}
+.guitar-svg .body{fill:#3a2a1c;stroke:var(--ink);stroke-width:3}
+.guitar-svg .hole{fill:#1a0f06}
+.guitar-svg .pickguard{fill:#2a1a0f;opacity:.9}
+.guitar-svg .bridge{fill:#1f140a;stroke:#000;stroke-width:1}
+.guitar-svg .neck{fill:#5b3d22;stroke:var(--ink);stroke-width:2}
+.guitar-svg .head{fill:#4a3019;stroke:var(--ink);stroke-width:2}
+.guitar-svg .string{stroke:#d9cba8;stroke-width:.6;opacity:.6}
+.guitar-svg .engraved-text{
+  fill:#e8d8b8;
+  font-weight:700;
+  paint-order:stroke;
+  stroke:rgba(0,0,0,.3);
+  stroke-width:.4;
+}
+
+.controls{display:flex;flex-direction:column;gap:18px}
+.control-card{
   background:var(--card);border:1px solid var(--line-soft);
   border-radius:var(--r);padding:22px 24px;box-shadow:var(--shadow-sm);
-  display:flex;gap:16px;align-items:flex-start;
-  transition:transform .25s,box-shadow .25s,border-color .25s;
 }
-.step-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--accent)}
-.step-num{
-  flex-shrink:0;width:36px;height:36px;border-radius:50%;
-  background:var(--accent-soft);color:var(--accent);
-  font-size:15px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Fraunces',serif;border:1.5px solid var(--accent);
+.control-label{
+  font-family:'Space Mono',monospace;
+  font-size:11px;font-weight:700;letter-spacing:.08em;
+  color:var(--ink-mute);text-transform:uppercase;margin-bottom:10px;
+  display:flex;justify-content:space-between;align-items:center;
 }
-.step-title{font-weight:600;font-size:15px;color:var(--ink);margin-bottom:5px;font-family:'Fraunces',serif}
-.step-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55}
+.control-label .val{color:var(--accent);font-size:12px}
 
-/* PHONTO */
-.phonto-card{
-  background:var(--card);border:1px solid var(--line);
-  border-radius:var(--r);padding:32px;box-shadow:var(--shadow-sm);
-  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+/* TEXT INPUT */
+.text-input{position:relative}
+.text-input input{
+  width:100%;padding:14px 16px;
+  border:1.5px solid var(--line);border-radius:10px;
+  font-family:'Inter',sans-serif;font-size:16px;color:var(--ink);
+  background:var(--bg);transition:border-color .2s;
+  outline:none;
 }
-.phonto-icon{
-  width:84px;height:84px;border-radius:18px;overflow:hidden;flex-shrink:0;
-  background:var(--bg-soft);box-shadow:var(--shadow-sm);
+.text-input input:focus{border-color:var(--accent)}
+.input-hint{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-mute);margin-top:6px;font-family:'Space Mono',monospace}
+
+/* NAME PREVIEW INPUT (inside the Name Preview card) */
+.np-input-wrap{margin-bottom:18px}
+.np-input{
+  width:100%;
+  padding:18px 20px;
+  border:1.5px solid var(--line);
+  border-radius:12px;
+  background:var(--bg);
+  font-family:'Fraunces',serif;
+  font-size:28px;
+  font-weight:600;
+  color:var(--ink);
+  letter-spacing:-.01em;
+  outline:none;
+  transition:border-color .2s,box-shadow .2s;
 }
-.phonto-icon img{width:100%;height:100%;object-fit:cover}
-.phonto-info{flex:1;min-width:200px}
-.phonto-info h3{
-  font-family:'Fraunces',serif;font-size:24px;font-weight:700;
-  color:var(--ink);margin-bottom:4px;letter-spacing:-.01em;
+.np-input:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-soft);
 }
-.phonto-info p{font-size:14px;color:var(--ink-soft);margin-bottom:14px}
-.badge-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.store-badge{height:42px;display:block;transition:transform .2s,opacity .2s}
-.store-badge:hover{transform:translateY(-2px);opacity:.85}
-.store-badge img{height:100%;width:auto;display:block}
+.np-input::placeholder{color:var(--ink-mute);font-style:italic;font-weight:400}
+.np-input-hint{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:11px;color:var(--ink-mute);
+  margin-top:8px;padding:0 4px;
+  font-family:'Space Mono',monospace;letter-spacing:.04em;
+}
+@media(max-width:600px){
+  .np-input{font-size:22px;padding:14px 16px}
+}
+
+/* SLIDERS */
+.slider-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:480px){.slider-row{grid-template-columns:1fr}}
+input[type="range"]{
+  -webkit-appearance:none;appearance:none;
+  width:100%;height:4px;background:var(--line);border-radius:2px;outline:none;
+}
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;
+  box-shadow:0 2px 6px rgba(194,65,12,.35);transition:transform .1s;
+}
+input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.15)}
+input[type="range"]::-moz-range-thumb{
+  width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;border:none;
+  box-shadow:0 2px 6px rgba(194,65,12,.35);
+}
+
+/* FONT PICKER */
+.font-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;
+}
+.font-chip{
+  border:1.5px solid var(--line);background:var(--bg);
+  border-radius:10px;padding:14px 8px;
+  cursor:pointer;transition:all .2s;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:74px;text-align:center;
+  font-family:inherit;color:var(--ink);
+}
+.font-chip:hover{border-color:var(--accent);background:var(--accent-soft)}
+.font-chip.active{border-color:var(--accent);background:var(--accent);color:#fff;box-shadow:0 2px 10px rgba(194,65,12,.25)}
+.font-chip-sample{font-size:24px;line-height:1;margin-bottom:4px}
+.font-chip-name{font-family:'Inter',sans-serif;font-size:10px;font-weight:600;letter-spacing:.02em}
+
+/* NAME PREVIEW LIST */
+.np-list{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.np-row{
+  background:var(--bg);border:1.5px solid var(--line-soft);
+  border-radius:10px;padding:14px 16px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  transition:all .2s;cursor:pointer;
+}
+.np-row:hover{border-color:var(--accent);background:var(--accent-soft)}
+.np-row.active{border-color:var(--accent);background:var(--accent-soft)}
+.np-row-text{
+  flex:1;min-width:0;
+  font-size:24px;line-height:1.2;
+  color:var(--ink);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.np-row-label{
+  font-family:'Space Mono',monospace;font-size:10px;color:var(--ink-mute);
+  letter-spacing:.04em;margin-top:2px;
+}
+.np-select-btn{
+  flex-shrink:0;
+  border:1.5px solid var(--ink);background:transparent;color:var(--ink);
+  padding:6px 14px;border-radius:999px;
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;
+  cursor:pointer;text-transform:uppercase;transition:all .15s;
+}
+.np-select-btn:hover{background:var(--ink);color:#fff}
+.np-row.active .np-select-btn{background:var(--accent);border-color:var(--accent);color:#fff}
+.np-row.active .np-select-btn::after{content:" ✓"}
+
+/* SUBMIT */
+.submit-card{
+  margin-top:8px;background:var(--ink);color:#fff;border-radius:var(--r);
+  padding:24px;text-align:center;
+}
+.submit-note{font-size:13px;color:rgba(255,255,255,.7);margin-bottom:14px}
+.submit-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--accent);color:#fff;border:none;
+  padding:14px 32px;border-radius:999px;
+  font-family:'Inter',sans-serif;font-size:15px;font-weight:700;
+  cursor:pointer;text-decoration:none;
+  transition:background .2s,transform .15s;
+}
+.submit-btn:hover{background:#a83509;transform:translateY(-2px)}
+.submit-btn svg{width:18px;height:18px}
 
 /* CONTACT ROW */
 .contact-row{
@@ -252,7 +375,7 @@ body{
 .cta-btn svg{width:18px;height:18px}
 
 /* DIVIDER */
-.divider{border:none;border-top:1px solid var(--line-soft);max-width:880px;margin:0 auto}
+.divider{border:none;border-top:1px solid var(--line-soft);max-width:1080px;margin:0 auto}
 
 /* FOOTER */
 .site-footer{
@@ -264,7 +387,7 @@ body{
 .site-footer a{color:var(--accent);text-decoration:none;font-weight:600}
 .site-footer a:hover{text-decoration:underline}
 
-/* LANG */
+/* LANG (fixed) */
 .inline-lang,
 [data-lang]:not(body){display:none}
 body[data-lang="en"] [data-lang="en"],
@@ -281,14 +404,16 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
 
 /* RESPONSIVE */
 @media(max-width:600px){
-  .container{padding:0 18px}
+  .container,.container-narrow{padding:0 18px}
   .hero{padding:56px 0 40px}
   .section{padding:48px 0}
   .cta-section{padding:48px 0 64px}
   .cta-card{padding:40px 26px}
   .gallery-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-  .phonto-card{padding:24px;gap:18px}
-  .phonto-icon{width:64px;height:64px}
+  .guitar-stage{padding:20px}
+  .control-card{padding:18px 20px}
+  .font-grid{grid-template-columns:repeat(auto-fill,minmax(95px,1fr))}
+  .np-row-text{font-size:20px}
 }
 </style>
 </head>
@@ -307,7 +432,7 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
 </header>
 
 <section class="hero">
-  <div class="container">
+  <div class="container-narrow">
     <div class="eyebrow"><span class="eyebrow-dot"></span>
       <span class="inline-lang" data-lang="en">Guitar Personalisation Service</span>
       <span class="inline-lang" data-lang="ms">Perkhidmatan Peribadikan Gitar</span>
@@ -321,9 +446,9 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
     </h1>
 
     <p class="hero-lead">
-      <span class="inline-lang" data-lang="en">Personalise your guitar with a custom text print. Add your name, a short phrase, or even a small icon.</span>
-      <span class="inline-lang" data-lang="ms">Peribadikan gitar anda dengan cetakan teks tersuai. Tambah nama, frasa pendek atau ikon kecil.</span>
-      <span class="inline-lang" data-lang="zh">为你的吉他定制专属文字印刷，可加上名字、短句或小图标。</span>
+      <span class="inline-lang" data-lang="en">Personalise your guitar with a custom text print. Live preview, 12 fonts to choose from.</span>
+      <span class="inline-lang" data-lang="ms">Peribadikan gitar anda dengan cetakan teks tersuai. Pratonton langsung, 12 fon untuk dipilih.</span>
+      <span class="inline-lang" data-lang="zh">为你的吉他定制专属文字印刷。实时预览，12 种字体任选。</span>
     </p>
 
     <div class="specs-row">
@@ -339,7 +464,7 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
 
 <!-- SECTION 01 - SAMPLES -->
 <section class="section">
-  <div class="container">
+  <div class="container-narrow">
     <div class="section-head reveal">
       <p class="section-num">— 01 —</p>
       <h2>
@@ -373,108 +498,214 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
 
 <hr class="divider">
 
-<!-- SECTION 02 - HOW TO ORDER -->
+<!-- SECTION 02 - LIVE PREVIEW + FONT PICKER + NAME PREVIEW -->
 <section class="section">
   <div class="container">
     <div class="section-head reveal">
       <p class="section-num">— 02 —</p>
       <h2>
-        <span class="inline-lang" data-lang="en">How to <em>order</em></span>
-        <span class="inline-lang" data-lang="ms">Cara membuat <em>pesanan</em></span>
-        <span class="inline-lang" data-lang="zh">如何<em>订购</em></span>
+        <span class="inline-lang" data-lang="en">Design <em>your print</em></span>
+        <span class="inline-lang" data-lang="ms">Reka <em>cetakan anda</em></span>
+        <span class="inline-lang" data-lang="zh">设计<em>你的印刷</em></span>
       </h2>
       <p class="section-lead">
-        <span class="inline-lang" data-lang="en">A simple 5-step process. Design it, send it, and we'll handle the rest.</span>
-        <span class="inline-lang" data-lang="ms">Proses 5 langkah yang mudah. Reka, hantar, dan kami uruskan selebihnya.</span>
-        <span class="inline-lang" data-lang="zh">简单 5 步流程。你设计、你发送，剩下的交给我们。</span>
+        <span class="inline-lang" data-lang="en">Type your name, pick a font, and see it appear on the guitar in real time.</span>
+        <span class="inline-lang" data-lang="ms">Taip nama anda, pilih fon, dan lihat ia muncul pada gitar secara langsung.</span>
+        <span class="inline-lang" data-lang="zh">输入你的名字，挑选字体，实时看到它出现在吉他上。</span>
       </p>
     </div>
 
-    <div class="callout reveal">
-      <div class="callout-icon">!</div>
-      <div class="callout-text">
-        <span class="inline-lang" data-lang="en"><strong>Print specs:</strong> 1.2 cm width × 15 cm length, single row of text only. Small icon, logo or cartoon can be added behind the text.</span>
-        <span class="inline-lang" data-lang="ms"><strong>Spesifikasi cetakan:</strong> Lebar 1.2 cm × Panjang 15 cm, satu baris teks sahaja. Ikon kecil, logo atau kartun boleh ditambah di belakang teks.</span>
-        <span class="inline-lang" data-lang="zh"><strong>印刷规格：</strong>宽 1.2 cm × 长 15 cm，仅限单行文字。可在文字后方加入小图标、LOGO 或卡通图案。</span>
+    <!-- NAME PREVIEW (12 fonts side by side) — placed FIRST, customer picks font here -->
+    <div class="reveal" style="margin-bottom:32px">
+      <div class="control-card">
+        <div class="control-label" style="margin-bottom:6px">
+          <span>
+            <span class="inline-lang" data-lang="en">Name Preview — pick your font</span>
+            <span class="inline-lang" data-lang="ms">Pratonton Nama — pilih fon anda</span>
+            <span class="inline-lang" data-lang="zh">名字预览 — 选择你的字体</span>
+          </span>
+          <span class="val" style="font-family:'Space Mono',monospace;font-size:11px">
+            <span class="inline-lang" data-lang="en">Live, instant</span>
+            <span class="inline-lang" data-lang="ms">Langsung</span>
+            <span class="inline-lang" data-lang="zh">实时</span>
+          </span>
+        </div>
+        <p style="font-size:13px;color:var(--ink-mute);margin-bottom:16px">
+          <span class="inline-lang" data-lang="en">Type your text once, then tap any row to use that font in the live preview below.</span>
+          <span class="inline-lang" data-lang="ms">Taip teks anda sekali, kemudian ketik mana-mana baris untuk menggunakan fon itu pada pratonton di bawah.</span>
+          <span class="inline-lang" data-lang="zh">输入一次文字，然后点击任意一行，将该字体应用到下方的实时预览。</span>
+        </p>
+
+        <!-- INPUT FIELD inside the Name Preview card -->
+        <div class="np-input-wrap">
+          <input id="textInput" class="np-input" type="text" value="Your Name" maxlength="35" placeholder="Your name…" aria-label="Your name"/>
+          <div class="np-input-hint">
+            <span>
+              <span class="inline-lang" data-lang="en">Up to 35 characters</span>
+              <span class="inline-lang" data-lang="ms">Sehingga 35 aksara</span>
+              <span class="inline-lang" data-lang="zh">最多 35 个字符</span>
+            </span>
+            <span id="charCount">9 / 35</span>
+          </div>
+        </div>
+
+        <div class="np-list" id="npList"></div>
       </div>
     </div>
 
-    <div class="steps reveal" data-lang="en">
-      <div class="step-card"><div class="step-num">1</div><div><div class="step-title">Download Phonto</div><div class="step-desc">Get the free Phonto app on iOS or Android to design your text layout.</div></div></div>
-      <div class="step-card"><div class="step-num">2</div><div><div class="step-title">Design your text</div><div class="step-desc">Keep it under 20 characters. Add a small icon, logo or cartoon behind your name if you'd like.</div></div></div>
-      <div class="step-card"><div class="step-num">3</div><div><div class="step-title">Send us your design</div><div class="step-desc">Message us your finished design via WhatsApp. You can also use Photoshop and send the file.</div></div></div>
-      <div class="step-card"><div class="step-num">4</div><div><div class="step-title">Tell us the location</div><div class="step-desc">Let us know exactly where on the guitar body you want the print to appear.</div></div></div>
-      <div class="step-card"><div class="step-num">5</div><div><div class="step-title">We print it for you</div><div class="step-desc">Sit back. We'll print your design precisely and ship the guitar to you.</div></div></div>
+    <div class="preview-wrap reveal">
+      <!-- LIVE GUITAR PREVIEW -->
+      <div class="guitar-stage">
+        <div class="guitar-stage-label">
+          <span class="inline-lang" data-lang="en">Live Preview</span>
+          <span class="inline-lang" data-lang="ms">Pratonton Langsung</span>
+          <span class="inline-lang" data-lang="zh">实时预览</span>
+        </div>
+        <svg class="guitar-svg" id="guitarSvg" viewBox="0 0 400 700" xmlns="http://www.w3.org/2000/svg">
+          <!-- Headstock -->
+          <path class="head" d="M170 30 L230 30 L235 75 L165 75 Z"/>
+          <!-- Tuning pegs -->
+          <circle cx="180" cy="42" r="3" fill="#c9b88a"/>
+          <circle cx="180" cy="55" r="3" fill="#c9b88a"/>
+          <circle cx="180" cy="68" r="3" fill="#c9b88a"/>
+          <circle cx="220" cy="42" r="3" fill="#c9b88a"/>
+          <circle cx="220" cy="55" r="3" fill="#c9b88a"/>
+          <circle cx="220" cy="68" r="3" fill="#c9b88a"/>
+          <!-- Neck -->
+          <rect class="neck" x="187" y="75" width="26" height="225" rx="2"/>
+          <!-- Frets -->
+          <line x1="187" y1="105" x2="213" y2="105" stroke="#c9b88a" stroke-width="0.8"/>
+          <line x1="187" y1="135" x2="213" y2="135" stroke="#c9b88a" stroke-width="0.8"/>
+          <line x1="187" y1="165" x2="213" y2="165" stroke="#c9b88a" stroke-width="0.8"/>
+          <line x1="187" y1="195" x2="213" y2="195" stroke="#c9b88a" stroke-width="0.8"/>
+          <line x1="187" y1="225" x2="213" y2="225" stroke="#c9b88a" stroke-width="0.8"/>
+          <line x1="187" y1="255" x2="213" y2="255" stroke="#c9b88a" stroke-width="0.8"/>
+          <line x1="187" y1="285" x2="213" y2="285" stroke="#c9b88a" stroke-width="0.8"/>
+
+          <!-- Guitar Body (acoustic dreadnought shape) -->
+          <path class="body" d="
+            M 200 290
+            C 110 295, 70 360, 70 440
+            C 70 540, 120 640, 200 660
+            C 280 640, 330 540, 330 440
+            C 330 360, 290 295, 200 290
+            Z
+          "/>
+
+          <!-- Sound hole -->
+          <circle class="hole" cx="200" cy="430" r="38"/>
+          <circle cx="200" cy="430" r="38" fill="none" stroke="#1a0f06" stroke-width="2"/>
+          <circle cx="200" cy="430" r="42" fill="none" stroke="#c9b88a" stroke-width="0.8" opacity=".6"/>
+
+          <!-- Pickguard -->
+          <path class="pickguard" d="
+            M 240 400
+            Q 270 430, 260 480
+            Q 250 520, 220 530
+            Q 210 510, 218 480
+            Q 226 450, 240 400 Z
+          "/>
+
+          <!-- Strings going across body -->
+          <line class="string" x1="190" y1="290" x2="190" y2="600"/>
+          <line class="string" x1="195" y1="290" x2="195" y2="600"/>
+          <line class="string" x1="200" y1="290" x2="200" y2="600"/>
+          <line class="string" x1="205" y1="290" x2="205" y2="600"/>
+          <line class="string" x1="210" y1="290" x2="210" y2="600"/>
+
+          <!-- Bridge -->
+          <rect class="bridge" x="170" y="555" width="60" height="14" rx="2"/>
+
+          <!-- Engraved/Printed Text — controlled by JS -->
+          <text id="engravedText"
+                class="engraved-text"
+                x="115" y="500"
+                text-anchor="start"
+                font-family="'Dancing Script', cursive"
+                font-size="20"
+                transform="rotate(-90 115 500)">Your Name</text>
+        </svg>
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="controls">
+        <!-- Position & Size sliders -->
+        <div class="control-card">
+          <div class="control-label" style="margin-bottom:14px">
+            <span>
+              <span class="inline-lang" data-lang="en">Position &amp; Size</span>
+              <span class="inline-lang" data-lang="ms">Kedudukan &amp; Saiz</span>
+              <span class="inline-lang" data-lang="zh">位置和大小</span>
+            </span>
+          </div>
+          <div class="slider-row">
+            <div>
+              <div class="control-label" style="margin-bottom:6px">
+                <span>X</span><span class="val" id="xVal">115</span>
+              </div>
+              <input id="xSlider" type="range" min="80" max="320" value="115"/>
+            </div>
+            <div>
+              <div class="control-label" style="margin-bottom:6px">
+                <span>Y</span><span class="val" id="yVal">500</span>
+              </div>
+              <input id="ySlider" type="range" min="300" max="640" value="500"/>
+            </div>
+            <div>
+              <div class="control-label" style="margin-bottom:6px">
+                <span>
+                  <span class="inline-lang" data-lang="en">Angle</span>
+                  <span class="inline-lang" data-lang="ms">Sudut</span>
+                  <span class="inline-lang" data-lang="zh">角度</span>
+                </span>
+                <span class="val" id="angleVal">-90°</span>
+              </div>
+              <input id="angleSlider" type="range" min="-180" max="180" value="-90"/>
+            </div>
+            <div>
+              <div class="control-label" style="margin-bottom:6px">
+                <span>
+                  <span class="inline-lang" data-lang="en">Size</span>
+                  <span class="inline-lang" data-lang="ms">Saiz</span>
+                  <span class="inline-lang" data-lang="zh">大小</span>
+                </span>
+                <span class="val" id="sizeVal">20</span>
+              </div>
+              <input id="sizeSlider" type="range" min="10" max="40" value="20"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- Font picker removed — users select fonts via Name Preview above -->
+      </div>
     </div>
 
-    <div class="steps reveal" data-lang="ms">
-      <div class="step-card"><div class="step-num">1</div><div><div class="step-title">Muat turun Phonto</div><div class="step-desc">Dapatkan aplikasi Phonto percuma di iOS atau Android untuk mereka teks anda.</div></div></div>
-      <div class="step-card"><div class="step-num">2</div><div><div class="step-title">Reka bentuk teks anda</div><div class="step-desc">Hadkan kepada 20 aksara. Tambah ikon kecil, logo atau kartun di belakang nama jika mahu.</div></div></div>
-      <div class="step-card"><div class="step-num">3</div><div><div class="step-title">Hantar reka bentuk</div><div class="step-desc">Mesej kami imej reka bentuk anda melalui WhatsApp. Boleh juga gunakan Photoshop.</div></div></div>
-      <div class="step-card"><div class="step-num">4</div><div><div class="step-title">Beritahu lokasi</div><div class="step-desc">Beritahu kami di mana tepat pada badan gitar anda mahu cetakan itu diletakkan.</div></div></div>
-      <div class="step-card"><div class="step-num">5</div><div><div class="step-title">Kami cetakkan untuk anda</div><div class="step-desc">Bersantailah. Kami akan cetak reka bentuk anda dengan tepat dan menghantarnya kepada anda.</div></div></div>
-    </div>
+    <!-- OLD NAME PREVIEW BLOCK REMOVED (moved above) -->
 
-    <div class="steps reveal" data-lang="zh">
-      <div class="step-card"><div class="step-num">1</div><div><div class="step-title">下载 Phonto</div><div class="step-desc">在 iOS 或 Android 上下载免费 Phonto 应用，用来设计你的文字排版。</div></div></div>
-      <div class="step-card"><div class="step-num">2</div><div><div class="step-title">设计你的文字</div><div class="step-desc">字数不超过 20 个。可在文字后方加入小图标、LOGO 或卡通图案。</div></div></div>
-      <div class="step-card"><div class="step-num">3</div><div><div class="step-title">发送设计图给我们</div><div class="step-desc">通过 WhatsApp 发送你的设计图给我们。也可以用 Photoshop 设计后发给我们。</div></div></div>
-      <div class="step-card"><div class="step-num">4</div><div><div class="step-title">告知印刷位置</div><div class="step-desc">告诉我们你想把印刷放在吉他琴身的哪个位置。</div></div></div>
-      <div class="step-card"><div class="step-num">5</div><div><div class="step-title">我们为你印刷</div><div class="step-desc">放轻松。我们会精准印刷你的设计并把吉他寄给你。</div></div></div>
+    <!-- SUBMIT -->
+    <div class="submit-card reveal">
+      <div class="submit-note">
+        <span class="inline-lang" data-lang="en">Happy with your design? Send it to us via WhatsApp and we'll handle the rest.</span>
+        <span class="inline-lang" data-lang="ms">Berpuas hati dengan reka bentuk anda? Hantar kepada kami melalui WhatsApp.</span>
+        <span class="inline-lang" data-lang="zh">满意你的设计？通过 WhatsApp 发送给我们即可。</span>
+      </div>
+      <a class="submit-btn" id="submitBtn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+        <span class="inline-lang" data-lang="en">Send design via WhatsApp</span>
+        <span class="inline-lang" data-lang="ms">Hantar reka bentuk via WhatsApp</span>
+        <span class="inline-lang" data-lang="zh">通过 WhatsApp 发送设计</span>
+      </a>
     </div>
   </div>
 </section>
 
 <hr class="divider">
 
-<!-- SECTION 03 - PHONTO -->
+<!-- SECTION 03 - HELP / CONTACT -->
 <section class="section">
-  <div class="container">
+  <div class="container-narrow">
     <div class="section-head reveal">
       <p class="section-num">— 03 —</p>
-      <h2>
-        <span class="inline-lang" data-lang="en">Design with <em>Phonto</em></span>
-        <span class="inline-lang" data-lang="ms">Reka dengan <em>Phonto</em></span>
-        <span class="inline-lang" data-lang="zh">使用 <em>Phonto</em> 设计</span>
-      </h2>
-      <p class="section-lead">
-        <span class="inline-lang" data-lang="en">A free app that lets you easily add text and icons. Available on iOS and Android.</span>
-        <span class="inline-lang" data-lang="ms">Aplikasi percuma untuk menambah teks dan ikon dengan mudah. Tersedia di iOS dan Android.</span>
-        <span class="inline-lang" data-lang="zh">免费应用，让你轻松添加文字与图标。iOS 和 Android 均可下载。</span>
-      </p>
-    </div>
-
-    <div class="phonto-card reveal">
-      <div class="phonto-icon">
-        <img src="https://static.wixstatic.com/media/65da77_5fa476559bc548ff8b21b7aa74bc765e~mv2.png/v1/crop/x_362,y_84,w_482,h_456/fill/w_174,h_164,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1200x630wa.png" alt="Phonto app icon">
-      </div>
-      <div class="phonto-info">
-        <h3>Phonto</h3>
-        <p>
-          <span class="inline-lang" data-lang="en">Free — Text on Photos. Design your name print in minutes.</span>
-          <span class="inline-lang" data-lang="ms">Percuma — Teks pada Foto. Reka cetakan nama anda dalam minit.</span>
-          <span class="inline-lang" data-lang="zh">免费 — 图片上的文字。几分钟内完成名字印刷设计。</span>
-        </p>
-        <div class="badge-row">
-          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.youthhr.phonto&hl=en" target="_blank" rel="noopener">
-            <img src="https://static.wixstatic.com/media/65da77_d8a677a8007a4c639804c215b222b80d~mv2.png/v1/crop/x_3,y_0,w_643,h_250/fill/w_270,h_104,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/en_badge_web_generic.png" alt="Get it on Google Play">
-          </a>
-          <a class="store-badge" href="https://apps.apple.com/us/app/phonto-text-on-photos/id438429273" target="_blank" rel="noopener">
-            <img src="https://static.wixstatic.com/media/65da77_a50f794af8a54f4bb5c74e6cba10be2f~mv2.png/v1/fill/w_238,h_81,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/download.png" alt="Download on the App Store">
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- SECTION 04 - HELP / CONTACT -->
-<section class="section">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="section-num">— 04 —</p>
       <h2>
         <span class="inline-lang" data-lang="en">Need <em>help</em>?</span>
         <span class="inline-lang" data-lang="ms">Perlu <em>bantuan</em>?</span>
@@ -523,7 +754,7 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
 
 <!-- CTA -->
 <section class="cta-section">
-  <div class="container">
+  <div class="container-narrow">
     <div class="cta-card reveal">
       <p class="cta-eyebrow">
         <span class="inline-lang" data-lang="en">Ready to personalise?</span>
@@ -557,6 +788,7 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
 </footer>
 
 <script>
+/* ───────── Language switcher ───────── */
 const pills = document.querySelectorAll('.lang-pill');
 pills.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -567,10 +799,125 @@ pills.forEach(btn => {
   });
 });
 
+/* ───────── Scroll reveal ───────── */
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ───────── Font catalogue ─────────
+   Each font has: id, name (short), family (CSS), sample size for chip
+*/
+const FONTS = [
+  { id:"abril",   name:"Abril",     family:"'Abril Fatface', serif",          size:24 },
+  { id:"chicle",  name:"Chicle",    family:"'Chicle', cursive",               size:24 },
+  { id:"covered", name:"Covered",   family:"'Covered By Your Grace', cursive",size:22 },
+  { id:"damion",  name:"Damion",    family:"'Damion', cursive",               size:24 },
+  { id:"mouse",   name:"Mouse",     family:"'Mouse Memoirs', sans-serif",     size:22 },
+  { id:"marker",  name:"Marker",    family:"'Permanent Marker', cursive",     size:22 },
+  { id:"rubik",   name:"Rubik",     family:"'Rubik Mono One', sans-serif",    size:18 },
+  { id:"dmserif", name:"DM Serif",  family:"'DM Serif Display', serif",       size:24 },
+  { id:"caveat",  name:"Caveat",    family:"'Caveat', cursive",               size:26 },
+  { id:"dancing", name:"Dancing",   family:"'Dancing Script', cursive",       size:24 },
+  { id:"fraunces",name:"Fraunces",  family:"'Fraunces', serif",               size:22 },
+  { id:"inter",   name:"Inter",     family:"'Inter', sans-serif",             size:20 }
+];
+
+/* ───────── State ───────── */
+const state = {
+  text: "Your Name",
+  fontId: "dancing",
+  x: 115, y: 500, angle: -90, size: 20
+};
+
+/* ───────── DOM refs ───────── */
+const $text   = document.getElementById('textInput');
+const $count  = document.getElementById('charCount');
+const $svg    = document.getElementById('engravedText');
+const $xS     = document.getElementById('xSlider');
+const $yS     = document.getElementById('ySlider');
+const $aS     = document.getElementById('angleSlider');
+const $sS     = document.getElementById('sizeSlider');
+const $xV     = document.getElementById('xVal');
+const $yV     = document.getElementById('yVal');
+const $aV     = document.getElementById('angleVal');
+const $sV     = document.getElementById('sizeVal');
+const $fontGrid = null; // font grid removed
+const $npList   = document.getElementById('npList');
+const $submit   = document.getElementById('submitBtn');
+
+/* ───────── Render functions ───────── */
+function getFont(id){ return FONTS.find(f => f.id === id) || FONTS[0]; }
+
+function renderSvg(){
+  const f = getFont(state.fontId);
+  $svg.textContent = state.text || "Your Name";
+  $svg.setAttribute('font-family', f.family);
+  $svg.setAttribute('font-size', state.size);
+  $svg.setAttribute('x', state.x);
+  $svg.setAttribute('y', state.y);
+  $svg.setAttribute('transform', `rotate(${state.angle} ${state.x} ${state.y})`);
+}
+
+function renderFontGrid(){ /* removed — font grid no longer in DOM */ }
+
+function renderNpList(){
+  $npList.innerHTML = '';
+  FONTS.forEach(f => {
+    const row = document.createElement('div');
+    row.className = 'np-row' + (f.id === state.fontId ? ' active' : '');
+    const safeText = (state.text || 'Your Name').replace(/[<>&"']/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c]));
+    row.innerHTML = `
+      <div>
+        <div class="np-row-text" style="font-family:${f.family}">${safeText}</div>
+        <div class="np-row-label">${f.name}</div>
+      </div>
+      <button class="np-select-btn">Select</button>
+    `;
+    row.addEventListener('click', () => {
+      state.fontId = f.id;
+      renderSvg();
+      renderNpList();
+      // Smooth scroll down to the live preview (which is now below the name preview)
+      document.querySelector('.guitar-stage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    $npList.appendChild(row);
+  });
+}
+
+function updateSubmitLink(){
+  const f = getFont(state.fontId);
+  const msg = `Hi! I'd like to order a guitar name print.\n\nText: ${state.text}\nFont: ${f.name}\nPosition: x=${state.x}, y=${state.y}\nAngle: ${state.angle}°\nSize: ${state.size}`;
+  $submit.href = `https://wa.me/60183877972?text=${encodeURIComponent(msg)}`;
+}
+
+/* ───────── Event wiring ───────── */
+$text.addEventListener('input', () => {
+  state.text = $text.value;
+  $count.textContent = `${state.text.length} / 35`;
+  renderSvg();
+  renderNpList();
+  updateSubmitLink();
+});
+
+function bindSlider(input, valEl, key, suffix=''){
+  input.addEventListener('input', () => {
+    state[key] = +input.value;
+    valEl.textContent = input.value + suffix;
+    renderSvg();
+    updateSubmitLink();
+  });
+}
+bindSlider($xS, $xV, 'x');
+bindSlider($yS, $yV, 'y');
+bindSlider($aS, $aV, 'angle', '°');
+bindSlider($sS, $sV, 'size');
+
+/* ───────── Init ───────── */
+renderFontGrid();
+renderNpList();
+renderSvg();
+updateSubmitLink();
 </script>
 </body>
 </html>
