@@ -6,8 +6,26 @@
 <title>Ukulele Engraving</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600&family=Caveat:wght@400;600&family=Dancing+Script:wght@500;700&family=Playfair+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Great+Vibes&family=Pacifico&family=Sacramento&family=Allura&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Cinzel:wght@500;700&family=Bodoni+Moda:ital@0;1&family=Marcellus&family=DM+Serif+Display:ital@0;1&family=Parisienne&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600&family=Space+Mono:wght@400;700&family=Abril+Fatface&family=Chicle&family=Covered+By+Your+Grace&family=Damion&family=Mouse+Memoirs&family=Permanent+Marker&family=Rubik+Mono+One&family=DM+Serif+Display:ital@0;1&family=Caveat:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap">
 <style>
+  /* ──────── Self-hosted fonts (placed in /fonts folder of the repo) ──────── */
+  @font-face {
+    font-family: 'HuiFont';
+    src: url('fonts/HuiFont.woff2') format('woff2'),
+         url('fonts/HuiFont.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Snickles';
+    src: url('fonts/Snickles.woff2') format('woff2'),
+         url('fonts/Snickles.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --ink: #1d1d1f;
     --ink-2: #424245;
@@ -815,18 +833,18 @@
 
     // ——— name preview in multiple fonts ———
     const npFonts = [
-      { family: '"Instrument Serif", serif',                        label: "Instrument — Editorial serif" },
-      { family: '"Playfair Display", serif; font-style: italic',    label: "Playfair Italic — Classic editorial" },
-      { family: '"Cormorant Garamond", serif; font-style: italic',  label: "Cormorant — Refined italic" },
-      { family: '"Bodoni Moda", serif; font-style: italic',         label: "Bodoni — High-contrast serif" },
-      { family: '"DM Serif Display", serif',                        label: "DM Serif — Display serif" },
-      { family: '"Cinzel", serif',                                  label: "Cinzel — Engraved capitals" },
-      { family: '"Marcellus", serif',                               label: "Marcellus — Classical roman" },
-      { family: '"Caveat", cursive',                                label: "Caveat — Handwritten" },
-      { family: '"Dancing Script", cursive',                        label: "Dancing — Flowing script" },
-      { family: '"Great Vibes", cursive',                           label: "Great Vibes — Formal script" },
-      { family: '"Allura", cursive',                                label: "Allura — Calligraphic script" },
-      { family: '"Sacramento", cursive',                            label: "Sacramento — Casual script" },
+      { family: '"Abril Fatface", serif',          style: "normal", label: "Abril Fatface — Bold display serif" },
+      { family: '"Chicle", cursive',               style: "normal", label: "Chicle — Playful display" },
+      { family: '"Covered By Your Grace", cursive',style: "normal", label: "Covered By Your Grace — Handwritten" },
+      { family: '"Damion", cursive',               style: "normal", label: "Damion — Brush script" },
+      { family: '"HuiFont", cursive',              style: "normal", label: "HuiFont — Casual handwriting" },
+      { family: '"Mouse Memoirs", sans-serif',     style: "normal", label: "Mouse Memoirs — Cartoon caps" },
+      { family: '"Snickles", cursive',             style: "normal", label: "Snickles — Hand-drawn" },
+      { family: '"Rubik Mono One", sans-serif',   style: "normal", label: "Rubik Mono One — Mono futuristic" },
+      { family: '"Permanent Marker", cursive',     style: "normal", label: "Permanent Marker — Bold marker" },
+      { family: '"DM Serif Display", serif',       style: "normal", label: "DM Serif — Display serif" },
+      { family: '"Caveat", cursive',               style: "normal", label: "Caveat — Handwritten" },
+      { family: '"Dancing Script", cursive',       style: "normal", label: "Dancing — Flowing script" },
     ];
     const npList = document.getElementById("npList");
     const npInput = document.getElementById("npInput");
@@ -840,7 +858,9 @@
       npFonts.forEach((f, i) => {
         const row = document.createElement("div");
         row.className = "np-row";
-        row.innerHTML = `<div class="np-name" style="font-family:${f.family}">${escapeHtml(val)}</div><div class="np-label">${f.label}</div>`;
+        // Build style string with single-quoted font-family so inner double-quotes (e.g. "Playfair Display") don't break the attribute.
+        const nameStyle = `font-family: ${f.family.replace(/"/g, "'")}; font-style: ${f.style};`;
+        row.innerHTML = `<div class="np-name" style="${nameStyle}">${escapeHtml(val)}</div><div class="np-label">${f.label}</div>`;
         (i < 4 ? npListLeft : npList).appendChild(row);
       });
     }

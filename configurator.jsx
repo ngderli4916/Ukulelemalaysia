@@ -2,12 +2,18 @@
 const { useState, useEffect, useRef } = React;
 
 const FONTS = [
-  { id: "instrument", name: "Instrument", sample: "Aa", family: '"Instrument Serif", serif',       weight: 400, style: "normal",  size: 34 },
-  { id: "playfair",   name: "Playfair",   sample: "Aa", family: '"Playfair Display", serif',        weight: 500, style: "italic",  size: 32 },
-  { id: "dancing",    name: "Dancing",    sample: "Aa", family: '"Dancing Script", cursive',        weight: 600, style: "normal",  size: 36 },
-  { id: "caveat",     name: "Caveat",     sample: "Aa", family: '"Caveat", cursive',                weight: 600, style: "normal",  size: 36 },
-  { id: "sf",         name: "SF",         sample: "Aa", family: '-apple-system, "SF Pro Display"',  weight: 500, style: "normal",  size: 30 },
-  { id: "notoserif",  name: "Noto Serif", sample: "Aa", family: '"Noto Serif SC", serif',           weight: 600, style: "normal",  size: 32 },
+  { id: "abril",      name: "Abril Fatface", sample: "Aa", family: '"Abril Fatface", serif',           weight: 400, style: "normal", size: 32 },
+  { id: "chicle",     name: "Chicle",        sample: "Aa", family: '"Chicle", cursive',                weight: 400, style: "normal", size: 32 },
+  { id: "covered",    name: "Covered",       sample: "Aa", family: '"Covered By Your Grace", cursive', weight: 400, style: "normal", size: 34 },
+  { id: "damion",     name: "Damion",        sample: "Aa", family: '"Damion", cursive',                weight: 400, style: "normal", size: 34 },
+  { id: "huifont",    name: "HuiFont",       sample: "Aa", family: '"HuiFont", cursive',               weight: 400, style: "normal", size: 32 },
+  { id: "mouse",      name: "Mouse",         sample: "Aa", family: '"Mouse Memoirs", sans-serif',      weight: 400, style: "normal", size: 32 },
+  { id: "snickles",   name: "Snickles",      sample: "Aa", family: '"Snickles", cursive',              weight: 400, style: "normal", size: 32 },
+  { id: "rubik",      name: "Rubik Mono",    sample: "Aa", family: '"Rubik Mono One", sans-serif',     weight: 400, style: "normal", size: 26 },
+  { id: "marker",     name: "Marker",        sample: "Aa", family: '"Permanent Marker", cursive',      weight: 400, style: "normal", size: 30 },
+  { id: "dmserif",    name: "DM Serif",      sample: "Aa", family: '"DM Serif Display", serif',        weight: 400, style: "normal", size: 32 },
+  { id: "caveat",     name: "Caveat",        sample: "Aa", family: '"Caveat", cursive',                weight: 600, style: "normal", size: 36 },
+  { id: "dancing",    name: "Dancing",       sample: "Aa", family: '"Dancing Script", cursive',        weight: 600, style: "normal", size: 36 },
 ];
 
 const LOCATIONS = [
