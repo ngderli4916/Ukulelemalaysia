@@ -89,28 +89,50 @@ function UkuleleSVG({ text, font, engravingX, engravingY, engravingAngle, engrav
 }
 
 function Configurator() {
-  // Tweaks integration — engraving text + ukulele shape sliders, persisted
+  // Tweaks integration — engraving text + position, persisted
   const [tweaks, setTweak] = window.useTweaks(/*EDITMODE-BEGIN*/{
   "engravingText": "Ocean Blue",
-  "engravingX": 187,
-  "engravingY": 860,
-  "engravingAngle": 0,
-  "engravingSize": 28
+  "engravingX": 120,
+  "engravingY": 625,
+  "engravingAngle": -90,
+  "engravingSize": 27
 }/*EDITMODE-END*/);
 
-  const [fontId, setFontId] = useState("caveat");
+  // Default font is Dancing — used until customer picks one in Step 01 (Name Preview).
+  const [fontId, setFontId] = useState("dancing");
   const [view, setView] = useState("front");
 
   const text = tweaks.engravingText ?? "";
-  const font = FONTS.find(f => f.id === fontId) || FONTS[0];
+  const font = FONTS.find(f => f.id === fontId) || FONTS.find(f => f.id === "dancing") || FONTS[0];
 
-  function onTextChange(e) {
-    setTweak("engravingText", e.target.value);
-  }
-
-  // Broadcast text to non-React parts of the page (name preview)
+  // Broadcast text changes to Name Preview (kept for backward compat)
   useEffect(() => {
     document.dispatchEvent(new CustomEvent("engrave:text-change", { detail: text }));
+  }, [text]);
+
+  // Listen for font/text selection from Step 01 (Name Preview).
+  // When customer clicks "Select" on a typeface there, sync both into the live preview.
+  useEffect(() => {
+    function onFontSelect(e) {
+      const { fontId: pickedId, text: pickedText } = e.detail || {};
+      if (pickedId && FONTS.find(f => f.id === pickedId)) {
+        setFontId(pickedId);
+      }
+      if (typeof pickedText === "string" && pickedText !== text) {
+        setTweak("engravingText", pickedText);
+      }
+    }
+    // Also keep text in sync when user types in the Name Preview input
+    function onNpInput(e) {
+      const newText = e.detail || "";
+      if (newText !== text) setTweak("engravingText", newText);
+    }
+    document.addEventListener("engrave:font-select", onFontSelect);
+    document.addEventListener("engrave:np-input", onNpInput);
+    return () => {
+      document.removeEventListener("engrave:font-select", onFontSelect);
+      document.removeEventListener("engrave:np-input", onNpInput);
+    };
   }, [text]);
 
   // Tweaks panel mounted via portal-like pattern — actually just render inline;
@@ -158,60 +180,16 @@ function Configurator() {
           <div className="step-head">
             <div>
               <div className="step-num">STEP 01</div>
-              <h3 className="step-title">Your text</h3>
-            </div>
-            <div className="step-value">{text.length}/24</div>
-          </div>
-          <div className="text-input">
-            <input
-              value={text}
-              onChange={onTextChange}
-              placeholder="Type a name, date, or line…"
-              maxLength={24}
-            />
-            <div className="hint">
-              <span>Letters, numbers, punctuation — emoji-free</span>
-              <span>Free</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="step">
-          <div className="step-head">
-            <div>
-              <div className="step-num">STEP 02</div>
-              <h3 className="step-title">Typeface</h3>
-            </div>
-            <div className="step-value">{font.name}</div>
-          </div>
-          <div className="font-grid">
-            {FONTS.map(f => (
-              <div
-                key={f.id}
-                className={"font-chip" + (f.id === fontId ? " on" : "")}
-                onClick={() => setFontId(f.id)}
-              >
-                <div
-                  className="sample"
-                  style={{
-                    fontFamily: f.family,
-                    fontWeight: f.weight,
-                    fontStyle: f.style,
-                  }}
-                >{f.sample}</div>
-                <div className="label">{f.name}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="step">
-          <div className="step-head">
-            <div>
-              <div className="step-num">STEP 03</div>
               <h3 className="step-title">Position & angle</h3>
             </div>
             <div className="step-value">{tweaks.engravingAngle}°</div>
+          </div>
+          <div className="current-selection">
+            <div className="cs-label">Engraving</div>
+            <div className="cs-text" style={{ fontFamily: font.family, fontWeight: font.weight, fontStyle: font.style }}>
+              {text || "—"}
+            </div>
+            <div className="cs-meta">{font.name}</div>
           </div>
           <div className="pos-controls">
             <label className="pos-row">
@@ -253,11 +231,10 @@ function Configurator() {
         </div>
 
         <div className="price-row">
-          <div className="price">
-            <b>¥ 268</b>
-            <span>Engraving included</span>
+          <div className="submit-note">
+            Click submit to send your design
           </div>
-          <button className="btn btn-primary">Continue ›</button>
+          <button className="btn btn-primary" type="button">Submit ›</button>
         </div>
       </div>
     </>

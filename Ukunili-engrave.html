@@ -363,12 +363,41 @@
   .price-row {
     display: flex; align-items: center; justify-content: space-between;
     padding-top: 20px; border-top: 1px solid var(--hair);
+    gap: 16px;
   }
   .price {
     display: flex; align-items: baseline; gap: 12px;
   }
   .price b { font-size: 22px; font-weight: 500; letter-spacing: -0.01em; }
   .price span { font-size: 12px; color: var(--muted); font-family: "Space Mono", monospace; }
+
+  /* Submit note replaces the price block — explains what the Submit button does */
+  .submit-note {
+    font-family: "Space Mono", monospace; font-size: 12px;
+    color: var(--muted); letter-spacing: 0.02em; line-height: 1.5;
+    flex: 1;
+  }
+
+  /* "Current selection" card inside Step 02 — shows what was picked in Step 01 */
+  .current-selection {
+    background: var(--panel-2);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .current-selection .cs-label {
+    font-family: "Space Mono", monospace; font-size: 10px;
+    color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .current-selection .cs-text {
+    font-size: 28px; line-height: 1.1; color: var(--ink);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .current-selection .cs-meta {
+    font-family: "Space Mono", monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: 0.05em;
+  }
 
   /* ———————————————————— Location Zones on ukulele ———————————————————— */
   .zone {
@@ -518,17 +547,45 @@
   .np-row {
     padding: 16px 0;
     border-bottom: 1px solid var(--hair-2);
-    display: flex; align-items: baseline; justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between;
     gap: 16px;
+    transition: background-color 0.2s;
   }
   .np-row:last-child { border-bottom: 0; }
+  .np-row.selected {
+    background: rgba(194, 65, 12, 0.05);
+    border-radius: 8px;
+    padding: 16px 12px;
+    border-bottom-color: transparent;
+  }
   .np-name {
     font-size: 28px; letter-spacing: -0.01em;
     color: var(--ink);
+    flex: 1; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .np-meta {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+    flex-shrink: 0;
   }
   .np-label {
     font-family: "Space Mono", monospace; font-size: 11px;
     color: var(--muted); letter-spacing: 0.05em;
+    text-align: right;
+  }
+  .np-select-btn {
+    font-family: "Space Mono", monospace; font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid var(--ink);
+    background: transparent; color: var(--ink);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .np-select-btn:hover { background: var(--ink); color: #fff; }
+  .np-row.selected .np-select-btn {
+    background: #c2410c; color: #fff; border-color: #c2410c;
   }
 
   /* ———————————————————— Footer ———————————————————— */
@@ -662,20 +719,49 @@
   </div>
 </section>
 
-<!-- ───────── Configurator ───────── -->
-<section id="design" data-screen-label="02 Configurator">
+<!-- ───────── Step 01 — Name Preview (typeface selection) ───────── -->
+<section id="preview" data-screen-label="02 Name preview">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="sec-head-left">
-        <div class="eyebrow">Step 01 — Design</div>
-        <h2>Design the inscription.</h2>
+        <div class="eyebrow">Step 01 — Choose your typeface</div>
+        <h2>See your name, in every style.</h2>
       </div>
       <div class="sec-head-right">
-        Type your name, choose a typeface, pick where it lives on the instrument.
-        Every change updates the live preview — what you see is what gets engraved.
+        Type your name below — it will appear in all twelve typefaces. Tap
+        <em>Select</em> next to the one you like, then move on to design.
+      </div>
+    </div>
+
+    <div class="namepreview reveal">
+      <div>
+        <h3>Name Preview</h3>
+        <div class="cn-note">Live, instant</div>
+        <div class="text-input">
+          <input id="npInput" type="text" value="Ocean Blue" maxlength="50" />
+          <div class="hint"><span>Up to 50 characters</span><span id="npCount">10 / 50</span></div>
+        </div>
+        <div class="np-list np-list-left" id="npListLeft"></div>
+      </div>
+      <div class="np-list" id="npList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── Step 02 — Live design (configurator) ───────── -->
+<section id="design" data-screen-label="03 Configurator">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-head-left">
+        <div class="eyebrow">Step 02 — Design</div>
+        <h2>Place it on the ukulele.</h2>
+      </div>
+      <div class="sec-head-right">
+        Your selected typeface and text appear here. Drag the sliders to set the position
+        and angle of the engraving. The live preview updates instantly.
         <div class="play-cta">
           <span class="play-cta-arrow">↓</span>
-          <span class="play-cta-text">Play around with the settings below to preview your engraving</span>
+          <span class="play-cta-text">Position and angle the engraving below</span>
         </div>
       </div>
     </div>
@@ -689,7 +775,7 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="sec-head-left">
-        <div class="eyebrow">Step 02 — Placement</div>
+        <div class="eyebrow">Step 03 — Placement</div>
         <h2>Where should it live?</h2>
       </div>
       <div class="sec-head-right">
@@ -722,7 +808,7 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="sec-head-left">
-        <div class="eyebrow">Step 03 — Inspiration</div>
+        <div class="eyebrow">Step 04 — Inspiration</div>
         <h2>Twelve, recently engraved.</h2>
       </div>
       <div class="sec-head-right">
@@ -732,41 +818,6 @@
     </div>
 
     <div class="sample-grid reveal" id="sampleGrid"></div>
-  </div>
-</section>
-
-<!-- ───────── Preview / Name preview ───────── -->
-<section id="preview" data-screen-label="05 Preview">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-head-left">
-        <div class="eyebrow">Step 04 — Preview</div>
-        <h2>See your name, in every style.</h2>
-      </div>
-      <div class="sec-head-right">
-        Not sure which typeface fits? Type once — see it in all of them.
-      </div>
-    </div>
-
-    <div class="namepreview reveal">
-      <div>
-        <h3>Name Preview</h3>
-        <div class="cn-note">Live, instant</div>
-        <div class="text-input">
-          <input id="npInput" type="text" value="Ocean Blue" maxlength="50" />
-          <div class="hint"><span>Up to 50 characters</span><span id="npCount">10 / 50</span></div>
-        </div>
-        <div class="np-list np-list-left" id="npListLeft"></div>
-      </div>
-      <div class="np-list" id="npList"></div>
-    </div>
-
-    <div style="margin-top: 48px; display:flex; justify-content: flex-end; align-items:center; flex-wrap: wrap; gap: 16px;" class="reveal">
-      <div style="display:flex; gap: 12px; align-items: center;">
-        <button class="btn btn-ghost">Save draft</button>
-        <button class="btn btn-primary">Add to bag</button>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -832,24 +883,27 @@
     });
 
     // ——— name preview in multiple fonts ———
+    // Each id here MUST match an id in configurator.jsx FONTS array.
     const npFonts = [
-      { family: '"Abril Fatface", serif',          style: "normal", label: "Abril Fatface — Bold display serif" },
-      { family: '"Chicle", cursive',               style: "normal", label: "Chicle — Playful display" },
-      { family: '"Covered By Your Grace", cursive',style: "normal", label: "Covered By Your Grace — Handwritten" },
-      { family: '"Damion", cursive',               style: "normal", label: "Damion — Brush script" },
-      { family: '"HuiFont", cursive',              style: "normal", label: "HuiFont — Casual handwriting" },
-      { family: '"Mouse Memoirs", sans-serif',     style: "normal", label: "Mouse Memoirs — Cartoon caps" },
-      { family: '"Snickles", cursive',             style: "normal", label: "Snickles — Hand-drawn" },
-      { family: '"Rubik Mono One", sans-serif',   style: "normal", label: "Rubik Mono One — Mono futuristic" },
-      { family: '"Permanent Marker", cursive',     style: "normal", label: "Permanent Marker — Bold marker" },
-      { family: '"DM Serif Display", serif',       style: "normal", label: "DM Serif — Display serif" },
-      { family: '"Caveat", cursive',               style: "normal", label: "Caveat — Handwritten" },
-      { family: '"Dancing Script", cursive',       style: "normal", label: "Dancing — Flowing script" },
+      { id: "abril",    family: '"Abril Fatface", serif',          style: "normal", label: "Abril Fatface — Bold display serif" },
+      { id: "chicle",   family: '"Chicle", cursive',               style: "normal", label: "Chicle — Playful display" },
+      { id: "covered",  family: '"Covered By Your Grace", cursive',style: "normal", label: "Covered By Your Grace — Handwritten" },
+      { id: "damion",   family: '"Damion", cursive',               style: "normal", label: "Damion — Brush script" },
+      { id: "huifont",  family: '"HuiFont", cursive',              style: "normal", label: "HuiFont — Casual handwriting" },
+      { id: "mouse",    family: '"Mouse Memoirs", sans-serif',     style: "normal", label: "Mouse Memoirs — Cartoon caps" },
+      { id: "snickles", family: '"Snickles", cursive',             style: "normal", label: "Snickles — Hand-drawn" },
+      { id: "rubik",    family: '"Rubik Mono One", sans-serif',    style: "normal", label: "Rubik Mono One — Mono futuristic" },
+      { id: "marker",   family: '"Permanent Marker", cursive',     style: "normal", label: "Permanent Marker — Bold marker" },
+      { id: "dmserif",  family: '"DM Serif Display", serif',       style: "normal", label: "DM Serif — Display serif" },
+      { id: "caveat",   family: '"Caveat", cursive',               style: "normal", label: "Caveat — Handwritten" },
+      { id: "dancing",  family: '"Dancing Script", cursive',       style: "normal", label: "Dancing — Flowing script" },
     ];
     const npList = document.getElementById("npList");
     const npInput = document.getElementById("npInput");
     const npCount = document.getElementById("npCount");
     const npListLeft = document.getElementById("npListLeft");
+    let npSelectedId = null;  // tracks which font customer has Selected
+
     function renderNp() {
       npList.innerHTML = "";
       npListLeft.innerHTML = "";
@@ -857,11 +911,28 @@
       npCount.textContent = `${npInput.value.length} / 50`;
       npFonts.forEach((f, i) => {
         const row = document.createElement("div");
-        row.className = "np-row";
-        // Build style string with single-quoted font-family so inner double-quotes (e.g. "Playfair Display") don't break the attribute.
+        row.className = "np-row" + (f.id === npSelectedId ? " selected" : "");
+        // Build style string with single-quoted font-family so inner double-quotes don't break the attribute.
         const nameStyle = `font-family: ${f.family.replace(/"/g, "'")}; font-style: ${f.style};`;
-        row.innerHTML = `<div class="np-name" style="${nameStyle}">${escapeHtml(val)}</div><div class="np-label">${f.label}</div>`;
-        (i < 4 ? npListLeft : npList).appendChild(row);
+        const btnText = f.id === npSelectedId ? "Selected ✓" : "Select";
+        row.innerHTML = `
+          <div class="np-name" style="${nameStyle}">${escapeHtml(val)}</div>
+          <div class="np-meta">
+            <div class="np-label">${f.label}</div>
+            <button class="np-select-btn" data-font-id="${f.id}">${btnText}</button>
+          </div>`;
+        (i < 6 ? npListLeft : npList).appendChild(row);
+      });
+      // Wire up Select buttons after render
+      document.querySelectorAll(".np-select-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          npSelectedId = btn.getAttribute("data-font-id");
+          // Broadcast: configurator listens for this and updates its font
+          document.dispatchEvent(new CustomEvent("engrave:font-select", {
+            detail: { fontId: npSelectedId, text: npInput.value }
+          }));
+          renderNp();
+        });
       });
     }
     function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
