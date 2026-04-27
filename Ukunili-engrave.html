@@ -535,7 +535,6 @@
   @media (max-width: 900px) {
     section { padding: 72px 20px; }
     .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-    .config { grid-template-columns: 1fr; padding: 24px; gap: 28px; }
     .sec-head { flex-direction: column; gap: 20px; }
     .pos-grid { grid-template-columns: repeat(4, 1fr); }
     .pos-preview { grid-template-columns: 1fr; }
@@ -544,25 +543,53 @@
     .namepreview { grid-template-columns: 1fr; padding: 28px; }
     .nav-links { display: none; }
 
-    /* Mobile: live preview sticks to top of viewport while user edits below.
-       Steps 01–03 (.config-controls) scroll underneath the pinned preview, so
-       any change instantly shows up in the preview without scrolling back up. */
+    /* ─────────────────────────────────────────────────────────────
+       Mobile: FREEZE preview at top, scroll controls underneath.
+       The .config block becomes a fixed-height "viewport panel":
+         - top half = preview (frozen, never scrolls)
+         - bottom half = controls (own scrollbar, scrolls inside)
+       Page scrolling pauses while user is inside this panel —
+       once controls are exhausted, page continues down naturally.
+       ───────────────────────────────────────────────────────────── */
+    .config {
+      display: flex;                /* override desktop grid for proper freeze+scroll layout */
+      flex-direction: column;
+      padding: 16px;
+      gap: 16px;
+      /* Lock the whole configurator to one screen height */
+      height: calc(100vh - 32px);
+      max-height: 720px;            /* don't get absurd on tablets */
+      overflow: hidden;             /* nothing pokes out of the panel */
+    }
     .config-preview {
-      position: sticky;
-      top: 8px;
-      z-index: 5;
-      aspect-ratio: 4/3;        /* shorter than desktop 2/3 so controls have room */
-      max-height: 46vh;          /* never eats more than ~half the screen */
-      background: #fff;
+      /* Frozen top half — fixed height, never scrolls */
+      flex-shrink: 0;
+      aspect-ratio: auto;           /* override desktop 2/3 */
+      height: 42vh;
+      max-height: 360px;
+      min-height: 240px;
     }
-    .config-preview::after {     /* soft fade so scrolled controls don't visually clash with the pinned card edge */
-      content: "";
-      position: absolute;
-      left: 0; right: 0; bottom: -16px; height: 16px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.04), transparent);
-      pointer-events: none;
+    .uke-svg { width: 52%; }        /* fit ukulele inside the shorter card */
+
+    .config-controls {
+      /* Bottom half — independently scrollable */
+      flex: 1 1 auto;
+      min-height: 0;                /* critical for flex+overflow to work */
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-right: 4px;           /* breathing room from scrollbar edge */
+      /* Soft fades top + bottom so cut-off content looks intentional */
+      mask-image: linear-gradient(to bottom,
+        transparent 0,
+        #000 12px,
+        #000 calc(100% - 12px),
+        transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom,
+        transparent 0,
+        #000 12px,
+        #000 calc(100% - 12px),
+        transparent 100%);
     }
-    .uke-svg { width: 52%; }    /* scale down ukulele to fit shorter aspect ratio */
   }
 </style>
 </head>
