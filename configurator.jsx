@@ -1,6 +1,42 @@
 /* Configurator — live engraving preview on a drawn ukulele */
 const { useState, useEffect, useRef } = React;
 
+// ────────── i18n helper ──────────
+// The HTML has data-lang on body (set by the language switcher). We read it
+// and re-render whenever it changes so configurator labels stay in sync.
+function useLang() {
+  const [lang, setLang] = useState(() => document.body.getAttribute("data-lang") || "en");
+  useEffect(() => {
+    const obs = new MutationObserver(() => {
+      const v = document.body.getAttribute("data-lang") || "en";
+      setLang(v);
+    });
+    obs.observe(document.body, { attributes: true, attributeFilter: ["data-lang"] });
+    return () => obs.disconnect();
+  }, []);
+  return lang;
+}
+
+// String table for configurator UI — all three languages.
+const T = {
+  front:        { en: "Front",        ms: "Depan",       zh: "正面" },
+  back:         { en: "Back",         ms: "Belakang",    zh: "背面" },
+  step:         { en: "STEP 01",      ms: "LANGKAH 01",  zh: "步骤 01" },
+  positionAngle:{ en: "Position & angle", ms: "Kedudukan & sudut", zh: "位置与角度" },
+  engraving:    { en: "Engraving",    ms: "Ukiran",      zh: "刻字" },
+  xPosition:    { en: "X position",   ms: "Kedudukan X", zh: "X 位置" },
+  yPosition:    { en: "Y position",   ms: "Kedudukan Y", zh: "Y 位置" },
+  angle:        { en: "Angle",        ms: "Sudut",       zh: "角度" },
+  size:         { en: "Size",         ms: "Saiz",        zh: "尺寸" },
+  hint:         { en: "Drag the sliders to move and rotate your inscription anywhere on the ukulele.",
+                  ms: "Tarik slider untuk menggerak dan memutar ukiran anda di mana-mana pada ukulele.",
+                  zh: "拖动滑块即可在尤克里里上任意移动、旋转你的刻字。" },
+  submitNote:   { en: "Click submit to send your design",
+                  ms: "Tekan hantar untuk menghantar reka bentuk anda",
+                  zh: "点击提交，把你的设计发送给我们" },
+  submit:       { en: "Submit",       ms: "Hantar",      zh: "提交" },
+};
+
 const FONTS = [
   { id: "abril",      name: "Abril Fatface", sample: "Aa", family: '"Abril Fatface", serif',           weight: 400, style: "normal", size: 32 },
   { id: "chicle",     name: "Chicle",        sample: "Aa", family: '"Chicle", cursive',                weight: 400, style: "normal", size: 32 },
@@ -101,6 +137,8 @@ function Configurator() {
   // Default font is Dancing — used until customer picks one in Step 01 (Name Preview).
   const [fontId, setFontId] = useState("dancing");
   const [view, setView] = useState("front");
+  const lang = useLang();
+  const t = (key) => (T[key] && T[key][lang]) || (T[key] && T[key].en) || key;
 
   const text = tweaks.engravingText ?? "";
   const font = FONTS.find(f => f.id === fontId) || FONTS.find(f => f.id === "dancing") || FONTS[0];
@@ -156,8 +194,8 @@ function Configurator() {
       {/* Preview */}
       <div className="config-preview">
         <div className="preview-view-toggle" role="tablist" aria-label="View">
-          <button className={view === "front" ? "on" : ""} onClick={() => setView("front")}>Front</button>
-          <button className={view === "back"  ? "on" : ""} onClick={() => setView("back")}>Back</button>
+          <button className={view === "front" ? "on" : ""} onClick={() => setView("front")}>{t("front")}</button>
+          <button className={view === "back"  ? "on" : ""} onClick={() => setView("back")}>{t("back")}</button>
         </div>
         <UkuleleSVG
           text={text}
@@ -179,13 +217,13 @@ function Configurator() {
         <div className="step">
           <div className="step-head">
             <div>
-              <div className="step-num">STEP 01</div>
-              <h3 className="step-title">Position & angle</h3>
+              <div className="step-num">{t("step")}</div>
+              <h3 className="step-title">{t("positionAngle")}</h3>
             </div>
             <div className="step-value">{tweaks.engravingAngle}°</div>
           </div>
           <div className="current-selection">
-            <div className="cs-label">Engraving</div>
+            <div className="cs-label">{t("engraving")}</div>
             <div className="cs-text" style={{ fontFamily: font.family, fontWeight: font.weight, fontStyle: font.style }}>
               {text || "—"}
             </div>
@@ -193,7 +231,7 @@ function Configurator() {
           </div>
           <div className="pos-controls">
             <label className="pos-row">
-              <span className="pos-label">X position <em>{tweaks.engravingX}</em></span>
+              <span className="pos-label">{t("xPosition")} <em>{tweaks.engravingX}</em></span>
               <input
                 type="range" min={50} max={325} step={1}
                 value={tweaks.engravingX}
@@ -201,7 +239,7 @@ function Configurator() {
               />
             </label>
             <label className="pos-row">
-              <span className="pos-label">Y position <em>{tweaks.engravingY}</em></span>
+              <span className="pos-label">{t("yPosition")} <em>{tweaks.engravingY}</em></span>
               <input
                 type="range" min={50} max={920} step={1}
                 value={tweaks.engravingY}
@@ -209,7 +247,7 @@ function Configurator() {
               />
             </label>
             <label className="pos-row">
-              <span className="pos-label">Angle <em>{tweaks.engravingAngle}°</em></span>
+              <span className="pos-label">{t("angle")} <em>{tweaks.engravingAngle}°</em></span>
               <input
                 type="range" min={-180} max={180} step={1}
                 value={tweaks.engravingAngle}
@@ -217,7 +255,7 @@ function Configurator() {
               />
             </label>
             <label className="pos-row">
-              <span className="pos-label">Size <em>{tweaks.engravingSize}px</em></span>
+              <span className="pos-label">{t("size")} <em>{tweaks.engravingSize}px</em></span>
               <input
                 type="range" min={10} max={80} step={1}
                 value={tweaks.engravingSize}
@@ -225,16 +263,14 @@ function Configurator() {
               />
             </label>
           </div>
-          <div style={{ marginTop: 12, fontSize: 12, color: "var(--muted)", fontFamily: '"Space Mono", monospace' }}>
-            Drag the sliders to move and rotate your inscription anywhere on the ukulele.
+          <div style={{ marginTop: 14, fontSize: 13, color: "var(--ink-mute)", lineHeight: 1.5 }}>
+            {t("hint")}
           </div>
         </div>
 
-        <div className="price-row">
-          <div className="submit-note">
-            Click submit to send your design
-          </div>
-          <button className="btn btn-primary" type="button">Submit ›</button>
+        <div className="submit-block">
+          <div className="submit-note">{t("submitNote")}</div>
+          <button className="btn-submit" type="button">{t("submit")} ›</button>
         </div>
       </div>
     </>
