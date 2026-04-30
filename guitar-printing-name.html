@@ -154,20 +154,33 @@ body{
   color:var(--ink-mute);margin-bottom:14px;text-transform:uppercase;
   align-self:flex-start;
 }
-.guitar-svg{width:100%;max-width:340px;height:auto;display:block}
-.guitar-svg .body{fill:#3a2a1c;stroke:var(--ink);stroke-width:3}
-.guitar-svg .hole{fill:#1a0f06}
-.guitar-svg .pickguard{fill:#2a1a0f;opacity:.9}
-.guitar-svg .bridge{fill:#1f140a;stroke:#000;stroke-width:1}
-.guitar-svg .neck{fill:#5b3d22;stroke:var(--ink);stroke-width:2}
-.guitar-svg .head{fill:#4a3019;stroke:var(--ink);stroke-width:2}
-.guitar-svg .string{stroke:#d9cba8;stroke-width:.6;opacity:.6}
-.guitar-svg .engraved-text{
-  fill:#e8d8b8;
+.guitar-photo-wrap{
+  position:relative;
+  width:100%;
+  max-width:340px;
+  aspect-ratio:305 / 800;
+  display:block;
+}
+.guitar-photo{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:contain;
+  display:block;
+  user-select:none;
+  -webkit-user-drag:none;
+  pointer-events:none;
+}
+.guitar-overlay{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  pointer-events:none;
+}
+.guitar-overlay .engraved-text{
+  fill:#1f1a14;
   font-weight:700;
   paint-order:stroke;
-  stroke:rgba(0,0,0,.3);
-  stroke-width:.4;
+  stroke:rgba(255,255,255,.4);
+  stroke-width:.3;
 }
 
 .controls{display:flex;flex-direction:column;gap:18px}
@@ -561,70 +574,19 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
           <span class="inline-lang" data-lang="ms">Pratonton Langsung</span>
           <span class="inline-lang" data-lang="zh">实时预览</span>
         </div>
-        <svg class="guitar-svg" id="guitarSvg" viewBox="0 0 400 700" xmlns="http://www.w3.org/2000/svg">
-          <!-- Headstock -->
-          <path class="head" d="M170 30 L230 30 L235 75 L165 75 Z"/>
-          <!-- Tuning pegs -->
-          <circle cx="180" cy="42" r="3" fill="#c9b88a"/>
-          <circle cx="180" cy="55" r="3" fill="#c9b88a"/>
-          <circle cx="180" cy="68" r="3" fill="#c9b88a"/>
-          <circle cx="220" cy="42" r="3" fill="#c9b88a"/>
-          <circle cx="220" cy="55" r="3" fill="#c9b88a"/>
-          <circle cx="220" cy="68" r="3" fill="#c9b88a"/>
-          <!-- Neck -->
-          <rect class="neck" x="187" y="75" width="26" height="225" rx="2"/>
-          <!-- Frets -->
-          <line x1="187" y1="105" x2="213" y2="105" stroke="#c9b88a" stroke-width="0.8"/>
-          <line x1="187" y1="135" x2="213" y2="135" stroke="#c9b88a" stroke-width="0.8"/>
-          <line x1="187" y1="165" x2="213" y2="165" stroke="#c9b88a" stroke-width="0.8"/>
-          <line x1="187" y1="195" x2="213" y2="195" stroke="#c9b88a" stroke-width="0.8"/>
-          <line x1="187" y1="225" x2="213" y2="225" stroke="#c9b88a" stroke-width="0.8"/>
-          <line x1="187" y1="255" x2="213" y2="255" stroke="#c9b88a" stroke-width="0.8"/>
-          <line x1="187" y1="285" x2="213" y2="285" stroke="#c9b88a" stroke-width="0.8"/>
-
-          <!-- Guitar Body (acoustic dreadnought shape) -->
-          <path class="body" d="
-            M 200 290
-            C 110 295, 70 360, 70 440
-            C 70 540, 120 640, 200 660
-            C 280 640, 330 540, 330 440
-            C 330 360, 290 295, 200 290
-            Z
-          "/>
-
-          <!-- Sound hole -->
-          <circle class="hole" cx="200" cy="430" r="38"/>
-          <circle cx="200" cy="430" r="38" fill="none" stroke="#1a0f06" stroke-width="2"/>
-          <circle cx="200" cy="430" r="42" fill="none" stroke="#c9b88a" stroke-width="0.8" opacity=".6"/>
-
-          <!-- Pickguard -->
-          <path class="pickguard" d="
-            M 240 400
-            Q 270 430, 260 480
-            Q 250 520, 220 530
-            Q 210 510, 218 480
-            Q 226 450, 240 400 Z
-          "/>
-
-          <!-- Strings going across body -->
-          <line class="string" x1="190" y1="290" x2="190" y2="600"/>
-          <line class="string" x1="195" y1="290" x2="195" y2="600"/>
-          <line class="string" x1="200" y1="290" x2="200" y2="600"/>
-          <line class="string" x1="205" y1="290" x2="205" y2="600"/>
-          <line class="string" x1="210" y1="290" x2="210" y2="600"/>
-
-          <!-- Bridge -->
-          <rect class="bridge" x="170" y="555" width="60" height="14" rx="2"/>
-
-          <!-- Engraved/Printed Text — controlled by JS -->
-          <text id="engravedText"
-                class="engraved-text"
-                x="115" y="500"
-                text-anchor="start"
-                font-family="'Dancing Script', cursive"
-                font-size="20"
-                transform="rotate(-90 115 500)">Your Name</text>
-        </svg>
+        <div class="guitar-photo-wrap">
+          <img class="guitar-photo" src="images/guitar-white.png" alt="Acoustic guitar" />
+          <svg class="guitar-overlay" id="guitarOverlay" viewBox="0 0 305 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <!-- Engraved/Printed Text — controlled by JS -->
+            <text id="engravedText"
+                  class="engraved-text"
+                  x="155" y="600"
+                  text-anchor="middle"
+                  font-family="'Dancing Script', cursive"
+                  font-size="22"
+                  transform="rotate(0 155 600)">Your Name</text>
+          </svg>
+        </div>
       </div>
 
       <!-- CONTROLS -->
@@ -641,15 +603,15 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
           <div class="slider-row">
             <div>
               <div class="control-label" style="margin-bottom:6px">
-                <span>X</span><span class="val" id="xVal">115</span>
+                <span>X</span><span class="val" id="xVal">155</span>
               </div>
-              <input id="xSlider" type="range" min="80" max="320" value="115"/>
+              <input id="xSlider" type="range" min="40" max="265" value="155"/>
             </div>
             <div>
               <div class="control-label" style="margin-bottom:6px">
-                <span>Y</span><span class="val" id="yVal">500</span>
+                <span>Y</span><span class="val" id="yVal">600</span>
               </div>
-              <input id="ySlider" type="range" min="300" max="640" value="500"/>
+              <input id="ySlider" type="range" min="430" max="740" value="600"/>
             </div>
             <div>
               <div class="control-label" style="margin-bottom:6px">
@@ -658,9 +620,9 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
                   <span class="inline-lang" data-lang="ms">Sudut</span>
                   <span class="inline-lang" data-lang="zh">角度</span>
                 </span>
-                <span class="val" id="angleVal">-90°</span>
+                <span class="val" id="angleVal">0°</span>
               </div>
-              <input id="angleSlider" type="range" min="-180" max="180" value="-90"/>
+              <input id="angleSlider" type="range" min="-180" max="180" value="0"/>
             </div>
             <div>
               <div class="control-label" style="margin-bottom:6px">
@@ -669,9 +631,9 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
                   <span class="inline-lang" data-lang="ms">Saiz</span>
                   <span class="inline-lang" data-lang="zh">大小</span>
                 </span>
-                <span class="val" id="sizeVal">20</span>
+                <span class="val" id="sizeVal">22</span>
               </div>
-              <input id="sizeSlider" type="range" min="10" max="40" value="20"/>
+              <input id="sizeSlider" type="range" min="10" max="50" value="22"/>
             </div>
           </div>
         </div>
@@ -827,7 +789,7 @@ const FONTS = [
 const state = {
   text: "Your Name",
   fontId: "dancing",
-  x: 115, y: 500, angle: -90, size: 20
+  x: 155, y: 600, angle: 0, size: 22
 };
 
 /* ───────── DOM refs ───────── */
