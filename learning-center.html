@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>免费学习中心 — Ukulele Malaysia | 44 集免费视频教学</title>
+<meta name="description" content="马来西亚尤克里里学习中心：44 集免费视频教程，4 位优质讲师，5 个难度层级。从握姿、调音到指弹曲，一站式学完整套尤克里里。" />
+<meta property="og:title" content="免费学习中心 — Ukulele Malaysia" />
+<meta property="og:description" content="44 集免费视频教程，从零基础到弹会指弹曲。" />
+
+<!-- Tailwind via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- React + Babel via CDN -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<!-- Google Fonts: Fraunces + Inter + Noto Sans SC -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --cream: #fbf7f1;
+    --terra: #c2410c;
+    --terra-dark: #9a3208;
+    --terra-light: #fb923c;
+    --ink: #1c1917;
+  }
+  html, body {
+    background: var(--cream);
+    font-family: 'Inter', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+    color: #1c1917;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .font-serif { font-family: 'Fraunces', 'Noto Sans SC', serif; }
+
+  @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1);
+  }
+  .reveal-on { opacity: 1; transform: translateY(0); }
+
+  .grain { position: relative; }
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: .04;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Loader before React hydrates */
+  .boot {
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--cream);
+    z-index: 100;
+  }
+  .boot.gone { opacity: 0; pointer-events: none; transition: opacity .4s; }
+  .boot-mark {
+    width: 56px; height: 56px; border-radius: 999px;
+    background: var(--terra); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1);   opacity: 1;   }
+    50%      { transform: scale(.92); opacity: .7; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Loader (fades out once React mounts) -->
+<div id="boot" class="boot"><div class="boot-mark">U</div></div>
+
+<!-- App mount point -->
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useMemo, useRef } = React;
+
+// ============================================================
+// 数据
+// ============================================================
+const SERIES = {
+  S1: { code: "S1", title: "Ukulele Starter Pack 进阶版", teacher: "SHTSLA",
+        blurb: "23 集系统化课程，从握姿到指弹曲，含课后练习。最完整的一套。", color: "#c2410c" },
+  S2: { code: "S2", title: "乌克丽丽入门教学", teacher: "Gavin 曾导（阿广敏吉他）",
+        blurb: "5 集浓缩入门，节奏快，适合想快速建立基础概念的新手。", color: "#7c2d12" },
+  S3: { code: "S3", title: "馬叔叔暑假烏克麗麗教室", teacher: "馬叔叔 Uncle Ma",
+        blurb: "6 集繁体中文课程，人气最高（百万级观看），轻松幽默。", color: "#854d0e" },
+  S4: { code: "S4", title: "尤克里里入门教程", teacher: "张一清（白桦树娃娃）",
+        blurb: "10 集结构化教学，从选购到切音，信息密度高，适合自学派。", color: "#365314" }
+};
+
+const LEVELS = {
+  1: { label: "入门", desc: "零基础先看",     hex: "#16a34a" },
+  2: { label: "基础", desc: "看谱・按弦・调音", hex: "#0891b2" },
+  3: { label: "进阶", desc: "节奏・和弦・乐理", hex: "#c2410c" },
+  4: { label: "技巧", desc: "滑音・击弦・横按", hex: "#9333ea" },
+  5: { label: "曲目", desc: "完整指弹曲",      hex: "#be185e" }
+};
+
+const VIDEOS = [
+  // —— SERIES 1: SHTSLA ——
+  { id: "x6NP-U4Fcfw", series: "S1", num: "01",   title: "入门指弹常见问题 & 解答",      level: 1, duration: "7:33",  views: 47603, year: 2018 },
+  { id: "nIUjq3_r40Y", series: "S1", num: "02",   title: "右手拇指基本手法 & 拨弦位置",   level: 1, duration: "11:34", views: 30743, year: 2018 },
+  { id: "eTDLfM1akfw", series: "S1", num: "03",   title: "左手按弦基本姿势 & 拍子概念",   level: 1, duration: "11:35", views: 43628, year: 2018 },
+  { id: "WDTHnAcq5HI", series: "S1", num: "04.1", title: "认识四线谱 & 弹奏音阶",         level: 2, duration: "15:54", views: 48757, year: 2018 },
+  { id: "PzX0bvWhaow", series: "S1", num: "04.2", title: "课后练习 — 四线谱",            level: 2, duration: "11:49", views: 37210, year: 2018 },
+  { id: "fVe4q57EPTI", series: "S1", num: "05.1", title: "半拍 & 附点",                   level: 2, duration: "8:49",  views: 22224, year: 2018 },
+  { id: "DPnuiVfqJM0", series: "S1", num: "05.2", title: "课后练习 — 半拍附点",          level: 2, duration: "9:56",  views: 22054, year: 2018 },
+  { id: "xCAQ0V9kX2Y", series: "S1", num: "06",   title: "双音演奏 + 滑音技巧",          level: 4, duration: "22:36", views: 25991, year: 2018 },
+  { id: "z9neZPVI9_A", series: "S1", num: "07.1", title: "一起来合奏吧",                 level: 3, duration: "8:41",  views: 13541, year: 2018 },
+  { id: "E7uEmSB-BB0", series: "S1", num: "07.2", title: "课后练习 — 合奏",              level: 3, duration: "4:59",  views: 10239, year: 2018 },
+  { id: "aAHL6w7aY8Y", series: "S1", num: "08",   title: "和弦 + 旋律",                   level: 3, duration: "18:24", views: 14540, year: 2018 },
+  { id: "-6-1mE4Mw8E", series: "S1", num: "09.1", title: "爬格子（手指灵活度）",          level: 3, duration: "13:57", views: 10007, year: 2018 },
+  { id: "rbhxXW_GTas", series: "S1", num: "09.2", title: "课后练习 — 爬格子",            level: 3, duration: "12:28", views: 6333,  year: 2018 },
+  { id: "bBGzVR64szc", series: "S1", num: "10",   title: "如何换琴弦",                    level: 1, duration: "21:49", views: 5656,  year: 2020 },
+  { id: "nHq2fV2_jis", series: "S1", num: "11",   title: "乐理篇",                        level: 3, duration: "7:24",  views: 3304,  year: 2020 },
+  { id: "AkkYCAndmsE", series: "S1", num: "12",   title: "滑音技巧",                      level: 4, duration: "8:53",  views: 3198,  year: 2020 },
+  { id: "YKWPmX2JjjE", series: "S1", num: "13",   title: "指弹曲《新年好》",              level: 5, duration: "4:53",  views: 4458,  year: 2020 },
+  { id: "ZqpWkLLNCAA", series: "S1", num: "14",   title: "拉伸手指（暖手练习）",          level: 1, duration: "5:38",  views: 2377,  year: 2020 },
+  { id: "05bjVyRlX3M", series: "S1", num: "15",   title: "安装背带钉",                    level: 1, duration: "6:37",  views: 1750,  year: 2020 },
+  { id: "P-2_HMdC8Kk", series: "S1", num: "16",   title: "击弦技巧",                      level: 4, duration: "8:21",  views: 2384,  year: 2020 },
+  { id: "bQgjUIV7hnM", series: "S1", num: "17",   title: "指弹曲的三种基本要素",          level: 3, duration: "5:35",  views: 2849,  year: 2020 },
+  { id: "M3c2WegqkNM", series: "S1", num: "18.1", title: "指弹曲《虫儿飞》— 演示",        level: 5, duration: "1:23",  views: 3223,  year: 2020 },
+  { id: "eBnb51dRcxE", series: "S1", num: "18.2", title: "指弹曲《虫儿飞》— 教学",        level: 5, duration: "5:06",  views: 5878,  year: 2020 },
+
+  // —— SERIES 2: Gavin 曾导 ——
+  { id: "yxvtAiT_APQ", series: "S2", num: "01", title: "调音",                              level: 1, duration: "5:16",  views: 39091, year: 2019 },
+  { id: "j-Wkid_w9Q0", series: "S2", num: "02", title: "弹琴姿势与左右手练习",              level: 1, duration: "5:43",  views: 34866, year: 2019 },
+  { id: "dTWUHeTBnYM", series: "S2", num: "03", title: "尤克里里谱怎么看",                  level: 2, duration: "8:23",  views: 17732, year: 2019 },
+  { id: "E4eX6qiiG98", series: "S2", num: "04", title: "认识五线谱 & 小星星练习曲",          level: 2, duration: "5:25",  views: 4188,  year: 2019 },
+  { id: "o4qCTVT7II4", series: "S2", num: "05", title: "尤克里里和弦的弹法 & 什么是和弦",    level: 3, duration: "11:51", views: 6268,  year: 2019 },
+
+  // —— SERIES 3: 馬叔叔 ——
+  { id: "XHCYu2YpuZQ", series: "S3", num: "01", title: "帥氣彈奏姿勢",                       level: 1, duration: "4:02",  views: 295484, year: 2017 },
+  { id: "DJu8qQJzkGo", series: "S3", num: "02", title: "手機調音器",                         level: 1, duration: "8:23",  views: 165439, year: 2017 },
+  { id: "sMhkVCWc1TM", series: "S3", num: "03", title: "輕鬆看譜彈音階",                     level: 2, duration: "8:28",  views: 268868, year: 2017 },
+  { id: "IKCdKjnxOQo", series: "S3", num: "04", title: "單音歌曲練習篇",                     level: 2, duration: "6:22",  views: 166416, year: 2017 },
+  { id: "qYsecmd_GDI", series: "S3", num: "05", title: "八個基礎常用和弦",                   level: 3, duration: "8:07",  views: 746738, year: 2017 },
+  { id: "0HMMG9J019U", series: "S3", num: "06", title: "自彈自唱小技巧",                     level: 3, duration: "—",     views: null,   year: 2017 },
+
+  // —— SERIES 4: 张一清 ——
+  { id: "OHvE7A2EoYY", series: "S4", num: "01", title: "简介",                               level: 1, duration: "—", views: null, year: 2019 },
+  { id: "VitCZyyfq9I", series: "S4", num: "02", title: "选购（如何挑选一把琴）",              level: 1, duration: "—", views: null, year: 2019 },
+  { id: "t2Qn88mVW6M", series: "S4", num: "03", title: "调音",                               level: 1, duration: "—", views: null, year: 2019 },
+  { id: "QA7BY-JaFcY", series: "S4", num: "04", title: "姿势",                               level: 1, duration: "—", views: null, year: 2019 },
+  { id: "oIp_DsBepA8", series: "S4", num: "05", title: "识谱",                               level: 2, duration: "—", views: null, year: 2019 },
+  { id: "4n7BoiEG3rA", series: "S4", num: "06", title: "和弦",                               level: 3, duration: "—", views: null, year: 2020 },
+  { id: "CLxgCjCJbMs", series: "S4", num: "07", title: "拨弦",                               level: 3, duration: "—", views: null, year: 2020 },
+  { id: "AX6x0S74JpU", series: "S4", num: "08", title: "扫弦",                               level: 3, duration: "—", views: null, year: 2020 },
+  { id: "1hYiykV28g0", series: "S4", num: "09", title: "横按（大横按技巧）",                  level: 4, duration: "—", views: null, year: 2020 },
+  { id: "CT-kw8wUszA", series: "S4", num: "10", title: "切音",                               level: 4, duration: "—", views: null, year: 2020 }
+];
+
+const PATH = [
+  { videoId: "OHvE7A2EoYY", note: "先从简介开始：搞懂尤克里里是什么乐器" },
+  { videoId: "VitCZyyfq9I", note: "选购指南：避免买错型号" },
+  { videoId: "yxvtAiT_APQ", note: "学会调音 — 没调音弹什么都难听" },
+  { videoId: "XHCYu2YpuZQ", note: "正确握琴姿势" },
+  { videoId: "ZqpWkLLNCAA", note: "弹之前先暖手" },
+  { videoId: "WDTHnAcq5HI", note: "看懂四线谱" },
+  { videoId: "qYsecmd_GDI", note: "学会 8 个基础和弦 — 几乎能弹大部分流行歌" },
+  { videoId: "z9neZPVI9_A", note: "试着合奏一首" },
+  { videoId: "YKWPmX2JjjE", note: "完成第一首指弹曲：新年好" }
+];
+
+const formatViews = (v) => {
+  if (!v) return null;
+  if (v >= 1000000) return (v / 1000000).toFixed(1) + "M";
+  if (v >= 1000)    return (v / 1000).toFixed(1)   + "K";
+  return v.toString();
+};
+
+// ============================================================
+// 简单图标（SVG inline，避免再加一个库）
+// ============================================================
+const Icon = ({ d, size = 16, fill = "none", strokeWidth = 2, ...rest }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={fill}
+       stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" {...rest}>
+    {d}
+  </svg>
+);
+const IconSearch   = (p) => <Icon {...p} d={<><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></>} />;
+const IconPlay     = (p) => <Icon {...p} fill="currentColor" strokeWidth={0} d={<path d="M8 5v14l11-7z"/>} />;
+const IconX        = (p) => <Icon {...p} d={<><path d="M18 6 6 18"/><path d="m6 6 12 12"/></>} />;
+const IconUser     = (p) => <Icon {...p} d={<><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></>} />;
+const IconFilter   = (p) => <Icon {...p} d={<polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>} />;
+const IconChevron  = (p) => <Icon {...p} d={<path d="m9 18 6-6-6-6"/>} />;
+const IconEye      = (p) => <Icon {...p} d={<><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></>} />;
+const IconSparkles = (p) => <Icon {...p} d={<><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></>} />;
+
+// ============================================================
+// 滚动揭示 hook
+// ============================================================
+function useReveal() {
+  const ref = useRef(null);
+  const [seen, setSeen] = useState(false);
+  useEffect(() => {
+    if (!ref.current) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setSeen(true); obs.disconnect(); } },
+      { threshold: 0.12 }
+    );
+    obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+  return [ref, seen];
+}
+
+// ============================================================
+// 视频弹窗
+// ============================================================
+function VideoModal({ video, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  if (!video) return null;
+  const series = SERIES[video.series];
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/80 backdrop-blur-sm p-4"
+         style={{ animation: "fadeIn .2s ease-out" }}
+         onClick={onClose}>
+      <div className="relative w-full max-w-5xl bg-[#fbf7f1] rounded-2xl overflow-hidden shadow-2xl"
+           onClick={(e) => e.stopPropagation()}>
+        <button onClick={onClose}
+                aria-label="关闭"
+                className="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-stone-900/80 text-white flex items-center justify-center hover:bg-stone-900 transition">
+          <IconX size={18} />
+        </button>
+        <div className="aspect-video bg-black">
+          <iframe
+            src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0`}
+            title={video.title}
+            className="w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+        <div className="p-5 sm:p-6">
+          <div className="flex items-center gap-2 text-xs text-stone-500 mb-2 font-mono flex-wrap">
+            <span className="px-2 py-0.5 rounded-full text-white" style={{ background: series.color }}>{series.code}-{video.num}</span>
+            <span>·</span>
+            <span>{series.teacher}</span>
+            <span>·</span>
+            <span>{video.duration}</span>
+          </div>
+          <h3 className="text-xl sm:text-2xl font-serif font-medium text-stone-900">{video.title}</h3>
+          <a href={`https://youtu.be/${video.id}`} target="_blank" rel="noreferrer"
+             className="inline-flex items-center gap-1 mt-3 text-sm text-[#c2410c] hover:underline">
+            在 YouTube 打开 <IconChevron size={14} />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// 视频卡片
+// ============================================================
+function VideoCard({ video, onPlay, index }) {
+  const series = SERIES[video.series];
+  const level  = LEVELS[video.level];
+  const thumb  = `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
+  const views  = formatViews(video.views);
+
+  return (
+    <button
+      onClick={() => onPlay(video)}
+      className="group text-left bg-white rounded-xl overflow-hidden border border-stone-200/80 hover:border-[#c2410c] hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+    >
+      <div className="relative aspect-video bg-stone-100 overflow-hidden">
+        <img src={thumb} alt={video.title}
+             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+             loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        <div className="absolute top-2 left-2 flex items-center gap-1.5">
+          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full text-white shadow-md tracking-wider"
+                style={{ background: series.color }}>
+            {series.code}·{video.num}
+          </span>
+        </div>
+        <div className="absolute top-2 right-2">
+          <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/95 text-stone-800 shadow-md">
+            {level.label}
+          </span>
+        </div>
+        {video.duration && video.duration !== "—" && (
+          <span className="absolute bottom-2 right-2 text-[11px] font-mono px-1.5 py-0.5 rounded bg-black/85 text-white">
+            {video.duration}
+          </span>
+        )}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <div className="w-14 h-14 rounded-full bg-[#c2410c] text-white flex items-center justify-center shadow-2xl scale-90 group-hover:scale-100 transition">
+            <IconPlay size={22} />
+          </div>
+        </div>
+      </div>
+      <div className="p-3.5">
+        <h3 className="font-serif text-[15px] leading-snug text-stone-900 group-hover:text-[#c2410c] transition line-clamp-2" style={{ minHeight: "2.6em" }}>
+          {video.title}
+        </h3>
+        <div className="flex items-center justify-between mt-2 text-[11px] text-stone-500">
+          <span className="truncate">{series.teacher}</span>
+          {views && (
+            <span className="flex items-center gap-1 shrink-0 ml-2">
+              <IconEye size={11} /> {views}
+            </span>
+          )}
+        </div>
+      </div>
+    </button>
+  );
+}
+
+// ============================================================
+// 主应用
+// ============================================================
+function App() {
+  const [activeSeries, setActiveSeries] = useState("ALL");
+  const [activeLevel,  setActiveLevel]  = useState("ALL");
+  const [search, setSearch]   = useState("");
+  const [playing, setPlaying] = useState(null);
+  const [showPath, setShowPath] = useState(false);
+
+  const filtered = useMemo(() => {
+    return VIDEOS.filter((v) => {
+      if (activeSeries !== "ALL" && v.series !== activeSeries) return false;
+      if (activeLevel  !== "ALL" && v.level  !== activeLevel)  return false;
+      if (search.trim()) {
+        const q = search.toLowerCase();
+        const series = SERIES[v.series];
+        if (!v.title.toLowerCase().includes(q) &&
+            !series.teacher.toLowerCase().includes(q) &&
+            !series.title.toLowerCase().includes(q)) return false;
+      }
+      return true;
+    });
+  }, [activeSeries, activeLevel, search]);
+
+  const [heroRef,   heroSeen]   = useReveal();
+  const [pathRef,   pathSeen]   = useReveal();
+  const [seriesRef, seriesSeen] = useReveal();
+  const [filterRef, filterSeen] = useReveal();
+  const [ctaRef,    ctaSeen]    = useReveal();
+
+  return (
+    <div className="min-h-screen bg-[#fbf7f1] text-stone-900">
+
+      {/* ============ STICKY HEADER ============ */}
+      <header className="sticky top-0 z-40 bg-[#fbf7f1]/85 backdrop-blur-md border-b border-stone-200/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+          <a href="/" className="flex items-center gap-2.5 group">
+            <div className="w-9 h-9 rounded-full bg-[#c2410c] text-white flex items-center justify-center font-serif text-lg font-semibold group-hover:scale-105 transition">U</div>
+            <div className="leading-tight">
+              <div className="font-serif text-[15px] font-semibold text-stone-900">Ukulele Malaysia</div>
+              <div className="text-[10px] tracking-[0.2em] text-stone-500 uppercase">Learning Center</div>
+            </div>
+          </a>
+          <div className="hidden sm:flex items-center gap-1 bg-stone-100 p-1 rounded-full text-xs">
+            <button className="px-3 py-1 rounded-full text-stone-400 hover:text-stone-600 transition">EN</button>
+            <button className="px-3 py-1 rounded-full text-stone-400 hover:text-stone-600 transition">BM</button>
+            <button className="px-3 py-1 rounded-full bg-white shadow-sm text-stone-900 font-medium">中文</button>
+          </div>
+        </div>
+      </header>
+
+      <main id="top">
+
+        {/* ============ HERO ============ */}
+        <section ref={heroRef} className={`relative grain overflow-hidden reveal ${heroSeen ? "reveal-on" : ""}`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-12 sm:pt-20 pb-16 sm:pb-24 relative">
+            <div className="text-[11px] tracking-[0.3em] text-[#c2410c] font-medium uppercase mb-5">
+              · 01 / Free Learning Hub ·
+            </div>
+            <h1 className="font-serif text-[44px] sm:text-[72px] leading-[0.95] font-medium text-stone-900 max-w-4xl">
+              从零开始，<br/>
+              <span className="italic text-[#c2410c]">免费</span> 学会尤克里里。
+            </h1>
+            <p className="mt-6 text-stone-600 max-w-2xl text-base sm:text-lg leading-relaxed">
+              我们为你精选了 <strong className="text-stone-900">44 个</strong> 来自 <strong className="text-stone-900">4 位</strong> 优质讲师的免费视频教程，
+              从握姿、调音到指弹曲，每一步都有人带你走。点开任何一支就能学，不用注册、不用付费。
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <button onClick={() => setShowPath(true)}
+                      className="inline-flex items-center gap-2 bg-[#c2410c] hover:bg-[#9a3208] text-white px-6 py-3 rounded-full text-sm font-medium transition shadow-md hover:shadow-lg">
+                <IconSparkles size={16} /> 我是新手，从哪开始？
+              </button>
+              <a href="#library"
+                 className="inline-flex items-center gap-2 bg-white hover:bg-stone-50 text-stone-900 border border-stone-300 px-6 py-3 rounded-full text-sm font-medium transition">
+                浏览全部课程 <IconChevron size={16} />
+              </a>
+            </div>
+
+            <div className="mt-12 sm:mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-3xl">
+              {[
+                { n: "44", l: "免费视频" },
+                { n: "4",  l: "优质讲师" },
+                { n: "5",  l: "难度层级" },
+                { n: "0",  l: "需要付费", sub: "RM" }
+              ].map((s, i) => (
+                <div key={i} className="border-l-2 border-[#c2410c]/20 pl-4">
+                  <div className="font-serif text-3xl sm:text-4xl font-medium text-stone-900">
+                    {s.sub && <span className="text-base text-stone-400 mr-0.5">{s.sub}</span>}
+                    {s.n}
+                  </div>
+                  <div className="text-[11px] tracking-wider uppercase text-stone-500 mt-1">{s.l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============ 推荐路径 ============ */}
+        {showPath && (
+          <section ref={pathRef} className={`bg-stone-900 text-stone-100 reveal ${pathSeen ? "reveal-on" : ""}`}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 relative">
+              <button onClick={() => setShowPath(false)}
+                      aria-label="关闭推荐路径"
+                      className="absolute top-4 right-4 sm:top-6 sm:right-6 w-8 h-8 rounded-full bg-stone-800 hover:bg-stone-700 flex items-center justify-center transition">
+                <IconX size={16} />
+              </button>
+              <div className="text-[11px] tracking-[0.3em] text-[#c2410c] font-medium uppercase mb-3">
+                · 02 / Recommended Path ·
+              </div>
+              <h2 className="font-serif text-3xl sm:text-5xl font-medium mb-4">9 步走，弹会第一首歌</h2>
+              <p className="text-stone-400 max-w-2xl mb-10 text-sm sm:text-base">
+                如果你完全没碰过尤克里里，按这个顺序看，大约 1-2 周就能弹完整的《新年好》。
+              </p>
+              <ol className="space-y-3">
+                {PATH.map((step, i) => {
+                  const v = VIDEOS.find((x) => x.id === step.videoId);
+                  if (!v) return null;
+                  const series = SERIES[v.series];
+                  return (
+                    <li key={i}>
+                      <button onClick={() => setPlaying(v)}
+                              className="w-full flex items-start gap-4 sm:gap-5 p-4 sm:p-5 bg-stone-800/60 hover:bg-stone-800 rounded-xl transition text-left group">
+                        <div className="font-serif text-3xl sm:text-4xl text-[#c2410c] font-medium leading-none w-10 sm:w-12 shrink-0">
+                          {String(i + 1).padStart(2, "0")}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="font-serif text-base sm:text-lg text-white group-hover:text-[#c2410c] transition">{v.title}</div>
+                          <div className="text-xs sm:text-sm text-stone-400 mt-1">{step.note}</div>
+                          <div className="text-[11px] text-stone-500 mt-2 font-mono">
+                            {series.code}-{v.num} · {series.teacher} · {v.duration}
+                          </div>
+                        </div>
+                        <IconPlay size={20} className="text-stone-500 group-hover:text-[#c2410c] transition shrink-0 mt-2" />
+                      </button>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
+          </section>
+        )}
+
+        {/* ============ 系列介绍 ============ */}
+        <section ref={seriesRef} className={`reveal ${seriesSeen ? "reveal-on" : ""}`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+            <div className="text-[11px] tracking-[0.3em] text-[#c2410c] font-medium uppercase mb-3">
+              · 0{showPath ? 3 : 2} / Course Series ·
+            </div>
+            <h2 className="font-serif text-3xl sm:text-5xl font-medium mb-12 max-w-3xl">
+              四位讲师，四种风格，<br/>
+              <span className="italic text-stone-500">总有一种适合你。</span>
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
+              {Object.values(SERIES).map((s) => {
+                const count    = VIDEOS.filter((v) => v.series === s.code).length;
+                const isActive = activeSeries === s.code;
+                return (
+                  <button key={s.code}
+                          onClick={() => {
+                            setActiveSeries(isActive ? "ALL" : s.code);
+                            document.getElementById("library")?.scrollIntoView({ behavior: "smooth" });
+                          }}
+                          className={`text-left p-6 sm:p-7 rounded-2xl border transition-all relative overflow-hidden group
+                            ${isActive ? "bg-stone-900 text-white border-stone-900" : "bg-white border-stone-200 hover:border-[#c2410c] hover:shadow-md"}`}>
+                    <div className="absolute -top-1 -right-1 w-24 h-24 rounded-full opacity-10 group-hover:opacity-20 transition"
+                         style={{ background: s.color }} />
+                    <div className="flex items-start justify-between gap-4 mb-4">
+                      <div>
+                        <div className={`text-[10px] font-mono tracking-widest mb-2 ${isActive ? "text-stone-400" : "text-stone-400"}`}>
+                          SERIES · {s.code}
+                        </div>
+                        <h3 className="font-serif text-xl sm:text-2xl font-medium leading-tight">{s.title}</h3>
+                      </div>
+                      <span className="font-serif text-3xl sm:text-4xl font-medium tabular-nums shrink-0"
+                            style={{ color: isActive ? "#fff" : s.color }}>
+                        {count}
+                      </span>
+                    </div>
+                    <div className={`text-xs flex items-center gap-1.5 mb-3 ${isActive ? "text-stone-300" : "text-stone-500"}`}>
+                      <IconUser size={12} /> {s.teacher}
+                    </div>
+                    <p className={`text-sm leading-relaxed ${isActive ? "text-stone-300" : "text-stone-600"}`}>{s.blurb}</p>
+                    <div className={`mt-5 inline-flex items-center gap-1 text-xs font-medium ${isActive ? "text-[#fb923c]" : "text-[#c2410c]"}`}>
+                      {isActive ? "已筛选 — 点击取消" : "查看课程"} <IconChevron size={13} />
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ============ 课程库 ============ */}
+        <section id="library" ref={filterRef}
+                 className={`bg-white border-y border-stone-200/80 reveal ${filterSeen ? "reveal-on" : ""}`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+            <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
+              <div>
+                <div className="text-[11px] tracking-[0.3em] text-[#c2410c] font-medium uppercase mb-3">
+                  · 0{showPath ? 4 : 3} / Course Library ·
+                </div>
+                <h2 className="font-serif text-3xl sm:text-5xl font-medium">课程库</h2>
+              </div>
+              <div className="text-sm text-stone-500 tabular-nums">
+                显示 <strong className="text-stone-900">{filtered.length}</strong> / {VIDEOS.length} 个视频
+              </div>
+            </div>
+
+            <div className="space-y-4 mb-10">
+              <div className="relative max-w-md">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400">
+                  <IconSearch size={16}/>
+                </span>
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="搜索：和弦、调音、指弹、讲师名字…"
+                  className="w-full pl-11 pr-4 py-3 bg-stone-50 border border-stone-200 rounded-full text-sm focus:outline-none focus:border-[#c2410c] focus:bg-white transition"
+                />
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs text-stone-500 mr-1 inline-flex items-center gap-1.5">
+                  <IconFilter size={12} /> 难度：
+                </span>
+                <button
+                  onClick={() => setActiveLevel("ALL")}
+                  className={`text-xs px-3.5 py-1.5 rounded-full transition border
+                    ${activeLevel === "ALL"
+                      ? "bg-stone-900 text-white border-stone-900"
+                      : "bg-white text-stone-700 border-stone-200 hover:border-stone-400"}`}>
+                  全部
+                </button>
+                {Object.entries(LEVELS).map(([k, v]) => {
+                  const isActive = activeLevel === parseInt(k);
+                  return (
+                    <button key={k}
+                            onClick={() => setActiveLevel(isActive ? "ALL" : parseInt(k))}
+                            className={`text-xs px-3.5 py-1.5 rounded-full transition border inline-flex items-center gap-1.5
+                              ${isActive ? "text-white border-transparent" : "bg-white text-stone-700 border-stone-200 hover:border-stone-400"}`}
+                            style={isActive ? { background: v.hex } : {}}>
+                      <span className="w-1.5 h-1.5 rounded-full" style={{ background: isActive ? "white" : v.hex }} />
+                      {v.label}
+                      <span className="text-[10px] opacity-70 hidden sm:inline">· {v.desc}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs text-stone-500 mr-1">系列：</span>
+                <button
+                  onClick={() => setActiveSeries("ALL")}
+                  className={`text-xs px-3.5 py-1.5 rounded-full transition border
+                    ${activeSeries === "ALL"
+                      ? "bg-stone-900 text-white border-stone-900"
+                      : "bg-white text-stone-700 border-stone-200 hover:border-stone-400"}`}>
+                  全部
+                </button>
+                {Object.values(SERIES).map((s) => {
+                  const isActive = activeSeries === s.code;
+                  return (
+                    <button key={s.code}
+                            onClick={() => setActiveSeries(isActive ? "ALL" : s.code)}
+                            className={`text-xs px-3.5 py-1.5 rounded-full transition border
+                              ${isActive ? "text-white border-transparent" : "bg-white text-stone-700 border-stone-200 hover:border-stone-400"}`}
+                            style={isActive ? { background: s.color } : {}}>
+                      {s.code} · {s.teacher.split("（")[0].slice(0, 8)}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {filtered.length === 0 ? (
+              <div className="text-center py-20 text-stone-500">
+                <p className="font-serif text-2xl mb-2">没有匹配的视频</p>
+                <p className="text-sm">试试改变筛选条件，或清空搜索框</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+                {filtered.map((v, i) => (
+                  <VideoCard key={v.id} video={v} onPlay={setPlaying} index={i} />
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* ============ DARK CTA ============ */}
+        <section ref={ctaRef} className={`reveal ${ctaSeen ? "reveal-on" : ""}`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+            <div className="bg-stone-900 text-stone-100 rounded-3xl p-8 sm:p-14 relative overflow-hidden grain">
+              <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-[#c2410c]/20 blur-3xl" />
+              <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-[#c2410c]/10 blur-3xl" />
+              <div className="relative max-w-3xl">
+                <div className="text-[11px] tracking-[0.3em] text-[#fb923c] font-medium uppercase mb-4">
+                  · Ready to play? ·
+                </div>
+                <h2 className="font-serif text-3xl sm:text-5xl font-medium leading-tight mb-5">
+                  视频看完了，<br/>
+                  该<span className="italic text-[#fb923c]">入手一把琴</span>了。
+                </h2>
+                <p className="text-stone-400 mb-8 text-base sm:text-lg leading-relaxed">
+                  我们在马来西亚精选了适合各等级的尤克里里 — 从入门琴到值得收藏的单板琴。
+                  全马送货、原厂质保。
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <a href="https://www.ukulelemalaysia.com/2330-series"
+                     className="inline-flex items-center gap-2 bg-[#c2410c] hover:bg-[#fb923c] text-white px-7 py-3.5 rounded-full text-sm font-medium transition shadow-lg hover:shadow-xl group">
+                    选购 Ukunili 2330 系列
+                    <IconChevron size={16} className="group-hover:translate-x-0.5 transition" />
+                  </a>
+                  <a href="https://www.ukulelemalaysia.com/how-to-buy-ukulele"
+                     className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white border border-white/20 px-7 py-3.5 rounded-full text-sm font-medium transition">
+                    先看选购指南
+                  </a>
+                </div>
+                <p className="text-xs text-stone-500 mt-8 italic">
+                  #学乐器没有一步登天只有不断练习
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer className="border-t border-stone-200/80">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-wrap justify-between items-center gap-3 text-xs text-stone-500">
+            <div>© Ukulele Malaysia · Learning Center</div>
+            <div className="flex items-center gap-4">
+              <span>所有视频版权归原作者所有</span>
+              <span className="hidden sm:inline">·</span>
+              <a href="#top" className="hover:text-[#c2410c] transition">回到顶部 ↑</a>
+            </div>
+          </div>
+        </footer>
+      </main>
+
+      <VideoModal video={playing} onClose={() => setPlaying(null)} />
+    </div>
+  );
+}
+
+// ============================================================
+// 挂载
+// ============================================================
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+
+// 隐藏 loader
+requestAnimationFrame(() => {
+  const boot = document.getElementById("boot");
+  if (boot) {
+    boot.classList.add("gone");
+    setTimeout(() => boot.remove(), 500);
+  }
+});
+</script>
+
+</body>
+</html>
