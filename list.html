@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -11,299 +10,297 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-–bg: #0f0f11;
-–surface: #18181b;
-–border: #27272a;
-–border-hover: #3f3f46;
-–text: #fafafa;
-–muted: #71717a;
-–accent: #22c55e;
-–accent-dim: rgba(34,197,94,0.12);
-–tag-bg: #27272a;
-–tag-text: #a1a1aa;
-–font-mono: ‘Geist Mono’, ‘Courier New’, monospace;
-–font-sans: ‘DM Sans’, system-ui, sans-serif;
-}
+  :root {
+    --bg: #0f0f11;
+    --surface: #18181b;
+    --border: #27272a;
+    --border-hover: #3f3f46;
+    --text: #fafafa;
+    --muted: #71717a;
+    --accent: #22c55e;
+    --accent-dim: rgba(34,197,94,0.12);
+    --tag-bg: #27272a;
+    --tag-text: #a1a1aa;
+    --font-mono: 'Geist Mono', 'Courier New', monospace;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+  }
 
-html { font-size: 16px; }
+  html { font-size: 16px; }
 
-body {
-background: var(–bg);
-color: var(–text);
-font-family: var(–font-sans);
-min-height: 100vh;
-padding: 40px 24px 80px;
--webkit-font-smoothing: antialiased;
-}
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    padding: 40px 24px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
 
-/* ── LAYOUT ── */
-.container {
-max-width: 740px;
-margin: 0 auto;
-}
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 740px;
+    margin: 0 auto;
+  }
 
-/* ── HEADER ── */
-.header {
-display: flex;
-align-items: center;
-justify-content: space-between;
-margin-bottom: 48px;
-padding-bottom: 24px;
-border-bottom: 1px solid var(–border);
-}
+  /* ── HEADER ── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
 
-.header-left {
-display: flex;
-align-items: center;
-gap: 12px;
-}
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
-.logo-dot {
-width: 10px;
-height: 10px;
-border-radius: 50%;
-background: var(–accent);
-box-shadow: 0 0 10px rgba(34,197,94,0.5);
-animation: pulse 2.5s ease-in-out infinite;
-}
+  .logo-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px rgba(34,197,94,0.5);
+    animation: pulse 2.5s ease-in-out infinite;
+  }
 
-@keyframes pulse {
-0%, 100% { opacity: 1; transform: scale(1); }
-50% { opacity: 0.6; transform: scale(0.85); }
-}
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
 
-.site-name {
-font-family: var(–font-mono);
-font-size: 13px;
-color: var(–muted);
-letter-spacing: 0.05em;
-}
+  .site-name {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
 
-.badge {
-font-family: var(–font-mono);
-font-size: 11px;
-color: var(–accent);
-background: var(–accent-dim);
-border: 1px solid rgba(34,197,94,0.25);
-padding: 3px 10px;
-border-radius: 20px;
-letter-spacing: 0.06em;
-}
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid rgba(34,197,94,0.25);
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+  }
 
-/* ── TITLE ── */
-.title-block {
-margin-bottom: 40px;
-}
+  /* ── TITLE ── */
+  .title-block {
+    margin-bottom: 40px;
+  }
 
-.title-block h1 {
-font-size: 28px;
-font-weight: 600;
-letter-spacing: -0.02em;
-line-height: 1.2;
-margin-bottom: 8px;
-}
+  .title-block h1 {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
 
-.title-block p {
-font-size: 14px;
-color: var(–muted);
-line-height: 1.6;
-}
+  .title-block p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
 
-/* ── SECTION LABEL ── */
-.section-label {
-font-family: var(–font-mono);
-font-size: 11px;
-color: var(–muted);
-letter-spacing: 0.1em;
-text-transform: uppercase;
-margin-bottom: 12px;
-display: flex;
-align-items: center;
-gap: 10px;
-}
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
-.section-label::after {
-content: ‘’;
-flex: 1;
-height: 1px;
-background: var(–border);
-}
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
 
-/* ── PAGE LIST ── */
-.page-list {
-display: flex;
-flex-direction: column;
-gap: 2px;
-margin-bottom: 40px;
-}
+  /* ── PAGE LIST ── */
+  .page-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 40px;
+  }
 
-.page-item {
-display: flex;
-align-items: center;
-gap: 16px;
-padding: 14px 16px;
-border-radius: 8px;
-border: 1px solid transparent;
-text-decoration: none;
-color: var(–text);
-transition: background 0.15s ease, border-color 0.15s ease;
-position: relative;
-cursor: pointer;
-}
+  .page-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    color: var(--text);
+    transition: background 0.15s ease, border-color 0.15s ease;
+    position: relative;
+    cursor: pointer;
+  }
 
-.page-item:hover {
-background: var(–surface);
-border-color: var(–border-hover);
-}
+  .page-item:hover {
+    background: var(--surface);
+    border-color: var(--border-hover);
+  }
 
-.page-item:hover .page-arrow {
-opacity: 1;
-transform: translateX(0);
-}
+  .page-item:hover .page-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
-.page-num {
-font-family: var(–font-mono);
-font-size: 11px;
-color: var(–muted);
-width: 20px;
-flex-shrink: 0;
-}
+  .page-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    width: 20px;
+    flex-shrink: 0;
+  }
 
-.page-icon {
-width: 32px;
-height: 32px;
-border-radius: 6px;
-background: var(–tag-bg);
-border: 1px solid var(–border);
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 15px;
-flex-shrink: 0;
-}
+  .page-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
 
-.page-info {
-flex: 1;
-min-width: 0;
-}
+  .page-info {
+    flex: 1;
+    min-width: 0;
+  }
 
-.page-title {
-font-size: 14px;
-font-weight: 500;
-margin-bottom: 2px;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-}
+  .page-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-.page-url {
-font-family: var(–font-mono);
-font-size: 11px;
-color: var(–muted);
-}
+  .page-url {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
 
-.page-tags {
-display: flex;
-gap: 6px;
-flex-shrink: 0;
-}
+  .page-tags {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
 
-.tag {
-font-family: var(–font-mono);
-font-size: 10px;
-color: var(–tag-text);
-background: var(–tag-bg);
-border: 1px solid var(–border);
-padding: 2px 8px;
-border-radius: 4px;
-letter-spacing: 0.04em;
-}
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
 
-.tag.live {
-color: var(–accent);
-background: var(–accent-dim);
-border-color: rgba(34,197,94,0.25);
-}
+  .tag.live {
+    color: var(--accent);
+    background: var(--accent-dim);
+    border-color: rgba(34,197,94,0.25);
+  }
 
-.page-arrow {
-font-size: 14px;
-color: var(–muted);
-opacity: 0;
-transform: translateX(-4px);
-transition: opacity 0.15s ease, transform 0.15s ease;
-flex-shrink: 0;
-}
+  .page-arrow {
+    font-size: 14px;
+    color: var(--muted);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    flex-shrink: 0;
+  }
 
-/* ── STATS ROW ── */
-.stats-row {
-display: flex;
-gap: 1px;
-background: var(–border);
-border: 1px solid var(–border);
-border-radius: 10px;
-overflow: hidden;
-margin-bottom: 48px;
-}
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: flex;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
 
-.stat {
-flex: 1;
-padding: 16px 20px;
-background: var(–surface);
-text-align: center;
-}
+  .stat {
+    flex: 1;
+    padding: 16px 20px;
+    background: var(--surface);
+    text-align: center;
+  }
 
-.stat-num {
-font-family: var(–font-mono);
-font-size: 20px;
-font-weight: 500;
-color: var(–text);
-margin-bottom: 2px;
-}
+  .stat-num {
+    font-family: var(--font-mono);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
 
-.stat-label {
-font-size: 11px;
-color: var(–muted);
-}
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+  }
 
-/* ── FOOTER ── */
-.footer {
-margin-top: 56px;
-padding-top: 24px;
-border-top: 1px solid var(–border);
-display: flex;
-align-items: center;
-justify-content: space-between;
-}
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.footer-left {
-font-family: var(–font-mono);
-font-size: 11px;
-color: var(–muted);
-}
+  .footer-left {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
 
-.footer-right {
-font-family: var(–font-mono);
-font-size: 11px;
-color: var(–muted);
-}
+  .footer-right {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 560px) {
-.page-tags { display: none; }
-.stats-row { flex-wrap: wrap; }
-.stat { min-width: 50%; }
-.title-block h1 { font-size: 22px; }
-}
+  /* ── RESPONSIVE ── */
+  @media (max-width: 560px) {
+    .page-tags { display: none; }
+    .stats-row { flex-wrap: wrap; }
+    .stat { min-width: 50%; }
+    .title-block h1 { font-size: 22px; }
+  }
 </style>
-
 </head>
 <body>
 
 <div class="container">
 
   <!-- Header -->
-
   <div class="header">
     <div class="header-left">
       <div class="logo-dot"></div>
@@ -313,17 +310,15 @@ color: var(–muted);
   </div>
 
   <!-- Title -->
-
   <div class="title-block">
     <h1>Site Page Directory</h1>
     <p>All pages in this project. For internal use — click any row to open the page.</p>
   </div>
 
   <!-- Stats -->
-
   <div class="stats-row">
     <div class="stat">
-      <div class="stat-num">7</div>
+      <div class="stat-num">9</div>
       <div class="stat-label">Pages</div>
     </div>
     <div class="stat">
@@ -341,132 +336,149 @@ color: var(–muted);
   </div>
 
   <!-- Main Pages -->
-
   <div class="section-label">Main Pages</div>
   <div class="page-list">
 
-```
-<a class="page-item" href="/index.html">
-  <span class="page-num">01</span>
-  <div class="page-icon">🏠</div>
-  <div class="page-info">
-    <div class="page-title">Main Landing Page</div>
-    <div class="page-url">/index.html</div>
-  </div>
-  <div class="page-tags">
-    <span class="tag live">LIVE</span>
-    <span class="tag">EN · BM · 中</span>
-  </div>
-  <span class="page-arrow">→</span>
-</a>
+    <a class="page-item" href="/index.html">
+      <span class="page-num">01</span>
+      <div class="page-icon">🏠</div>
+      <div class="page-info">
+        <div class="page-title">Main Landing Page</div>
+        <div class="page-url">/index.html</div>
+      </div>
+      <div class="page-tags">
+        <span class="tag live">LIVE</span>
+        <span class="tag">EN · BM · 中</span>
+      </div>
+      <span class="page-arrow">→</span>
+    </a>
 
-<a class="page-item" href="/how-to-buy-ukulele">
-  <span class="page-num">02</span>
-  <div class="page-icon">🛒</div>
-  <div class="page-info">
-    <div class="page-title">Buying Guide</div>
-    <div class="page-url">/how-to-buy-ukulele</div>
-  </div>
-  <div class="page-tags">
-    <span class="tag live">LIVE</span>
-    <span class="tag">EN · BM · 中</span>
-  </div>
-  <span class="page-arrow">→</span>
-</a>
+    <a class="page-item" href="/how-to-buy-ukulele.html">
+      <span class="page-num">02</span>
+      <div class="page-icon">🛒</div>
+      <div class="page-info">
+        <div class="page-title">Buying Guide</div>
+        <div class="page-url">/how-to-buy-ukulele.html</div>
+      </div>
+      <div class="page-tags">
+        <span class="tag live">LIVE</span>
+        <span class="tag">EN · BM · 中</span>
+      </div>
+      <span class="page-arrow">→</span>
+    </a>
 
-<a class="page-item" href="/ukulele-tuning">
-  <span class="page-num">03</span>
-  <div class="page-icon">🎵</div>
-  <div class="page-info">
-    <div class="page-title">Tuning Guide</div>
-    <div class="page-url">/ukulele-tuning</div>
-  </div>
-  <div class="page-tags">
-    <span class="tag live">LIVE</span>
-    <span class="tag">EN · BM · 中</span>
-  </div>
-  <span class="page-arrow">→</span>
-</a>
+    <a class="page-item" href="/ukulele-out-of-tune.html">
+      <span class="page-num">03</span>
+      <div class="page-icon">🎵</div>
+      <div class="page-info">
+        <div class="page-title">Tuning Guide — Why Out of Tune?</div>
+        <div class="page-url">/ukulele-out-of-tune.html</div>
+      </div>
+      <div class="page-tags">
+        <span class="tag live">LIVE</span>
+        <span class="tag">EN · BM · 中</span>
+      </div>
+      <span class="page-arrow">→</span>
+    </a>
 
-<a class="page-item" href="/2330-series">
-  <span class="page-num">04</span>
-  <div class="page-icon">🎸</div>
-  <div class="page-info">
-    <div class="page-title">2330 Series Comparison</div>
-    <div class="page-url">/2330-series</div>
-  </div>
-  <div class="page-tags">
-    <span class="tag live">LIVE</span>
-    <span class="tag">EN · BM · 中</span>
-  </div>
-  <span class="page-arrow">→</span>
-</a>
-```
+    <a class="page-item" href="/2330-series.html">
+      <span class="page-num">04</span>
+      <div class="page-icon">🎸</div>
+      <div class="page-info">
+        <div class="page-title">2330 Series Comparison</div>
+        <div class="page-url">/2330-series.html</div>
+      </div>
+      <div class="page-tags">
+        <span class="tag live">LIVE</span>
+        <span class="tag">EN · BM · 中</span>
+      </div>
+      <span class="page-arrow">→</span>
+    </a>
 
   </div>
 
   <!-- Brand Pages -->
-
   <div class="section-label">Brand Pages</div>
   <div class="page-list">
 
-```
-<a class="page-item" href="/ukunili">
-  <span class="page-num">05</span>
-  <div class="page-icon">🔗</div>
-  <div class="page-info">
-    <div class="page-title">Ukunili Link Hub</div>
-    <div class="page-url">/ukunili</div>
-  </div>
-  <div class="page-tags">
-    <span class="tag live">LIVE</span>
-    <span class="tag">EN · BM · 中</span>
-  </div>
-  <span class="page-arrow">→</span>
-</a>
+    <a class="page-item" href="/ukunili.html">
+      <span class="page-num">05</span>
+      <div class="page-icon">🔗</div>
+      <div class="page-info">
+        <div class="page-title">Ukunili Link Hub</div>
+        <div class="page-url">/ukunili.html</div>
+      </div>
+      <div class="page-tags">
+        <span class="tag live">LIVE</span>
+        <span class="tag">EN · BM · 中</span>
+      </div>
+      <span class="page-arrow">→</span>
+    </a>
 
-<a class="page-item" href="/Ukunili-engrave">
-  <span class="page-num">06</span>
-  <div class="page-icon">✏️</div>
-  <div class="page-info">
-    <div class="page-title">Engraving Configurator</div>
-    <div class="page-url">/Ukunili-engrave</div>
-  </div>
-  <div class="page-tags">
-    <span class="tag live">LIVE</span>
-    <span class="tag">EN · BM · 中</span>
-  </div>
-  <span class="page-arrow">→</span>
-</a>
-```
+    <a class="page-item" href="/Ukunili-engrave.html">
+      <span class="page-num">06</span>
+      <div class="page-icon">✏️</div>
+      <div class="page-info">
+        <div class="page-title">Engraving Configurator</div>
+        <div class="page-url">/Ukunili-engrave.html</div>
+      </div>
+      <div class="page-tags">
+        <span class="tag live">LIVE</span>
+        <span class="tag">EN · BM · 中</span>
+      </div>
+      <span class="page-arrow">→</span>
+    </a>
+
+    <a class="page-item" href="/guitar-printing-name.html">
+      <span class="page-num">07</span>
+      <div class="page-icon">🖨️</div>
+      <div class="page-info">
+        <div class="page-title">Guitar Printing Name</div>
+        <div class="page-url">/guitar-printing-name.html</div>
+      </div>
+      <div class="page-tags">
+        <span class="tag live">LIVE</span>
+        <span class="tag">EN · BM · 中</span>
+      </div>
+      <span class="page-arrow">→</span>
+    </a>
 
   </div>
 
   <!-- Utility Pages -->
-
   <div class="section-label">Utility Pages</div>
   <div class="page-list">
 
-```
-<a class="page-item" href="/payment-info">
-  <span class="page-num">07</span>
-  <div class="page-icon">💳</div>
-  <div class="page-info">
-    <div class="page-title">Payment Info</div>
-    <div class="page-url">/payment-info</div>
-  </div>
-  <div class="page-tags">
-    <span class="tag live">LIVE</span>
-    <span class="tag">EN · BM · 中</span>
-  </div>
-  <span class="page-arrow">→</span>
-</a>
-```
+    <a class="page-item" href="/payment-info.html">
+      <span class="page-num">08</span>
+      <div class="page-icon">💳</div>
+      <div class="page-info">
+        <div class="page-title">Payment Info</div>
+        <div class="page-url">/payment-info.html</div>
+      </div>
+      <div class="page-tags">
+        <span class="tag live">LIVE</span>
+        <span class="tag">EN · BM · 中</span>
+      </div>
+      <span class="page-arrow">→</span>
+    </a>
+
+    <a class="page-item" href="/list.html">
+      <span class="page-num">09</span>
+      <div class="page-icon">📋</div>
+      <div class="page-info">
+        <div class="page-title">Site Page Directory</div>
+        <div class="page-url">/list.html</div>
+      </div>
+      <div class="page-tags">
+        <span class="tag">INTERNAL</span>
+      </div>
+      <span class="page-arrow">→</span>
+    </a>
 
   </div>
 
   <!-- Footer -->
-
   <div class="footer">
     <span class="footer-left">Ukulele Malaysia · Internal Use Only</span>
     <span class="footer-right" id="ts"></span>
