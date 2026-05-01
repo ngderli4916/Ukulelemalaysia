@@ -211,6 +211,27 @@ body{
   stroke:rgba(31,26,20,.55);
   stroke-width:.45;
 }
+.zoom-name-preview{
+  position:absolute;
+  right:4%;
+  top:43%;
+  max-width:46%;
+  transform:rotate(-90deg);
+  transform-origin:center;
+  color:#1f1a14;
+  font-size:18px;
+  font-weight:700;
+  line-height:1;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  text-shadow:0 1px 0 rgba(255,255,255,.65);
+  pointer-events:none;
+}
+.zoom-name-preview.is-engraving{
+  color:#fff;
+  text-shadow:0 1px 2px rgba(31,26,20,.55),0 0 1px rgba(31,26,20,.85);
+}
 .guitar-color-picker{
   width:100%;
   position:relative;
@@ -244,7 +265,8 @@ body{
 .method-option:hover{border-color:var(--accent);transform:translateY(-1px)}
 .color-option.selected,
 .color-input:checked + .color-option,
-.method-input:checked + .method-option{
+.method-input:checked + .method-option,
+.method-option.selected{
   border-color:var(--accent);
   box-shadow:0 0 0 3px var(--accent-soft);
 }
@@ -356,6 +378,10 @@ body{
   white-space:nowrap;
   font-size:14px;
   color:var(--ink);
+}
+.spec-summary-item .selected-name-preview{
+  font-size:20px;
+  line-height:1.1;
 }
 .method-picker{
   position:relative;
@@ -804,6 +830,7 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
                   font-size="12"
                   transform="rotate(-90 102 486)">Your Name</text>
           </svg>
+          <div class="zoom-name-preview" id="zoomNamePreview" aria-hidden="true">Your Name</div>
         </div>
       </div>
 
@@ -846,7 +873,7 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
                     <span class="inline-lang" data-lang="ms">Nama</span>
                     <span class="inline-lang" data-lang="zh">名字</span>
                   </span>
-                  <strong id="selectedName">Your Name</strong>
+                  <strong class="selected-name-preview" id="selectedName">Your Name</strong>
                 </div>
                 <div class="spec-summary-item">
                   <span>
@@ -865,24 +892,22 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
                 <span class="inline-lang" data-lang="zh">名字效果</span>
               </dt>
               <dd class="method-picker" role="radiogroup" aria-label="Name finish">
-                <input class="method-input" type="radio" id="methodPrinting" name="printMethod" value="printing" checked>
-                <label class="method-option" for="methodPrinting" data-print-method="printing" onclick="selectPrintMethod('printing')">
+                <button class="method-option selected" type="button" id="methodPrinting" data-print-method="printing" aria-pressed="true" onclick="selectPrintMethod('printing')">
                   <span class="method-dot printing" aria-hidden="true"></span>
                   <span>
                     <span class="inline-lang" data-lang="en">Printing</span>
                     <span class="inline-lang" data-lang="ms">Cetakan</span>
                     <span class="inline-lang" data-lang="zh">印刷</span>
                   </span>
-                </label>
-                <input class="method-input" type="radio" id="methodEngraving" name="printMethod" value="engraving">
-                <label class="method-option" for="methodEngraving" data-print-method="engraving" onclick="selectPrintMethod('engraving')">
+                </button>
+                <button class="method-option" type="button" id="methodEngraving" data-print-method="engraving" aria-pressed="false" onclick="selectPrintMethod('engraving')">
                   <span class="method-dot engraving" aria-hidden="true"></span>
                   <span>
                     <span class="inline-lang" data-lang="en">Engraving Name</span>
                     <span class="inline-lang" data-lang="ms">Ukiran Nama</span>
                     <span class="inline-lang" data-lang="zh">名字雕刻</span>
                   </span>
-                </label>
+                </button>
               </dd>
             </div>
             <div class="spec-row stack">
@@ -1144,7 +1169,7 @@ const GUITAR_COLORS = [
 ];
 
 /* ───────── State (position is FIXED — print spec is standardized) ───────── */
-const FIXED_POSITION = Object.freeze({ x: 102, y: 486, angle: -90, size: 12 });
+const FIXED_POSITION = Object.freeze({ x: 102, y: 486, angle: -90, size: 12, engravingSize: 16 });
 const state = {
   text: "Your Name",
   fontId: "dancing",
@@ -1156,12 +1181,13 @@ const state = {
 const $text   = document.getElementById('textInput');
 const $count  = document.getElementById('charCount');
 const $svg    = document.getElementById('engravedText');
+const $zoomNamePreview = document.getElementById('zoomNamePreview');
 const $guitarPhoto = document.getElementById('guitarPhoto');
 const $colorPicker = document.querySelector('.guitar-color-picker');
 const $colorButtons = document.querySelectorAll('.color-option');
 const $colorInputs = document.querySelectorAll('input[name="guitarColor"]');
 const $methodPicker = document.querySelector('.method-picker');
-const $methodInputs = document.querySelectorAll('input[name="printMethod"]');
+const $methodButtons = document.querySelectorAll('.method-option');
 const $selectedName = document.getElementById('selectedName');
 const $selectedFont = document.getElementById('selectedFont');
 const $npList   = document.getElementById('npList');
@@ -1175,19 +1201,25 @@ function getPrintMethod(id){ return id === "engraving" ? "Engraving Name" : "Pri
 
 function renderSvg(){
   const f = getFont(state.fontId);
-  const { x, y, angle, size } = FIXED_POSITION;
+  const { x, y, angle, size, engravingSize } = FIXED_POSITION;
+  const previewText = state.text || "Your Name";
+  const displaySize = state.printMethod === "engraving" ? engravingSize : size;
   $svg.textContent = state.text || "Your Name";
   $svg.setAttribute('font-family', f.family);
-  $svg.setAttribute('font-size', size);
+  $svg.setAttribute('font-size', displaySize);
   $svg.setAttribute('x', x);
   $svg.setAttribute('y', y);
   $svg.setAttribute('transform', `rotate(${angle} ${x} ${y})`);
   $svg.classList.toggle('is-engraving', state.printMethod === "engraving");
+  $zoomNamePreview.textContent = previewText;
+  $zoomNamePreview.style.fontFamily = f.family;
+  $zoomNamePreview.classList.toggle('is-engraving', state.printMethod === "engraving");
 }
 
 function renderSelectedSummary(){
   const f = getFont(state.fontId);
   $selectedName.textContent = state.text || "Your Name";
+  $selectedName.style.fontFamily = f.family;
   $selectedFont.textContent = (f.label && f.label.en) || f.id;
 }
 
@@ -1260,8 +1292,10 @@ window.selectGuitarColor = selectGuitarColor;
 
 function selectPrintMethod(methodId){
   state.printMethod = methodId === "engraving" ? "engraving" : "printing";
-  $methodInputs.forEach(input => {
-    input.checked = input.value === state.printMethod;
+  $methodButtons.forEach(btn => {
+    const isSelected = btn.dataset.printMethod === state.printMethod;
+    btn.classList.toggle('selected', isSelected);
+    btn.setAttribute('aria-pressed', String(isSelected));
   });
   renderSvg();
   updateSubmitLink();
@@ -1287,9 +1321,10 @@ if ($colorPicker) {
 }
 
 if ($methodPicker) {
-  $methodPicker.addEventListener('change', event => {
-    if (event.target.matches('input[name="printMethod"]')) {
-      selectPrintMethod(event.target.value || "printing");
+  $methodPicker.addEventListener('click', event => {
+    const btn = event.target.closest('.method-option');
+    if (btn) {
+      selectPrintMethod(btn.dataset.printMethod || "printing");
     }
   });
 }
@@ -1299,6 +1334,7 @@ renderNpList();
 renderSvg();
 renderGuitarColor();
 renderSelectedSummary();
+selectPrintMethod(state.printMethod);
 updateSubmitLink();
 </script>
 </body>
