@@ -232,6 +232,33 @@ body{
   color:#fff;
   text-shadow:0 1px 2px rgba(31,26,20,.55),0 0 1px rgba(31,26,20,.85);
 }
+.preview-download-btn{
+  width:100%;
+  margin:0 0 18px;
+  border:1px solid var(--ink);
+  background:var(--ink);
+  color:#fff;
+  border-radius:8px;
+  padding:12px 16px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font:800 12px/1 'Inter',sans-serif;
+  cursor:pointer;
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.preview-download-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:var(--shadow-sm);
+  background:#2d261f;
+}
+.preview-download-btn:disabled{
+  cursor:wait;
+  opacity:.65;
+  transform:none;
+}
+.preview-download-btn svg{width:16px;height:16px;flex:0 0 auto}
 .guitar-color-picker{
   width:100%;
   position:relative;
@@ -897,6 +924,13 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
             <span class="inline-lang" data-lang="zh">为保持一致的品质，所有吉他印刷都采用标准化的位置和大小。由于每一件作品都会由我们的师傅手工调整，最终效果可能会和预览有轻微差异——请把它作为参考。</span>
           </p>
 
+          <button class="preview-download-btn" id="downloadPreviewBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+            <span class="inline-lang" data-lang="en">Download Preview</span>
+            <span class="inline-lang" data-lang="ms">Muat Turun Pratonton</span>
+            <span class="inline-lang" data-lang="zh">下载预览图</span>
+          </button>
+
           <dl class="spec-list">
             <div class="spec-row stack">
               <dt>
@@ -1231,6 +1265,7 @@ const $selectedFont = document.getElementById('selectedFont');
 const $npList   = document.getElementById('npList');
 const $npListLeft = document.getElementById('npListLeft');
 const $submit   = document.getElementById('submitBtn');
+const $downloadPreview = document.getElementById('downloadPreviewBtn');
 
 /* ───────── Render functions ───────── */
 function getFont(id){ return FONTS.find(f => f.id === id) || FONTS[0]; }
@@ -1340,6 +1375,85 @@ function selectPrintMethod(methodId){
 }
 window.selectPrintMethod = selectPrintMethod;
 
+function loadCanvasImage(src){
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+function drawRotatedText(ctx, text, x, y, angle, options){
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(angle * Math.PI / 180);
+  ctx.font = options.font;
+  ctx.textAlign = options.align || 'center';
+  ctx.textBaseline = options.baseline || 'middle';
+  ctx.lineWidth = options.strokeWidth || 0;
+  if (options.strokeStyle && options.strokeWidth) {
+    ctx.strokeStyle = options.strokeStyle;
+    ctx.strokeText(text, 0, 0);
+  }
+  ctx.fillStyle = options.fillStyle;
+  ctx.fillText(text, 0, 0);
+  ctx.restore();
+}
+
+async function downloadLivePreview(){
+  if (!$downloadPreview) return;
+  const previousLabel = $downloadPreview.innerHTML;
+  $downloadPreview.disabled = true;
+  $downloadPreview.textContent = 'Preparing...';
+
+  try {
+    if (document.fonts && document.fonts.ready) await document.fonts.ready;
+    const canvas = document.createElement('canvas');
+    canvas.width = 915;
+    canvas.height = 2400;
+    const ctx = canvas.getContext('2d');
+    const color = getGuitarColor(state.guitarColor);
+    const guitar = await loadCanvasImage(color.src);
+    const text = state.text || 'Your Name';
+    const font = getFont(state.fontId);
+    const isEngraving = state.printMethod === 'engraving';
+    const scale = canvas.width / 305;
+
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(guitar, 0, 0, canvas.width, canvas.height);
+
+    drawRotatedText(ctx, text, FIXED_POSITION.x * scale, FIXED_POSITION.y * scale, FIXED_POSITION.angle, {
+      font: `700 ${isEngraving ? FIXED_POSITION.engravingSize * scale : FIXED_POSITION.size * scale}px ${font.family}`,
+      fillStyle: isEngraving ? '#ffffff' : '#1f1a14',
+      strokeStyle: isEngraving ? 'rgba(31,26,20,.55)' : 'rgba(255,255,255,.4)',
+      strokeWidth: isEngraving ? 1.35 : .9
+    });
+
+    drawRotatedText(ctx, text, 222 * scale, 288 * scale, -90, {
+      font: `700 ${40 * scale}px ${font.family}`,
+      fillStyle: isEngraving ? '#ffffff' : '#1f1a14',
+      strokeStyle: isEngraving ? 'rgba(31,26,20,.65)' : 'rgba(255,255,255,.72)',
+      strokeWidth: isEngraving ? 3.5 : 2
+    });
+
+    const link = document.createElement('a');
+    const safeName = text.trim().replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase() || 'preview';
+    link.download = `guitar-name-preview-${safeName}.png`;
+    link.href = canvas.toDataURL('image/png');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  } catch (error) {
+    alert('Sorry, the preview image could not be downloaded. Please try again.');
+  } finally {
+    $downloadPreview.disabled = false;
+    $downloadPreview.innerHTML = previousLabel;
+  }
+}
+window.downloadLivePreview = downloadLivePreview;
+
 /* ───────── Event wiring ───────── */
 $text.addEventListener('input', () => {
   state.text = $text.value;
@@ -1365,6 +1479,10 @@ if ($methodPicker) {
       selectPrintMethod(btn.dataset.printMethod || "printing");
     }
   });
+}
+
+if ($downloadPreview) {
+  $downloadPreview.addEventListener('click', downloadLivePreview);
 }
 
 /* ───────── Init ───────── */
