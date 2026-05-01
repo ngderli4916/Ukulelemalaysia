@@ -1,0 +1,19 @@
+{
+  "name": "Ukulele Malaysia",
+  "short_name": "Ukulele MY",
+  "icons": [
+    {
+      "src": "ukulele-malaysia-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "ukulele-malaysia-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#18235f",
+  "background_color": "#fbf7f1",
+  "display": "standalone"
+}

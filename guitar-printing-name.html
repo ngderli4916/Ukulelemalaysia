@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" href="assets/images/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png" />
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
+<link rel="manifest" href="assets/images/site.webmanifest" />
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Guitar Name Printing | Ukulele Malaysia</title>
@@ -9,6 +13,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,600;9..144,0,700;9..144,1,400;9..144,1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Abril+Fatface&family=Chicle&family=Covered+By+Your+Grace&family=Damion&family=Mouse+Memoirs&family=Permanent+Marker&family=DM+Serif+Display&family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
 <style>
+  .site-logo-icon { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .logo-holder { background: transparent !important; box-shadow: none !important; color: transparent; padding: 0; overflow: visible; }
+
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#fbf7f1;
@@ -483,7 +490,7 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
 
 <header class="site-header">
   <a class="brand-mark" href="https://www.ukulelemalaysia.com">
-    <div class="brand-square">U</div>
+    <div class="brand-square logo-holder"><img class="site-logo-icon" src="assets/images/ukulele-malaysia-icon-64.png" alt="" width="64" height="64"></div>
     <span class="brand-name">Ukulele Malaysia</span>
   </a>
   <div class="lang-pills" role="group" aria-label="Language selector">
