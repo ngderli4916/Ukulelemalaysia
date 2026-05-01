@@ -4,7 +4,11 @@ Live engraving configurator for custom ukuleles. Static site (HTML + React via B
 
 ## Files
 - `index.html` — main page
-- `configurator.jsx` — React configurator (live engraving preview)
+- `Ukunili-engrave.html` — engraving landing page
+- `assets/js/engraving/configurator.jsx` — React configurator (live engraving preview)
+- `assets/js/engraving/tweaks-panel.jsx` — configurator tweak controls
+- `images/` — local image assets
+- `fonts/` — local font assets
 
 ## Deploy
 Hosted on Cloudflare Pages. Pushing to `main` triggers an automatic deploy.

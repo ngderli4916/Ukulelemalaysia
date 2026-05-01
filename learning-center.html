@@ -66,6 +66,10 @@
     overflow: hidden;
   }
 
+  #library {
+    scroll-margin-top: 72px;
+  }
+
   /* Loader before React hydrates */
   .boot {
     position: fixed; inset: 0;
@@ -1029,7 +1033,7 @@ function App() {
   })))), /*#__PURE__*/React.createElement("section", {
     id: "library",
     ref: filterRef,
-    className: `bg-white border-y border-stone-200/80 reveal ${filterSeen ? "reveal-on" : ""}`
+    className: "bg-white border-y border-stone-200/80"
   }, /*#__PURE__*/React.createElement("div", {
     className: "max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24"
   }, /*#__PURE__*/React.createElement("div", {
