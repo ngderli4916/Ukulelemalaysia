@@ -75,6 +75,26 @@
     border-bottom: 1px solid var(--border);
   }
 
+  .intro-block {
+    margin-bottom: 34px;
+  }
+
+  .intro-kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .intro-block p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 560px;
+  }
+
   .header-left {
     display: flex;
     align-items: center;
@@ -149,6 +169,23 @@
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+
+  .directory-heading {
+    margin: 42px 0 18px;
+  }
+
+  .directory-heading h1 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .directory-heading p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
   }
 
   .section-label::after {
@@ -322,6 +359,7 @@
     .stats-row { flex-wrap: wrap; }
     .stat { min-width: 50%; }
     .title-block h1 { font-size: 22px; }
+    .directory-heading h1 { font-size: 22px; }
   }
 </style>
 </head>
@@ -338,16 +376,16 @@
     <span class="badge">INTERNAL</span>
   </div>
 
-  <!-- Title -->
-  <div class="title-block">
-    <h1>Site Page Directory</h1>
-    <p>All pages in this project. For internal use — click any row to open the page.</p>
+  <!-- Intro -->
+  <div class="intro-block">
+    <div class="intro-kicker">Available Links</div>
+    <p>All active Ukulele Malaysia pages grouped by category. Use this as the quick map for checking live pages, customer guides, product pages and support information.</p>
   </div>
 
   <!-- Stats -->
   <div class="stats-row">
     <div class="stat">
-      <div class="stat-num">9</div>
+      <div class="stat-num">10</div>
       <div class="stat-label">Pages</div>
     </div>
     <div class="stat">
@@ -364,16 +402,21 @@
     </div>
   </div>
 
-  <!-- Main Pages -->
-  <div class="section-label">Main Pages</div>
+  <div class="directory-heading">
+    <h1>Site Page Directory</h1>
+    <p>For internal use — click any row to open the page.</p>
+  </div>
+
+  <!-- Ukulele -->
+  <div class="section-label">Ukulele</div>
   <div class="page-list">
 
-    <a class="page-item" href="/index.html">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/">
       <span class="page-num">01</span>
       <div class="page-icon">🏠</div>
       <div class="page-info">
         <div class="page-title">Main Landing Page</div>
-        <div class="page-url">/index.html</div>
+        <div class="page-url">/</div>
       </div>
       <div class="page-tags">
         <span class="tag live">LIVE</span>
@@ -382,12 +425,12 @@
       <span class="page-arrow">→</span>
     </a>
 
-    <a class="page-item" href="/how-to-buy-ukulele.html">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/how-to-buy-ukulele">
       <span class="page-num">02</span>
       <div class="page-icon">🛒</div>
       <div class="page-info">
         <div class="page-title">Buying Guide</div>
-        <div class="page-url">/how-to-buy-ukulele.html</div>
+        <div class="page-url">/how-to-buy-ukulele</div>
       </div>
       <div class="page-tags">
         <span class="tag live">LIVE</span>
@@ -410,12 +453,12 @@
       <span class="page-arrow">→</span>
     </a>
 
-    <a class="page-item" href="/2330-series.html">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/2330-series">
       <span class="page-num">04</span>
       <div class="page-icon">🎸</div>
       <div class="page-info">
         <div class="page-title">2330 Series Comparison</div>
-        <div class="page-url">/2330-series.html</div>
+        <div class="page-url">/2330-series</div>
       </div>
       <div class="page-tags">
         <span class="tag live">LIVE</span>
@@ -424,18 +467,12 @@
       <span class="page-arrow">→</span>
     </a>
 
-  </div>
-
-  <!-- Brand Pages -->
-  <div class="section-label">Brand Pages</div>
-  <div class="page-list">
-
-    <a class="page-item" href="/ukunili.html">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/ukunili">
       <span class="page-num">05</span>
       <div class="page-icon">🔗</div>
       <div class="page-info">
         <div class="page-title">Ukunili Link Hub</div>
-        <div class="page-url">/ukunili.html</div>
+        <div class="page-url">/ukunili</div>
       </div>
       <div class="page-tags">
         <span class="tag live">LIVE</span>
@@ -444,12 +481,12 @@
       <span class="page-arrow">→</span>
     </a>
 
-    <a class="page-item" href="/Ukunili-engrave.html">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/Ukunili-engrave">
       <span class="page-num">06</span>
       <div class="page-icon">✏️</div>
       <div class="page-info">
         <div class="page-title">Engraving Configurator</div>
-        <div class="page-url">/Ukunili-engrave.html</div>
+        <div class="page-url">/Ukunili-engrave</div>
       </div>
       <div class="page-tags">
         <span class="tag live">LIVE</span>
@@ -458,12 +495,32 @@
       <span class="page-arrow">→</span>
     </a>
 
-    <a class="page-item" href="/guitar-printing-name.html">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/learning-center">
       <span class="page-num">07</span>
+      <div class="page-icon">🎓</div>
+      <div class="page-info">
+        <div class="page-title">Free Learning Center</div>
+        <div class="page-url">/learning-center</div>
+      </div>
+      <div class="page-tags">
+        <span class="tag live">LIVE</span>
+        <span class="tag">中文</span>
+      </div>
+      <span class="page-arrow">→</span>
+    </a>
+
+  </div>
+
+  <!-- Guitar -->
+  <div class="section-label">Guitar</div>
+  <div class="page-list">
+
+    <a class="page-item" href="https://www.ukulelemalaysia.com/guitar-printing-name">
+      <span class="page-num">08</span>
       <div class="page-icon">🖨️</div>
       <div class="page-info">
         <div class="page-title">Guitar Printing Name</div>
-        <div class="page-url">/guitar-printing-name.html</div>
+        <div class="page-url">/guitar-printing-name</div>
       </div>
       <div class="page-tags">
         <span class="tag live">LIVE</span>
@@ -474,16 +531,16 @@
 
   </div>
 
-  <!-- Utility Pages -->
-  <div class="section-label">Utility Pages</div>
+  <!-- Information -->
+  <div class="section-label">Information</div>
   <div class="page-list">
 
-    <a class="page-item" href="/payment-info.html">
-      <span class="page-num">08</span>
+    <a class="page-item" href="https://www.ukulelemalaysia.com/payment-info">
+      <span class="page-num">09</span>
       <div class="page-icon">💳</div>
       <div class="page-info">
         <div class="page-title">Payment Info</div>
-        <div class="page-url">/payment-info.html</div>
+        <div class="page-url">/payment-info</div>
       </div>
       <div class="page-tags">
         <span class="tag live">LIVE</span>
@@ -492,12 +549,12 @@
       <span class="page-arrow">→</span>
     </a>
 
-    <a class="page-item" href="/list.html">
-      <span class="page-num">09</span>
+    <a class="page-item" href="https://www.ukulelemalaysia.com/list">
+      <span class="page-num">10</span>
       <div class="page-icon">📋</div>
       <div class="page-info">
         <div class="page-title">Site Page Directory</div>
-        <div class="page-url">/list.html</div>
+        <div class="page-url">/list</div>
       </div>
       <div class="page-tags">
         <span class="tag">INTERNAL</span>
