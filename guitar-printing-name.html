@@ -660,7 +660,7 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
   .control-card{padding:18px 20px}
 }
 
-/* Mobile configurator: keep the guitar body frozen while the settings scroll. */
+/* Mobile configurator: keep the full guitar preview frozen while the settings scroll. */
 @media(max-width:880px){
   .preview-wrap{
     display:flex;
@@ -673,25 +673,19 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
   }
   .guitar-stage{
     position:relative;
-    flex:0 0 52vh;
-    min-height:330px;
-    max-height:430px;
+    flex:0 0 58vh;
+    min-height:390px;
+    max-height:560px;
     overflow:hidden;
   }
   .guitar-photo-wrap{
-    height:100%;
-    max-width:100%;
-    aspect-ratio:auto;
-    overflow:hidden;
-  }
-  .guitar-photo,
-  .guitar-overlay{
-    top:-34%;
-    bottom:auto;
-    height:150%;
+    width:100%;
+    max-width:260px;
+    aspect-ratio:305 / 800;
+    overflow:visible;
   }
   .zoom-name-preview{
-    top:37%;
+    top:34%;
   }
   .controls{
     flex:1 1 auto;
