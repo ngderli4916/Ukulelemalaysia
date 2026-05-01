@@ -206,6 +206,11 @@ body{
   stroke:rgba(255,255,255,.4);
   stroke-width:.3;
 }
+.guitar-overlay .engraved-text.is-engraving{
+  fill:#fff;
+  stroke:rgba(31,26,20,.55);
+  stroke-width:.45;
+}
 .guitar-color-picker{
   width:100%;
   position:relative;
@@ -219,7 +224,8 @@ body{
   opacity:0;
   pointer-events:none;
 }
-.color-option{
+.color-option,
+.method-option{
   min-width:0;
   border:1px solid var(--line);
   background:#fff;
@@ -234,13 +240,16 @@ body{
   font:700 11px/1.2 'Inter',sans-serif;
   transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease;
 }
-.color-option:hover{border-color:var(--accent);transform:translateY(-1px)}
+.color-option:hover,
+.method-option:hover{border-color:var(--accent);transform:translateY(-1px)}
 .color-option.selected,
-.color-input:checked + .color-option{
+.color-input:checked + .color-option,
+.method-input:checked + .method-option{
   border-color:var(--accent);
   box-shadow:0 0 0 3px var(--accent-soft);
 }
-.color-input:focus-visible + .color-option{
+.color-input:focus-visible + .color-option,
+.method-input:focus-visible + .method-option{
   outline:2px solid var(--accent);
   outline-offset:2px;
 }
@@ -266,6 +275,7 @@ body{
   .guitar-stage{padding:20px}
   .guitar-color-picker{grid-template-columns:repeat(2,minmax(0,1fr))}
   .color-option{justify-content:flex-start;padding:9px 10px}
+  .spec-summary,.method-picker{grid-template-columns:1fr}
 }
 
 .controls{display:flex;flex-direction:column;gap:18px}
@@ -311,6 +321,69 @@ body{
   border-bottom:1px solid var(--line-soft);
 }
 .spec-row:last-child{border-bottom:none}
+.spec-row.stack{
+  display:block;
+}
+.spec-row.stack dt{margin-bottom:10px}
+.spec-row.stack dd{text-align:left}
+.spec-summary{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.spec-summary-item{
+  min-width:0;
+  background:var(--bg-soft);
+  border:1px solid var(--line-soft);
+  border-radius:8px;
+  padding:10px 12px;
+}
+.spec-summary-item span{
+  display:block;
+  font-family:'Space Mono',monospace;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.08em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.spec-summary-item strong{
+  display:block;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:14px;
+  color:var(--ink);
+}
+.method-picker{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+.method-input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+.method-option{
+  justify-content:flex-start;
+  padding:11px 12px;
+  font-size:12px;
+}
+.method-dot{
+  width:14px;height:14px;border-radius:50%;
+  border:1px solid rgba(17,24,39,.18);
+  flex:0 0 auto;
+}
+.method-dot.printing{background:#1f1a14}
+.method-dot.engraving{background:#fff;box-shadow:inset 0 0 0 1px rgba(17,24,39,.22)}
+.spec-row .guitar-color-picker{
+  margin-top:0;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
 .spec-row dt{
   font-family:'Space Mono',monospace;
   font-size:11px;font-weight:700;letter-spacing:.06em;
@@ -732,43 +805,6 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
                   transform="rotate(-90 102 486)">Your Name</text>
           </svg>
         </div>
-        <div class="guitar-color-picker" role="radiogroup" aria-label="Guitar color">
-          <input class="color-input" type="radio" id="guitarColorWhite" name="guitarColor" value="white" checked>
-          <label class="color-option selected" for="guitarColorWhite" data-guitar-color="white" aria-label="White guitar">
-            <span class="color-swatch color-white" aria-hidden="true"></span>
-            <span class="color-name">White</span>
-          </label>
-          <input class="color-input" type="radio" id="guitarColorWood" name="guitarColor" value="wood">
-          <label class="color-option" for="guitarColorWood" data-guitar-color="wood" aria-label="Wood guitar">
-            <span class="color-swatch color-wood" aria-hidden="true"></span>
-            <span class="color-name">Wood</span>
-          </label>
-          <input class="color-input" type="radio" id="guitarColorBlue" name="guitarColor" value="blue">
-          <label class="color-option" for="guitarColorBlue" data-guitar-color="blue" aria-label="Blue guitar">
-            <span class="color-swatch color-blue" aria-hidden="true"></span>
-            <span class="color-name">Blue</span>
-          </label>
-          <input class="color-input" type="radio" id="guitarColorBlack" name="guitarColor" value="black">
-          <label class="color-option" for="guitarColorBlack" data-guitar-color="black" aria-label="Black guitar">
-            <span class="color-swatch color-black" aria-hidden="true"></span>
-            <span class="color-name">Black</span>
-          </label>
-          <input class="color-input" type="radio" id="guitarColorRed" name="guitarColor" value="red">
-          <label class="color-option" for="guitarColorRed" data-guitar-color="red" aria-label="Red guitar">
-            <span class="color-swatch color-red" aria-hidden="true"></span>
-            <span class="color-name">Red</span>
-          </label>
-          <input class="color-input" type="radio" id="guitarColorPurple" name="guitarColor" value="purple">
-          <label class="color-option" for="guitarColorPurple" data-guitar-color="purple" aria-label="Purple guitar">
-            <span class="color-swatch color-purple" aria-hidden="true"></span>
-            <span class="color-name">Purple</span>
-          </label>
-          <input class="color-input" type="radio" id="guitarColorSunburst" name="guitarColor" value="sunburst">
-          <label class="color-option" for="guitarColorSunburst" data-guitar-color="sunburst" aria-label="Sunburst guitar">
-            <span class="color-swatch color-sunburst" aria-hidden="true"></span>
-            <span class="color-name">Sunburst</span>
-          </label>
-        </div>
       </div>
 
       <!-- FIXED PRINT SPEC INFO (no adjustable controls — print position is standardized) -->
@@ -797,6 +833,104 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
           </p>
 
           <dl class="spec-list">
+            <div class="spec-row stack">
+              <dt>
+                <span class="inline-lang" data-lang="en">Selected</span>
+                <span class="inline-lang" data-lang="ms">Pilihan</span>
+                <span class="inline-lang" data-lang="zh">已选择</span>
+              </dt>
+              <dd class="spec-summary">
+                <div class="spec-summary-item">
+                  <span>
+                    <span class="inline-lang" data-lang="en">Name</span>
+                    <span class="inline-lang" data-lang="ms">Nama</span>
+                    <span class="inline-lang" data-lang="zh">名字</span>
+                  </span>
+                  <strong id="selectedName">Your Name</strong>
+                </div>
+                <div class="spec-summary-item">
+                  <span>
+                    <span class="inline-lang" data-lang="en">Font</span>
+                    <span class="inline-lang" data-lang="ms">Fon</span>
+                    <span class="inline-lang" data-lang="zh">字体</span>
+                  </span>
+                  <strong id="selectedFont">Dancing Script</strong>
+                </div>
+              </dd>
+            </div>
+            <div class="spec-row stack">
+              <dt>
+                <span class="inline-lang" data-lang="en">Name finish</span>
+                <span class="inline-lang" data-lang="ms">Kemasan nama</span>
+                <span class="inline-lang" data-lang="zh">名字效果</span>
+              </dt>
+              <dd class="method-picker" role="radiogroup" aria-label="Name finish">
+                <input class="method-input" type="radio" id="methodPrinting" name="printMethod" value="printing" checked>
+                <label class="method-option" for="methodPrinting" data-print-method="printing" onclick="selectPrintMethod('printing')">
+                  <span class="method-dot printing" aria-hidden="true"></span>
+                  <span>
+                    <span class="inline-lang" data-lang="en">Printing</span>
+                    <span class="inline-lang" data-lang="ms">Cetakan</span>
+                    <span class="inline-lang" data-lang="zh">印刷</span>
+                  </span>
+                </label>
+                <input class="method-input" type="radio" id="methodEngraving" name="printMethod" value="engraving">
+                <label class="method-option" for="methodEngraving" data-print-method="engraving" onclick="selectPrintMethod('engraving')">
+                  <span class="method-dot engraving" aria-hidden="true"></span>
+                  <span>
+                    <span class="inline-lang" data-lang="en">Engraving Name</span>
+                    <span class="inline-lang" data-lang="ms">Ukiran Nama</span>
+                    <span class="inline-lang" data-lang="zh">名字雕刻</span>
+                  </span>
+                </label>
+              </dd>
+            </div>
+            <div class="spec-row stack">
+              <dt>
+                <span class="inline-lang" data-lang="en">Guitar color</span>
+                <span class="inline-lang" data-lang="ms">Warna gitar</span>
+                <span class="inline-lang" data-lang="zh">吉他颜色</span>
+              </dt>
+              <dd>
+                <div class="guitar-color-picker" role="radiogroup" aria-label="Guitar color">
+                  <input class="color-input" type="radio" id="guitarColorWhite" name="guitarColor" value="white" checked>
+                  <label class="color-option selected" for="guitarColorWhite" data-guitar-color="white" aria-label="White guitar" onclick="selectGuitarColor('white')">
+                    <span class="color-swatch color-white" aria-hidden="true"></span>
+                    <span class="color-name">White</span>
+                  </label>
+                  <input class="color-input" type="radio" id="guitarColorWood" name="guitarColor" value="wood">
+                  <label class="color-option" for="guitarColorWood" data-guitar-color="wood" aria-label="Wood guitar" onclick="selectGuitarColor('wood')">
+                    <span class="color-swatch color-wood" aria-hidden="true"></span>
+                    <span class="color-name">Wood</span>
+                  </label>
+                  <input class="color-input" type="radio" id="guitarColorBlue" name="guitarColor" value="blue">
+                  <label class="color-option" for="guitarColorBlue" data-guitar-color="blue" aria-label="Blue guitar" onclick="selectGuitarColor('blue')">
+                    <span class="color-swatch color-blue" aria-hidden="true"></span>
+                    <span class="color-name">Blue</span>
+                  </label>
+                  <input class="color-input" type="radio" id="guitarColorBlack" name="guitarColor" value="black">
+                  <label class="color-option" for="guitarColorBlack" data-guitar-color="black" aria-label="Black guitar" onclick="selectGuitarColor('black')">
+                    <span class="color-swatch color-black" aria-hidden="true"></span>
+                    <span class="color-name">Black</span>
+                  </label>
+                  <input class="color-input" type="radio" id="guitarColorRed" name="guitarColor" value="red">
+                  <label class="color-option" for="guitarColorRed" data-guitar-color="red" aria-label="Red guitar" onclick="selectGuitarColor('red')">
+                    <span class="color-swatch color-red" aria-hidden="true"></span>
+                    <span class="color-name">Red</span>
+                  </label>
+                  <input class="color-input" type="radio" id="guitarColorPurple" name="guitarColor" value="purple">
+                  <label class="color-option" for="guitarColorPurple" data-guitar-color="purple" aria-label="Purple guitar" onclick="selectGuitarColor('purple')">
+                    <span class="color-swatch color-purple" aria-hidden="true"></span>
+                    <span class="color-name">Purple</span>
+                  </label>
+                  <input class="color-input" type="radio" id="guitarColorSunburst" name="guitarColor" value="sunburst">
+                  <label class="color-option" for="guitarColorSunburst" data-guitar-color="sunburst" aria-label="Sunburst guitar" onclick="selectGuitarColor('sunburst')">
+                    <span class="color-swatch color-sunburst" aria-hidden="true"></span>
+                    <span class="color-name">Sunburst</span>
+                  </label>
+                </div>
+              </dd>
+            </div>
             <div class="spec-row">
               <dt>
                 <span class="inline-lang" data-lang="en">Width</span>
@@ -1014,7 +1148,8 @@ const FIXED_POSITION = Object.freeze({ x: 102, y: 486, angle: -90, size: 12 });
 const state = {
   text: "Your Name",
   fontId: "dancing",
-  guitarColor: "white"
+  guitarColor: "white",
+  printMethod: "printing"
 };
 
 /* ───────── DOM refs ───────── */
@@ -1025,6 +1160,10 @@ const $guitarPhoto = document.getElementById('guitarPhoto');
 const $colorPicker = document.querySelector('.guitar-color-picker');
 const $colorButtons = document.querySelectorAll('.color-option');
 const $colorInputs = document.querySelectorAll('input[name="guitarColor"]');
+const $methodPicker = document.querySelector('.method-picker');
+const $methodInputs = document.querySelectorAll('input[name="printMethod"]');
+const $selectedName = document.getElementById('selectedName');
+const $selectedFont = document.getElementById('selectedFont');
 const $npList   = document.getElementById('npList');
 const $npListLeft = document.getElementById('npListLeft');
 const $submit   = document.getElementById('submitBtn');
@@ -1032,6 +1171,7 @@ const $submit   = document.getElementById('submitBtn');
 /* ───────── Render functions ───────── */
 function getFont(id){ return FONTS.find(f => f.id === id) || FONTS[0]; }
 function getGuitarColor(id){ return GUITAR_COLORS.find(c => c.id === id) || GUITAR_COLORS[0]; }
+function getPrintMethod(id){ return id === "engraving" ? "Engraving Name" : "Printing"; }
 
 function renderSvg(){
   const f = getFont(state.fontId);
@@ -1042,6 +1182,13 @@ function renderSvg(){
   $svg.setAttribute('x', x);
   $svg.setAttribute('y', y);
   $svg.setAttribute('transform', `rotate(${angle} ${x} ${y})`);
+  $svg.classList.toggle('is-engraving', state.printMethod === "engraving");
+}
+
+function renderSelectedSummary(){
+  const f = getFont(state.fontId);
+  $selectedName.textContent = state.text || "Your Name";
+  $selectedFont.textContent = (f.label && f.label.en) || f.id;
 }
 
 function renderNpList(){
@@ -1071,6 +1218,7 @@ function renderNpList(){
       state.fontId = f.id;
       renderSvg();
       renderNpList();
+      renderSelectedSummary();
       updateSubmitLink();
       // Smooth scroll down to Step 02 / live preview
       const stage = document.querySelector('.guitar-stage');
@@ -1098,7 +1246,8 @@ function updateSubmitLink(){
   const f = getFont(state.fontId);
   const fontName = (f.label && f.label.en) || f.id;
   const color = getGuitarColor(state.guitarColor);
-  const msg = `Hi! I'd like to order a guitar name print.\n\nText: ${state.text}\nFont: ${fontName}\nGuitar color: ${color.label}`;
+  const methodName = getPrintMethod(state.printMethod);
+  const msg = `Hi! I'd like to order a guitar name print.\n\nText: ${state.text}\nFont: ${fontName}\nName finish: ${methodName}\nGuitar color: ${color.label}`;
   $submit.href = `https://wa.me/60183877972?text=${encodeURIComponent(msg)}`;
 }
 
@@ -1109,12 +1258,23 @@ function selectGuitarColor(colorId){
 }
 window.selectGuitarColor = selectGuitarColor;
 
+function selectPrintMethod(methodId){
+  state.printMethod = methodId === "engraving" ? "engraving" : "printing";
+  $methodInputs.forEach(input => {
+    input.checked = input.value === state.printMethod;
+  });
+  renderSvg();
+  updateSubmitLink();
+}
+window.selectPrintMethod = selectPrintMethod;
+
 /* ───────── Event wiring ───────── */
 $text.addEventListener('input', () => {
   state.text = $text.value;
   $count.textContent = `${state.text.length} / 35`;
   renderSvg();
   renderNpList();
+  renderSelectedSummary();
   updateSubmitLink();
 });
 
@@ -1126,10 +1286,19 @@ if ($colorPicker) {
   });
 }
 
+if ($methodPicker) {
+  $methodPicker.addEventListener('change', event => {
+    if (event.target.matches('input[name="printMethod"]')) {
+      selectPrintMethod(event.target.value || "printing");
+    }
+  });
+}
+
 /* ───────── Init ───────── */
 renderNpList();
 renderSvg();
 renderGuitarColor();
+renderSelectedSummary();
 updateSubmitLink();
 </script>
 </body>
