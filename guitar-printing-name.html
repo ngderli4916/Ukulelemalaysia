@@ -206,6 +206,67 @@ body{
   stroke:rgba(255,255,255,.4);
   stroke-width:.3;
 }
+.guitar-color-picker{
+  width:100%;
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin-top:18px;
+}
+.color-input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+.color-option{
+  min-width:0;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--ink);
+  border-radius:8px;
+  padding:8px 6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  cursor:pointer;
+  font:700 11px/1.2 'Inter',sans-serif;
+  transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.color-option:hover{border-color:var(--accent);transform:translateY(-1px)}
+.color-option.selected,
+.color-input:checked + .color-option{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-soft);
+}
+.color-input:focus-visible + .color-option{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+.color-swatch{
+  width:16px;height:16px;border-radius:50%;
+  border:1px solid rgba(17,24,39,.18);
+  flex:0 0 auto;
+}
+.color-white{background:#f8f8f4}
+.color-wood{background:linear-gradient(135deg,#f7d280,#fff0bf 46%,#c78732)}
+.color-blue{background:radial-gradient(circle at 50% 52%,#0f65e8 0 45%,#07112e 82%)}
+.color-black{background:linear-gradient(135deg,#040506,#2a302f)}
+.color-red{background:radial-gradient(circle at 50% 52%,#cf0f19 0 44%,#1a0c0c 82%)}
+.color-purple{background:radial-gradient(circle at 50% 52%,#5426cc 0 44%,#111018 82%)}
+.color-sunburst{background:radial-gradient(circle at 50% 52%,#ffb21a 0 42%,#7d120d 72%,#171111 88%)}
+.color-name{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+@media(max-width:480px){
+  .guitar-stage{padding:20px}
+  .guitar-color-picker{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .color-option{justify-content:flex-start;padding:9px 10px}
+}
 
 .controls{display:flex;flex-direction:column;gap:18px}
 .control-card{
@@ -659,7 +720,7 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
           <span class="inline-lang" data-lang="zh">实时预览</span>
         </div>
         <div class="guitar-photo-wrap">
-          <img class="guitar-photo" src="images/guitar-white.png" alt="Acoustic guitar" />
+          <img class="guitar-photo" id="guitarPhoto" src="images/guitar-white.png" alt="White acoustic guitar live preview" />
           <svg class="guitar-overlay" id="guitarOverlay" viewBox="0 0 305 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
             <!-- Engraved/Printed Text — fixed position, not adjustable (matches actual print spec) -->
             <text id="engravedText"
@@ -670,6 +731,43 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
                   font-size="12"
                   transform="rotate(-90 102 486)">Your Name</text>
           </svg>
+        </div>
+        <div class="guitar-color-picker" role="radiogroup" aria-label="Guitar color">
+          <input class="color-input" type="radio" id="guitarColorWhite" name="guitarColor" value="white" checked>
+          <label class="color-option selected" for="guitarColorWhite" data-guitar-color="white" aria-label="White guitar">
+            <span class="color-swatch color-white" aria-hidden="true"></span>
+            <span class="color-name">White</span>
+          </label>
+          <input class="color-input" type="radio" id="guitarColorWood" name="guitarColor" value="wood">
+          <label class="color-option" for="guitarColorWood" data-guitar-color="wood" aria-label="Wood guitar">
+            <span class="color-swatch color-wood" aria-hidden="true"></span>
+            <span class="color-name">Wood</span>
+          </label>
+          <input class="color-input" type="radio" id="guitarColorBlue" name="guitarColor" value="blue">
+          <label class="color-option" for="guitarColorBlue" data-guitar-color="blue" aria-label="Blue guitar">
+            <span class="color-swatch color-blue" aria-hidden="true"></span>
+            <span class="color-name">Blue</span>
+          </label>
+          <input class="color-input" type="radio" id="guitarColorBlack" name="guitarColor" value="black">
+          <label class="color-option" for="guitarColorBlack" data-guitar-color="black" aria-label="Black guitar">
+            <span class="color-swatch color-black" aria-hidden="true"></span>
+            <span class="color-name">Black</span>
+          </label>
+          <input class="color-input" type="radio" id="guitarColorRed" name="guitarColor" value="red">
+          <label class="color-option" for="guitarColorRed" data-guitar-color="red" aria-label="Red guitar">
+            <span class="color-swatch color-red" aria-hidden="true"></span>
+            <span class="color-name">Red</span>
+          </label>
+          <input class="color-input" type="radio" id="guitarColorPurple" name="guitarColor" value="purple">
+          <label class="color-option" for="guitarColorPurple" data-guitar-color="purple" aria-label="Purple guitar">
+            <span class="color-swatch color-purple" aria-hidden="true"></span>
+            <span class="color-name">Purple</span>
+          </label>
+          <input class="color-input" type="radio" id="guitarColorSunburst" name="guitarColor" value="sunburst">
+          <label class="color-option" for="guitarColorSunburst" data-guitar-color="sunburst" aria-label="Sunburst guitar">
+            <span class="color-swatch color-sunburst" aria-hidden="true"></span>
+            <span class="color-name">Sunburst</span>
+          </label>
         </div>
       </div>
 
@@ -901,23 +999,39 @@ const FONTS = [
   { id:"inter",    label:{en:"Inter",             ms:"Inter",             zh:"Inter"},              family:"'Inter', sans-serif" }
 ];
 
+const GUITAR_COLORS = [
+  { id:"white", label:"White", src:"images/guitar-white.png" },
+  { id:"wood", label:"Wood", src:"assets/images/guitars/woodguitar.png" },
+  { id:"blue", label:"Blue", src:"assets/images/guitars/blueguitar.png" },
+  { id:"black", label:"Black", src:"assets/images/guitars/blackguitar.png" },
+  { id:"red", label:"Red", src:"assets/images/guitars/redguitar.png" },
+  { id:"purple", label:"Purple", src:"assets/images/guitars/purpleguitar.png" },
+  { id:"sunburst", label:"Sunburst", src:"assets/images/guitars/sunburstguitar.png" }
+];
+
 /* ───────── State (position is FIXED — print spec is standardized) ───────── */
 const FIXED_POSITION = Object.freeze({ x: 102, y: 486, angle: -90, size: 12 });
 const state = {
   text: "Your Name",
-  fontId: "dancing"
+  fontId: "dancing",
+  guitarColor: "white"
 };
 
 /* ───────── DOM refs ───────── */
 const $text   = document.getElementById('textInput');
 const $count  = document.getElementById('charCount');
 const $svg    = document.getElementById('engravedText');
+const $guitarPhoto = document.getElementById('guitarPhoto');
+const $colorPicker = document.querySelector('.guitar-color-picker');
+const $colorButtons = document.querySelectorAll('.color-option');
+const $colorInputs = document.querySelectorAll('input[name="guitarColor"]');
 const $npList   = document.getElementById('npList');
 const $npListLeft = document.getElementById('npListLeft');
 const $submit   = document.getElementById('submitBtn');
 
 /* ───────── Render functions ───────── */
 function getFont(id){ return FONTS.find(f => f.id === id) || FONTS[0]; }
+function getGuitarColor(id){ return GUITAR_COLORS.find(c => c.id === id) || GUITAR_COLORS[0]; }
 
 function renderSvg(){
   const f = getFont(state.fontId);
@@ -967,12 +1081,33 @@ function renderNpList(){
   });
 }
 
+function renderGuitarColor(){
+  const color = getGuitarColor(state.guitarColor);
+  $guitarPhoto.src = color.src;
+  $guitarPhoto.alt = `${color.label} acoustic guitar live preview`;
+  $colorButtons.forEach(btn => {
+    const isSelected = btn.dataset.guitarColor === color.id;
+    btn.classList.toggle('selected', isSelected);
+  });
+  $colorInputs.forEach(input => {
+    input.checked = input.value === color.id;
+  });
+}
+
 function updateSubmitLink(){
   const f = getFont(state.fontId);
   const fontName = (f.label && f.label.en) || f.id;
-  const msg = `Hi! I'd like to order a guitar name print.\n\nText: ${state.text}\nFont: ${fontName}`;
+  const color = getGuitarColor(state.guitarColor);
+  const msg = `Hi! I'd like to order a guitar name print.\n\nText: ${state.text}\nFont: ${fontName}\nGuitar color: ${color.label}`;
   $submit.href = `https://wa.me/60183877972?text=${encodeURIComponent(msg)}`;
 }
+
+function selectGuitarColor(colorId){
+  state.guitarColor = getGuitarColor(colorId).id;
+  renderGuitarColor();
+  updateSubmitLink();
+}
+window.selectGuitarColor = selectGuitarColor;
 
 /* ───────── Event wiring ───────── */
 $text.addEventListener('input', () => {
@@ -983,9 +1118,18 @@ $text.addEventListener('input', () => {
   updateSubmitLink();
 });
 
+if ($colorPicker) {
+  $colorPicker.addEventListener('change', event => {
+    if (event.target.matches('input[name="guitarColor"]')) {
+      selectGuitarColor(event.target.value || "white");
+    }
+  });
+}
+
 /* ───────── Init ───────── */
 renderNpList();
 renderSvg();
+renderGuitarColor();
 updateSubmitLink();
 </script>
 </body>
