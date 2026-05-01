@@ -227,6 +227,31 @@
     transform: translateX(0);
   }
 
+  .copy-link {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    line-height: 1;
+    cursor: copy;
+    flex-shrink: 0;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  }
+
+  .copy-link:hover,
+  .copy-link.copied {
+    background: var(--accent-dim);
+    border-color: rgba(34,197,94,0.35);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+
   .page-num {
     font-family: var(--font-mono);
     font-size: 11px;
@@ -360,6 +385,7 @@
     .stat { min-width: 50%; }
     .title-block h1 { font-size: 22px; }
     .directory-heading h1 { font-size: 22px; }
+    .page-item { gap: 10px; padding: 12px; }
   }
 </style>
 </head>
@@ -385,7 +411,7 @@
   <div class="section-label">Ukulele</div>
   <div class="page-list">
 
-    <a class="page-item" href="https://www.ukulelemalaysia.com/">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/" data-copy-url="https://www.ukulelemalaysia.com/">
       <span class="page-num">01</span>
       <div class="page-icon">🏠</div>
       <div class="page-info">
@@ -396,10 +422,11 @@
         <span class="tag live">LIVE</span>
         <span class="tag">EN · BM · 中</span>
       </div>
+      <span class="copy-link" role="button" tabindex="0" aria-label="Copy link" title="Copy link">⧉</span>
       <span class="page-arrow">→</span>
     </a>
 
-    <a class="page-item" href="https://www.ukulelemalaysia.com/how-to-buy-ukulele">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/how-to-buy-ukulele" data-copy-url="https://www.ukulelemalaysia.com/how-to-buy-ukulele">
       <span class="page-num">02</span>
       <div class="page-icon">🛒</div>
       <div class="page-info">
@@ -410,10 +437,11 @@
         <span class="tag live">LIVE</span>
         <span class="tag">EN · BM · 中</span>
       </div>
+      <span class="copy-link" role="button" tabindex="0" aria-label="Copy link" title="Copy link">⧉</span>
       <span class="page-arrow">→</span>
     </a>
 
-    <a class="page-item" href="https://www.ukulelemalaysia.com/ukulele-out-of-tune">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/ukulele-out-of-tune" data-copy-url="https://www.ukulelemalaysia.com/ukulele-out-of-tune">
       <span class="page-num">03</span>
       <div class="page-icon">🎵</div>
       <div class="page-info">
@@ -424,10 +452,11 @@
         <span class="tag live">LIVE</span>
         <span class="tag">EN · BM · 中</span>
       </div>
+      <span class="copy-link" role="button" tabindex="0" aria-label="Copy link" title="Copy link">⧉</span>
       <span class="page-arrow">→</span>
     </a>
 
-    <a class="page-item" href="https://www.ukulelemalaysia.com/2330-series">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/2330-series" data-copy-url="https://www.ukulelemalaysia.com/2330-series">
       <span class="page-num">04</span>
       <div class="page-icon">🎸</div>
       <div class="page-info">
@@ -438,10 +467,11 @@
         <span class="tag live">LIVE</span>
         <span class="tag">EN · BM · 中</span>
       </div>
+      <span class="copy-link" role="button" tabindex="0" aria-label="Copy link" title="Copy link">⧉</span>
       <span class="page-arrow">→</span>
     </a>
 
-    <a class="page-item" href="https://www.ukulelemalaysia.com/ukunili">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/ukunili" data-copy-url="https://www.ukulelemalaysia.com/ukunili">
       <span class="page-num">05</span>
       <div class="page-icon">🔗</div>
       <div class="page-info">
@@ -452,10 +482,11 @@
         <span class="tag live">LIVE</span>
         <span class="tag">EN · BM · 中</span>
       </div>
+      <span class="copy-link" role="button" tabindex="0" aria-label="Copy link" title="Copy link">⧉</span>
       <span class="page-arrow">→</span>
     </a>
 
-    <a class="page-item" href="https://www.ukulelemalaysia.com/Ukunili-engrave">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/Ukunili-engrave" data-copy-url="https://www.ukulelemalaysia.com/Ukunili-engrave">
       <span class="page-num">06</span>
       <div class="page-icon">✏️</div>
       <div class="page-info">
@@ -466,10 +497,11 @@
         <span class="tag live">LIVE</span>
         <span class="tag">EN · BM · 中</span>
       </div>
+      <span class="copy-link" role="button" tabindex="0" aria-label="Copy link" title="Copy link">⧉</span>
       <span class="page-arrow">→</span>
     </a>
 
-    <a class="page-item" href="https://www.ukulelemalaysia.com/learning-center">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/learning-center" data-copy-url="https://www.ukulelemalaysia.com/learning-center">
       <span class="page-num">07</span>
       <div class="page-icon">🎓</div>
       <div class="page-info">
@@ -480,6 +512,7 @@
         <span class="tag live">LIVE</span>
         <span class="tag">中文</span>
       </div>
+      <span class="copy-link" role="button" tabindex="0" aria-label="Copy link" title="Copy link">⧉</span>
       <span class="page-arrow">→</span>
     </a>
 
@@ -489,7 +522,7 @@
   <div class="section-label">Guitar</div>
   <div class="page-list">
 
-    <a class="page-item" href="https://www.ukulelemalaysia.com/guitar-printing-name">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/guitar-printing-name" data-copy-url="https://www.ukulelemalaysia.com/guitar-printing-name">
       <span class="page-num">08</span>
       <div class="page-icon">🖨️</div>
       <div class="page-info">
@@ -500,6 +533,7 @@
         <span class="tag live">LIVE</span>
         <span class="tag">EN · BM · 中</span>
       </div>
+      <span class="copy-link" role="button" tabindex="0" aria-label="Copy link" title="Copy link">⧉</span>
       <span class="page-arrow">→</span>
     </a>
 
@@ -509,7 +543,7 @@
   <div class="section-label">Information</div>
   <div class="page-list">
 
-    <a class="page-item" href="https://www.ukulelemalaysia.com/payment-info">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/payment-info" data-copy-url="https://www.ukulelemalaysia.com/payment-info">
       <span class="page-num">09</span>
       <div class="page-icon">💳</div>
       <div class="page-info">
@@ -520,10 +554,11 @@
         <span class="tag live">LIVE</span>
         <span class="tag">EN · BM · 中</span>
       </div>
+      <span class="copy-link" role="button" tabindex="0" aria-label="Copy link" title="Copy link">⧉</span>
       <span class="page-arrow">→</span>
     </a>
 
-    <a class="page-item" href="https://www.ukulelemalaysia.com/list">
+    <a class="page-item" href="https://www.ukulelemalaysia.com/list" data-copy-url="https://www.ukulelemalaysia.com/list">
       <span class="page-num">10</span>
       <div class="page-icon">📋</div>
       <div class="page-info">
@@ -533,6 +568,7 @@
       <div class="page-tags">
         <span class="tag">INTERNAL</span>
       </div>
+      <span class="copy-link" role="button" tabindex="0" aria-label="Copy link" title="Copy link">⧉</span>
       <span class="page-arrow">→</span>
     </a>
 
@@ -577,6 +613,52 @@
   const ts = document.getElementById('ts');
   const d = new Date();
   ts.textContent = d.toLocaleDateString('en-MY', { day: '2-digit', month: 'short', year: 'numeric' });
+
+  async function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    const input = document.createElement('textarea');
+    input.value = text;
+    input.setAttribute('readonly', '');
+    input.style.position = 'fixed';
+    input.style.left = '-9999px';
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    input.remove();
+  }
+
+  document.querySelectorAll('.copy-link').forEach((button) => {
+
+    button.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        button.click();
+      }
+    });
+    button.addEventListener('click', async (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const item = button.closest('.page-item');
+      const url = item?.dataset.copyUrl || item?.href;
+      if (!url) return;
+      try {
+        await copyText(url);
+        const oldText = button.textContent;
+        button.textContent = '✓';
+        button.classList.add('copied');
+        setTimeout(() => {
+          button.textContent = oldText;
+          button.classList.remove('copied');
+        }, 1100);
+      } catch (error) {
+        button.textContent = '!';
+        setTimeout(() => { button.textContent = '⧉'; }, 1100);
+      }
+    });
+  });
 </script>
 
 </body>
