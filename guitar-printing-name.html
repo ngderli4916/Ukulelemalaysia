@@ -659,6 +659,50 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
   .guitar-stage{padding:20px}
   .control-card{padding:18px 20px}
 }
+
+/* Mobile configurator: keep the guitar body frozen while the settings scroll. */
+@media(max-width:880px){
+  .preview-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    height:calc(100vh - 74px);
+    max-height:780px;
+    min-height:620px;
+    overflow:hidden;
+  }
+  .guitar-stage{
+    position:relative;
+    flex:0 0 52vh;
+    min-height:330px;
+    max-height:430px;
+    overflow:hidden;
+  }
+  .guitar-photo-wrap{
+    height:100%;
+    max-width:100%;
+    aspect-ratio:auto;
+    overflow:hidden;
+  }
+  .guitar-photo,
+  .guitar-overlay{
+    top:-34%;
+    bottom:auto;
+    height:150%;
+  }
+  .zoom-name-preview{
+    top:37%;
+  }
+  .controls{
+    flex:1 1 auto;
+    min-height:0;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding-right:4px;
+    mask-image:linear-gradient(to bottom, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+    -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+  }
+}
 </style>
 </head>
 <body data-lang="en">
