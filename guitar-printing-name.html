@@ -229,34 +229,38 @@ body{
   pointer-events:none;
 }
 .zoom-name-preview.is-engraving{
-  color:#fff;
-  text-shadow:0 1px 2px rgba(31,26,20,.55),0 0 1px rgba(31,26,20,.85);
+  color:#1f1a14;
+  text-shadow:0 1px 0 rgba(255,255,255,.65);
 }
 .preview-download-btn{
-  border:1px solid rgba(255,255,255,.28);
-  background:rgba(255,255,255,.08);
-  color:#fff;
-  border-radius:999px;
-  padding:14px 24px;
+  border:1px solid var(--line-soft);
+  background:#fff;
+  color:var(--ink);
+  border-radius:10px;
+  padding:15px 20px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:8px;
-  font:800 12px/1 'Inter',sans-serif;
+  gap:10px;
+  font:800 13px/1 'Inter',sans-serif;
   cursor:pointer;
-  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+  text-decoration:none;
+  min-height:50px;
+  box-shadow:0 8px 20px rgba(31,26,20,.06);
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease;
 }
 .preview-download-btn:hover{
-  transform:translateY(-1px);
-  box-shadow:var(--shadow-sm);
-  background:rgba(255,255,255,.14);
+  transform:translateY(-2px);
+  border-color:var(--accent);
+  box-shadow:0 12px 28px rgba(31,26,20,.1);
+  background:#fffaf7;
 }
 .preview-download-btn:disabled{
   cursor:wait;
   opacity:.65;
   transform:none;
 }
-.preview-download-btn svg{width:16px;height:16px;flex:0 0 auto}
+.preview-download-btn svg{width:17px;height:17px;flex:0 0 auto}
 .guitar-color-picker{
   width:100%;
   position:relative;
@@ -446,7 +450,6 @@ body{
   font-size:14px;font-weight:500;color:var(--ink);
   text-align:right;
 }
-
 /* TEXT INPUT */
 .text-input{position:relative}
 .text-input input{
@@ -565,28 +568,67 @@ body{
 
 /* SUBMIT */
 .submit-card{
-  margin-top:8px;background:var(--ink);color:#fff;border-radius:var(--r);
-  padding:24px;text-align:center;
+  margin-top:8px;
+  background:linear-gradient(180deg,#fff 0%,#fff7ef 100%);
+  color:var(--ink);
+  border:2px solid rgba(189,73,13,.22);
+  border-radius:14px;
+  padding:26px;
+  box-shadow:0 20px 48px rgba(189,73,13,.15);
+  position:relative;
+  overflow:hidden;
 }
-.submit-note{font-size:13px;color:rgba(255,255,255,.7);margin-bottom:14px}
+.submit-card::before{
+  content:"";
+  position:absolute;
+  left:0;right:0;top:0;
+  height:5px;
+  background:linear-gradient(90deg,#25d366 0%,#25d366 36%,var(--accent) 36%,var(--accent) 100%);
+}
+.submit-note{
+  font-size:18px;
+  line-height:1.45;
+  color:var(--ink);
+  margin-bottom:18px;
+  text-align:center;
+  font-weight:850;
+  max-width:720px;
+  margin-left:auto;
+  margin-right:auto;
+}
 .submit-actions{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
+  display:grid;
+  grid-template-columns:1.35fr 1fr 1fr;
+  gap:12px;
 }
 .submit-btn{
-  display:inline-flex;align-items:center;gap:10px;
-  background:var(--accent);color:#fff;border:none;
-  padding:14px 32px;border-radius:999px;
-  font-family:'Inter',sans-serif;font-size:15px;font-weight:700;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  background:#25d366;
+  color:#083f20;
+  border:1px solid #1fbd5b;
+  padding:15px 20px;
+  border-radius:10px;
+  min-height:50px;
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  font-weight:850;
   cursor:pointer;text-decoration:none;
-  transition:background .2s,transform .15s;
+  box-shadow:0 12px 28px rgba(37,211,102,.26);
+  transition:background .2s,transform .15s,box-shadow .2s;
 }
-.submit-btn:hover{background:#a83509;transform:translateY(-2px)}
+.submit-btn:hover{
+  background:#20c45d;
+  transform:translateY(-2px);
+  box-shadow:0 16px 34px rgba(37,211,102,.34);
+}
 .submit-btn svg{width:18px;height:18px}
 @media(max-width:560px){
-  .submit-actions{flex-direction:column}
+  .submit-card{padding:22px 16px 18px}
+  .submit-note{font-size:16px}
+  .submit-actions{grid-template-columns:1fr}
   .submit-btn,.preview-download-btn{width:100%}
 }
 
@@ -1096,6 +1138,12 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
         <span class="inline-lang" data-lang="zh">满意你的设计？通过 WhatsApp 发送给我们即可。</span>
       </div>
       <div class="submit-actions">
+        <a class="submit-btn" id="submitBtn" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.940 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+          <span class="inline-lang" data-lang="en">Send design via WhatsApp</span>
+          <span class="inline-lang" data-lang="ms">Hantar reka bentuk via WhatsApp</span>
+          <span class="inline-lang" data-lang="zh">通过 WhatsApp 发送设计</span>
+        </a>
         <button class="preview-download-btn" id="sharePreviewBtn" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98"/><path d="M15.41 6.51L8.59 10.49"/></svg>
           <span class="inline-lang" data-lang="en">Share Preview</span>
@@ -1108,12 +1156,6 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
           <span class="inline-lang" data-lang="ms">Muat Turun Pratonton</span>
           <span class="inline-lang" data-lang="zh">下载预览图</span>
         </button>
-        <a class="submit-btn" id="submitBtn" href="#" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.940 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
-          <span class="inline-lang" data-lang="en">Send design via WhatsApp</span>
-          <span class="inline-lang" data-lang="ms">Hantar reka bentuk via WhatsApp</span>
-          <span class="inline-lang" data-lang="zh">通过 WhatsApp 发送设计</span>
-        </a>
       </div>
     </div>
   </div>
@@ -1255,8 +1297,18 @@ const GUITAR_COLORS = [
   { id:"sunburst", label:"Sunburst", src:"assets/images/guitars/sunburstguitar.png" }
 ];
 
-/* ───────── State (position is FIXED — print spec is standardized) ───────── */
-const FIXED_POSITION = Object.freeze({ x: 102, y: 486, angle: -90, size: 12, engravingSize: 16 });
+/* ───────── State (per-color positions match each guitar product photo) ───────── */
+const DEFAULT_POSITION = Object.freeze({ x: 102, y: 486, angle: -90, size: 12, engravingSize: 16 });
+const POSITION_BY_COLOR = GUITAR_COLORS.reduce((positions, color) => {
+  positions[color.id] = { ...DEFAULT_POSITION };
+  return positions;
+}, {});
+Object.assign(POSITION_BY_COLOR, {
+  wood: { ...DEFAULT_POSITION, y: 485 },
+  red: { ...DEFAULT_POSITION, y: 463 },
+  purple: { ...DEFAULT_POSITION, y: 471 },
+  sunburst: { ...DEFAULT_POSITION, y: 494 }
+});
 const state = {
   text: "Your Name",
   fontId: "dancing",
@@ -1287,10 +1339,11 @@ const $sharePreview = document.getElementById('sharePreviewBtn');
 function getFont(id){ return FONTS.find(f => f.id === id) || FONTS[0]; }
 function getGuitarColor(id){ return GUITAR_COLORS.find(c => c.id === id) || GUITAR_COLORS[0]; }
 function getPrintMethod(id){ return id === "engraving" ? "Engraving Name" : "Printing"; }
+function getActivePosition(){ return POSITION_BY_COLOR[state.guitarColor] || DEFAULT_POSITION; }
 
 function renderSvg(){
   const f = getFont(state.fontId);
-  const { x, y, angle, size, engravingSize } = FIXED_POSITION;
+  const { x, y, angle, size, engravingSize } = getActivePosition();
   const previewText = state.text || "Your Name";
   const displaySize = state.printMethod === "engraving" ? engravingSize : size;
   $svg.textContent = state.text || "Your Name";
@@ -1375,6 +1428,7 @@ function updateSubmitLink(){
 function selectGuitarColor(colorId){
   state.guitarColor = getGuitarColor(colorId).id;
   renderGuitarColor();
+  renderSvg();
   updateSubmitLink();
 }
 window.selectGuitarColor = selectGuitarColor;
@@ -1434,8 +1488,9 @@ async function createPreviewCanvas(){
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(guitar, 0, 0, canvas.width, canvas.height);
 
-  drawRotatedText(ctx, text, FIXED_POSITION.x * scale, FIXED_POSITION.y * scale, FIXED_POSITION.angle, {
-    font: `700 ${isEngraving ? FIXED_POSITION.engravingSize * scale : FIXED_POSITION.size * scale}px ${font.family}`,
+  const position = getActivePosition();
+  drawRotatedText(ctx, text, position.x * scale, position.y * scale, position.angle, {
+    font: `700 ${isEngraving ? position.engravingSize * scale : position.size * scale}px ${font.family}`,
     fillStyle: isEngraving ? '#ffffff' : '#1f1a14',
     strokeStyle: isEngraving ? 'rgba(31,26,20,.55)' : 'rgba(255,255,255,.4)',
     strokeWidth: isEngraving ? 1.35 : .9
