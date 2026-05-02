@@ -1096,6 +1096,12 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
         <span class="inline-lang" data-lang="zh">满意你的设计？通过 WhatsApp 发送给我们即可。</span>
       </div>
       <div class="submit-actions">
+        <button class="preview-download-btn" id="sharePreviewBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98"/><path d="M15.41 6.51L8.59 10.49"/></svg>
+          <span class="inline-lang" data-lang="en">Share Preview</span>
+          <span class="inline-lang" data-lang="ms">Kongsi Pratonton</span>
+          <span class="inline-lang" data-lang="zh">分享预览图</span>
+        </button>
         <button class="preview-download-btn" id="downloadPreviewBtn" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
           <span class="inline-lang" data-lang="en">Download Preview</span>
@@ -1275,6 +1281,7 @@ const $npList   = document.getElementById('npList');
 const $npListLeft = document.getElementById('npListLeft');
 const $submit   = document.getElementById('submitBtn');
 const $downloadPreview = document.getElementById('downloadPreviewBtn');
+const $sharePreview = document.getElementById('sharePreviewBtn');
 
 /* ───────── Render functions ───────── */
 function getFont(id){ return FONTS.find(f => f.id === id) || FONTS[0]; }
@@ -1410,6 +1417,50 @@ function drawRotatedText(ctx, text, x, y, angle, options){
   ctx.restore();
 }
 
+async function createPreviewCanvas(){
+  if (document.fonts && document.fonts.ready) await document.fonts.ready;
+  const canvas = document.createElement('canvas');
+  canvas.width = 915;
+  canvas.height = 2400;
+  const ctx = canvas.getContext('2d');
+  const color = getGuitarColor(state.guitarColor);
+  const guitar = await loadCanvasImage(color.src);
+  const text = state.text || 'Your Name';
+  const font = getFont(state.fontId);
+  const isEngraving = state.printMethod === 'engraving';
+  const scale = canvas.width / 305;
+
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(guitar, 0, 0, canvas.width, canvas.height);
+
+  drawRotatedText(ctx, text, FIXED_POSITION.x * scale, FIXED_POSITION.y * scale, FIXED_POSITION.angle, {
+    font: `700 ${isEngraving ? FIXED_POSITION.engravingSize * scale : FIXED_POSITION.size * scale}px ${font.family}`,
+    fillStyle: isEngraving ? '#ffffff' : '#1f1a14',
+    strokeStyle: isEngraving ? 'rgba(31,26,20,.55)' : 'rgba(255,255,255,.4)',
+    strokeWidth: isEngraving ? 1.35 : .9
+  });
+
+  drawRotatedText(ctx, text, 222 * scale, 288 * scale, -90, {
+    font: `700 ${40 * scale}px ${font.family}`,
+    fillStyle: isEngraving ? '#ffffff' : '#1f1a14',
+    strokeStyle: isEngraving ? 'rgba(31,26,20,.65)' : 'rgba(255,255,255,.72)',
+    strokeWidth: isEngraving ? 3.5 : 2
+  });
+
+  return canvas;
+}
+
+function getPreviewFilename(){
+  const text = state.text || 'Your Name';
+  const safeName = text.trim().replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase() || 'preview';
+  return `guitar-name-preview-${safeName}.png`;
+}
+
+function canvasToBlob(canvas){
+  return new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+}
+
 async function downloadLivePreview(){
   if (!$downloadPreview) return;
   const previousLabel = $downloadPreview.innerHTML;
@@ -1417,39 +1468,9 @@ async function downloadLivePreview(){
   $downloadPreview.textContent = 'Preparing...';
 
   try {
-    if (document.fonts && document.fonts.ready) await document.fonts.ready;
-    const canvas = document.createElement('canvas');
-    canvas.width = 915;
-    canvas.height = 2400;
-    const ctx = canvas.getContext('2d');
-    const color = getGuitarColor(state.guitarColor);
-    const guitar = await loadCanvasImage(color.src);
-    const text = state.text || 'Your Name';
-    const font = getFont(state.fontId);
-    const isEngraving = state.printMethod === 'engraving';
-    const scale = canvas.width / 305;
-
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(guitar, 0, 0, canvas.width, canvas.height);
-
-    drawRotatedText(ctx, text, FIXED_POSITION.x * scale, FIXED_POSITION.y * scale, FIXED_POSITION.angle, {
-      font: `700 ${isEngraving ? FIXED_POSITION.engravingSize * scale : FIXED_POSITION.size * scale}px ${font.family}`,
-      fillStyle: isEngraving ? '#ffffff' : '#1f1a14',
-      strokeStyle: isEngraving ? 'rgba(31,26,20,.55)' : 'rgba(255,255,255,.4)',
-      strokeWidth: isEngraving ? 1.35 : .9
-    });
-
-    drawRotatedText(ctx, text, 222 * scale, 288 * scale, -90, {
-      font: `700 ${40 * scale}px ${font.family}`,
-      fillStyle: isEngraving ? '#ffffff' : '#1f1a14',
-      strokeStyle: isEngraving ? 'rgba(31,26,20,.65)' : 'rgba(255,255,255,.72)',
-      strokeWidth: isEngraving ? 3.5 : 2
-    });
-
+    const canvas = await createPreviewCanvas();
     const link = document.createElement('a');
-    const safeName = text.trim().replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase() || 'preview';
-    link.download = `guitar-name-preview-${safeName}.png`;
+    link.download = getPreviewFilename();
     link.href = canvas.toDataURL('image/png');
     document.body.appendChild(link);
     link.click();
@@ -1462,6 +1483,45 @@ async function downloadLivePreview(){
   }
 }
 window.downloadLivePreview = downloadLivePreview;
+
+async function shareLivePreview(){
+  if (!$sharePreview) return;
+  const previousLabel = $sharePreview.innerHTML;
+  $sharePreview.disabled = true;
+  $sharePreview.textContent = 'Preparing...';
+
+  try {
+    const canvas = await createPreviewCanvas();
+    const blob = await canvasToBlob(canvas);
+    if (!blob) throw new Error('Preview image could not be created.');
+
+    const file = new File([blob], getPreviewFilename(), { type: 'image/png' });
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({
+        title: 'Guitar name preview',
+        text: 'Guitar name preview from Ukulele Malaysia',
+        files: [file]
+      });
+    } else {
+      const link = document.createElement('a');
+      const objectUrl = URL.createObjectURL(blob);
+      link.download = file.name;
+      link.href = objectUrl;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(objectUrl);
+    }
+  } catch (error) {
+    if (error && error.name !== 'AbortError') {
+      alert('Sorry, the preview image could not be shared. Please try Download Preview instead.');
+    }
+  } finally {
+    $sharePreview.disabled = false;
+    $sharePreview.innerHTML = previousLabel;
+  }
+}
+window.shareLivePreview = shareLivePreview;
 
 /* ───────── Event wiring ───────── */
 $text.addEventListener('input', () => {
@@ -1492,6 +1552,10 @@ if ($methodPicker) {
 
 if ($downloadPreview) {
   $downloadPreview.addEventListener('click', downloadLivePreview);
+}
+
+if ($sharePreview) {
+  $sharePreview.addEventListener('click', shareLivePreview);
 }
 
 /* ───────── Init ───────── */
