@@ -659,6 +659,105 @@ body{
 .contact-label{font-size:12px;color:var(--ink-mute);font-weight:500;letter-spacing:.02em}
 .contact-value{font-size:14px;font-weight:600;color:var(--ink);margin-top:1px}
 
+/* BUY GUITAR */
+.buy-guitar-section{
+  padding:16px 0 64px;
+}
+.buy-guitar-card{
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(220px,.65fr);
+  gap:28px;
+  align-items:center;
+  background:#fff;
+  border:1px solid var(--line-soft);
+  border-radius:18px;
+  padding:28px;
+  box-shadow:0 18px 44px rgba(31,26,20,.08);
+}
+.buy-guitar-copy{
+  min-width:0;
+}
+.buy-guitar-eyebrow{
+  font-family:'Space Mono',monospace;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.12em;
+  color:var(--accent);
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.buy-guitar-card h2{
+  font-family:'Fraunces',serif;
+  font-size:clamp(26px,4vw,40px);
+  line-height:1.08;
+  letter-spacing:-.01em;
+  color:var(--ink);
+  margin-bottom:12px;
+}
+.buy-guitar-card h2 em{
+  color:var(--accent);
+  font-style:italic;
+}
+.buy-guitar-card p{
+  color:var(--ink-soft);
+  font-size:15px;
+  line-height:1.65;
+  max-width:560px;
+  margin-bottom:20px;
+}
+.buy-guitar-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  background:var(--ink);
+  color:#fff;
+  border-radius:999px;
+  padding:14px 24px;
+  font-size:14px;
+  font-weight:850;
+  text-decoration:none;
+  box-shadow:0 12px 28px rgba(31,26,20,.18);
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.buy-guitar-btn:hover{
+  transform:translateY(-2px);
+  background:var(--accent);
+  box-shadow:0 16px 34px rgba(194,65,12,.22);
+}
+.buy-guitar-btn svg{
+  width:17px;
+  height:17px;
+}
+.buy-guitar-visual{
+  min-height:260px;
+  border-radius:14px;
+  background:linear-gradient(180deg,#fff8f4 0%,#f6eee8 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.buy-guitar-visual img{
+  width:min(165px,54%);
+  max-height:330px;
+  object-fit:contain;
+  filter:drop-shadow(0 20px 24px rgba(31,26,20,.16));
+}
+@media(max-width:760px){
+  .buy-guitar-section{padding:8px 0 48px}
+  .buy-guitar-card{
+    grid-template-columns:1fr;
+    padding:22px;
+  }
+  .buy-guitar-visual{
+    min-height:220px;
+    order:-1;
+  }
+  .buy-guitar-visual img{width:min(150px,50%)}
+  .buy-guitar-btn{width:100%}
+}
+
 /* CTA */
 .cta-section{padding:64px 0 80px}
 .cta-card{
@@ -1162,6 +1261,40 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
 </section>
 
 <hr class="divider">
+
+<!-- BUY GUITAR -->
+<section class="buy-guitar-section">
+  <div class="container-narrow">
+    <div class="buy-guitar-card reveal">
+      <div class="buy-guitar-copy">
+        <p class="buy-guitar-eyebrow">
+          <span class="inline-lang" data-lang="en">Need a guitar first?</span>
+          <span class="inline-lang" data-lang="ms">Perlu gitar dahulu?</span>
+          <span class="inline-lang" data-lang="zh">还没有吉他？</span>
+        </p>
+        <h2>
+          <span class="inline-lang" data-lang="en">Buy 1 guitar, get <em>5 free gifts</em></span>
+          <span class="inline-lang" data-lang="ms">Beli 1 gitar, dapat <em>5 hadiah percuma</em></span>
+          <span class="inline-lang" data-lang="zh">买 1 把吉他，送 <em>5 样好礼</em></span>
+        </h2>
+        <p>
+          <span class="inline-lang" data-lang="en">Includes strings set, strap, capo, chord chart and free name printing. Choose your acoustic guitar, then send us your name design.</span>
+          <span class="inline-lang" data-lang="ms">Termasuk set tali, strap, capo, carta chord dan cetakan nama percuma. Pilih gitar akustik anda, kemudian hantar reka bentuk nama kepada kami.</span>
+          <span class="inline-lang" data-lang="zh">包含弦线套装、背带、capo、和弦表，以及免费名字印刷。先选择你的民谣吉他，再把名字设计发给我们。</span>
+        </p>
+        <a class="buy-guitar-btn" href="https://www.ukuniliukulele.com/collections/acoustic-guitar" target="_blank" rel="noopener">
+          <span class="inline-lang" data-lang="en">Buy Acoustic Guitar</span>
+          <span class="inline-lang" data-lang="ms">Beli Gitar Akustik</span>
+          <span class="inline-lang" data-lang="zh">购买民谣吉他</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="buy-guitar-visual" aria-hidden="true">
+        <img src="assets/images/guitars/woodguitar.png" alt="">
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- SECTION 03 - HELP / CONTACT -->
 <section class="section">
