@@ -17,13 +17,13 @@
 <meta property="og:title" content="Guitar Name Printing Malaysia | Custom Guitar Text Preview" />
 <meta property="og:description" content="Personalise your guitar with custom name printing in Malaysia. Preview your text, choose from 12 fonts and send your design by WhatsApp." />
 <meta property="og:url" content="https://www.ukulelemalaysia.com/guitar-printing-name" />
-<meta property="og:image" content="https://www.ukulelemalaysia.com/assets/images/ukulele-malaysia-logo.png" />
+<meta property="og:image" content="https://www.ukulelemalaysia.com/assets/images/guitar-hero-printing.jpg" />
 <meta property="og:locale" content="en_MY" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Guitar Name Printing Malaysia | Custom Guitar Text Preview" />
 <meta name="twitter:description" content="Personalise your guitar with custom name printing in Malaysia. Preview your text, choose from 12 fonts and send your design by WhatsApp." />
-<meta name="twitter:image" content="https://www.ukulelemalaysia.com/assets/images/ukulele-malaysia-logo.png" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","@id":"https://www.ukulelemalaysia.com/guitar-printing-name#webpage","url":"https://www.ukulelemalaysia.com/guitar-printing-name","name":"Guitar Name Printing Malaysia | Custom Guitar Text Preview","description":"Personalise your guitar with custom name printing in Malaysia. Preview your text, choose from 12 fonts and send your design by WhatsApp.","isPartOf":{"@id":"https://www.ukulelemalaysia.com/#website"},"publisher":{"@id":"https://www.ukulelemalaysia.com/#organization"},"image":"https://www.ukulelemalaysia.com/assets/images/ukulele-malaysia-logo.png","inLanguage":["en-MY","ms-MY","zh-CN"],"brand":{"@type":"Brand","name":"Ukulele Malaysia"}}</script>
+<meta name="twitter:image" content="https://www.ukulelemalaysia.com/assets/images/guitar-hero-printing.jpg" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","@id":"https://www.ukulelemalaysia.com/guitar-printing-name#webpage","url":"https://www.ukulelemalaysia.com/guitar-printing-name","name":"Guitar Name Printing Malaysia | Custom Guitar Text Preview","description":"Personalise your guitar with custom name printing in Malaysia. Preview your text, choose from 12 fonts and send your design by WhatsApp.","isPartOf":{"@id":"https://www.ukulelemalaysia.com/#website"},"publisher":{"@id":"https://www.ukulelemalaysia.com/#organization"},"image":"https://www.ukulelemalaysia.com/assets/images/guitar-hero-printing.jpg","inLanguage":["en-MY","ms-MY","zh-CN"],"brand":{"@type":"Brand","name":"Ukulele Malaysia"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,600;9..144,0,700;9..144,1,400;9..144,1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Abril+Fatface&family=Chicle&family=Covered+By+Your+Grace&family=Damion&family=Mouse+Memoirs&family=Permanent+Marker&family=DM+Serif+Display&family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
@@ -91,36 +91,86 @@ body{
 .container-narrow{max-width:880px;margin:0 auto;padding:0 24px}
 
 /* HERO */
-.hero{padding:80px 0 56px;text-align:center;position:relative}
+.hero{
+  min-height:calc(100vh - 60px);
+  padding:88px 0 64px;
+  text-align:left;
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  background:var(--ink);
+}
+.hero-media{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+.hero-media img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  opacity:0;
+  transition:opacity .65s ease;
+}
+.hero-media img.active{
+  opacity:1;
+}
 .hero::before{
-  content:'';position:absolute;top:40px;left:50%;transform:translateX(-50%);
-  width:520px;height:520px;max-width:100%;
-  background:radial-gradient(circle,var(--accent-soft) 0%,transparent 65%);
-  opacity:.5;pointer-events:none;z-index:-1;
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(31,26,20,.86) 0%,rgba(31,26,20,.58) 34%,rgba(31,26,20,.18) 62%,rgba(31,26,20,.34) 100%),
+    linear-gradient(180deg,rgba(31,26,20,.38) 0%,rgba(31,26,20,.18) 48%,rgba(31,26,20,.54) 100%),
+    radial-gradient(circle at 50% 40%,rgba(194,65,12,.16),transparent 54%);
+  z-index:1;
+  pointer-events:none;
+}
+.hero .container-narrow{
+  position:relative;
+  z-index:2;
+  max-width:1080px;
+}
+.hero-copy{
+  max-width:470px;
 }
 .eyebrow{
   display:inline-flex;align-items:center;gap:8px;
-  background:var(--bg-warm);border:1px solid var(--line);
+  background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.55);
   padding:6px 16px;border-radius:999px;
   font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   color:var(--accent);margin-bottom:24px;
+  box-shadow:0 10px 30px rgba(31,26,20,.18);
 }
 .eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .hero h1{
   font-family:'Fraunces',serif;
-  font-size:clamp(36px,7vw,68px);
-  font-weight:700;line-height:1.05;color:var(--ink);
+  font-size:clamp(34px,5.4vw,58px);
+  font-weight:700;line-height:1.05;color:#fff;
   margin-bottom:20px;letter-spacing:-.02em;
+  text-shadow:0 4px 24px rgba(31,26,20,.45);
 }
-.hero h1 em{font-style:italic;color:var(--accent);font-weight:600}
-.hero-lead{font-size:17px;color:var(--ink-soft);max-width:540px;margin:0 auto 36px;line-height:1.6}
-.specs-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.hero h1 em{font-style:italic;color:#ffb17f;font-weight:600}
+.hero-lead{
+  font-size:18px;
+  color:rgba(255,255,255,.88);
+  max-width:440px;
+  margin:0 0 36px;
+  line-height:1.65;
+  text-shadow:0 2px 14px rgba(31,26,20,.45);
+}
+.specs-row{display:flex;justify-content:flex-start;gap:10px;flex-wrap:wrap}
 .spec-chip{
-  background:var(--card);border:1px solid var(--line);
+  background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.62);
   padding:9px 18px;border-radius:999px;
   font-size:13px;font-weight:500;color:var(--ink-soft);
-  box-shadow:var(--shadow-sm);font-family:'Space Mono',monospace;
+  box-shadow:0 10px 26px rgba(31,26,20,.16);font-family:'Space Mono',monospace;
 }
 .spec-chip strong{color:var(--accent);font-family:'Inter',sans-serif;font-weight:600;margin-right:4px}
 
@@ -827,7 +877,19 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
 /* RESPONSIVE */
 @media(max-width:600px){
   .container,.container-narrow{padding:0 18px}
-  .hero{padding:56px 0 40px}
+  .hero{min-height:calc(94vh - 60px);padding:64px 0 44px}
+  .hero-media img{object-position:center top}
+  .hero{text-align:center}
+  .hero::before{
+    background:
+      linear-gradient(180deg,rgba(31,26,20,.72) 0%,rgba(31,26,20,.38) 48%,rgba(31,26,20,.8) 100%),
+      radial-gradient(circle at 50% 40%,rgba(194,65,12,.16),transparent 54%);
+  }
+  .hero-copy{max-width:100%}
+  .hero h1{font-size:clamp(34px,11vw,48px)}
+  .hero-lead{margin:0 auto 32px}
+  .specs-row{justify-content:center}
+  .hero-lead{font-size:16px}
   .section{padding:48px 0}
   .cta-section{padding:48px 0 64px}
   .cta-card{padding:40px 26px}
@@ -890,30 +952,30 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
 </header>
 
 <section class="hero">
+  <picture class="hero-media" aria-hidden="true">
+    <img class="active" id="heroImagePrinting" src="assets/images/guitar-hero-printing.jpg" alt="" width="1600" height="1202" fetchpriority="high">
+    <img id="heroImageEngraving" src="assets/images/guitar-hero-engraving.jpg" alt="" width="1600" height="1202">
+  </picture>
   <div class="container-narrow">
-    <div class="eyebrow"><span class="eyebrow-dot"></span>
-      <span class="inline-lang" data-lang="en">Guitar Personalisation Service</span>
-      <span class="inline-lang" data-lang="ms">Perkhidmatan Peribadikan Gitar</span>
-      <span class="inline-lang" data-lang="zh">吉他个性化印刷服务</span>
-    </div>
+    <div class="hero-copy">
+      <h1>
+        <span class="inline-lang" data-lang="en">Customize <em>Name</em><br>On Guitar</span>
+        <span class="inline-lang" data-lang="ms">Sesuaikan <em>Nama</em><br>Pada Gitar</span>
+        <span class="inline-lang" data-lang="zh">定制吉他上的<br><em>专属名字</em></span>
+      </h1>
 
-    <h1>
-      <span class="inline-lang" data-lang="en">Print Your <em>Name</em><br>on Your Guitar</span>
-      <span class="inline-lang" data-lang="ms">Cetak <em>Nama</em><br>pada Gitar Anda</span>
-      <span class="inline-lang" data-lang="zh">在吉他上<br><em>印上你的名字</em></span>
-    </h1>
+      <p class="hero-lead">
+        <span class="inline-lang" data-lang="en">Engrave / Print your Name on Guitar make it special</span>
+        <span class="inline-lang" data-lang="ms">Ukir / cetak nama pada gitar anda supaya lebih istimewa</span>
+        <span class="inline-lang" data-lang="zh">把名字雕刻或印刷在吉他上，让它更特别</span>
+      </p>
 
-    <p class="hero-lead">
-      <span class="inline-lang" data-lang="en">Personalise your guitar with a custom text print. Live preview, 12 fonts to choose from.</span>
-      <span class="inline-lang" data-lang="ms">Peribadikan gitar anda dengan cetakan teks tersuai. Pratonton langsung, 12 fon untuk dipilih.</span>
-      <span class="inline-lang" data-lang="zh">为你的吉他定制专属文字印刷。实时预览，12 种字体任选。</span>
-    </p>
-
-    <div class="specs-row">
-      <div class="spec-chip"><strong>W</strong>1.2 cm</div>
-      <div class="spec-chip"><strong>L</strong>15 cm</div>
-      <div class="spec-chip"><strong>Limit</strong>1 row</div>
-      <div class="spec-chip"><strong>+</strong>Icon / Logo</div>
+      <div class="specs-row">
+        <div class="spec-chip"><strong>W</strong>1.2 cm</div>
+        <div class="spec-chip"><strong>L</strong>15 cm</div>
+        <div class="spec-chip"><strong>Limit</strong>1 row</div>
+        <div class="spec-chip"><strong>+</strong>Icon / Logo</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1430,6 +1492,10 @@ const GUITAR_COLORS = [
   { id:"sunburst", label:"Sunburst", src:"assets/images/guitars/sunburstguitar.png" }
 ];
 
+const HERO_SLIDES = ["printing", "engraving"];
+let heroSlideIndex = 0;
+let heroAutoplayTimer = null;
+
 /* ───────── State (per-color positions match each guitar product photo) ───────── */
 const DEFAULT_POSITION = Object.freeze({ x: 102, y: 486, angle: -90, size: 12, engravingSize: 16 });
 const POSITION_BY_COLOR = GUITAR_COLORS.reduce((positions, color) => {
@@ -1452,6 +1518,10 @@ const state = {
 /* ───────── DOM refs ───────── */
 const $text   = document.getElementById('textInput');
 const $count  = document.getElementById('charCount');
+const $heroImages = {
+  printing: document.getElementById('heroImagePrinting'),
+  engraving: document.getElementById('heroImageEngraving')
+};
 const $svg    = document.getElementById('engravedText');
 const $zoomNamePreview = document.getElementById('zoomNamePreview');
 const $guitarPhoto = document.getElementById('guitarPhoto');
@@ -1473,6 +1543,21 @@ function getFont(id){ return FONTS.find(f => f.id === id) || FONTS[0]; }
 function getGuitarColor(id){ return GUITAR_COLORS.find(c => c.id === id) || GUITAR_COLORS[0]; }
 function getPrintMethod(id){ return id === "engraving" ? "Engraving Name" : "Printing"; }
 function getActivePosition(){ return POSITION_BY_COLOR[state.guitarColor] || DEFAULT_POSITION; }
+
+function renderHeroImage(method = state.printMethod){
+  const activeMethod = method === "engraving" ? "engraving" : "printing";
+  Object.entries($heroImages).forEach(([key, img]) => {
+    if (img) img.classList.toggle('active', key === activeMethod);
+  });
+}
+
+function startHeroAutoplay(){
+  renderHeroImage(HERO_SLIDES[heroSlideIndex]);
+  heroAutoplayTimer = window.setInterval(() => {
+    heroSlideIndex = (heroSlideIndex + 1) % HERO_SLIDES.length;
+    renderHeroImage(HERO_SLIDES[heroSlideIndex]);
+  }, 2000);
+}
 
 function renderSvg(){
   const f = getFont(state.fontId);
@@ -1749,6 +1834,7 @@ if ($sharePreview) {
 /* ───────── Init ───────── */
 renderNpList();
 renderSvg();
+startHeroAutoplay();
 renderGuitarColor();
 renderSelectedSummary();
 selectPrintMethod(state.printMethod);
