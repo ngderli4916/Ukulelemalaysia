@@ -135,9 +135,12 @@ body{
   position:relative;
   z-index:2;
   max-width:1080px;
+  width:100%;
 }
 .hero-copy{
-  max-width:470px;
+  max-width:430px;
+  margin-left:auto;
+  margin-right:24px;
 }
 .eyebrow{
   display:inline-flex;align-items:center;gap:8px;
@@ -165,7 +168,17 @@ body{
   line-height:1.65;
   text-shadow:0 2px 14px rgba(31,26,20,.45);
 }
-.specs-row{display:flex;justify-content:flex-start;gap:10px;flex-wrap:wrap}
+.specs-row{
+  position:absolute;
+  right:clamp(18px,5vw,72px);
+  bottom:clamp(18px,5vw,52px);
+  z-index:2;
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  flex-wrap:wrap;
+  max-width:min(520px,46vw);
+}
 .spec-chip{
   background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.62);
   padding:9px 18px;border-radius:999px;
@@ -886,9 +899,17 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
       radial-gradient(circle at 50% 40%,rgba(194,65,12,.16),transparent 54%);
   }
   .hero-copy{max-width:100%}
+  .hero-copy{margin:0 auto}
   .hero h1{font-size:clamp(34px,11vw,48px)}
   .hero-lead{margin:0 auto 32px}
-  .specs-row{justify-content:center}
+  .specs-row{
+    position:absolute;
+    left:18px;
+    right:18px;
+    bottom:18px;
+    max-width:none;
+    justify-content:center;
+  }
   .hero-lead{font-size:16px}
   .section{padding:48px 0}
   .cta-section{padding:48px 0 64px}
@@ -969,14 +990,13 @@ body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
         <span class="inline-lang" data-lang="ms">Ukir / cetak nama pada gitar anda supaya lebih istimewa</span>
         <span class="inline-lang" data-lang="zh">把名字雕刻或印刷在吉他上，让它更特别</span>
       </p>
-
-      <div class="specs-row">
-        <div class="spec-chip"><strong>W</strong>1.2 cm</div>
-        <div class="spec-chip"><strong>L</strong>15 cm</div>
-        <div class="spec-chip"><strong>Limit</strong>1 row</div>
-        <div class="spec-chip"><strong>+</strong>Icon / Logo</div>
-      </div>
     </div>
+  </div>
+  <div class="specs-row" aria-label="Print size and options">
+    <div class="spec-chip"><strong>W</strong>1.2 cm</div>
+    <div class="spec-chip"><strong>L</strong>15 cm</div>
+    <div class="spec-chip"><strong>Limit</strong>1 row</div>
+    <div class="spec-chip"><strong>+</strong>Icon / Logo</div>
   </div>
 </section>
 
