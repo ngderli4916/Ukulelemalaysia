@@ -1736,9 +1736,9 @@ async function createPreviewCanvas(){
 
   drawRotatedText(ctx, text, 222 * scale, 288 * scale, -90, {
     font: `700 ${40 * scale}px ${font.family}`,
-    fillStyle: isEngraving ? '#ffffff' : '#1f1a14',
-    strokeStyle: isEngraving ? 'rgba(31,26,20,.65)' : 'rgba(255,255,255,.72)',
-    strokeWidth: isEngraving ? 3.5 : 2
+    fillStyle: '#1f1a14',
+    strokeStyle: 'rgba(255,255,255,.72)',
+    strokeWidth: 2
   });
 
   return canvas;
