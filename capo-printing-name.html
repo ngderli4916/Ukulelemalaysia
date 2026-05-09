@@ -139,7 +139,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-
 
 .preview-canvas{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius-lg);padding:40px;display:flex;align-items:center;justify-content:center;min-height:320px;position:sticky;top:80px}
 
-.preview-canvas svg{width:100%;max-width:400px;height:auto}
+.preview-canvas svg{width:100%;max-width:520px;height:auto}
 
 .preview-controls{display:flex;flex-direction:column;gap:24px}
 
@@ -168,12 +168,16 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-
   background:linear-gradient(90deg,#25d366 0%,#25d366 36%,var(--accent) 36%,var(--accent) 100%);
 }
 .submit-block p{color:var(--ink);font-size:16px;margin-bottom:16px;line-height:1.5;font-weight:750;text-align:center}
-.submit-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.submit-actions{display:grid;grid-template-columns:1.1fr 1fr .85fr;gap:12px}
 .submit-step{
   background:rgba(255,255,255,.72);
   border:1px solid rgba(217,205,183,.8);
   border-radius:12px;
   padding:14px;
+}
+.submit-extra{
+  display:flex;
+  align-items:flex-end;
 }
 .step-label{
   display:inline-flex;
@@ -192,7 +196,6 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-
   color:var(--ink);
   margin-bottom:10px;
 }
-.step-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .submit-btn,.preview-download-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   font-size:13px;font-weight:800;
@@ -207,7 +210,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-
 .preview-download-btn:hover{background:#fffaf7;border-color:var(--accent);transform:translateY(-2px);box-shadow:0 12px 28px rgba(31,26,20,.1)}
 .preview-download-btn:disabled{cursor:wait;opacity:.65;transform:none}
 .submit-btn svg,.preview-download-btn svg{width:18px;height:18px;flex:0 0 auto}
-@media(max-width:680px){.submit-actions,.step-actions{grid-template-columns:1fr}}
+@media(max-width:680px){.submit-actions{grid-template-columns:1fr}}
 
 /* ── GALLERY ── */
 .gallery-grid{columns:3 200px;gap:12px}
@@ -381,8 +384,8 @@ body.lang-zh span[data-lang="en"]{display:none}
     <div class="preview-layout">
       <!-- Capo SVG with text overlay -->
       <div class="preview-canvas reveal">
-        <svg id="capoSvg" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
-          <!-- Capo body — simplified flat bar capo shape -->
+        <svg id="capoSvg" viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg">
+          <!-- Capo body — simplified long bar shape for name preview -->
           <defs>
             <linearGradient id="metalGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#d4c8b4"/>
@@ -400,39 +403,23 @@ body.lang-zh span[data-lang="en"]{display:none}
           </defs>
 
           <!-- Main capo bar -->
-          <rect x="40" y="90" width="320" height="70" rx="12" fill="url(#metalGrad)" filter="url(#shadow)"/>
+          <rect x="30" y="68" width="500" height="82" rx="16" fill="url(#metalGrad)" filter="url(#shadow)"/>
           <!-- Top highlight -->
-          <rect x="40" y="90" width="320" height="18" rx="12" fill="rgba(255,255,255,0.15)"/>
+          <rect x="30" y="68" width="500" height="24" rx="16" fill="rgba(255,255,255,0.16)"/>
           <!-- Bottom shadow -->
-          <rect x="40" y="142" width="320" height="18" rx="0" ry="0" fill="rgba(0,0,0,0.12)"/>
-          <rect x="40" y="152" width="320" height="8" rx="0" fill="rgba(0,0,0,0.08)"/>
-
-          <!-- Capo arm / lever on left -->
-          <rect x="20" y="78" width="36" height="92" rx="8" fill="url(#metalGrad2)" filter="url(#shadow)"/>
-          <rect x="20" y="78" width="36" height="22" rx="8" fill="rgba(255,255,255,0.1)"/>
+          <rect x="30" y="130" width="500" height="20" rx="0" ry="0" fill="rgba(0,0,0,0.12)"/>
+          <rect x="30" y="142" width="500" height="8" rx="0" fill="rgba(0,0,0,0.08)"/>
 
           <!-- Rubber pad at bottom -->
-          <rect x="50" y="156" width="300" height="10" rx="4" fill="#2d2a25"/>
-
-          <!-- Screw details -->
-          <circle cx="75" cy="125" r="7" fill="#8a7a64" stroke="#6a5a44" stroke-width="1.5"/>
-          <line x1="72" y1="125" x2="78" y2="125" stroke="#5a4a34" stroke-width="1.5"/>
-          <line x1="75" y1="122" x2="75" y2="128" stroke="#5a4a34" stroke-width="1.5"/>
-
-          <circle cx="325" cy="125" r="7" fill="#8a7a64" stroke="#6a5a44" stroke-width="1.5"/>
-          <line x1="322" y1="125" x2="328" y2="125" stroke="#5a4a34" stroke-width="1.5"/>
-          <line x1="325" y1="122" x2="325" y2="128" stroke="#5a4a34" stroke-width="1.5"/>
-
-          <!-- Spring / tension lever on right -->
-          <rect x="344" y="88" width="16" height="76" rx="6" fill="url(#metalGrad2)"/>
+          <rect x="46" y="150" width="468" height="12" rx="6" fill="#2d2a25"/>
 
           <!-- Engraved name text — this is what changes -->
           <text id="capoText"
-            x="200" y="130"
+            x="280" y="111"
             text-anchor="middle"
             dominant-baseline="middle"
             fill="rgba(31,26,20,0.65)"
-            font-size="22"
+            font-size="44"
             font-family="'Fraunces', Georgia, serif"
             letter-spacing="2"
             style="text-shadow:0 1px 2px rgba(0,0,0,0.3)">
@@ -488,9 +475,9 @@ body.lang-zh span[data-lang="en"]{display:none}
 
         <div class="submit-block">
           <p>
-            <span data-lang="en">Follow these two steps so we receive the exact font preview you want.</span>
-            <span data-lang="ms">Ikut dua langkah ini supaya kami terima pratonton fon yang tepat.</span>
-            <span data-lang="zh">跟着这两个步骤，我们就能收到你要的准确字体预览。</span>
+            <span data-lang="en">Step 1 sends your font to us. Step 2 shares the preview image to us.</span>
+            <span data-lang="ms">Langkah 1 hantar fon kepada kami. Langkah 2 kongsi imej pratonton kepada kami.</span>
+            <span data-lang="zh">步骤 1 先发给我们。步骤 2 把预览图分享给我们。</span>
           </p>
           <div class="submit-actions">
             <div class="submit-step">
@@ -500,24 +487,16 @@ body.lang-zh span[data-lang="en"]{display:none}
                 <span data-lang="zh">步骤 1</span>
               </div>
               <div class="step-title">
-                <span data-lang="en">Save or share your preview</span>
-                <span data-lang="ms">Simpan atau kongsi pratonton</span>
-                <span data-lang="zh">保存或分享预览图</span>
+                <span data-lang="en">Send via WhatsApp</span>
+                <span data-lang="ms">Hantar melalui WhatsApp</span>
+                <span data-lang="zh">通过 WhatsApp 发送</span>
               </div>
-              <div class="step-actions">
-                <button class="preview-download-btn" id="sharePreviewBtn" type="button">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98"/><path d="M15.41 6.51L8.59 10.49"/></svg>
-                  <span data-lang="en">Share Preview</span>
-                  <span data-lang="ms">Kongsi Pratonton</span>
-                  <span data-lang="zh">分享预览图</span>
-                </button>
-                <button class="preview-download-btn" id="downloadPreviewBtn" type="button">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
-                  <span data-lang="en">Download Preview</span>
-                  <span data-lang="ms">Muat Turun Pratonton</span>
-                  <span data-lang="zh">下载预览图</span>
-                </button>
-              </div>
+              <a id="whatsappBtn" href="#" class="submit-btn" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.940 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span data-lang="en">Send via WhatsApp</span>
+                <span data-lang="ms">Hantar melalui WhatsApp</span>
+                <span data-lang="zh">通过 WhatsApp 发送</span>
+              </a>
             </div>
             <div class="submit-step">
               <div class="step-label">
@@ -526,16 +505,24 @@ body.lang-zh span[data-lang="en"]{display:none}
                 <span data-lang="zh">步骤 2</span>
               </div>
               <div class="step-title">
-                <span data-lang="en">Send the design to us</span>
-                <span data-lang="ms">Hantar reka bentuk kepada kami</span>
-                <span data-lang="zh">把设计发给我们</span>
+                <span data-lang="en">Share preview image</span>
+                <span data-lang="ms">Kongsi imej pratonton</span>
+                <span data-lang="zh">分享预览图</span>
               </div>
-              <a id="whatsappBtn" href="#" class="submit-btn" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.940 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                <span data-lang="en">Send via WhatsApp</span>
-                <span data-lang="ms">Hantar melalui WhatsApp</span>
-                <span data-lang="zh">通过 WhatsApp 发送</span>
-              </a>
+              <button class="preview-download-btn" id="sharePreviewBtn" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98"/><path d="M15.41 6.51L8.59 10.49"/></svg>
+                <span data-lang="en">Share Preview</span>
+                <span data-lang="ms">Kongsi Pratonton</span>
+                <span data-lang="zh">分享预览图</span>
+              </button>
+            </div>
+            <div class="submit-extra">
+              <button class="preview-download-btn" id="downloadPreviewBtn" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+                <span data-lang="en">Download Preview</span>
+                <span data-lang="ms">Muat Turun Pratonton</span>
+                <span data-lang="zh">下载预览图</span>
+              </button>
             </div>
           </div>
         </div>
@@ -771,7 +758,7 @@ function updatePreview(){
   capoText.setAttribute('font-weight', f.weight);
   capoText.setAttribute('font-style', f.style);
   // Auto-fit font size based on length
-  const fs = name.length > 10 ? Math.max(12, 22 - (name.length - 10) * 1.5) : 22;
+  const fs = name.length > 10 ? Math.max(24, 44 - (name.length - 10) * 3) : 44;
   capoText.setAttribute('font-size', fs);
 
   // Live name display below
