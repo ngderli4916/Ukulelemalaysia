@@ -426,6 +426,49 @@
   }
   body[data-lang="zh"] .recommend-tag { letter-spacing: 0.05em; text-transform: none; }
 
+  .size-guide-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin: 28px 0 0;
+    padding: 18px 20px;
+    background: #fff;
+    border: 1px solid rgba(194,65,12,0.22);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    color: var(--ink);
+    text-decoration: none;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .size-guide-link:hover {
+    transform: translateY(-2px);
+    border-color: rgba(194,65,12,0.42);
+    box-shadow: var(--shadow-md);
+    color: var(--ink);
+  }
+  .size-guide-link strong {
+    display: block;
+    color: var(--accent);
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  .size-guide-link span {
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .size-guide-link .arrow {
+    flex: 0 0 auto;
+    color: var(--accent);
+    font-size: 20px;
+    transition: transform .25s ease;
+  }
+  .size-guide-link:hover .arrow { transform: translateX(4px); }
+  @media (max-width: 560px) {
+    .size-guide-link { align-items: flex-start; }
+  }
+
   /* Brand showcase */
   .brand-section {
     background: var(--ink);
@@ -1012,6 +1055,19 @@
       <span data-i18n="ms">Ukulele datang dalam tiga saiz biasa. Badan yang lebih besar memberi bunyi lebih hangat dan ruang lebih luas untuk jari. Badan kecil menghasilkan bunyi lebih cerah, dan lebih senang dipegang oleh tangan kecil.</span>
       <span data-i18n="zh">尤克里里有三种常见尺寸。琴身越大，音色越温暖饱满，按弦空间也越宽；琴身越小，音色越明亮，越适合小手把持。</span>
     </p>
+    <a class="size-guide-link" href="/ukulele-size-guide">
+      <span>
+        <strong>
+          <span data-i18n="en">Not sure which size?</span>
+          <span data-i18n="ms">Tidak pasti saiz mana?</span>
+          <span data-i18n="zh">不确定要选哪个尺寸？</span>
+        </strong>
+        <span data-i18n="en">Use the full ukulele size guide to compare Soprano, Concert, Tenor and Baritone before buying.</span>
+        <span data-i18n="ms">Guna panduan saiz penuh untuk bandingkan Soprano, Concert, Tenor dan Baritone sebelum membeli.</span>
+        <span data-i18n="zh">先看完整尺寸指南，比较 Soprano、Concert、Tenor 和 Baritone，再决定购买。</span>
+      </span>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
 
     <div class="size-grid">
       <div class="size-card">
