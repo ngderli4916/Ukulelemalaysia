@@ -458,10 +458,69 @@
   .preview-action-btn svg { width: 18px; height: 18px; flex: 0 0 18px; }
   .preview-action-btn.whatsapp { background: #25d366; border-color: #25d366; color: #072d17; }
   .submit-extra { display: grid; grid-template-columns: 1fr; gap: 12px; }
-  .sample-link {
-    border-color: rgba(184,137,58,.45);
-    background: rgba(184,137,58,.12);
+  .sample-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    padding: 18px;
+    border: 1px solid rgba(184,137,58,.42);
+    border-radius: 16px;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.9), rgba(255,246,231,.82)),
+      radial-gradient(circle at 12% 18%, rgba(184,137,58,.24), transparent 34%);
+    color: var(--ink);
+    text-decoration: none;
+    box-shadow: 0 10px 26px rgba(70,52,31,.08);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .sample-card:hover {
+    color: var(--ink);
+    border-color: rgba(194,65,12,.45);
+    box-shadow: 0 16px 34px rgba(70,52,31,.14);
+    transform: translateY(-2px);
+  }
+  .sample-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .sample-card-icon svg { width: 20px; height: 20px; }
+  .sample-card-copy { display: grid; gap: 5px; min-width: 0; }
+  .sample-card-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
     color: var(--accent);
+    font-weight: 800;
+  }
+  body[data-lang="zh"] .sample-card-eyebrow { letter-spacing: .04em; }
+  .sample-card strong {
+    font-family: var(--font-display);
+    font-size: 19px;
+    line-height: 1.18;
+  }
+  body[data-lang="zh"] .sample-card strong { font-family: var(--font-cn); }
+  .sample-card-copy span:last-child {
+    color: var(--ink-mute);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .sample-card-action {
+    grid-column: 1 / -1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 2px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(184,137,58,.28);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 800;
   }
 
   /* ========== Wisdom pull quote ========== */
@@ -552,7 +611,7 @@
       aspect-ratio: auto;
       height: 50vh; max-height: 500px; min-height: 400px;
       background: #fff;
-      position: sticky; top: 90px;
+      position: sticky; top: calc(90px - 25vh);
       z-index: 2;
       margin-bottom: 18px;
     }
@@ -582,7 +641,7 @@
     .config-preview {
       min-height: 640px;
       height: 84vh;
-      top: 84px;
+      top: calc(84px - 42vh);
       background: #fff;
     }
     .uke-svg { height: 96%; }

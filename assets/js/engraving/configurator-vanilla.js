@@ -46,6 +46,13 @@
     shareButton: { en: "Share Preview", ms: "Kongsi Pratonton", zh: "分享预览图" },
     download: { en: "Download Preview", ms: "Muat Turun Pratonton", zh: "下载预览图" },
     samples: { en: "See more engraving samples", ms: "Lihat lebih banyak contoh ukiran", zh: "查看更多雕刻样本" },
+    sampleEyebrow: { en: "Need ideas?", ms: "Perlu idea?", zh: "想找灵感？" },
+    sampleTitle: { en: "Wonder how others design theirs?", ms: "Ingin tahu cara orang lain mereka bentuk ukiran?", zh: "想知道别人都是如何设计的吗？" },
+    sampleText: {
+      en: "Browse real engraving samples from our customers and find a style that makes your ukulele feel more personal.",
+      ms: "Lihat contoh ukiran pelanggan kami dan cari gaya yang menjadikan ukulele anda lebih peribadi.",
+      zh: "看看我们的真实雕刻样本，参考别人怎样放名字、字体和位置，让你的设计更有感觉。"
+    },
     preparing: { en: "Preparing...", ms: "Sedang sedia...", zh: "准备中..." },
     downloadError: { en: "Sorry, the preview image could not be downloaded. Please try again.", ms: "Maaf, imej pratonton tidak dapat dimuat turun. Sila cuba lagi.", zh: "抱歉，预览图无法下载。请再试一次。" },
     shareError: { en: "Sorry, the preview image could not be shared. Please try Download Preview instead.", ms: "Maaf, imej pratonton tidak dapat dikongsi. Sila cuba Muat Turun Pratonton.", zh: "抱歉，预览图无法分享。请改用下载预览图。" }
@@ -165,8 +172,16 @@
           </div>
           <div class="submit-extra">
             <button class="preview-action-btn" type="button" data-action="download">${downloadIcon()}${state.busy === "download" ? t("preparing") : t("download")}</button>
-            <a class="preview-action-btn sample-link" href="ukulele-engraving-sample.html">${imageIcon()}${t("samples")}</a>
           </div>
+          <a class="sample-card" href="ukulele-engraving-sample.html">
+            <span class="sample-card-icon">${imageIcon()}</span>
+            <span class="sample-card-copy">
+              <span class="sample-card-eyebrow">${t("sampleEyebrow")}</span>
+              <strong>${t("sampleTitle")}</strong>
+              <span>${t("sampleText")}</span>
+            </span>
+            <span class="sample-card-action">${t("samples")} <span aria-hidden="true">→</span></span>
+          </a>
         </div>
       </div>
     `;
