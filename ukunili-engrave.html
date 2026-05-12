@@ -152,6 +152,7 @@
   /* ========== SECTIONS ========== */
   main { position: relative; z-index: 1; }
   section { max-width: 1100px; margin: 0 auto; padding: 56px 28px; }
+  #design { max-width: 1280px; }
   .section-num {
     font-family: var(--font-display); font-style: italic; font-weight: 400;
     font-size: 14px; color: var(--accent); letter-spacing: 0.05em;
@@ -286,15 +287,41 @@
     background: var(--card); border: 1px solid var(--line);
     border-radius: var(--radius-lg); padding: 40px;
     box-shadow: var(--shadow-sm);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch;
+    display: grid; grid-template-columns: minmax(0, 1.28fr) minmax(360px, 0.72fr); gap: 34px; align-items: start;
   }
   .config-preview {
-    background: var(--bg-soft); border: 1px solid var(--line);
-    border-radius: var(--radius); aspect-ratio: 2/3;
+    background: #fff; border: 1px solid var(--line);
+    border-radius: var(--radius);
+    height: 900px; min-height: 0;
     position: relative; overflow: hidden;
     display: flex; align-items: center; justify-content: center;
   }
-  .uke-svg { height: 92%; width: auto; max-width: 90%; }
+  .uke-svg {
+    display: block;
+    height: 96%;
+    width: 100%;
+    max-width: none;
+  }
+  .side-name-preview {
+    position: absolute;
+    top: 42%;
+    right: 7%;
+    z-index: 2;
+    color: var(--ink);
+    font-size: clamp(24px, 3.2vw, 42px);
+    line-height: 1;
+    width: min(42vh, 360px);
+    max-width: none;
+    transform: rotate(90deg);
+    transform-origin: center;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    opacity: .88;
+    text-shadow: 0 2px 0 rgba(255,255,255,.82);
+    pointer-events: none;
+  }
 
   .preview-caption { position: absolute; bottom: 14px; left: 14px; font-size: 11px; color: var(--ink-mute); letter-spacing: 0.04em; }
   .preview-view-toggle {
@@ -311,6 +338,16 @@
   .preview-view-toggle button.on { background: var(--ink); color: var(--bg); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 
   .config-controls { display: flex; flex-direction: column; gap: 24px; }
+  @media (min-width: 901px) {
+    .config-controls {
+      position: sticky;
+      top: 104px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-right: 4px;
+    }
+  }
 
   .step { padding-top: 4px; }
   .step-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; }
@@ -363,22 +400,69 @@
   }
 
   .submit-block {
-    margin-top: 8px; padding-top: 20px;
-    border-top: 1px solid var(--line);
-    display: flex; align-items: center; justify-content: space-between; gap: 16px;
-    flex-wrap: wrap;
+    margin-top: 8px; padding: 20px;
+    border: 1px solid var(--line);
+    background: linear-gradient(135deg, #fffaf3, #f3ece0);
+    border-radius: var(--radius);
+    display: grid;
+    gap: 16px;
   }
-  .submit-note { font-size: 13px; color: var(--ink-mute); line-height: 1.5; flex: 1; min-width: 200px; }
-  .btn-submit {
-    appearance: none; border: 0; cursor: pointer;
-    background: var(--accent); color: #fff;
-    padding: 14px 28px; border-radius: 999px;
-    font: inherit; font-size: 15px; font-weight: 600; letter-spacing: 0.02em;
-    transition: all .25s ease;
-    box-shadow: 0 6px 18px rgba(194,65,12,0.25);
-    flex-shrink: 0;
+  .submit-note { font-size: 13px; color: var(--ink-mute); line-height: 1.5; }
+  .submit-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
-  .btn-submit:hover { background: var(--accent-deep); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(194,65,12,0.35); }
+  .submit-step {
+    background: rgba(255,255,255,.62);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .submit-step-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .submit-step-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  body[data-lang="zh"] .submit-step-title { font-family: var(--font-cn); }
+  .preview-action-btn {
+    appearance: none;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    min-height: 46px;
+    padding: 12px 16px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    background: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .preview-action-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); color: var(--ink); }
+  .preview-action-btn svg { width: 18px; height: 18px; flex: 0 0 18px; }
+  .preview-action-btn.whatsapp { background: #25d366; border-color: #25d366; color: #072d17; }
+  .submit-extra { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .sample-link {
+    border-color: rgba(184,137,58,.45);
+    background: rgba(184,137,58,.12);
+    color: var(--accent);
+  }
 
   /* ========== Wisdom pull quote ========== */
   .wisdom { text-align: center; padding: 80px 28px; max-width: 850px; margin: 0 auto; }
@@ -456,22 +540,60 @@
   @media (max-width: 900px) {
     section { padding: 48px 20px; }
     .config {
-      display: flex; flex-direction: column;
+      display: block;
       padding: 20px; gap: 16px;
-      height: calc(100vh - 32px); max-height: 720px;
-      overflow: hidden;
+      height: auto;
+      min-height: 0;
+      max-height: none;
+      overflow: visible;
     }
     .config-preview {
-      flex-shrink: 0; aspect-ratio: auto;
-      height: 42vh; max-height: 360px; min-height: 240px;
+      width: 100%;
+      aspect-ratio: auto;
+      height: 50vh; max-height: 500px; min-height: 400px;
+      background: #fff;
+      position: sticky; top: 90px;
+      z-index: 2;
+      margin-bottom: 18px;
     }
-    .uke-svg { height: 92%; width: auto; max-width: 88%; }
+    .uke-svg { height: 96%; width: 100%; max-width: none; }
+    .side-name-preview {
+      top: 38%;
+      right: -18%;
+      font-size: clamp(30px, 8vw, 56px);
+      width: min(48vh, 390px);
+      max-width: none;
+    }
     .config-controls {
-      flex: 1 1 auto; min-height: 0;
-      overflow-y: auto; -webkit-overflow-scrolling: touch;
-      padding-right: 4px;
-      mask-image: linear-gradient(to bottom, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+      overflow: visible;
+      padding-right: 0;
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+    .submit-actions,
+    .submit-extra {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 560px) {
+    .config {
+      padding: 14px;
+    }
+    .config-preview {
+      min-height: 640px;
+      height: 84vh;
+      top: 84px;
+      background: #fff;
+    }
+    .uke-svg { height: 96%; }
+    .side-name-preview {
+      right: -24%;
+      top: 40%;
+      width: min(46vh, 360px);
+    }
+    .preview-caption {
+      max-width: calc(100% - 28px);
+      line-height: 1.35;
     }
   }
 </style>
@@ -552,7 +674,7 @@
   </section>
 
   <!-- ════════ STEP 02 — Design ════════ -->
-  <section class="reveal" id="design">
+  <section id="design">
     <span class="section-num">— 02</span>
     <h2>
       <span data-i18n="en">Place it on the ukulele</span>
@@ -566,7 +688,7 @@
       <span data-i18n="zh">你选的字体和文字会出现在实时预览中。用滑块调整刻字的位置、角度和大小。雕刻范围限制在 10 × 10 cm 以内；由于每一把都由师傅手工调整位置和大小，最终成品可能会与预览有些微差异，此预览图仅供参考。</span>
     </p>
 
-    <div class="config" id="configurator"><!-- React mounts here --></div>
+    <div class="config" id="configurator"><!-- Configurator mounts here --></div>
   </section>
 
   <!-- ════════ Wisdom pull quote ════════ -->
@@ -622,11 +744,7 @@
 </footer>
 
 <!-- ════════ Scripts ════════ -->
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
-<script type="text/babel" src="assets/js/engraving/tweaks-panel.jsx"></script>
-<script type="text/babel" src="assets/js/engraving/configurator.jsx"></script>
+<script src="assets/js/engraving/configurator-vanilla.js"></script>
 
 <script>
   // ════════ Language switcher ════════
