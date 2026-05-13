@@ -2,6 +2,7 @@
 (function () {
   const mount = document.getElementById("configurator");
   if (!mount) return;
+  const actionsMount = document.getElementById("engravingActions");
 
   const FONTS = [
     { id: "abril", name: "Abril Fatface", family: '"Abril Fatface", serif', weight: 400, style: "normal" },
@@ -158,6 +159,22 @@
           <div style="margin-top:14px;font-size:13px;color:var(--ink-mute);line-height:1.5">${t("hint")}</div>
         </div>
       </div>
+    `;
+    renderActions();
+    const sidePreview = mount.querySelector(".side-name-preview");
+    const selectedText = mount.querySelector(".cs-text");
+    [sidePreview, selectedText].forEach((element) => {
+      if (!element) return;
+      element.style.fontFamily = f.family;
+      element.style.fontWeight = String(f.weight);
+      element.style.fontStyle = f.style;
+    });
+    bind();
+  }
+
+  function renderActions() {
+    if (!actionsMount) return;
+    actionsMount.innerHTML = `
       <div class="submit-block submit-block-standalone">
         <div class="submit-note">${t("shareNote")}</div>
         <div class="submit-actions">
@@ -186,15 +203,15 @@
         <span class="sample-card-action">${t("samples")} <span aria-hidden="true">→</span></span>
       </a>
     `;
-    const sidePreview = mount.querySelector(".side-name-preview");
-    const selectedText = mount.querySelector(".cs-text");
-    [sidePreview, selectedText].forEach((element) => {
-      if (!element) return;
-      element.style.fontFamily = f.family;
-      element.style.fontWeight = String(f.weight);
-      element.style.fontStyle = f.style;
-    });
-    bind();
+    bindActions();
+  }
+
+  function bindActions() {
+    const root = actionsMount || mount;
+    const share = root.querySelector('[data-action="share"]');
+    const download = root.querySelector('[data-action="download"]');
+    if (share) share.addEventListener("click", shareLivePreview);
+    if (download) download.addEventListener("click", downloadLivePreview);
   }
 
   function slider(labelKey, key, min, max, unit) {
@@ -228,7 +245,7 @@
     if (caption) {
       caption.textContent = `Live preview · ${f.name} · X ${state.engravingX} · Y ${state.engravingY} · ${state.engravingAngle}° · ${state.engravingSize}px`;
     }
-    const whatsapp = mount.querySelector(".preview-action-btn.whatsapp");
+    const whatsapp = (actionsMount || mount).querySelector(".preview-action-btn.whatsapp");
     if (whatsapp) whatsapp.setAttribute("href", whatsappHref());
   }
 
@@ -245,10 +262,6 @@
         updateLivePreview();
       });
     });
-    const share = mount.querySelector('[data-action="share"]');
-    const download = mount.querySelector('[data-action="download"]');
-    if (share) share.addEventListener("click", shareLivePreview);
-    if (download) download.addEventListener("click", downloadLivePreview);
   }
 
   function loadCanvasImage(src) {

@@ -289,6 +289,11 @@
     box-shadow: var(--shadow-sm);
     display: grid; grid-template-columns: minmax(0, 1.28fr) minmax(360px, 0.72fr); gap: 34px; align-items: start;
   }
+  .config-actions-outside {
+    margin-top: 20px;
+    display: grid;
+    gap: 16px;
+  }
   .config-preview {
     background: #fff; border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -423,8 +428,7 @@
     gap: 16px;
   }
   .submit-block-standalone {
-    grid-column: 1 / -1;
-    margin-top: 4px;
+    margin-top: 0;
   }
   .submit-note { font-size: 13px; color: var(--ink-mute); line-height: 1.5; }
   .submit-actions {
@@ -542,8 +546,7 @@
     font-weight: 800;
   }
   .sample-card-standalone {
-    grid-column: 1 / -1;
-    margin-top: 4px;
+    margin-top: 0;
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
   }
@@ -834,6 +837,7 @@
     </p>
 
     <div class="config" id="configurator"><!-- Configurator mounts here --></div>
+    <div class="config-actions-outside" id="engravingActions"><!-- Action buttons mount here --></div>
   </section>
 
   <!-- ════════ Help CTA ════════ -->
