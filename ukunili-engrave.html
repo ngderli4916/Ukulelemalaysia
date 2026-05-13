@@ -287,9 +287,6 @@
     background: var(--card); border: 1px solid var(--line);
     border-radius: var(--radius-lg); padding: 40px;
     box-shadow: var(--shadow-sm);
-    display: block;
-  }
-  .config-main {
     display: grid; grid-template-columns: minmax(0, 1.28fr) minmax(360px, 0.72fr); gap: 34px; align-items: start;
   }
   .config-preview {
@@ -426,7 +423,8 @@
     gap: 16px;
   }
   .submit-block-standalone {
-    margin-top: 24px;
+    grid-column: 1 / -1;
+    margin-top: 4px;
   }
   .submit-note { font-size: 13px; color: var(--ink-mute); line-height: 1.5; }
   .submit-actions {
@@ -544,7 +542,8 @@
     font-weight: 800;
   }
   .sample-card-standalone {
-    margin-top: 16px;
+    grid-column: 1 / -1;
+    margin-top: 4px;
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
   }
@@ -676,9 +675,6 @@
       min-height: 0;
       max-height: none;
       overflow: visible;
-    }
-    .config-main {
-      display: block;
     }
     .config-preview {
       width: 100%;

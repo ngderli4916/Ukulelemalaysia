@@ -101,63 +101,61 @@
   function render() {
     const f = font();
     mount.innerHTML = `
-      <div class="config-main">
-        <div class="config-preview">
-          <div class="preview-view-toggle" role="tablist" aria-label="View">
-            <button class="${state.view === "front" ? "on" : ""}" data-view="front">${t("front")}</button>
-            <button class="${state.view === "back" ? "on" : ""}" data-view="back">${t("back")}</button>
-          </div>
-          <svg class="uke-svg" viewBox="0 0 375 963" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-            <defs>
-              <filter id="engrave" x="-10%" y="-10%" width="120%" height="120%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="0.4"></feGaussianBlur>
-                <feOffset dx="0" dy="0.6" result="offset"></feOffset>
-                <feComponentTransfer><feFuncA type="linear" slope="0.45"></feFuncA></feComponentTransfer>
-                <feComposite in2="SourceGraphic" operator="in"></feComposite>
-              </filter>
-            </defs>
-            <image href="${imgUrl()}" x="0" y="0" width="375" height="963" preserveAspectRatio="xMidYMid meet"></image>
-            <text
-              class="engraving-text"
-              x="${state.engravingX}"
-              y="${state.engravingY}"
-              text-anchor="middle"
-              dominant-baseline="middle"
-              font-family='${f.family.replace(/'/g, "&apos;")}'
-              font-weight="${f.weight}"
-              font-style="${f.style}"
-              font-size="${state.engravingSize}"
-              fill="rgba(30,15,5,0.88)"
-              style="mix-blend-mode:multiply;letter-spacing:.02em"
-              transform="rotate(${state.engravingAngle} ${state.engravingX} ${state.engravingY})"
-            >${textShort()}</text>
-          </svg>
-          <div class="side-name-preview">${state.text}</div>
-          <div class="preview-caption">Live preview · ${f.name} · X ${state.engravingX} · Y ${state.engravingY} · ${state.engravingAngle}° · ${state.engravingSize}px</div>
+      <div class="config-preview">
+        <div class="preview-view-toggle" role="tablist" aria-label="View">
+          <button class="${state.view === "front" ? "on" : ""}" data-view="front">${t("front")}</button>
+          <button class="${state.view === "back" ? "on" : ""}" data-view="back">${t("back")}</button>
         </div>
+        <svg class="uke-svg" viewBox="0 0 375 963" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <filter id="engrave" x="-10%" y="-10%" width="120%" height="120%">
+              <feGaussianBlur in="SourceAlpha" stdDeviation="0.4"></feGaussianBlur>
+              <feOffset dx="0" dy="0.6" result="offset"></feOffset>
+              <feComponentTransfer><feFuncA type="linear" slope="0.45"></feFuncA></feComponentTransfer>
+              <feComposite in2="SourceGraphic" operator="in"></feComposite>
+            </filter>
+          </defs>
+          <image href="${imgUrl()}" x="0" y="0" width="375" height="963" preserveAspectRatio="xMidYMid meet"></image>
+          <text
+            class="engraving-text"
+            x="${state.engravingX}"
+            y="${state.engravingY}"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            font-family='${f.family.replace(/'/g, "&apos;")}'
+            font-weight="${f.weight}"
+            font-style="${f.style}"
+            font-size="${state.engravingSize}"
+            fill="rgba(30,15,5,0.88)"
+            style="mix-blend-mode:multiply;letter-spacing:.02em"
+            transform="rotate(${state.engravingAngle} ${state.engravingX} ${state.engravingY})"
+          >${textShort()}</text>
+        </svg>
+        <div class="side-name-preview">${state.text}</div>
+        <div class="preview-caption">Live preview · ${f.name} · X ${state.engravingX} · Y ${state.engravingY} · ${state.engravingAngle}° · ${state.engravingSize}px</div>
+      </div>
 
-        <div class="config-controls">
-          <div class="step">
-            <div class="step-head">
-              <div>
-                <div class="step-num">${t("step")}</div>
-                <h3 class="step-title">${t("positionAngle")}</h3>
-              </div>
-              <div class="step-value">${state.engravingAngle}°</div>
+      <div class="config-controls">
+        <div class="step">
+          <div class="step-head">
+            <div>
+              <div class="step-num">${t("step")}</div>
+              <h3 class="step-title">${t("positionAngle")}</h3>
             </div>
-            <div class="current-selection">
-              <div class="cs-label">${t("engraving")}</div>
-              <div class="cs-text">${state.text || "-"}</div>
-              <div class="cs-meta">${f.name}</div>
-            </div>
-            <div class="pos-controls">
-              ${slider("xPosition", "engravingX", 50, 325, "")}
-              ${slider("yPosition", "engravingY", 50, 920, "")}
-              ${slider("angle", "engravingAngle", -180, 180, "°")}
-              ${slider("size", "engravingSize", 10, 80, "px")}
-            </div>
-            <div style="margin-top:14px;font-size:13px;color:var(--ink-mute);line-height:1.5">${t("hint")}</div>
+            <div class="step-value">${state.engravingAngle}°</div>
           </div>
+          <div class="current-selection">
+            <div class="cs-label">${t("engraving")}</div>
+            <div class="cs-text">${state.text || "-"}</div>
+            <div class="cs-meta">${f.name}</div>
+          </div>
+          <div class="pos-controls">
+            ${slider("xPosition", "engravingX", 50, 325, "")}
+            ${slider("yPosition", "engravingY", 50, 920, "")}
+            ${slider("angle", "engravingAngle", -180, 180, "°")}
+            ${slider("size", "engravingSize", 10, 80, "px")}
+          </div>
+          <div style="margin-top:14px;font-size:13px;color:var(--ink-mute);line-height:1.5">${t("hint")}</div>
         </div>
       </div>
       <div class="submit-block submit-block-standalone">
