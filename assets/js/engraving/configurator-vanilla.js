@@ -117,6 +117,7 @@
           </defs>
           <image href="${imgUrl()}" x="0" y="0" width="375" height="963" preserveAspectRatio="xMidYMid meet"></image>
           <text
+            class="engraving-text"
             x="${state.engravingX}"
             y="${state.engravingY}"
             text-anchor="middle"
@@ -199,10 +200,35 @@
   function slider(labelKey, key, min, max, unit) {
     return `
       <label class="pos-row">
-        <span class="pos-label">${t(labelKey)} <em>${state[key]}${unit}</em></span>
+        <span class="pos-label">${t(labelKey)} <em data-output="${key}" data-unit="${unit}">${state[key]}${unit}</em></span>
         <input type="range" min="${min}" max="${max}" step="1" value="${state[key]}" data-slider="${key}" aria-label="${t(labelKey)} ${state[key]}${unit}">
       </label>
     `;
+  }
+
+  function updateLivePreview() {
+    const textElement = mount.querySelector(".engraving-text");
+    const f = font();
+    if (textElement) {
+      textElement.setAttribute("x", String(state.engravingX));
+      textElement.setAttribute("y", String(state.engravingY));
+      textElement.setAttribute("font-size", String(state.engravingSize));
+      textElement.setAttribute("transform", `rotate(${state.engravingAngle} ${state.engravingX} ${state.engravingY})`);
+      textElement.textContent = textShort();
+    }
+    mount.querySelectorAll("[data-output]").forEach((output) => {
+      const key = output.getAttribute("data-output");
+      const unit = output.getAttribute("data-unit") || "";
+      if (key && key in state) output.textContent = `${state[key]}${unit}`;
+    });
+    const stepValue = mount.querySelector(".step-value");
+    if (stepValue) stepValue.textContent = `${state.engravingAngle}°`;
+    const caption = mount.querySelector(".preview-caption");
+    if (caption) {
+      caption.textContent = `Live preview · ${f.name} · X ${state.engravingX} · Y ${state.engravingY} · ${state.engravingAngle}° · ${state.engravingSize}px`;
+    }
+    const whatsapp = mount.querySelector(".preview-action-btn.whatsapp");
+    if (whatsapp) whatsapp.setAttribute("href", whatsappHref());
   }
 
   function bind() {
@@ -215,7 +241,7 @@
     mount.querySelectorAll("[data-slider]").forEach((input) => {
       input.addEventListener("input", () => {
         state[input.dataset.slider] = Number(input.value);
-        render();
+        updateLivePreview();
       });
     });
     const share = mount.querySelector('[data-action="share"]');
