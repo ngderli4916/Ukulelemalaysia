@@ -157,23 +157,23 @@
           </div>
           <div style="margin-top:14px;font-size:13px;color:var(--ink-mute);line-height:1.5">${t("hint")}</div>
         </div>
-        <div class="submit-block">
-          <div class="submit-note">${t("shareNote")}</div>
-          <div class="submit-actions">
-            <div class="submit-step">
-              <div class="submit-step-label">${t("stepOne")}</div>
-              <div class="submit-step-title">${t("sendWhatsapp")}</div>
-              <a class="preview-action-btn whatsapp" href="${whatsappHref()}" target="_blank" rel="noopener">${iconWhatsApp()}${t("sendDesign")}</a>
-            </div>
-            <div class="submit-step">
-              <div class="submit-step-label">${t("stepTwo")}</div>
-              <div class="submit-step-title">${t("sharePreview")}</div>
-              <button class="preview-action-btn" type="button" data-action="share">${shareIcon()}${state.busy === "share" ? t("preparing") : t("shareButton")}</button>
-            </div>
+      </div>
+      <div class="submit-block submit-block-standalone">
+        <div class="submit-note">${t("shareNote")}</div>
+        <div class="submit-actions">
+          <div class="submit-step">
+            <div class="submit-step-label">${t("stepOne")}</div>
+            <div class="submit-step-title">${t("sendWhatsapp")}</div>
+            <a class="preview-action-btn whatsapp" href="${whatsappHref()}" target="_blank" rel="noopener">${iconWhatsApp()}${t("sendDesign")}</a>
           </div>
-          <div class="submit-extra">
-            <button class="preview-action-btn" type="button" data-action="download">${downloadIcon()}${state.busy === "download" ? t("preparing") : t("download")}</button>
+          <div class="submit-step">
+            <div class="submit-step-label">${t("stepTwo")}</div>
+            <div class="submit-step-title">${t("sharePreview")}</div>
+            <button class="preview-action-btn" type="button" data-action="share">${shareIcon()}${state.busy === "share" ? t("preparing") : t("shareButton")}</button>
           </div>
+        </div>
+        <div class="submit-extra">
+          <button class="preview-action-btn" type="button" data-action="download">${downloadIcon()}${state.busy === "download" ? t("preparing") : t("download")}</button>
         </div>
       </div>
       <a class="sample-card sample-card-standalone" href="ukulele-engraving-sample.html" target="_blank" rel="noopener">

@@ -422,10 +422,14 @@
     display: grid;
     gap: 16px;
   }
+  .submit-block-standalone {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+  }
   .submit-note { font-size: 13px; color: var(--ink-mute); line-height: 1.5; }
   .submit-actions {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
   }
   .submit-step {
@@ -472,7 +476,7 @@
   .preview-action-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); color: var(--ink); }
   .preview-action-btn svg { width: 18px; height: 18px; flex: 0 0 18px; }
   .preview-action-btn.whatsapp { background: #25d366; border-color: #25d366; color: #072d17; }
-  .submit-extra { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .submit-extra { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .sample-card {
     display: grid;
     grid-template-columns: auto 1fr;
