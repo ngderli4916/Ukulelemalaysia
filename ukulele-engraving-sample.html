@@ -196,6 +196,14 @@
   .btn-ghost { background: rgba(255,255,255,.1); color: #fff; }
   .btn-dark { background: var(--deep); color: #fff; border-color: var(--deep); }
   .btn-whatsapp { background: #25d366; color: #082d18; border-color: #25d366; }
+  .btn-instagram {
+    gap: 9px;
+    background: linear-gradient(135deg, #f58529, #dd2a7b 48%, #8134af 76%, #515bd4);
+    color: #fff;
+    border-color: rgba(255,255,255,.22);
+    box-shadow: 0 12px 28px rgba(221,42,123,.28);
+  }
+  .btn-instagram svg { width: 20px; height: 20px; flex: 0 0 20px; }
   .btn-outline { background: transparent; color: var(--deep); border-color: var(--line); }
 
   .section { padding: 74px 22px; }
@@ -600,7 +608,14 @@
               <span data-lang="ms">Pratonton rekaan</span>
               <span data-lang="zh">设计预览</span>
             </a>
-            <a class="btn btn-ghost" href="https://www.instagram.com/ukunili/" target="_blank" rel="noopener">@ukunili</a>
+            <a class="btn btn-instagram" href="https://www.instagram.com/ukunili/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+              </svg>
+              <span>@ukunili Instagram</span>
+            </a>
           </div>
         </div>
       </div>

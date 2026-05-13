@@ -24,10 +24,10 @@
     step: { en: "STEP 01", ms: "LANGKAH 01", zh: "步骤 01" },
     positionAngle: { en: "Position & angle", ms: "Kedudukan & sudut", zh: "位置与角度" },
     engraving: { en: "Engraving", ms: "Ukiran", zh: "刻字" },
-    xPosition: { en: "X position", ms: "Kedudukan X", zh: "X 位置" },
-    yPosition: { en: "Y position", ms: "Kedudukan Y", zh: "Y 位置" },
+    xPosition: { en: "Move Left/Right", ms: "Gerak Kiri/Kanan", zh: "左右移动" },
+    yPosition: { en: "Move Up/Down", ms: "Gerak Atas/Bawah", zh: "上下移动" },
     angle: { en: "Angle", ms: "Sudut", zh: "角度" },
-    size: { en: "Size", ms: "Saiz", zh: "尺寸" },
+    size: { en: "Size Small/Big", ms: "Saiz Kecil/Besar", zh: "大小调整" },
     hint: {
       en: "Drag the sliders to move and rotate your inscription anywhere on the ukulele.",
       ms: "Tarik slider untuk menggerak dan memutar ukiran anda di mana-mana pada ukulele.",
@@ -174,17 +174,17 @@
           <div class="submit-extra">
             <button class="preview-action-btn" type="button" data-action="download">${downloadIcon()}${state.busy === "download" ? t("preparing") : t("download")}</button>
           </div>
-          <a class="sample-card" href="ukulele-engraving-sample.html">
-            <span class="sample-card-icon">${imageIcon()}</span>
-            <span class="sample-card-copy">
-              <span class="sample-card-eyebrow">${t("sampleEyebrow")}</span>
-              <strong>${t("sampleTitle")}</strong>
-              <span>${t("sampleText")}</span>
-            </span>
-            <span class="sample-card-action">${t("samples")} <span aria-hidden="true">→</span></span>
-          </a>
         </div>
       </div>
+      <a class="sample-card sample-card-standalone" href="ukulele-engraving-sample.html" target="_blank" rel="noopener">
+        <span class="sample-card-icon">${imageIcon()}</span>
+        <span class="sample-card-copy">
+          <span class="sample-card-eyebrow">${t("sampleEyebrow")}</span>
+          <strong>${t("sampleTitle")}</strong>
+          <span>${t("sampleText")}</span>
+        </span>
+        <span class="sample-card-action">${t("samples")} <span aria-hidden="true">→</span></span>
+      </a>
     `;
     const sidePreview = mount.querySelector(".side-name-preview");
     const selectedText = mount.querySelector(".cs-text");
@@ -198,9 +198,10 @@
   }
 
   function slider(labelKey, key, min, max, unit) {
+    const label = key === "engravingAngle" ? `${t(labelKey)} ${rotateIcon()}` : t(labelKey);
     return `
       <label class="pos-row">
-        <span class="pos-label">${t(labelKey)} <em data-output="${key}" data-unit="${unit}">${state[key]}${unit}</em></span>
+        <span class="pos-label"><span class="pos-label-text">${label}</span> <em data-output="${key}" data-unit="${unit}">${state[key]}${unit}</em></span>
         <input type="range" min="${min}" max="${max}" step="1" value="${state[key]}" data-slider="${key}" aria-label="${t(labelKey)} ${state[key]}${unit}">
       </label>
     `;
@@ -377,6 +378,10 @@
 
   function imageIcon() {
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>';
+  }
+
+  function rotateIcon() {
+    return '<svg class="pos-inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v7h-7"/></svg>';
   }
 
   document.addEventListener("engrave:font-select", (event) => {

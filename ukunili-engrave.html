@@ -379,6 +379,8 @@
     display: flex; align-items: baseline; justify-content: space-between;
     font-size: 12px; color: var(--ink-mute); letter-spacing: 0.04em; text-transform: uppercase;
   }
+  .pos-label-text { display: inline-flex; align-items: center; gap: 6px; }
+  .pos-inline-icon { width: 14px; height: 14px; flex: 0 0 14px; color: var(--accent); }
   body[data-lang="zh"] .pos-label { letter-spacing: 0.02em; text-transform: none; font-size: 13px; }
   .pos-label em { font-style: normal; color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: 0; }
   .pos-row input[type="range"] {
@@ -535,6 +537,57 @@
     font-size: 13px;
     font-weight: 800;
   }
+  .sample-card-standalone {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+  }
+  .sample-card-standalone .sample-card-action {
+    grid-column: auto;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+    white-space: nowrap;
+  }
+
+  .help-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    padding: 26px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 22px;
+    align-items: center;
+  }
+  .help-card h2 {
+    margin: 0 0 8px;
+    font-size: clamp(26px, 3.2vw, 42px);
+  }
+  .help-card p {
+    margin: 0;
+    color: var(--ink-mute);
+    line-height: 1.6;
+  }
+  .help-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    background: #25d366;
+    color: #072d17;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 12px 28px rgba(37,211,102,.26);
+    white-space: nowrap;
+  }
+  .help-whatsapp:hover { color: #072d17; transform: translateY(-1px); }
+  .help-whatsapp svg { width: 20px; height: 20px; }
 
   /* ========== Wisdom pull quote ========== */
   .wisdom { text-align: center; padding: 80px 28px; max-width: 850px; margin: 0 auto; }
@@ -646,6 +699,22 @@
     .submit-extra {
       grid-template-columns: 1fr;
     }
+    .sample-card-standalone {
+      grid-template-columns: auto 1fr;
+      align-items: start;
+    }
+    .sample-card-standalone .sample-card-action {
+      grid-column: 1 / -1;
+      margin-top: 2px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(184,137,58,.28);
+      white-space: normal;
+    }
+    .help-card {
+      grid-template-columns: 1fr;
+      padding: 22px;
+    }
+    .help-whatsapp { width: 100%; }
   }
   @media (max-width: 560px) {
     .config {
@@ -761,6 +830,35 @@
     </p>
 
     <div class="config" id="configurator"><!-- Configurator mounts here --></div>
+  </section>
+
+  <!-- ════════ Help CTA ════════ -->
+  <section class="reveal" id="help">
+    <div class="help-card">
+      <div>
+        <span class="section-num">
+          <span data-i18n="en">— Need help?</span>
+          <span data-i18n="ms">— Perlukan bantuan?</span>
+          <span data-i18n="zh">— 需要帮忙？</span>
+        </span>
+        <h2>
+          <span data-i18n="en">Not sure where to place the engraving?</span>
+          <span data-i18n="ms">Tidak pasti di mana hendak letak ukiran?</span>
+          <span data-i18n="zh">不确定刻字要放哪里？</span>
+        </h2>
+        <p>
+          <span data-i18n="en">Send us your idea on WhatsApp. We can suggest the best position, size and font before we engrave it.</span>
+          <span data-i18n="ms">Hantar idea anda melalui WhatsApp. Kami boleh cadangkan posisi, saiz dan font terbaik sebelum diukir.</span>
+          <span data-i18n="zh">把你的想法发给我们，我们可以先建议适合的位置、大小和字体，再安排雕刻。</span>
+        </p>
+      </div>
+      <a class="help-whatsapp" href="https://wa.me/60183877972?text=Hi%20Ukulele%20Malaysia%2C%20I%20need%20help%20with%20ukulele%20engraving%20design." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+        <span data-i18n="en">Ask us on WhatsApp</span>
+        <span data-i18n="ms">Tanya kami di WhatsApp</span>
+        <span data-i18n="zh">WhatsApp 询问我们</span>
+      </a>
+    </div>
   </section>
 
   <!-- ════════ Wisdom pull quote ════════ -->
