@@ -24,1279 +24,986 @@
 <meta name="twitter:description" content="Ukulele Malaysia helps beginners choose, tune and learn ukulele with buying guides, free lessons, Ukunili models, engraving and trusted local support." />
 <meta name="twitter:image" content="https://www.ukulelemalaysia.com/assets/images/ukulele-malaysia-logo.png" />
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.ukulelemalaysia.com/#organization","name":"Ukulele Malaysia","url":"https://www.ukulelemalaysia.com/","logo":"https://www.ukulelemalaysia.com/assets/images/ukulele-malaysia-logo.png","sameAs":["https://www.facebook.com/ukunili","https://www.instagram.com/ukunili/","https://www.tiktok.com/@ukunili"]},{"@type":"WebSite","@id":"https://www.ukulelemalaysia.com/#website","name":"Ukulele Malaysia","url":"https://www.ukulelemalaysia.com/","publisher":{"@id":"https://www.ukulelemalaysia.com/#organization"},"inLanguage":["en-MY","ms-MY","zh-CN"]}]}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
-  .site-logo-icon { display: block; width: 100%; height: 100%; object-fit: contain; }
-  .logo-holder { width: 65px !important; height: 65px !important; flex: 0 0 65px; background: transparent !important; box-shadow: none !important; color: transparent; padding: 0; overflow: visible; }
-
-  /* ============== UKULELE MALAYSIA STYLE SYSTEM ============== */
   :root {
-    --bg: #fbf7f1;
-    --bg-warm: #f5ede0;
-    --ink: #1a1612;
-    --ink-soft: #4a3f35;
-    --ink-mute: #7a6b5d;
-    --line: #e8dcc8;
-    --terracotta: #c2410c;
-    --terracotta-soft: #ea580c;
-    --terracotta-bg: #fef3e8;
-    --gold: #b88746;
-    --cream: #fef9f0;
-
-    --serif: 'Fraunces', 'Noto Sans SC', Georgia, serif;
-    --sans: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
-    --cn: 'Noto Sans SC', 'Inter', system-ui, sans-serif;
+    --paper: #ffffff;
+    --cream: #ffffff;
+    --panel: #f8f8f6;
+    --ink: #1d1712;
+    --soft: #4f4a45;
+    --muted: #77716b;
+    --line: #e6e1da;
+    --gold: #b98136;
+    --gold-deep: #8d5c1f;
+    --green: #315b42;
+    --shadow: 0 18px 48px rgba(30, 24, 18, .08);
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Inter", system-ui, sans-serif;
+    --cn: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
+  * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-
   body {
-    font-family: var(--sans);
-    background: var(--bg);
+    margin: 0;
+    background: var(--paper);
     color: var(--ink);
+    font-family: var(--sans);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    background-image:
-      radial-gradient(circle at 8% 12%, rgba(194, 65, 12, 0.05) 0%, transparent 45%),
-      radial-gradient(circle at 92% 88%, rgba(184, 135, 70, 0.06) 0%, transparent 45%);
   }
-
   body[lang="zh"] { font-family: var(--cn); }
-
-  /* ============== HEADER ============== */
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(251, 247, 241, 0.85);
-    backdrop-filter: saturate(180%) blur(14px);
-    -webkit-backdrop-filter: saturate(180%) blur(14px);
-    border-bottom: 1px solid rgba(232, 220, 200, 0.6);
-  }
-  .header-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 14px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: var(--ink);
-  }
-  .brand-mark {
-    width: 36px; height: 36px;
-    background: var(--terracotta);
-    color: white;
-    border-radius: 10px;
-    display: grid;
-    place-items: center;
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: 20px;
-    box-shadow: 0 4px 12px -4px rgba(194, 65, 12, 0.4);
-  }
-  .brand-name {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 18px;
-    letter-spacing: -0.01em;
-  }
-  .lang-switcher {
-    display: flex;
-    background: var(--bg-warm);
-    padding: 4px;
-    border-radius: 999px;
-    gap: 2px;
-  }
-  .lang-btn {
-    border: 0;
-    background: transparent;
-    padding: 6px 14px;
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink-soft);
-    border-radius: 999px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .lang-btn:hover { color: var(--ink); }
-  .lang-btn.active {
-    background: var(--ink);
-    color: white;
-  }
-
-  /* ============== LAYOUT ============== */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  /* ============== HERO ============== */
-  .hero {
-    padding: 80px 24px 60px;
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-  }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 70px;
-    align-items: center;
-  }
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    margin-bottom: 24px;
-  }
-  .eyebrow::before {
-    content: '';
-    width: 28px;
-    height: 1px;
-    background: var(--terracotta);
-  }
-
-  h1.hero-title {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(44px, 6.5vw, 84px);
-    line-height: 1.02;
-    letter-spacing: -0.025em;
-    color: var(--ink);
-    margin-bottom: 28px;
-  }
-  h1.hero-title em {
-    font-style: italic;
-    font-weight: 500;
-    color: var(--terracotta);
-  }
-  .hero-sub {
-    font-size: clamp(16px, 1.6vw, 19px);
-    color: var(--ink-soft);
-    line-height: 1.6;
-    max-width: 520px;
-    margin-bottom: 36px;
-  }
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-  }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 15px 26px;
-    border-radius: 999px;
-    font-family: var(--sans);
-    font-weight: 600;
-    font-size: 15px;
-    text-decoration: none;
-    transition: all 0.25s ease;
-    cursor: pointer;
-    border: 0;
-  }
-  .btn-primary {
-    background: var(--ink);
-    color: white;
-  }
-  .btn-primary:hover {
-    background: var(--terracotta);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px -10px rgba(194, 65, 12, 0.5);
-  }
-  .btn-ghost {
-    background: transparent;
-    color: var(--ink);
-    border: 1.5px solid var(--ink);
-  }
-  .btn-ghost:hover {
-    background: var(--ink);
-    color: white;
-  }
-
-  .hero-visual {
-    position: relative;
-    aspect-ratio: 4/5;
-    border-radius: 28px;
-    overflow: hidden;
-    background: linear-gradient(135deg, var(--terracotta) 0%, #8b2e08 100%);
-    box-shadow:
-      0 30px 60px -20px rgba(26, 22, 18, 0.25),
-      0 0 0 1px rgba(255,255,255,0.1) inset;
-  }
-  .hero-visual img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    mix-blend-mode: luminosity;
-    opacity: 0.85;
-  }
-  .hero-badge {
-    position: absolute;
-    bottom: 22px;
-    left: 22px;
-    right: 22px;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(8px);
-    padding: 18px 22px;
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .hero-badge-dot {
-    width: 10px; height: 10px;
-    background: #16a34a;
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.2);
-    animation: pulse 2s infinite;
-    flex-shrink: 0;
-  }
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.2); }
-    50% { box-shadow: 0 0 0 8px rgba(22, 163, 74, 0); }
-  }
-  .hero-badge-text {
-    font-size: 13px;
-    color: var(--ink);
-    line-height: 1.4;
-  }
-  .hero-badge-text strong { font-weight: 600; display: block; }
-  .hero-badge-text span { color: var(--ink-mute); font-size: 12px; }
-
-  /* ============== STATS BAR ============== */
-  .stats {
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 36px 0;
-    margin-top: 40px;
-  }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    text-align: center;
-  }
-  .stat-num {
-    font-family: var(--serif);
-    font-size: 44px;
-    font-weight: 500;
-    color: var(--terracotta);
-    line-height: 1;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
-  .stat-label {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-mute);
-  }
-
-  /* ============== SECTIONS ============== */
-  .section {
-    padding: 90px 0;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .section-head {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 14px;
-    flex-wrap: wrap;
-  }
-  .section-num {
-    font-family: var(--serif);
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--terracotta);
-    font-style: italic;
-  }
-  .section-title-tag {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .section-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--line);
-    min-width: 60px;
-  }
-  h2.section-h {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(34px, 4.5vw, 52px);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin-bottom: 18px;
-    max-width: 720px;
-  }
-  h2.section-h em {
-    font-style: italic;
-    color: var(--terracotta);
-    font-weight: 500;
-  }
-  .section-lead {
-    font-size: 17px;
-    color: var(--ink-soft);
-    max-width: 640px;
-    line-height: 1.6;
-    margin-bottom: 50px;
-  }
-
-  /* ============== EXPLORE GRID ============== */
-  .explore-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 22px;
-  }
-  .explore-card {
-    position: relative;
-    background: white;
-    border-radius: 22px;
-    padding: 32px 30px;
-    border: 1px solid var(--line);
-    text-decoration: none;
-    color: var(--ink);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    min-height: 280px;
-  }
-  .explore-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 24px 50px -20px rgba(26, 22, 18, 0.18);
-    border-color: var(--terracotta);
-  }
-  .explore-card.span-7 { grid-column: span 7; }
-  .explore-card.span-5 { grid-column: span 5; }
-  .explore-card.span-6 { grid-column: span 6; }
-  .explore-card.span-4 { grid-column: span 4; }
-  .explore-card.span-8 { grid-column: span 8; }
-
-  .card-num {
-    font-family: var(--serif);
-    font-style: italic;
-    color: var(--terracotta);
-    font-size: 14px;
-    margin-bottom: 14px;
-  }
-  .card-title {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 28px;
-    line-height: 1.2;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-    margin-bottom: 14px;
-  }
-  .card-title em {
-    font-style: italic;
-    color: var(--terracotta);
-    font-weight: 500;
-  }
-  .card-desc {
-    font-size: 15px;
-    color: var(--ink-soft);
-    line-height: 1.55;
-    margin-bottom: 24px;
-    flex: 1;
-  }
-  .card-arrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--terracotta);
-    transition: gap 0.25s ease;
-  }
-  .explore-card:hover .card-arrow { gap: 14px; }
-
-  .card-image {
-    position: absolute;
-    bottom: -30px;
-    right: -30px;
-    width: 180px;
-    height: 180px;
-    background: var(--terracotta-bg);
-    border-radius: 50%;
-    opacity: 0.5;
-    z-index: 0;
-  }
-  .explore-card > * { position: relative; z-index: 1; }
-
-  /* Featured — bigger, dark variant */
-  .explore-card.featured {
-    background: linear-gradient(135deg, #1a1612 0%, #2d2520 100%);
-    color: var(--cream);
-    border-color: transparent;
-  }
-  .explore-card.featured .card-title { color: var(--cream); }
-  .explore-card.featured .card-title em { color: #f59e0b; }
-  .explore-card.featured .card-desc { color: rgba(254, 249, 240, 0.75); }
-  .explore-card.featured .card-num { color: #f59e0b; }
-  .explore-card.featured .card-arrow { color: #f59e0b; }
-  .explore-card.featured .card-image {
-    background: rgba(245, 158, 11, 0.15);
-  }
-  .featured-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(245, 158, 11, 0.2);
-    color: #f59e0b;
-    padding: 5px 12px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    width: fit-content;
-  }
-  .featured-tag .dot {
-    width: 6px; height: 6px;
-    background: #f59e0b;
-    border-radius: 50%;
-    animation: pulse-gold 2s infinite;
-  }
-  @keyframes pulse-gold {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }
-    50% { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
-  }
-
-  /* ============== BRANDS SECTION ============== */
-  .brands-section {
-    background: var(--bg-warm);
-    padding: 100px 0;
-    margin: 60px 0 0;
-  }
-  .brands-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
-    margin-top: 40px;
-  }
-  .brand-card {
-    background: white;
-    border-radius: 24px;
-    padding: 44px 38px;
-    border: 1px solid var(--line);
-    text-decoration: none;
-    color: var(--ink);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  .brand-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 24px 50px -20px rgba(26, 22, 18, 0.18);
-  }
-  .brand-card-tag {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    margin-bottom: 18px;
-  }
-  .brand-card h3 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 38px;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 16px;
-  }
-  .brand-card p {
-    font-size: 15px;
-    color: var(--ink-soft);
-    line-height: 1.6;
-    margin-bottom: 26px;
-  }
-  .brand-card-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--terracotta);
-    transition: gap 0.25s ease;
-  }
-  .brand-card:hover .brand-card-link { gap: 14px; }
-
-  /* ============== PROCESS SECTION ============== */
-  .process-section {
-    padding: 100px 0;
-  }
-  .process-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-    margin-top: 50px;
-    border-top: 1px solid var(--line);
-  }
-  .process-item {
-    display: grid;
-    grid-template-columns: 60px 1fr 1.4fr 50px;
-    gap: 30px;
-    padding: 32px 0;
-    border-bottom: 1px solid var(--line);
-    align-items: center;
-    text-decoration: none;
-    color: var(--ink);
-    transition: padding 0.3s ease;
-  }
-  .process-item:hover {
-    padding-left: 14px;
-    padding-right: 14px;
-    background: linear-gradient(90deg, transparent 0%, var(--terracotta-bg) 50%, transparent 100%);
-  }
-  .process-num {
-    font-family: var(--serif);
-    font-size: 28px;
-    font-weight: 500;
-    color: var(--terracotta);
-    font-style: italic;
-  }
-  .process-title {
-    font-family: var(--serif);
-    font-size: 26px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-  }
-  .process-desc {
-    font-size: 15px;
-    color: var(--ink-soft);
-    line-height: 1.55;
-  }
-  .process-arrow {
-    font-size: 22px;
-    color: var(--ink-mute);
-    transition: all 0.3s ease;
-    text-align: right;
-  }
-  .process-item:hover .process-arrow {
-    color: var(--terracotta);
-    transform: translateX(6px);
-  }
-
-  /* ============== FINAL CTA ============== */
-  .final-cta {
-    margin: 60px 24px 80px;
-    background: linear-gradient(135deg, #1a1612 0%, #2d2520 60%, #3d2f24 100%);
-    border-radius: 32px;
-    padding: 80px 60px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .final-cta::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(245, 158, 11, 0.18) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .final-cta::after {
-    content: '';
-    position: absolute;
-    bottom: -30%;
-    left: -10%;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(194, 65, 12, 0.15) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .final-cta > * { position: relative; z-index: 1; }
-
-  .final-cta-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: #f59e0b;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-  }
-  .final-cta-eyebrow::before, .final-cta-eyebrow::after {
-    content: '';
-    width: 24px; height: 1px;
-    background: #f59e0b;
-  }
-  .final-cta h2 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(36px, 5vw, 56px);
-    line-height: 1.1;
-    color: var(--cream);
-    letter-spacing: -0.02em;
-    margin-bottom: 22px;
-    max-width: 720px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .final-cta h2 em {
-    font-style: italic;
-    color: #f59e0b;
-    font-weight: 500;
-  }
-  .final-cta p {
-    color: rgba(254, 249, 240, 0.78);
-    font-size: 17px;
-    max-width: 560px;
-    margin: 0 auto 36px;
-    line-height: 1.6;
-  }
-  .final-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 17px 32px;
-    background: #f59e0b;
-    color: #1a1612;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 15px;
-    text-decoration: none;
-    transition: all 0.25s ease;
-  }
-  .final-cta-btn:hover {
-    background: #fbbf24;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px -10px rgba(245, 158, 11, 0.6);
-  }
-
-  /* ============== FOOTER ============== */
-  footer {
-    border-top: 1px solid var(--line);
-    padding: 50px 24px 40px;
-    background: var(--bg-warm);
-  }
-  .footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 50px;
-  }
-  .footer-brand {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-weight: 500;
-    margin-bottom: 12px;
-  }
-  .footer-tagline {
-    font-size: 14px;
-    color: var(--ink-mute);
-    line-height: 1.6;
-    max-width: 320px;
-  }
-  .footer-col h4 {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-bottom: 16px;
-  }
-  .footer-col a {
-    display: block;
-    font-size: 14px;
-    color: var(--ink-soft);
-    text-decoration: none;
-    margin-bottom: 10px;
-    transition: color 0.2s ease;
-  }
-  .footer-col a:hover { color: var(--terracotta); }
-  .footer-bottom {
-    max-width: 1200px;
-    margin: 40px auto 0;
-    padding-top: 24px;
-    border-top: 1px solid var(--line);
-    font-size: 13px;
-    color: var(--ink-mute);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  /* ============== LANGUAGE SWITCHING ============== */
-  .lang-content { display: none; }
-  .lang-content.active { display: block; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  [data-i18n] { display: none; }
   body[lang="en"] [data-i18n="en"],
   body[lang="ms"] [data-i18n="ms"],
   body[lang="zh"] [data-i18n="zh"] { display: inline; }
-  body[lang="en"] [data-i18n="ms"], body[lang="en"] [data-i18n="zh"],
-  body[lang="ms"] [data-i18n="en"], body[lang="ms"] [data-i18n="zh"],
-  body[lang="zh"] [data-i18n="en"], body[lang="zh"] [data-i18n="ms"] { display: none; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 22px; }
 
-  /* ============== RESPONSIVE ============== */
-  @media (max-width: 900px) {
-    .hero { padding: 50px 24px 40px; }
-    .hero-grid {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-    .hero-visual { aspect-ratio: 4/4; max-height: 420px; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
-    .explore-grid { gap: 16px; }
-    .explore-card.span-7,
-    .explore-card.span-5,
-    .explore-card.span-6,
-    .explore-card.span-4,
-    .explore-card.span-8 { grid-column: span 12; }
-    .brands-grid { grid-template-columns: 1fr; }
-    .process-item {
-      grid-template-columns: 40px 1fr 30px;
-      gap: 16px;
-    }
-    .process-desc { grid-column: 2 / 3; padding-top: 4px; }
-    .section { padding: 60px 0; }
-    .brands-section, .process-section { padding: 70px 0; }
-    .final-cta { padding: 60px 28px; margin: 40px 16px 60px; border-radius: 24px; }
-    .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(255, 255, 255, .92);
+    border-bottom: 1px solid rgba(230, 225, 218, .9);
+    backdrop-filter: blur(16px);
   }
-  @media (max-width: 540px) {
-    .stats-grid { grid-template-columns: 1fr 1fr; }
-    .stat-num { font-size: 36px; }
-    .footer-inner { grid-template-columns: 1fr; }
-    .hero-actions { flex-direction: column; align-items: stretch; }
-    .hero-actions .btn { justify-content: center; }
+  .nav {
+    max-width: 1180px;
+    margin: 0 auto;
+    min-height: 74px;
+    padding: 10px 22px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
   }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    font-weight: 800;
+  }
+  .brand img { width: 58px; height: 58px; object-fit: contain; }
+  .brand-text {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.05;
+    letter-spacing: -.01em;
+  }
+  .brand-text span { display: block; color: #b9471c; }
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 26px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--soft);
+    border-bottom: 1px solid transparent;
+  }
+  .nav-links a:hover { color: var(--ink); border-color: var(--gold); }
+  .nav-actions { display: inline-flex; align-items: center; gap: 10px; }
+  .shop-btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    background: var(--gold);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .lang-switcher {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 3px;
+    border-radius: 999px;
+  }
+  .lang-btn {
+    border: 0;
+    border-radius: 999px;
+    padding: 7px 11px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .lang-btn.active { background: var(--ink); color: #fff; }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,.96), rgba(255,255,255,.72) 48%, rgba(255,255,255,.16)),
+      url("assets/images/she-play-ukunili-ukulele.png") center / cover no-repeat;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-inner {
+    min-height: 570px;
+    display: flex;
+    align-items: center;
+  }
+  .hero-copy { padding: 70px 0 64px; }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    color: var(--gold-deep);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .eyebrow::before { content: ""; width: 30px; height: 1px; background: var(--gold); }
+  h1 {
+    margin: 0;
+    max-width: 590px;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(50px, 7vw, 86px);
+    line-height: .95;
+    letter-spacing: -.035em;
+  }
+  .hero-script {
+    display: block;
+    margin: 14px 0 4px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(22px, 2.9vw, 34px);
+    color: var(--gold-deep);
+    letter-spacing: 0;
+  }
+  .hero-copy p {
+    max-width: 530px;
+    margin: 20px 0 28px;
+    color: var(--soft);
+    font-size: 16px;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 44px;
+    padding: 12px 18px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 13px;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(54,37,21,.12); }
+  .btn-primary { background: var(--gold); border-color: var(--gold); color: #fff; }
+  .btn-dark { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .section { padding: 66px 0; }
+  .section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .section-title h2 { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+  .section-title::before,
+  .section-title::after {
+    content: "";
+    width: 46px;
+    height: 1px;
+    background: var(--line);
+  }
+  h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -.02em;
+  }
+  .section-lead {
+    margin: 0 auto 28px;
+    max-width: 610px;
+    color: var(--muted);
+    text-align: center;
+    font-size: 14px;
+  }
+  .size-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .size-card {
+    min-height: 208px;
+    padding: 26px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 130px;
+    gap: 12px;
+    align-items: end;
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .size-card:hover { transform: translateY(-3px); border-color: var(--gold); box-shadow: var(--shadow); }
+  .size-card h3 {
+    margin: 0 0 12px;
+    font-family: var(--serif);
+    font-size: 30px;
+    line-height: 1.05;
+  }
+  .size-card h3 span { display: block; font-size: 20px; }
+  .size-card p { margin: 0 0 18px; color: var(--soft); font-size: 13px; }
+  .mini-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 36px;
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .size-card img {
+    width: 130px;
+    height: 190px;
+    object-fit: contain;
+    object-position: bottom center;
+    align-self: end;
+    filter: drop-shadow(0 16px 14px rgba(70, 44, 20, .12));
+  }
+  .guide-band { background: #f9f9f7; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .guide-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(300px, .8fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .guide-card {
+    min-height: 196px;
+    padding: 22px 16px;
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: grid;
+    align-content: start;
+    justify-items: center;
+    gap: 10px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .guide-card:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(54,37,21,.1); }
+  .guide-icon {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    color: var(--gold);
+  }
+  .guide-icon svg { width: 30px; height: 30px; }
+  .guide-card h3 { margin: 0; font-size: 15px; line-height: 1.25; }
+  .guide-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+  .guide-card .read { margin-top: auto; color: var(--gold-deep); font-size: 12px; font-weight: 800; }
+  .personal-card {
+    min-height: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    overflow: hidden;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,.95) 0 48%, rgba(255,255,255,.18)),
+      url("assets/images/guitar-hero-engraving.jpg") center / cover no-repeat;
+    padding: 34px 30px;
+    display: grid;
+    align-content: center;
+  }
+  .personal-card small {
+    color: var(--gold-deep);
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .personal-card h3 {
+    max-width: 270px;
+    margin: 12px 0 12px;
+    font-family: var(--serif);
+    font-size: 29px;
+    line-height: 1.08;
+  }
+  .personal-card p { max-width: 290px; margin: 0 0 18px; color: var(--soft); font-size: 13px; }
+  .guitar-section { background: #fff; border-top: 1px solid var(--line); }
+  .guitar-layout {
+    display: grid;
+    grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+    gap: 28px;
+    align-items: stretch;
+  }
+  .guitar-intro {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,255,255,.62)),
+      url("assets/images/guitar-hero-printing.jpg") center / cover no-repeat;
+    padding: 34px;
+    display: grid;
+    align-content: end;
+    min-height: 360px;
+  }
+  .guitar-intro small,
+  .guitar-card small {
+    color: var(--gold-deep);
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+  .guitar-intro h3 {
+    margin: 12px 0 14px;
+    font-family: var(--serif);
+    font-size: clamp(30px, 3.5vw, 46px);
+    line-height: 1.02;
+    max-width: 430px;
+  }
+  .guitar-intro p { margin: 0 0 22px; max-width: 420px; color: var(--soft); font-size: 14px; }
+  .guitar-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn-shopee,
+  .mini-link.shopee-link {
+    background: #ee4d2d;
+    border-color: #ee4d2d;
+    color: #fff;
+    box-shadow: 0 8px 18px rgba(238, 77, 45, .18);
+  }
+  .btn-shopee:hover,
+  .mini-link.shopee-link:hover {
+    background: #d94324;
+    border-color: #d94324;
+  }
+  .shopee-mark {
+    display: inline-grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border: 2px solid currentColor;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .card-actions {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .guitar-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .guitar-card {
+    min-height: 260px;
+    padding: 26px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .guitar-card h3 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 28px;
+    line-height: 1.05;
+  }
+  .guitar-card p { margin: 0; color: var(--soft); font-size: 13px; }
+  .guitar-card .mini-link { width: fit-content; }
+  .final-cta {
+    margin: 64px auto;
+    max-width: 1180px;
+    padding: 46px 22px;
+    text-align: center;
+  }
+  .final-cta-card {
+    border-radius: 10px;
+    background: var(--ink);
+    color: #fff;
+    padding: 46px 28px;
+  }
+  .final-cta h2 { color: #fff; }
+  .final-cta p { max-width: 590px; margin: 14px auto 24px; color: rgba(255,255,255,.76); }
+  footer {
+    border-top: 1px solid var(--line);
+    background: #f8f8f6;
+    padding: 34px 22px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .footer-inner a { text-decoration: none; color: var(--soft); font-weight: 700; }
+
+  @media (max-width: 1000px) {
+    .nav { grid-template-columns: auto auto; }
+    .nav-links { display: none; }
+    .hero-inner { min-height: auto; }
+    .size-grid, .guide-layout, .guitar-layout { grid-template-columns: 1fr; }
+    .guide-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .nav { gap: 12px; padding: 8px 14px; }
+    .brand img { width: 50px; height: 50px; }
+    .brand-text { font-size: 17px; }
+    .shop-btn { display: none; }
+    .hero { background-position: center; }
+    .hero-inner { padding-left: 16px; padding-right: 16px; }
+    .hero-copy { padding: 46px 0 18px; }
+    .hero-copy p { font-size: 15px; }
+    .guide-grid { grid-template-columns: 1fr; }
+    .section-title::before,
+    .section-title::after { display: none; }
+    .size-card { grid-template-columns: 1fr 105px; padding: 22px; }
+    .size-card img { width: 105px; height: 160px; }
+    .guitar-intro { min-height: 300px; padding: 26px; }
+    .guitar-grid { grid-template-columns: 1fr; }
+    .section { padding: 46px 0; }
+  }
+  body[lang="en"] [data-i18n]:not([data-i18n="en"]),
+  body[lang="ms"] [data-i18n]:not([data-i18n="ms"]),
+  body[lang="zh"] [data-i18n]:not([data-i18n="zh"]) { display: none !important; }
+  body[lang="en"] [data-i18n="en"],
+  body[lang="ms"] [data-i18n="ms"],
+  body[lang="zh"] [data-i18n="zh"] { display: inline !important; }
 </style>
 </head>
 <body lang="en">
-
-<!-- ============== HEADER ============== -->
 <header class="site-header">
-  <div class="header-inner">
+  <nav class="nav" aria-label="Main navigation">
     <a href="/" class="brand">
-      <div class="brand-mark logo-holder"><img class="site-logo-icon" src="assets/images/ukulele-malaysia-icon-64.png" alt="" width="64" height="64"></div>
-      <div class="brand-name">Ukulele Malaysia</div>
+      <img src="assets/images/ukulele-malaysia-icon-64.png" alt="Ukulele Malaysia logo" width="64" height="64" />
+      <div class="brand-text">Ukulele <span>Malaysia</span></div>
     </a>
-    <div class="lang-switcher" role="tablist">
-      <button class="lang-btn active" data-set-lang="en">EN</button>
-      <button class="lang-btn" data-set-lang="ms">BM</button>
-      <button class="lang-btn" data-set-lang="zh">中文</button>
+    <div class="nav-links">
+      <a href="/">
+        <span data-i18n="en">Home</span>
+        <span data-i18n="ms">Utama</span>
+        <span data-i18n="zh">主页</span>
+      </a>
+      <a href="/how-to-buy-ukulele">
+        <span data-i18n="en">Ukulele Guide</span>
+        <span data-i18n="ms">Panduan Ukulele</span>
+        <span data-i18n="zh">Ukulele 指南</span>
+      </a>
+      <a href="/ukulele-size-guide">
+        <span data-i18n="en">Size Guide</span>
+        <span data-i18n="ms">Panduan Saiz</span>
+        <span data-i18n="zh">尺寸指南</span>
+      </a>
+      <a href="/ukunili-engrave">
+        <span data-i18n="en">Personalization</span>
+        <span data-i18n="ms">Personalisasi</span>
+        <span data-i18n="zh">刻字定制</span>
+      </a>
+      <a href="/learning-center">
+        <span data-i18n="en">Learning Center</span>
+        <span data-i18n="ms">Pusat Belajar</span>
+        <span data-i18n="zh">学习中心</span>
+      </a>
     </div>
-  </div>
+    <div class="nav-actions">
+      <a class="shop-btn" href="/ukunili">
+        <span data-i18n="en">Shop Ukunili</span>
+        <span data-i18n="ms">Beli Ukunili</span>
+        <span data-i18n="zh">选购 Ukunili</span>
+      </a>
+      <div class="lang-switcher" role="tablist" aria-label="Language">
+        <button class="lang-btn active" data-set-lang="en" type="button">EN</button>
+        <button class="lang-btn" data-set-lang="ms" type="button">BM</button>
+        <button class="lang-btn" data-set-lang="zh" type="button">中文</button>
+      </div>
+    </div>
+  </nav>
 </header>
 
-<!-- ============== HERO ============== -->
-<section class="hero">
-  <div class="hero-grid">
-    <div>
-      <div class="eyebrow">
-        <span data-i18n="en">Made for the Malaysian player</span>
-        <span data-i18n="ms">Dibuat untuk pemain Malaysia</span>
-        <span data-i18n="zh">为马来西亚琴友而生</span>
-      </div>
-
-      <h1 class="hero-title">
-        <span data-i18n="en">The ukulele, made <em>simple, warm</em>, and yours.</span>
-        <span data-i18n="ms">Ukulele, dibuat <em>mudah, hangat</em>, dan benar-benar milik anda.</span>
-        <span data-i18n="zh">乌克丽丽,从此<em>简单、温暖</em>、属于你。</span>
-      </h1>
-
-      <p class="hero-sub">
-        <span data-i18n="en">From your first chord to a fully-engraved heirloom — discover the brands, learn the basics, and shop ukuleles built for Malaysia.</span>
-        <span data-i18n="ms">Daripada kord pertama anda kepada ukulele berukir tersuai — terokai jenama, pelajari asas, dan beli ukulele yang dibuat untuk Malaysia.</span>
-        <span data-i18n="zh">从第一个和弦,到一把刻有专属铭文的传家之作 — 探索品牌、掌握入门、选购真正为马来西亚而做的乌克丽丽。</span>
-      </p>
-
-      <div class="hero-actions">
-        <a href="/how-to-buy-ukulele" class="btn btn-primary">
-          <span data-i18n="en">Find your first ukulele</span>
-          <span data-i18n="ms">Cari ukulele pertama anda</span>
-          <span data-i18n="zh">找到你的第一把乌克丽丽</span>
-          <span>→</span>
-        </a>
-        <a href="/ukunili" class="btn btn-ghost">
-          <span data-i18n="en">Shop Ukunili</span>
-          <span data-i18n="ms">Beli Ukunili</span>
-          <span data-i18n="zh">选购 Ukunili</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="hero-visual">
-      <img src="assets/images/tuning-ukulele.webp" alt="Customer tuning an Ukunili ukulele with a clip-on tuner" />
-      <div class="hero-badge">
-        <div class="hero-badge-dot"></div>
-        <div class="hero-badge-text">
-          <span data-i18n="en"><strong>Free shipping in Malaysia</strong><span>On orders RM150 and above</span></span>
-          <span data-i18n="ms"><strong>Penghantaran percuma di Malaysia</strong><span>Pesanan RM150 ke atas</span></span>
-          <span data-i18n="zh"><strong>马来西亚境内免运费</strong><span>订单满 RM150</span></span>
+<main>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <span data-i18n="en">Malaysia's ukulele home</span>
+          <span data-i18n="ms">Rumah ukulele Malaysia</span>
+          <span data-i18n="zh">马来西亚 Ukulele 指南</span>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== STATS ============== -->
-<div class="container">
-  <div class="stats">
-    <div class="stats-grid">
-      <div>
-        <div class="stat-num">2</div>
-        <div class="stat-label" data-i18n="en">Original Brands</div>
-        <div class="stat-label" data-i18n="ms">Jenama Asli</div>
-        <div class="stat-label" data-i18n="zh">原创品牌</div>
-      </div>
-      <div>
-        <div class="stat-num">20K+</div>
-        <div class="stat-label" data-i18n="en">Engravings Made</div>
-        <div class="stat-label" data-i18n="ms">Ukiran Tersuai</div>
-        <div class="stat-label" data-i18n="zh">专属雕刻</div>
-      </div>
-      <div>
-        <div class="stat-num">3</div>
-        <div class="stat-label" data-i18n="en">Languages</div>
-        <div class="stat-label" data-i18n="ms">Bahasa</div>
-        <div class="stat-label" data-i18n="zh">支持语言</div>
-      </div>
-      <div>
-        <div class="stat-num">10+</div>
-        <div class="stat-label" data-i18n="en">Years of Service</div>
-        <div class="stat-label" data-i18n="ms">Tahun Berkhidmat</div>
-        <div class="stat-label" data-i18n="zh">年用心服务</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============== EXPLORE ============== -->
-<section class="section">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-num">— 01</span>
-      <span class="section-title-tag">
-        <span data-i18n="en">Explore</span>
-        <span data-i18n="ms">Terokai</span>
-        <span data-i18n="zh">探索</span>
-      </span>
-      <div class="section-divider"></div>
-    </div>
-    <h2 class="section-h">
-      <span data-i18n="en">Everything you need, <em>in one place</em>.</span>
-      <span data-i18n="ms">Semua yang anda perlukan, <em>di satu tempat</em>.</span>
-      <span data-i18n="zh">你需要的一切,<em>都在这里</em>。</span>
-    </h2>
-    <p class="section-lead">
-      <span data-i18n="en">Whether you're choosing your first ukulele or comparing models, our guides walk you through every step.</span>
-      <span data-i18n="ms">Sama ada anda memilih ukulele pertama atau membandingkan model, panduan kami akan memandu anda langkah demi langkah.</span>
-      <span data-i18n="zh">不论你是挑选第一把,还是在比较不同型号 — 我们的指南都会一步步陪你走完。</span>
-    </p>
-
-    <div class="explore-grid">
-      <!-- Featured: Buying guide -->
-      <a href="/how-to-buy-ukulele" class="explore-card featured span-7">
-        <span class="featured-tag"><span class="dot"></span>
-          <span data-i18n="en">Most Popular</span>
-          <span data-i18n="ms">Paling Popular</span>
-          <span data-i18n="zh">最多人看</span>
+        <h1>Ukulele Malaysia</h1>
+        <span class="hero-script">
+          <span data-i18n="en">Made for the Malaysian Player</span>
+          <span data-i18n="ms">Dibuat untuk pemain Malaysia</span>
+          <span data-i18n="zh">为马来西亚琴友而做</span>
         </span>
-        <div class="card-num">No. 01</div>
-        <h3 class="card-title">
-          <span data-i18n="en">How to <em>buy</em> your first ukulele.</span>
-          <span data-i18n="ms">Cara <em>membeli</em> ukulele pertama anda.</span>
-          <span data-i18n="zh">如何<em>挑选</em>第一把乌克丽丽。</span>
-        </h3>
-        <p class="card-desc">
-          <span data-i18n="en">Soprano, concert, or tenor? Mahogany or laminate? A friendly walkthrough of sizes, brands, and what actually matters for beginners.</span>
-          <span data-i18n="ms">Soprano, concert atau tenor? Mahogani atau lapisan? Panduan mesra mengenai saiz, jenama, dan apa yang penting untuk pemula.</span>
-          <span data-i18n="zh">21寸、23寸还是26寸?桃花心木还是合板?我们用最简单的方式带你认识尺寸、品牌,和初学者真正在意的事。</span>
-        </p>
-        <div class="card-arrow">
-          <span data-i18n="en">Read the buying guide</span>
-          <span data-i18n="ms">Baca panduan pembelian</span>
-          <span data-i18n="zh">阅读选购指南</span>
-          <span>→</span>
-        </div>
-      </a>
-
-      <!-- Tuning -->
-      <a href="https://www.ukulelemalaysia.com/ukulele-out-of-tune" class="explore-card span-5">
-        <div class="card-image"></div>
-        <div class="card-num">No. 02</div>
-        <h3 class="card-title">
-          <span data-i18n="en">Why is my ukulele <em>out of tune?</em></span>
-          <span data-i18n="ms">Mengapa ukulele saya <em>tidak bertala?</em></span>
-          <span data-i18n="zh">为什么我的乌克丽丽<em>总是走音?</em></span>
-        </h3>
-        <p class="card-desc">
-          <span data-i18n="en">New strings need stretching. Here's how to tune properly — and why it gets easier after the first week.</span>
-          <span data-i18n="ms">Tali baharu perlu diregangkan. Cara untuk menalakannya dengan betul — dan kenapa ia semakin mudah selepas minggu pertama.</span>
-          <span data-i18n="zh">新弦需要拉伸,我们教你正确调音的方法,以及为什么一周后会越来越稳。</span>
-        </p>
-        <div class="card-arrow">
-          <span data-i18n="en">Tune like a pro</span>
-          <span data-i18n="ms">Tala seperti pro</span>
-          <span data-i18n="zh">学会专业调音</span>
-          <span>→</span>
-        </div>
-      </a>
-
-      <!-- 2330 Series -->
-      <a href="/2330-series" class="explore-card span-6">
-        <div class="card-image"></div>
-        <div class="card-num">No. 03</div>
-        <h3 class="card-title">
-          <span data-i18n="en">2330 Series — <em>side by side</em>.</span>
-          <span data-i18n="ms">Siri 2330 — <em>perbandingan</em>.</span>
-          <span data-i18n="zh">2330 系列 — <em>详细比较</em>。</span>
-        </h3>
-        <p class="card-desc">
-          <span data-i18n="en">The 2330M, 2330B and 2330L compared. Wood, design, tuning pegs and engraving — see all three models clearly.</span>
-          <span data-i18n="ms">2330M, 2330B dan 2330L dibandingkan. Kayu, reka bentuk, tuning peg dan ukiran — lihat semua tiga model dengan jelas.</span>
-          <span data-i18n="zh">2330M、2330B、2330L 三款并排比较 — 用料、设计、调音弦钮、雕刻,一次看清楚。</span>
-        </p>
-        <div class="card-arrow">
-          <span data-i18n="en">Compare the series</span>
-          <span data-i18n="ms">Bandingkan siri</span>
-          <span data-i18n="zh">查看系列比较</span>
-          <span>→</span>
-        </div>
-      </a>
-
-      <!-- Ukunili Hub -->
-      <a href="/ukunili" class="explore-card span-6">
-        <div class="card-image"></div>
-        <div class="card-num">No. 04</div>
-        <h3 class="card-title">
-          <span data-i18n="en">Ukunili — <em>everything in one link</em>.</span>
-          <span data-i18n="ms">Ukunili — <em>semuanya satu pautan</em>.</span>
-          <span data-i18n="zh">Ukunili — <em>一站式连接</em>。</span>
-        </h3>
-        <p class="card-desc">
-          <span data-i18n="en">Shop online, follow our socials, chat on WhatsApp — all of Ukunili gathered in one tidy hub page.</span>
-          <span data-i18n="ms">Beli dalam talian, ikuti media sosial, sembang di WhatsApp — semua Ukunili di satu halaman kemas.</span>
-          <span data-i18n="zh">线上选购、关注我们、WhatsApp 联络 — 所有 Ukunili 入口都集中在这里。</span>
-        </p>
-        <div class="card-arrow">
-          <span data-i18n="en">Visit the hub</span>
-          <span data-i18n="ms">Lawat pusat</span>
-          <span data-i18n="zh">前往主页</span>
-          <span>→</span>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============== BRANDS ============== -->
-<section class="brands-section section">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-num">— 02</span>
-      <span class="section-title-tag">
-        <span data-i18n="en">Our Brands</span>
-        <span data-i18n="ms">Jenama Kami</span>
-        <span data-i18n="zh">品牌系列</span>
-      </span>
-      <div class="section-divider"></div>
-    </div>
-    <h2 class="section-h">
-      <span data-i18n="en">Two original brands, <em>made for you</em>.</span>
-      <span data-i18n="ms">Dua jenama asli, <em>dibuat untuk anda</em>.</span>
-      <span data-i18n="zh">两个原创品牌,<em>专为你打造</em>。</span>
-    </h2>
-    <p class="section-lead">
-      <span data-i18n="en">We design and curate every Ukunili and UMA ukulele with players in Malaysia in mind — humid climate, learner-friendly action, and lasting tone.</span>
-      <span data-i18n="ms">Kami mereka dan memilih setiap ukulele Ukunili dan UMA dengan pemain Malaysia dalam fikiran — iklim lembap, aksi mesra pemula, dan bunyi tahan lama.</span>
-      <span data-i18n="zh">从马来西亚的潮湿气候、初学者的舒适手感,到耐久的音色 — 每一把 Ukunili 与 UMA,都为本地琴友而设计。</span>
-    </p>
-
-    <div class="brands-grid">
-      <a href="/ukunili" class="brand-card">
-        <div class="brand-card-tag">
-          <span data-i18n="en">Flagship Brand</span>
-          <span data-i18n="ms">Jenama Utama</span>
-          <span data-i18n="zh">主打品牌</span>
-        </div>
-        <h3>Ukunili</h3>
         <p>
-          <span data-i18n="en">Warm tone, solid build, and Malaysia's most-loved engraving service. From entry-level to keepsake-quality.</span>
-          <span data-i18n="ms">Bunyi hangat, binaan kukuh, dan perkhidmatan ukiran tersuai paling digemari di Malaysia. Dari peringkat permulaan ke kualiti kenang-kenangan.</span>
-          <span data-i18n="zh">音色温暖、做工扎实,以及全马最受欢迎的雕刻服务。从入门款,到值得珍藏的纪念之作。</span>
+          <span data-i18n="en">Find the right ukulele size, learn the basics, compare beginner models, and personalize your instrument with engraving or printing.</span>
+          <span data-i18n="ms">Cari saiz ukulele yang sesuai, belajar asas, bandingkan model pemula, dan jadikan ukulele anda lebih peribadi dengan ukiran atau cetakan.</span>
+          <span data-i18n="zh">选择合适尺寸、学习入门知识、比较初学型号，也可以为你的乐器加上刻字或印刷名字。</span>
         </p>
-        <div class="brand-card-link">
-          <span data-i18n="en">Explore Ukunili</span>
-          <span data-i18n="ms">Terokai Ukunili</span>
-          <span data-i18n="zh">了解 Ukunili</span>
-          <span>→</span>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/how-to-buy-ukulele">
+            <span data-i18n="en">Find Your Ukulele</span>
+            <span data-i18n="ms">Cari Ukulele Anda</span>
+            <span data-i18n="zh">寻找适合你的 Ukulele</span>
+          </a>
+          <a class="btn" href="/ukulele-size-guide">
+            <span data-i18n="en">Ukulele Guide</span>
+            <span data-i18n="ms">Panduan Ukulele</span>
+            <span data-i18n="zh">Ukulele 指南</span>
+          </a>
         </div>
-      </a>
+      </div>
+    </div>
+  </section>
 
-      <a href="/how-to-buy-ukulele" class="brand-card">
-        <div class="brand-card-tag">
-          <span data-i18n="en">Premium Line</span>
-          <span data-i18n="ms">Barisan Premium</span>
-          <span data-i18n="zh">精品系列</span>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-title"><h2>
+        <span data-i18n="en">Choose Your First Ukulele</span>
+        <span data-i18n="ms">Pilih Ukulele Pertama Anda</span>
+        <span data-i18n="zh">选择你的第一把 Ukulele</span>
+      </h2></div>
+      <p class="section-lead">
+        <span data-i18n="en">Different sizes, different feels. Start with the one that matches your hands, voice and playing style.</span>
+        <span data-i18n="ms">Saiz berbeza memberi rasa berbeza. Mula dengan yang sesuai dengan tangan, suara dan gaya bermain anda.</span>
+        <span data-i18n="zh">不同尺寸，有不同手感和音色。先找到适合你的手型、声音和弹奏方式的尺寸。</span>
+      </p>
+      <div class="size-grid">
+        <a class="size-card" href="/ukulele-size-guide">
+          <div>
+            <h3>21” <span>
+              <span data-i18n="en">Soprano</span>
+              <span data-i18n="ms">Soprano</span>
+              <span data-i18n="zh">Soprano</span>
+            </span></h3>
+            <p>
+              <span data-i18n="en">Small, bright and easy to start.</span>
+              <span data-i18n="ms">Kecil, cerah dan mudah untuk mula.</span>
+              <span data-i18n="zh">小巧、声音明亮，最容易入门。</span>
+            </p>
+            <span class="mini-link">
+              <span data-i18n="en">Learn More →</span>
+              <span data-i18n="ms">Ketahui Lagi →</span>
+              <span data-i18n="zh">了解更多 →</span>
+            </span>
+          </div>
+          <img src="images/uke-front.webp" alt="Soprano ukulele" loading="lazy" />
+        </a>
+        <a class="size-card" href="/ukulele-size-guide">
+          <div>
+            <h3>23” <span>
+              <span data-i18n="en">Concert</span>
+              <span data-i18n="ms">Concert</span>
+              <span data-i18n="zh">Concert</span>
+            </span></h3>
+            <p>
+              <span data-i18n="en">Best balance for most beginners.</span>
+              <span data-i18n="ms">Pilihan paling seimbang untuk kebanyakan pemula.</span>
+              <span data-i18n="zh">大多数初学者最平衡的选择。</span>
+            </p>
+            <span class="mini-link">
+              <span data-i18n="en">Learn More →</span>
+              <span data-i18n="ms">Ketahui Lagi →</span>
+              <span data-i18n="zh">了解更多 →</span>
+            </span>
+          </div>
+          <img src="images/uke-front.webp" alt="Concert ukulele" loading="lazy" />
+        </a>
+        <a class="size-card" href="/ukulele-size-guide">
+          <div>
+            <h3>26” <span>
+              <span data-i18n="en">Tenor</span>
+              <span data-i18n="ms">Tenor</span>
+              <span data-i18n="zh">Tenor</span>
+            </span></h3>
+            <p>
+              <span data-i18n="en">Fuller sound, more space to grow.</span>
+              <span data-i18n="ms">Bunyi lebih penuh, ruang jari lebih selesa.</span>
+              <span data-i18n="zh">声音更饱满，指板空间更舒服。</span>
+            </p>
+            <span class="mini-link">
+              <span data-i18n="en">Learn More →</span>
+              <span data-i18n="ms">Ketahui Lagi →</span>
+              <span data-i18n="zh">了解更多 →</span>
+            </span>
+          </div>
+          <img src="images/uke-front.webp" alt="Tenor ukulele" loading="lazy" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section guide-band">
+    <div class="wrap">
+      <div class="section-title"><h2>
+        <span data-i18n="en">Malaysia Ukulele Guide</span>
+        <span data-i18n="ms">Panduan Ukulele Malaysia</span>
+        <span data-i18n="zh">马来西亚 Ukulele 指南</span>
+      </h2></div>
+      <p class="section-lead">
+        <span data-i18n="en">Everything you need to know, from buying to playing.</span>
+        <span data-i18n="ms">Semua yang perlu anda tahu, dari membeli hingga bermain.</span>
+        <span data-i18n="zh">从购买到学习，一次看懂。</span>
+      </p>
+      <div class="guide-layout">
+        <div class="guide-grid">
+          <a class="guide-card" href="/how-to-buy-ukulele">
+            <span class="guide-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M14.77 5.87a1 1 0 0 0 1.36-.37A1 1 0 0 1 18 6a1 1 0 0 1-1 1 1 1 0 0 0 0 2 3 3 0 1 0-2.6-4.5 1 1 0 0 0 .37 1.37ZM19.07 13a1 1 0 0 0-1.12.86A7 7 0 0 1 11 20H5.41l.65-.65a1 1 0 0 0 0-1.41A7 7 0 0 1 11 6a1 1 0 0 0 0-2A9 9 0 0 0 4 18.61l-1.71 1.68a1 1 0 0 0-.21 1.09A1 1 0 0 0 3 22h8a9 9 0 0 0 8.93-7.87A1 1 0 0 0 19.07 13Zm-1.69-2.93A1 1 0 0 0 16.8 10l-.18.06-.18.09-.15.13a1 1 0 0 0-.21.32A.84.84 0 0 0 16 11a1 1 0 0 0 .07.39 1 1 0 0 0 .22.32A1 1 0 0 0 17 12a1 1 0 0 0 1-1 .84.84 0 0 0-.08-.38 1.07 1.07 0 0 0-.54-.54Z"/></svg></span>
+            <h3>
+              <span data-i18n="en">How to Choose Ukulele</span>
+              <span data-i18n="ms">Cara Pilih Ukulele</span>
+              <span data-i18n="zh">如何选择 Ukulele</span>
+            </h3>
+            <p>
+              <span data-i18n="en">Simple guide to help you find the right ukulele.</span>
+              <span data-i18n="ms">Panduan ringkas untuk mencari ukulele yang sesuai.</span>
+              <span data-i18n="zh">简单看懂，找到适合你的 Ukulele。</span>
+            </p>
+            <span class="read">
+              <span data-i18n="en">Read More →</span>
+              <span data-i18n="ms">Baca Lagi →</span>
+              <span data-i18n="zh">继续阅读 →</span>
+            </span>
+          </a>
+          <a class="guide-card" href="/ukulele-size-guide">
+            <span class="guide-icon"><svg viewBox="0 0 700 620" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" transform="translate(45 50)"><rect x="95" y="0" width="80" height="80" rx="18"/><line x1="95" y1="26" x2="72" y2="26"/><line x1="95" y1="54" x2="72" y2="54"/><line x1="175" y1="26" x2="198" y2="26"/><line x1="175" y1="54" x2="198" y2="54"/><rect x="110" y="80" width="50" height="215"/><path d="M110 220C58 232 30 273 45 320C54 349 40 372 18 394C-14 428 -6 488 50 520C90 543 180 543 220 520C276 488 284 428 252 394C230 372 216 349 225 320C240 273 212 232 160 220"/><circle cx="135" cy="327" r="30"/><line x1="110" y1="392" x2="160" y2="392"/></g><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" transform="translate(315 105)"><rect x="0" y="0" width="85" height="410" rx="4"/><line x1="85" y1="48" x2="55" y2="48"/><line x1="85" y1="94" x2="65" y2="94"/><line x1="85" y1="140" x2="55" y2="140"/><line x1="85" y1="186" x2="65" y2="186"/><line x1="85" y1="232" x2="55" y2="232"/><line x1="85" y1="278" x2="65" y2="278"/><line x1="85" y1="324" x2="55" y2="324"/><line x1="85" y1="370" x2="65" y2="370"/><line x1="125" y1="42" x2="125" y2="368"/><path d="M125 20L106 48L144 48Z"/><path d="M125 390L106 362L144 362Z"/></g></svg></span>
+            <h3>
+              <span data-i18n="en">Ukulele Size Guide</span>
+              <span data-i18n="ms">Panduan Saiz Ukulele</span>
+              <span data-i18n="zh">Ukulele 尺寸指南</span>
+            </h3>
+            <p>
+              <span data-i18n="en">Understand soprano, concert, tenor and baritone.</span>
+              <span data-i18n="ms">Fahami soprano, concert, tenor dan baritone.</span>
+              <span data-i18n="zh">看懂高音、中音、次中音和低音款。</span>
+            </p>
+            <span class="read">
+              <span data-i18n="en">Read More →</span>
+              <span data-i18n="ms">Baca Lagi →</span>
+              <span data-i18n="zh">继续阅读 →</span>
+            </span>
+          </a>
+          <a class="guide-card" href="/ukunili">
+            <span class="guide-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg></span>
+            <h3>
+              <span data-i18n="en">Beginner Buying Guide</span>
+              <span data-i18n="ms">Panduan Beli untuk Pemula</span>
+              <span data-i18n="zh">初学者购买指南</span>
+            </h3>
+            <p>
+              <span data-i18n="en">Tips for first-time buyers in Malaysia.</span>
+              <span data-i18n="ms">Tip untuk pembeli kali pertama di Malaysia.</span>
+              <span data-i18n="zh">给马来西亚第一次购买者的建议。</span>
+            </p>
+            <span class="read">
+              <span data-i18n="en">Read More →</span>
+              <span data-i18n="ms">Baca Lagi →</span>
+              <span data-i18n="zh">继续阅读 →</span>
+            </span>
+          </a>
+          <a class="guide-card" href="/ukulele-out-of-tune">
+            <span class="guide-icon"><svg viewBox="0 0 768 768" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M494 92L285 301C259 327 259 370 285 396C311 422 354 422 380 396L589 187" stroke="currentColor" stroke-width="56" stroke-linecap="round" stroke-linejoin="round"/><path d="M285 396L131 596" stroke="currentColor" stroke-width="56" stroke-linecap="round"/><circle cx="131" cy="596" r="45" fill="currentColor"/><path d="M137 286C165 223 214 173 274 153" stroke="currentColor" stroke-width="32" stroke-linecap="round"/><path d="M192 307C212 263 248 229 297 203" stroke="currentColor" stroke-width="32" stroke-linecap="round"/><path d="M449 565C499 541 538 497 554 461" stroke="currentColor" stroke-width="32" stroke-linecap="round"/><path d="M479 619C548 582 595 528 626 453" stroke="currentColor" stroke-width="32" stroke-linecap="round"/></svg></span>
+            <h3>
+              <span data-i18n="en">Ukulele Tuning Guide</span>
+              <span data-i18n="ms">Panduan Tuning Ukulele</span>
+              <span data-i18n="zh">Ukulele 调音指南</span>
+            </h3>
+            <p>
+              <span data-i18n="en">Keep your ukulele in perfect tune.</span>
+              <span data-i18n="ms">Pastikan ukulele anda sentiasa tepat bunyinya.</span>
+              <span data-i18n="zh">让你的 Ukulele 保持准确音准。</span>
+            </p>
+            <span class="read">
+              <span data-i18n="en">Read More →</span>
+              <span data-i18n="ms">Baca Lagi →</span>
+              <span data-i18n="zh">继续阅读 →</span>
+            </span>
+          </a>
+          <a class="guide-card" href="/ukunili-engrave">
+            <span class="guide-icon"><svg viewBox="0 0 632 692" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="107" y="86" width="316" height="74" rx="10" stroke="currentColor" stroke-width="18" fill="none"/><path d="M144 88V112M178 88V112M212 88V112M246 88V112M280 88V112M314 88V112M348 88V112M382 88V112" stroke="currentColor" stroke-width="18" stroke-linecap="round"/><path d="M181 160V215L265 349H319L403 215V160" stroke="currentColor" stroke-width="18" stroke-linejoin="round" fill="none"/><path d="M181 215H258M268 215H365" stroke="currentColor" stroke-width="18" stroke-linecap="round"/><path d="M265 349V389L289 428H313L337 389V349" stroke="currentColor" stroke-width="18" stroke-linejoin="round" fill="none"/><path d="M301 428V537" stroke="currentColor" stroke-width="18" stroke-linecap="round"/><path d="M90 539L301 460L542 539L309 615Z" stroke="currentColor" stroke-width="18" stroke-linejoin="round" fill="none"/><path d="M144 580L301 537V460" stroke="currentColor" stroke-width="18" stroke-linejoin="round" fill="none"/><path d="M372 447C409 429 418 381 394 349C373 322 381 286 414 271" stroke="currentColor" stroke-width="18" stroke-linecap="round" fill="none"/><path d="M434 392C471 374 480 326 456 294C435 267 443 231 476 216" stroke="currentColor" stroke-width="18" stroke-linecap="round" fill="none"/></svg></span>
+            <h3>
+              <span data-i18n="en">Engraving & Printing Guide</span>
+              <span data-i18n="ms">Panduan Ukiran & Cetakan</span>
+              <span data-i18n="zh">刻字与印刷指南</span>
+            </h3>
+            <p>
+              <span data-i18n="en">Make it yours with name engraving and printing.</span>
+              <span data-i18n="ms">Jadikan ukulele lebih peribadi dengan ukiran dan cetakan nama.</span>
+              <span data-i18n="zh">用刻字或印刷名字，让乐器更有个人感。</span>
+            </p>
+            <span class="read">
+              <span data-i18n="en">Read More →</span>
+              <span data-i18n="ms">Baca Lagi →</span>
+              <span data-i18n="zh">继续阅读 →</span>
+            </span>
+          </a>
         </div>
-        <h3>UMA</h3>
-        <p>
-          <span data-i18n="en">A more refined voice — for players ready to step up. Premium woods, careful finish, and a tone that opens up over time.</span>
-          <span data-i18n="ms">Suara yang lebih halus — untuk pemain yang bersedia naik taraf. Kayu premium, kemasan teliti, dan bunyi yang semakin matang dengan masa.</span>
-          <span data-i18n="zh">更细腻的音色 — 适合想要进阶的琴友。高级木料、细致打磨,声音也会随时间越来越通透。</span>
-        </p>
-        <div class="brand-card-link">
-          <span data-i18n="en">Learn about UMA</span>
-          <span data-i18n="ms">Ketahui tentang UMA</span>
-          <span data-i18n="zh">认识 UMA</span>
-          <span>→</span>
+        <a class="personal-card" href="/ukunili-engrave">
+          <small>
+            <span data-i18n="en">Make it yours</span>
+            <span data-i18n="ms">Jadikan milik anda</span>
+            <span data-i18n="zh">让它成为你的专属乐器</span>
+          </small>
+          <h3>
+            <span data-i18n="en">Personalize Your Ukulele</span>
+            <span data-i18n="ms">Personalisasi Ukulele Anda</span>
+            <span data-i18n="zh">定制你的 Ukulele</span>
+          </h3>
+          <p>
+            <span data-i18n="en">Name engraving, logo printing, school gifts and special moments.</span>
+            <span data-i18n="ms">Ukiran nama, cetakan logo, hadiah sekolah dan momen istimewa.</span>
+            <span data-i18n="zh">名字刻字、Logo 印刷、学校礼品和特别纪念都可以安排。</span>
+          </p>
+          <span class="btn btn-primary">
+            <span data-i18n="en">Explore Personalization →</span>
+            <span data-i18n="ms">Lihat Personalisasi →</span>
+            <span data-i18n="zh">查看定制服务 →</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section guitar-section">
+    <div class="wrap">
+      <div class="section-title"><h2>
+        <span data-i18n="en">Guitar & Name Printing</span>
+        <span data-i18n="ms">Gitar & Cetakan Nama</span>
+        <span data-i18n="zh">吉他与名字印刷</span>
+      </h2></div>
+      <p class="section-lead">
+        <span data-i18n="en">Looking for guitar products too? Choose a guitar, preview your name design, or print a name on your capo.</span>
+        <span data-i18n="ms">Mencari produk gitar juga? Pilih gitar, lihat pratonton nama, atau cetak nama pada capo anda.</span>
+        <span data-i18n="zh">也在找吉他产品？你可以选购吉他、预览吉他名字设计，也可以为 Capo 印上名字。</span>
+      </p>
+      <div class="guitar-layout">
+        <div class="guitar-intro">
+          <small>
+            <span data-i18n="en">Guitar collection</span>
+            <span data-i18n="ms">Koleksi gitar</span>
+            <span data-i18n="zh">吉他系列</span>
+          </small>
+          <h3>
+            <span data-i18n="en">Need a guitar first?</span>
+            <span data-i18n="ms">Perlukan gitar dahulu?</span>
+            <span data-i18n="zh">还没有吉他？</span>
+          </h3>
+          <p>
+            <span data-i18n="en">Browse Ukunili guitar models, then add name printing for a more personal gift or beginner set.</span>
+            <span data-i18n="ms">Lihat model gitar Ukunili, kemudian tambah cetakan nama untuk hadiah atau set pemula yang lebih peribadi.</span>
+            <span data-i18n="zh">先选购 Ukunili 吉他，再搭配名字印刷，更适合作为礼物或初学套装。</span>
+          </p>
+          <div class="guitar-actions">
+            <a class="btn btn-primary" href="https://www.ukuniliukulele.com/collections/guitar" target="_blank" rel="noopener">
+              <span data-i18n="en">Buy Guitar →</span>
+              <span data-i18n="ms">Beli Gitar →</span>
+              <span data-i18n="zh">购买吉他 →</span>
+            </a>
+            <a class="btn btn-shopee" href="https://shopee.com.my/NILI-Acoustic-Guitar-38-inches-Gitar-Akustik-for-Beginner-i.98513351.7292177050?extraParams=%7B%22display_model_id%22%3A435808887875%2C%22model_selection_logic%22%3A3%7D" target="_blank" rel="noopener">
+              <span class="shopee-mark" aria-hidden="true">S</span>
+              <span data-i18n="en">Buy at Shopee</span>
+              <span data-i18n="ms">Beli di Shopee</span>
+              <span data-i18n="zh">Shopee 购买</span>
+            </a>
+            <a class="btn" href="/guitar-printing-name">
+              <span data-i18n="en">Preview Name Design</span>
+              <span data-i18n="ms">Pratonton Nama</span>
+              <span data-i18n="zh">预览名字设计</span>
+            </a>
+          </div>
         </div>
+        <div class="guitar-grid">
+          <a class="guitar-card" href="/guitar-printing-name">
+            <small>
+              <span data-i18n="en">Guitar printing</span>
+              <span data-i18n="ms">Cetakan gitar</span>
+              <span data-i18n="zh">吉他印刷</span>
+            </small>
+            <h3>
+              <span data-i18n="en">Guitar Printing Name</span>
+              <span data-i18n="ms">Cetak Nama Pada Gitar</span>
+              <span data-i18n="zh">吉他名字印刷</span>
+            </h3>
+            <p>
+              <span data-i18n="en">Type your name, choose a font, select guitar color, then send the preview to us by WhatsApp.</span>
+              <span data-i18n="ms">Taip nama, pilih font dan warna gitar, kemudian hantar pratonton kepada kami melalui WhatsApp.</span>
+              <span data-i18n="zh">输入名字、选择字体和吉他颜色，然后把预览图发给我们。</span>
+            </p>
+            <span class="mini-link">
+              <span data-i18n="en">Open Preview →</span>
+              <span data-i18n="ms">Buka Pratonton →</span>
+              <span data-i18n="zh">打开预览 →</span>
+            </span>
+          </a>
+          <a class="guitar-card" href="/capo-printing-name">
+            <small>
+              <span data-i18n="en">Capo printing</span>
+              <span data-i18n="ms">Cetakan capo</span>
+              <span data-i18n="zh">Capo 印刷</span>
+            </small>
+            <h3>
+              <span data-i18n="en">Capo Printing Name</span>
+              <span data-i18n="ms">Cetak Nama Pada Capo</span>
+              <span data-i18n="zh">Capo 名字印刷</span>
+            </h3>
+            <p>
+              <span data-i18n="en">Create a clean name preview for your capo and send the design to our team.</span>
+              <span data-i18n="ms">Cipta pratonton nama untuk capo anda dan hantar reka bentuk kepada pasukan kami.</span>
+              <span data-i18n="zh">为你的 Capo 制作名字预览，并把设计发给我们确认。</span>
+            </p>
+            <span class="mini-link">
+              <span data-i18n="en">Design Capo →</span>
+              <span data-i18n="ms">Reka Capo →</span>
+              <span data-i18n="zh">设计 Capo →</span>
+            </span>
+          </a>
+          <div class="guitar-card">
+            <small>
+              <span data-i18n="en">Buy capo</span>
+              <span data-i18n="ms">Beli capo</span>
+              <span data-i18n="zh">购买 Capo</span>
+            </small>
+            <h3>
+              <span data-i18n="en">Where to Buy Capo</span>
+              <span data-i18n="ms">Di Mana Beli Capo</span>
+              <span data-i18n="zh">哪里购买 Capo</span>
+            </h3>
+            <p>
+              <span data-i18n="en">Shop capo first, then come back to add name printing if you want a personalized piece.</span>
+              <span data-i18n="ms">Beli capo dahulu, kemudian tambah cetakan nama jika mahu lebih peribadi.</span>
+              <span data-i18n="zh">先购买 Capo，需要定制时再回来加名字印刷。</span>
+            </p>
+            <div class="card-actions">
+              <a class="mini-link" href="https://www.ukuniliukulele.com/collections/capo" target="_blank" rel="noopener">
+                <span data-i18n="en">Buy Capo →</span>
+                <span data-i18n="ms">Beli Capo →</span>
+                <span data-i18n="zh">购买 Capo →</span>
+              </a>
+              <a class="mini-link shopee-link" href="https://shopee.com.my/Guitar-Capo-Printing-Name-Capo-Gitar-Cetak-Nama-Ready-Stock-i.98513351.8600742889?extraParams=%7B%22display_model_id%22%3A385281784438%2C%22model_selection_logic%22%3A3%7D" target="_blank" rel="noopener">
+                <span class="shopee-mark" aria-hidden="true">S</span>
+                <span data-i18n="en">Buy at Shopee</span>
+                <span data-i18n="ms">Shopee</span>
+                <span data-i18n="zh">Shopee</span>
+              </a>
+            </div>
+          </div>
+          <div class="guitar-card">
+            <small>
+              <span data-i18n="en">Guitar shop</span>
+              <span data-i18n="ms">Kedai gitar</span>
+              <span data-i18n="zh">吉他商店</span>
+            </small>
+            <h3>
+              <span data-i18n="en">Buy Guitar Online</span>
+              <span data-i18n="ms">Beli Gitar Online</span>
+              <span data-i18n="zh">线上购买吉他</span>
+            </h3>
+            <p>
+              <span data-i18n="en">View current guitar models and offers available from Ukunili.</span>
+              <span data-i18n="ms">Lihat model gitar dan tawaran semasa daripada Ukunili.</span>
+              <span data-i18n="zh">查看 Ukunili 目前的吉他型号和优惠。</span>
+            </p>
+            <div class="card-actions">
+              <a class="mini-link" href="https://www.ukuniliukulele.com/collections/guitar" target="_blank" rel="noopener">
+                <span data-i18n="en">Shop Guitar →</span>
+                <span data-i18n="ms">Lihat Gitar →</span>
+                <span data-i18n="zh">查看吉他 →</span>
+              </a>
+              <a class="mini-link shopee-link" href="https://shopee.com.my/NILI-Acoustic-Guitar-38-inches-Gitar-Akustik-for-Beginner-i.98513351.7292177050?extraParams=%7B%22display_model_id%22%3A435808887875%2C%22model_selection_logic%22%3A3%7D" target="_blank" rel="noopener">
+                <span class="shopee-mark" aria-hidden="true">S</span>
+                <span data-i18n="en">Buy at Shopee</span>
+                <span data-i18n="ms">Shopee</span>
+                <span data-i18n="zh">Shopee</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="final-cta-card">
+      <h2>
+        <span data-i18n="en">Ready to start playing?</span>
+        <span data-i18n="ms">Sedia untuk mula bermain?</span>
+        <span data-i18n="zh">准备开始弹奏了吗？</span>
+      </h2>
+      <p>
+        <span data-i18n="en">Start with a beginner-friendly ukulele and use our guides whenever you need help.</span>
+        <span data-i18n="ms">Mula dengan ukulele mesra pemula dan gunakan panduan kami bila-bila anda perlukan bantuan.</span>
+        <span data-i18n="zh">从一把适合初学者的 Ukulele 开始，需要帮助时就回来查看我们的指南。</span>
+      </p>
+      <a class="btn btn-primary" href="/ukunili">
+        <span data-i18n="en">Shop Ukunili Ukuleles</span>
+        <span data-i18n="ms">Beli Ukulele Ukunili</span>
+        <span data-i18n="zh">选购 Ukunili Ukulele</span>
       </a>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<!-- ============== HOW IT WORKS ============== -->
-<section class="process-section section">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-num">— 03</span>
-      <span class="section-title-tag">
-        <span data-i18n="en">How it Works</span>
-        <span data-i18n="ms">Bagaimana Ia Berfungsi</span>
-        <span data-i18n="zh">购买流程</span>
-      </span>
-      <div class="section-divider"></div>
-    </div>
-    <h2 class="section-h">
-      <span data-i18n="en">From <em>click</em> to your front door.</span>
-      <span data-i18n="ms">Dari <em>klik</em> ke pintu depan anda.</span>
-      <span data-i18n="zh">从<em>下单</em>到送上家门。</span>
-    </h2>
-
-    <div class="process-list">
-      <a href="/how-to-buy-ukulele" class="process-item">
-        <div class="process-num">01</div>
-        <div class="process-title">
-          <span data-i18n="en">Choose your ukulele</span>
-          <span data-i18n="ms">Pilih ukulele anda</span>
-          <span data-i18n="zh">选一把适合的乌克丽丽</span>
-        </div>
-        <div class="process-desc">
-          <span data-i18n="en">Use our buying guide to pick the right size, wood and brand for you.</span>
-          <span data-i18n="ms">Gunakan panduan pembelian kami untuk memilih saiz, kayu dan jenama yang sesuai.</span>
-          <span data-i18n="zh">参考我们的选购指南,挑出最适合你的尺寸、木材与品牌。</span>
-        </div>
-        <div class="process-arrow">→</div>
-      </a>
-      <a href="/ukunili" class="process-item">
-        <div class="process-num">02</div>
-        <div class="process-title">
-          <span data-i18n="en">Order online or chat us</span>
-          <span data-i18n="ms">Pesan dalam talian atau hubungi kami</span>
-          <span data-i18n="zh">线上下单,或直接联络我们</span>
-        </div>
-        <div class="process-desc">
-          <span data-i18n="en">Buy from our store or message us on WhatsApp — we reply fast.</span>
-          <span data-i18n="ms">Beli dari kedai kami atau hantar mesej di WhatsApp — kami balas cepat.</span>
-          <span data-i18n="zh">在官网选购,或在 WhatsApp 留言 — 我们回复很快。</span>
-        </div>
-        <div class="process-arrow">→</div>
-      </a>
-      <a href="/payment-info" class="process-item">
-        <div class="process-num">03</div>
-        <div class="process-title">
-          <span data-i18n="en">Pay securely</span>
-          <span data-i18n="ms">Bayar dengan selamat</span>
-          <span data-i18n="zh">安全付款</span>
-        </div>
-        <div class="process-desc">
-          <span data-i18n="en">DuitNow QR, Touch 'n Go, or bank transfer. Send proof of payment via WhatsApp.</span>
-          <span data-i18n="ms">DuitNow QR, Touch 'n Go atau pindah bank. Hantar bukti pembayaran melalui WhatsApp.</span>
-          <span data-i18n="zh">DuitNow QR、Touch 'n Go 或银行转账,付款后用 WhatsApp 传送收据。</span>
-        </div>
-        <div class="process-arrow">→</div>
-      </a>
-      <a href="https://www.ukulelemalaysia.com/ukulele-out-of-tune" class="process-item">
-        <div class="process-num">04</div>
-        <div class="process-title">
-          <span data-i18n="en">Tune up & start playing</span>
-          <span data-i18n="ms">Tala dan mula bermain</span>
-          <span data-i18n="zh">调音,开始演奏</span>
-        </div>
-        <div class="process-desc">
-          <span data-i18n="en">We guide you through tuning so you can start strumming the same day it arrives.</span>
-          <span data-i18n="ms">Kami akan memandu anda menalakan ukulele supaya anda boleh mula bermain pada hari ia tiba.</span>
-          <span data-i18n="zh">我们会教你调音,让你拿到当天就能开始弹奏。</span>
-        </div>
-        <div class="process-arrow">→</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============== FINAL CTA — Engraving (per project rule) ============== -->
-<section class="final-cta">
-  <div class="final-cta-eyebrow">
-    <span data-i18n="en">Exclusive to Ukunili</span>
-    <span data-i18n="ms">Eksklusif Ukunili</span>
-    <span data-i18n="zh">Ukunili 专属服务</span>
-  </div>
-  <h2>
-    <span data-i18n="en">Make it <em>truly yours</em> — custom engraving on every Ukunili.</span>
-    <span data-i18n="ms">Jadikan ia <em>benar-benar milik anda</em> — ukiran tersuai pada setiap Ukunili.</span>
-    <span data-i18n="zh">让它<em>真正属于你</em> — 每一把 Ukunili 都可订制雕刻。</span>
-  </h2>
-  <p>
-    <span data-i18n="en">Engrave your name, a meaningful message, or your own design directly into the wood. The perfect personal touch — or an unforgettable gift.</span>
-    <span data-i18n="ms">Ukir nama anda, mesej peribadi, atau reka bentuk anda sendiri terus pada kayu. Sentuhan peribadi yang sempurna — atau hadiah yang tidak akan dilupakan.</span>
-    <span data-i18n="zh">在琴身刻上你的名字、一段有意义的字句,或你自己的设计 — 是最贴心的个人化,也是最难忘的礼物。</span>
-  </p>
-  <a href="/ukunili-engrave" class="final-cta-btn">
-    <span data-i18n="en">Start your engraving</span>
-    <span data-i18n="ms">Mula ukiran anda</span>
-    <span data-i18n="zh">开始你的专属雕刻</span>
-    <span>→</span>
-  </a>
-</section>
-
-<!-- ============== FOOTER ============== -->
 <footer>
   <div class="footer-inner">
+    <div>© 2026 Ukulele Malaysia · Ukunili Music Sdn Bhd</div>
     <div>
-      <div class="footer-brand">Ukulele Malaysia</div>
-      <p class="footer-tagline">
-        <span data-i18n="en">Malaysia's home for the ukulele. Original brands, honest guides, and warm tone — for every player.</span>
-        <span data-i18n="ms">Rumah ukulele Malaysia. Jenama asli, panduan jujur, dan bunyi hangat — untuk setiap pemain.</span>
-        <span data-i18n="zh">马来西亚的乌克丽丽之家。原创品牌、真心指南、温暖音色 — 给每一位琴友。</span>
-      </p>
+      <a href="https://www.instagram.com/ukunili/" target="_blank" rel="noopener">Instagram</a>
     </div>
-    <div class="footer-col">
-      <h4>
-        <span data-i18n="en">Explore</span>
-        <span data-i18n="ms">Terokai</span>
-        <span data-i18n="zh">探索</span>
-      </h4>
-      <a href="/how-to-buy-ukulele"><span data-i18n="en">Buying Guide</span><span data-i18n="ms">Panduan Pembelian</span><span data-i18n="zh">选购指南</span></a>
-      <a href="https://www.ukulelemalaysia.com/ukulele-out-of-tune"><span data-i18n="en">Tuning Guide</span><span data-i18n="ms">Panduan Talaan</span><span data-i18n="zh">调音指南</span></a>
-      <a href="/2330-series"><span data-i18n="en">2330 Series</span><span data-i18n="ms">Siri 2330</span><span data-i18n="zh">2330 系列</span></a>
-    </div>
-    <div class="footer-col">
-      <h4>
-        <span data-i18n="en">Brands</span>
-        <span data-i18n="ms">Jenama</span>
-        <span data-i18n="zh">品牌</span>
-      </h4>
-      <a href="/ukunili">Ukunili</a>
-      <a href="/ukunili-engrave">
-        <span data-i18n="en">Engraving Service</span>
-        <span data-i18n="ms">Perkhidmatan Ukiran</span>
-        <span data-i18n="zh">雕刻服务</span>
-      </a>
-    </div>
-    <div class="footer-col">
-      <h4>
-        <span data-i18n="en">Connect</span>
-        <span data-i18n="ms">Hubungi</span>
-        <span data-i18n="zh">联络</span>
-      </h4>
-      <a href="https://wa.me/60183877972">WhatsApp</a>
-      <a href="/payment-info">
-        <span data-i18n="en">Payment Info</span>
-        <span data-i18n="ms">Maklumat Pembayaran</span>
-        <span data-i18n="zh">付款方式</span>
-      </a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div>© 2026 Ukulele Malaysia.
-      <span data-i18n="en">All rights reserved.</span>
-      <span data-i18n="ms">Hak cipta terpelihara.</span>
-      <span data-i18n="zh">版权所有。</span>
-    </div>
-    <div>Made in Malaysia 🇲🇾</div>
   </div>
 </footer>
 
 <script>
-  // ============== LANGUAGE SWITCHING ==============
-  const buttons = document.querySelectorAll('.lang-btn');
-  const body = document.body;
+  const buttons = document.querySelectorAll("[data-set-lang]");
+  const savedLang = localStorage.getItem("ukm-lang") || "en";
+  setLang(savedLang);
 
-  function setLang(lang) {
-    body.setAttribute('lang', lang === 'zh' ? 'zh' : (lang === 'ms' ? 'ms' : 'en'));
-    document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : (lang === 'ms' ? 'ms' : 'en'));
-    buttons.forEach(b => b.classList.toggle('active', b.dataset.setLang === lang));
-    try { sessionStorage.setItem('preferredLang', lang); } catch(e) {}
-  }
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => setLang(btn.dataset.setLang));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => setLang(button.dataset.setLang));
   });
 
-  // Restore saved language
-  try {
-    const saved = sessionStorage.getItem('preferredLang');
-    if (saved && ['en','ms','zh'].includes(saved)) setLang(saved);
-    else {
-      // Auto-detect
-      const userLang = (navigator.language || 'en').toLowerCase();
-      if (userLang.startsWith('zh')) setLang('zh');
-      else if (userLang.startsWith('ms') || userLang.startsWith('id')) setLang('ms');
-    }
-  } catch(e) {}
-
-  // ============== SCROLL REVEAL ==============
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-
-  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+  function setLang(lang) {
+    document.body.setAttribute("lang", lang);
+    localStorage.setItem("ukm-lang", lang);
+    buttons.forEach((button) => button.classList.toggle("active", button.dataset.setLang === lang));
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : lang === "ms" ? "ms-MY" : "en";
+  }
 </script>
-
 </body>
 </html>
