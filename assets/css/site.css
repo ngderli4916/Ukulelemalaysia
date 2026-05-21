@@ -52,6 +52,39 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+body[data-page-group] {
+  --bg: var(--ukm-paper);
+  --bg-soft: var(--ukm-panel);
+  --bg-warm: #f1eee8;
+  --surface: var(--ukm-paper);
+  --card: var(--ukm-paper);
+  --deep: var(--ukm-ink);
+  --ink-soft: var(--ukm-soft);
+  --ink-mute: var(--ukm-muted);
+  --accent-soft: #fff5ed;
+  --leaf: var(--ukm-green);
+  background-color: var(--ukm-paper);
+}
+
+body[data-page-group="guide"],
+body[data-page-group="gallery"],
+body[data-page-group="learning"],
+body[data-page-group="info"] {
+  --bg: var(--ukm-paper);
+  --bg-soft: var(--ukm-panel);
+  --bg-warm: #f2eee8;
+  --surface: var(--ukm-paper);
+  --card: var(--ukm-paper);
+}
+
+body[data-page-group="service"] {
+  --bg: var(--ukm-paper);
+  --bg-soft: #f7f6f3;
+  --bg-warm: #f0ece5;
+  --card: var(--ukm-paper);
+  --accent-soft: #fff3eb;
+}
+
 body[lang="zh"],
 body[data-lang="zh"] {
   font-family: var(--ukm-font-cn);
@@ -86,6 +119,10 @@ body[data-lang="zh"] {
   backdrop-filter: blur(16px);
 }
 
+body[data-page-group] :where(.site-header, header, .nav-wrap) {
+  border-bottom-color: color-mix(in srgb, var(--ukm-line) 88%, transparent);
+}
+
 :where(.lang-switcher, .lang-switch, .lang-pills, .lang-pill) {
   border-color: var(--ukm-line);
 }
@@ -107,6 +144,14 @@ body[data-lang="zh"] {
   background: var(--ukm-gold);
   border-color: var(--ukm-gold);
   color: #fff;
+}
+
+body[data-page-group] :where(.btn, .shop-btn, .cta-btn, .cta-button, .lang-btn, .lang-pill) {
+  min-width: 0;
+}
+
+body[data-page-group] :where(.card, .guide-card, .size-card, .product-card, .sample-card, .info-card, .brand-block, .feature-card) {
+  border-color: color-mix(in srgb, var(--ukm-line) 88%, transparent);
 }
 
 :where([data-i18n], .inline-lang, span[data-lang], div[data-lang], p[data-lang], h1[data-lang], h2[data-lang], h3[data-lang], li[data-lang], b[data-lang], strong[data-lang], small[data-lang], em[data-lang]) {
