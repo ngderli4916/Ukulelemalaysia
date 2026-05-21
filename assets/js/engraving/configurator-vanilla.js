@@ -231,10 +231,10 @@
         </div>
         <div class="engraving-sample-row">
           ${SAMPLE_IMAGES.map((name, index) => `
-            <a class="engraving-sample-thumb" href="ukulele-engraving-sample.html" target="_blank" rel="noopener">
+            <div class="engraving-sample-thumb" tabindex="0" role="img" aria-label="Ukunili engraving sample ${index + 1}">
               <img src="${engravingSampleUrl(name)}" alt="Ukunili engraving sample ${index + 1}" loading="${index < 3 ? "eager" : "lazy"}" decoding="async">
               <span>Sample ${String(index + 1).padStart(2, "0")}</span>
-            </a>
+            </div>
           `).join("")}
         </div>
       </div>

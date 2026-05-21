@@ -593,7 +593,8 @@
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scroll-snap-type: inline mandatory;
-    padding: 2px 2px 8px;
+    padding: 18px 70px 28px 2px;
+    margin: -14px -16px -20px 0;
     scrollbar-width: thin;
     scrollbar-color: rgba(194,65,12,.4) rgba(222,205,181,.28);
   }
@@ -605,7 +606,12 @@
     display: grid;
     gap: 7px;
     color: var(--ink);
-    text-decoration: none;
+    cursor: zoom-in;
+    outline: none;
+    transform-origin: center;
+    transition: transform .22s ease, filter .22s ease;
+    will-change: transform;
+    position: relative;
   }
   .engraving-sample-thumb img {
     width: 100%;
@@ -614,6 +620,18 @@
     border-radius: 12px;
     border: 1px solid rgba(222,205,181,.68);
     background: #f3ece0;
+    box-shadow: 0 8px 18px rgba(70,52,31,.08);
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  }
+  .engraving-sample-thumb:hover,
+  .engraving-sample-thumb:focus-visible {
+    z-index: 5;
+    transform: translateY(-8px) scale(1.75);
+  }
+  .engraving-sample-thumb:hover img,
+  .engraving-sample-thumb:focus-visible img {
+    border-color: rgba(194,65,12,.58);
+    box-shadow: 0 24px 42px rgba(70,52,31,.2);
   }
   .engraving-sample-thumb span {
     color: var(--ink-mute);
