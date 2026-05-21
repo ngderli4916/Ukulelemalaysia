@@ -16,3 +16,10 @@ Page groups:
 - `gallery`: sample/photo gallery pages.
 - `learning`: lesson and video library pages.
 - `info`: support and payment information pages.
+
+Extracted shared rules:
+
+- Logo image sizing: `.site-logo-icon`, `.brand-logo`, `.header-logo`.
+- Header logo holder sizing: `.logo-holder`.
+- Base language visibility and active language button state.
+- Shared page group background/card variables.
