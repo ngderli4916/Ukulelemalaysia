@@ -59,6 +59,17 @@
     shareError: { en: "Sorry, the preview image could not be shared. Please try Download Preview instead.", ms: "Maaf, imej pratonton tidak dapat dikongsi. Sila cuba Muat Turun Pratonton.", zh: "抱歉，预览图无法分享。请改用下载预览图。" }
   };
 
+  const SAMPLE_IMAGES = [
+    "675942_13c3ec507dbc465aa74b3ea4da885ec1~mv2.jpg",
+    "675942_744e2806658c488287bc0dfadf7e697c~mv2.jpg",
+    "675942_401cb271f6c142d6b52ae51ce489c33e~mv2.jpg",
+    "675942_507618936f944976bb5715517a7accb1~mv2.jpg",
+    "675942_483cdf11d8b241208292b2eb096ff3f3~mv2.jpg",
+    "675942_e49583fff83a4426a1951de79bd8bf55~mv2.jpg",
+    "675942_1e8f5fa132584e0f8541b2e4a2f473e0~mv2.jpg",
+    "675942_c4884d9b2beb4cf7805ea8557f2fa4b5~mv2.jpg"
+  ];
+
   const state = {
     text: "Ocean Blue",
     fontId: "dancing",
@@ -193,6 +204,7 @@
           <button class="preview-action-btn" type="button" data-action="download">${downloadIcon()}${state.busy === "download" ? t("preparing") : t("download")}</button>
         </div>
       </div>
+      ${renderSampleStrip()}
       <a class="sample-card sample-card-standalone" href="ukulele-engraving-sample.html" target="_blank" rel="noopener">
         <span class="sample-card-icon">${imageIcon()}</span>
         <span class="sample-card-copy">
@@ -204,6 +216,29 @@
       </a>
     `;
     bindActions();
+  }
+
+  function engravingSampleUrl(name, width = 360, height = 450) {
+    return `https://static.wixstatic.com/media/${name}/v1/fill/w_${width},h_${height},q_90,enc_avif,quality_auto/${name}`;
+  }
+
+  function renderSampleStrip() {
+    return `
+      <div class="engraving-sample-strip" aria-label="Engraving sample photo row">
+        <div class="engraving-sample-strip-head">
+          <strong>${t("sampleTitle")}</strong>
+          <a href="ukulele-engraving-sample.html" target="_blank" rel="noopener">${t("samples")} →</a>
+        </div>
+        <div class="engraving-sample-row">
+          ${SAMPLE_IMAGES.map((name, index) => `
+            <a class="engraving-sample-thumb" href="ukulele-engraving-sample.html" target="_blank" rel="noopener">
+              <img src="${engravingSampleUrl(name)}" alt="Ukunili engraving sample ${index + 1}" loading="${index < 3 ? "eager" : "lazy"}" decoding="async">
+              <span>Sample ${String(index + 1).padStart(2, "0")}</span>
+            </a>
+          `).join("")}
+        </div>
+      </div>
+    `;
   }
 
   function bindActions() {
