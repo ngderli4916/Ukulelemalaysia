@@ -22,4 +22,6 @@ Extracted shared rules:
 - Logo image sizing: `.site-logo-icon`, `.brand-logo`, `.header-logo`.
 - Header logo holder sizing: `.logo-holder`.
 - Base language visibility and active language button state.
+- Shared language switch styling for standard `.lang-switch` / `.lang-switcher` and `.lang-btn`.
+- Shared standard header layout for `header`, `.nav-wrap`, `.brand`, and `.brand-name` on grouped pages.
 - Shared page group background/card variables.

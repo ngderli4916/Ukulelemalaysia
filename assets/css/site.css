@@ -133,17 +133,89 @@ body[data-page-group] :where(.site-header, header, .nav-wrap) {
   border-bottom-color: color-mix(in srgb, var(--ukm-line) 88%, transparent);
 }
 
+body[data-page-group] > header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, .9);
+  border-bottom: 1px solid var(--ukm-line);
+}
+
+body[data-page-group] :where(.nav-wrap) {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+body[data-page-group] :where(.brand) {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ukm-ink);
+  text-decoration: none;
+}
+
+body[data-page-group] :where(.brand-name) {
+  font-family: var(--ukm-font-display);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+
+body[data-page-group] :where(.brand-name span) {
+  color: var(--ukm-accent);
+}
+
+@media (max-width: 640px) {
+  body[data-page-group] :where(.nav-wrap) {
+    padding: 14px 18px;
+  }
+
+  body[data-page-group] :where(.brand-name) {
+    font-size: 16px;
+  }
+}
+
 :where(.lang-switcher, .lang-switch, .lang-pills, .lang-pill) {
   border-color: var(--ukm-line);
 }
 
-:where(.lang-btn, .lang-pill) {
+:where(.lang-switch, .lang-switcher) {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border: 1px solid var(--ukm-line);
+  border-radius: 999px;
+  background: var(--bg-soft, var(--ukm-panel));
+}
+
+:where(.lang-btn) {
+  border: 0;
+  border-radius: 999px;
+  padding: 7px 16px;
+  background: transparent;
+  color: var(--ink-mute, var(--ukm-muted));
   font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .02em;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+
+:where(.lang-btn:hover) {
+  color: var(--ukm-ink);
 }
 
 :where(.lang-btn.active, .lang-pill.active) {
   background: var(--ukm-ink);
   color: #fff;
+  box-shadow: 0 2px 8px rgba(31, 26, 20, .15);
 }
 
 :where(.btn, .shop-btn, .cta-btn, .cta-button) {
