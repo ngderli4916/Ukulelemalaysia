@@ -232,6 +232,50 @@ body[data-page-group] :where(.btn, .shop-btn, .cta-btn, .cta-button, .lang-btn, 
   min-width: 0;
 }
 
+body[data-page-group] :where(.submit-btn, .help-whatsapp, .preview-action-btn.whatsapp, .btn-whatsapp, .pulse[href*="wa.me"], .cta-btn[href*="wa.me"], .btn[href*="wa.me"], .contact-card.wa) {
+  min-height: 50px !important;
+  border-color: #1fbd5b !important;
+  background: #25d366 !important;
+  color: #073f20 !important;
+  box-shadow: 0 12px 28px rgba(37, 211, 102, .24) !important;
+  font-weight: 800 !important;
+}
+
+body[data-page-group] :where(.submit-btn, .help-whatsapp, .preview-action-btn.whatsapp, .btn-whatsapp, .pulse[href*="wa.me"], .cta-btn[href*="wa.me"], .btn[href*="wa.me"], .contact-card.wa):hover {
+  background: #20c45d !important;
+  color: #073f20 !important;
+}
+
+body[data-page-group] :where(.preview-download-btn, .preview-action-btn:not(.whatsapp)) {
+  min-height: 50px !important;
+  border-color: var(--ukm-line) !important;
+  background: #fff !important;
+  color: var(--ukm-ink) !important;
+  box-shadow: 0 8px 20px rgba(31, 26, 20, .06) !important;
+  font-weight: 800 !important;
+}
+
+body[data-page-group] :where(.preview-download-btn, .preview-action-btn:not(.whatsapp)):hover {
+  border-color: var(--ukm-accent) !important;
+  background: #fffaf7 !important;
+  color: var(--ukm-ink) !important;
+}
+
+body[data-page-group] :where(.submit-btn, .help-whatsapp, .preview-action-btn, .preview-download-btn, .btn-whatsapp, .pulse[href*="wa.me"], .cta-btn[href*="wa.me"], .btn[href*="wa.me"], .contact-card.wa) svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+}
+
+@media (max-width: 640px) {
+  body[data-page-group] :where(.submit-btn, .help-whatsapp, .preview-action-btn, .preview-download-btn, .btn-whatsapp, .pulse[href*="wa.me"], .cta-btn[href*="wa.me"], .btn[href*="wa.me"]) {
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+}
+
 body[data-page-group] :where(.card, .guide-card, .size-card, .product-card, .sample-card, .info-card, .brand-block, .feature-card) {
   border-color: color-mix(in srgb, var(--ukm-line) 88%, transparent);
 }
