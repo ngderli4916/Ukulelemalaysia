@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /list
+Disallow: /list.html
 Sitemap: https://www.ukulelemalaysia.com/sitemap.xml
