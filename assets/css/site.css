@@ -237,7 +237,7 @@ body[data-page-group] :where(.card, .guide-card, .size-card, .product-card, .sam
 }
 
 :where([data-i18n], .inline-lang, span[data-lang], div[data-lang], p[data-lang], h1[data-lang], h2[data-lang], h3[data-lang], li[data-lang], b[data-lang], strong[data-lang], small[data-lang], em[data-lang]) {
-  display: none;
+  display: none !important;
 }
 
 body[lang="en"] [data-i18n="en"],
@@ -252,7 +252,7 @@ body[lang="zh"] :where(.inline-lang[data-lang="zh"], span[data-lang="zh"], div[d
 body[data-lang="en"] :where(.inline-lang[data-lang="en"], span[data-lang="en"], div[data-lang="en"], p[data-lang="en"], h1[data-lang="en"], h2[data-lang="en"], h3[data-lang="en"], li[data-lang="en"], b[data-lang="en"], strong[data-lang="en"], small[data-lang="en"], em[data-lang="en"]),
 body[data-lang="ms"] :where(.inline-lang[data-lang="ms"], span[data-lang="ms"], div[data-lang="ms"], p[data-lang="ms"], h1[data-lang="ms"], h2[data-lang="ms"], h3[data-lang="ms"], li[data-lang="ms"], b[data-lang="ms"], strong[data-lang="ms"], small[data-lang="ms"], em[data-lang="ms"]),
 body[data-lang="zh"] :where(.inline-lang[data-lang="zh"], span[data-lang="zh"], div[data-lang="zh"], p[data-lang="zh"], h1[data-lang="zh"], h2[data-lang="zh"], h3[data-lang="zh"], li[data-lang="zh"], b[data-lang="zh"], strong[data-lang="zh"], small[data-lang="zh"], em[data-lang="zh"]) {
-  display: revert;
+  display: revert !important;
 }
 
 body[lang="en"] span[data-i18n="en"],
@@ -267,7 +267,7 @@ body[lang="zh"] :where(span[data-lang="zh"], .inline-lang[data-lang="zh"]),
 body[data-lang="en"] :where(span[data-lang="en"], .inline-lang[data-lang="en"]),
 body[data-lang="ms"] :where(span[data-lang="ms"], .inline-lang[data-lang="ms"]),
 body[data-lang="zh"] :where(span[data-lang="zh"], .inline-lang[data-lang="zh"]) {
-  display: inline;
+  display: inline !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

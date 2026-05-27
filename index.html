@@ -59,10 +59,6 @@
   body[lang="zh"] { font-family: var(--cn); }
   img { display: block; max-width: 100%; }
   a { color: inherit; }
-  [data-i18n] { display: none; }
-  body[lang="en"] [data-i18n="en"],
-  body[lang="ms"] [data-i18n="ms"],
-  body[lang="zh"] [data-i18n="zh"] { display: inline; }
   .wrap { max-width: 1180px; margin: 0 auto; padding: 0 22px; }
 
   .site-header {
@@ -505,12 +501,6 @@
     .guitar-grid { grid-template-columns: 1fr; }
     .section { padding: 46px 0; }
   }
-  body[lang="en"] [data-i18n]:not([data-i18n="en"]),
-  body[lang="ms"] [data-i18n]:not([data-i18n="ms"]),
-  body[lang="zh"] [data-i18n]:not([data-i18n="zh"]) { display: none !important; }
-  body[lang="en"] [data-i18n="en"],
-  body[lang="ms"] [data-i18n="ms"],
-  body[lang="zh"] [data-i18n="zh"] { display: inline !important; }
 </style>
 </head>
 <body lang="en" data-page-group="home">

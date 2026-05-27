@@ -22,6 +22,7 @@ Extracted shared rules:
 - Logo image sizing: `.site-logo-icon`, `.brand-logo`, `.header-logo`.
 - Header logo holder sizing: `.logo-holder`.
 - Base language visibility and active language button state.
+- Shared language visibility replaces duplicate inline `[data-i18n]`, `span[data-lang]`, and `.inline-lang` rules on grouped pages.
 - Shared language switch styling for standard `.lang-switch` / `.lang-switcher` and `.lang-btn`.
 - Shared standard header layout for `header`, `.nav-wrap`, `.brand`, and `.brand-name` on grouped pages.
 - Shared page group background/card variables.
@@ -29,3 +30,4 @@ Extracted shared rules:
 Extracted shared behavior:
 
 - Standard language button handling now lives in `assets/js/site-lang.js`.
+- Standard `.reveal` scroll animation trigger now lives in `assets/js/site-reveal.js`.

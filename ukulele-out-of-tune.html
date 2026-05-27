@@ -29,6 +29,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <script defer src="assets/js/site-lang.js"></script>
+<script defer src="assets/js/site-reveal.js"></script>
 <style>
   :root {
     --bg: #fbf7f1;
@@ -87,12 +88,6 @@
 
   a { color: var(--accent); text-decoration: none; transition: color .2s ease; }
   a:hover { color: var(--accent-deep); }
-
-  /* Hide untargeted language spans */
-  [data-i18n] { display: none; }
-  body[data-lang="en"] [data-i18n="en"],
-  body[data-lang="ms"] [data-i18n="ms"],
-  body[data-lang="zh"] [data-i18n="zh"] { display: inline; }
 
   /* ========== HERO ========== */
   .hero {
@@ -717,17 +712,5 @@
   <span data-i18n="zh">用<span class="heart">♥</span>制作于马来西亚 · Ukulele Malaysia</span>
 </footer>
 
-<script>
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in-view');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => io.observe(el));
-</script>
 </body>
 </html>

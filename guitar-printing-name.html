@@ -29,6 +29,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,600;9..144,0,700;9..144,1,400;9..144,1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Abril+Fatface&family=Chicle&family=Covered+By+Your+Grace&family=Damion&family=Mouse+Memoirs&family=Permanent+Marker&family=DM+Serif+Display&family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <script defer src="assets/js/site-lang.js"></script>
+<script defer src="assets/js/site-reveal.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -898,15 +899,6 @@ body{
 .site-footer a{color:var(--accent);text-decoration:none;font-weight:600}
 .site-footer a:hover{text-decoration:underline}
 
-/* LANG (fixed) */
-.inline-lang,
-[data-lang]:not(body){display:none}
-body[data-lang="en"] [data-lang="en"],
-body[data-lang="ms"] [data-lang="ms"],
-body[data-lang="zh"] [data-lang="zh"]{display:block}
-body[data-lang="en"] .inline-lang[data-lang="en"],
-body[data-lang="ms"] .inline-lang[data-lang="ms"],
-body[data-lang="zh"] .inline-lang[data-lang="zh"]{display:inline}
 body[data-lang="zh"]{font-family:'Inter','Noto Sans SC',sans-serif}
 
 /* REVEAL */
@@ -1529,12 +1521,6 @@ pills.forEach(btn => {
     if (typeof renderNpList === 'function') renderNpList();
   });
 });
-
-/* ───────── Scroll reveal ───────── */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
 /* ───────── Font catalogue ─────────
    Each font: id, label per language, family (CSS)

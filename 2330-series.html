@@ -29,6 +29,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <script defer src="assets/js/site-lang.js"></script>
+<script defer src="assets/js/site-reveal.js"></script>
 <style>
   :root {
     --bg: #fbf7f1;
@@ -85,29 +86,6 @@
   img { max-width: 100%; height: auto; display: block; }
   a { color: var(--accent); text-decoration: none; transition: color .2s ease; }
   a:hover { color: var(--accent-deep); }
-
-  [data-i18n] { display: none; }
-  body[data-lang="en"] [data-i18n="en"],
-  body[data-lang="ms"] [data-i18n="ms"],
-  body[data-lang="zh"] [data-i18n="zh"] { display: inline; }
-  body[data-lang="en"] div[data-i18n="en"],
-  body[data-lang="ms"] div[data-i18n="ms"],
-  body[data-lang="zh"] div[data-i18n="zh"],
-  body[data-lang="en"] p[data-i18n="en"],
-  body[data-lang="ms"] p[data-i18n="ms"],
-  body[data-lang="zh"] p[data-i18n="zh"],
-  body[data-lang="en"] h1[data-i18n="en"],
-  body[data-lang="en"] h2[data-i18n="en"],
-  body[data-lang="en"] h3[data-i18n="en"],
-  body[data-lang="ms"] h1[data-i18n="ms"],
-  body[data-lang="ms"] h2[data-i18n="ms"],
-  body[data-lang="ms"] h3[data-i18n="ms"],
-  body[data-lang="zh"] h1[data-i18n="zh"],
-  body[data-lang="zh"] h2[data-i18n="zh"],
-  body[data-lang="zh"] h3[data-i18n="zh"],
-  body[data-lang="en"] li[data-i18n="en"],
-  body[data-lang="ms"] li[data-i18n="ms"],
-  body[data-lang="zh"] li[data-i18n="zh"] { display: block; }
 
   /* ───────────── Header ───────────── */
   header.site {
@@ -827,19 +805,6 @@
 <footer class="site">
   Ukulele Malaysia · <a href="https://www.ukulelemalaysia.com">ukulelemalaysia.com</a>
 </footer>
-
-<script>
-  // Scroll reveal
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
 
 </body>
 </html>
