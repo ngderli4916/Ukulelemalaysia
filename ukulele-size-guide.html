@@ -568,19 +568,7 @@
 </main>
 
 <script>
-const body = document.body;
-const langButtons = document.querySelectorAll('[data-set-lang]');
-const savedLang = localStorage.getItem('um-size-guide-lang') || 'en';
-
-function setLang(lang){
-  body.dataset.lang = lang;
-  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang === 'ms' ? 'ms-MY' : 'en-MY';
-  langButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.setLang === lang));
-  localStorage.setItem('um-size-guide-lang', lang);
-  updateRecommendation();
-}
-
-langButtons.forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.setLang)));
+window.addEventListener('ukm:languagechange', updateRecommendation);
 
 const state = { hand:'medium', goal:'beginner', tone:'balanced', guitar:'no' };
 const recommendationText = {
@@ -623,7 +611,7 @@ function score(){
 function updateRecommendation(){
   const scores = score();
   const winner = Object.entries(scores).sort((a,b) => b[1] - a[1])[0][0];
-  const lang = body.dataset.lang || 'en';
+  const lang = document.body.dataset.lang || 'en';
   document.getElementById('resultName').textContent = winner;
   document.getElementById('resultText').textContent = recommendationText[lang][winner];
   document.getElementById('scoreSoprano').textContent = scores.Soprano;
@@ -642,7 +630,7 @@ document.querySelectorAll('.choice').forEach(button => {
   });
 });
 
-setLang(savedLang);
+updateRecommendation();
 </script>
 </body>
 </html>

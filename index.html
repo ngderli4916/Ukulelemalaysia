@@ -994,21 +994,5 @@
   </div>
 </footer>
 
-<script>
-  const buttons = document.querySelectorAll("[data-set-lang]");
-  const savedLang = localStorage.getItem("ukm-lang") || "en";
-  setLang(savedLang);
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => setLang(button.dataset.setLang));
-  });
-
-  function setLang(lang) {
-    document.body.setAttribute("lang", lang);
-    localStorage.setItem("ukm-lang", lang);
-    buttons.forEach((button) => button.classList.toggle("active", button.dataset.setLang === lang));
-    document.documentElement.lang = lang === "zh" ? "zh-CN" : lang === "ms" ? "ms-MY" : "en";
-  }
-</script>
 </body>
 </html>

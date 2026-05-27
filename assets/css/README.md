@@ -25,3 +25,7 @@ Extracted shared rules:
 - Shared language switch styling for standard `.lang-switch` / `.lang-switcher` and `.lang-btn`.
 - Shared standard header layout for `header`, `.nav-wrap`, `.brand`, and `.brand-name` on grouped pages.
 - Shared page group background/card variables.
+
+Extracted shared behavior:
+
+- Standard language button handling now lives in `assets/js/site-lang.js`.

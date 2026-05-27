@@ -829,17 +829,6 @@
 </footer>
 
 <script>
-  // Language switcher
-  const langButtons = document.querySelectorAll('.lang-btn');
-  langButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const lang = btn.dataset.lang;
-      langButtons.forEach(b => b.classList.toggle('active', b === btn));
-      document.body.dataset.lang = lang;
-      document.documentElement.lang = lang === 'zh' ? 'zh' : (lang === 'ms' ? 'ms' : 'en');
-    });
-  });
-
   // Scroll reveal
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {

@@ -975,31 +975,6 @@
 <script src="assets/js/engraving/configurator-vanilla.js"></script>
 
 <script>
-  // ════════ Language switcher ════════
-  (function () {
-    const buttons = document.querySelectorAll(".lang-btn");
-    const body = document.body;
-
-    function setLang(lang) {
-      body.classList.add("lang-changing");
-      setTimeout(() => {
-        body.setAttribute("data-lang", lang);
-        document.documentElement.setAttribute("lang", lang === "zh" ? "zh-CN" : lang === "ms" ? "ms" : "en");
-        buttons.forEach(b => b.classList.toggle("active", b.getAttribute("data-set-lang") === lang));
-        try { localStorage.setItem("ukm-lang", lang); } catch (e) {}
-        body.classList.remove("lang-changing");
-        // Re-render Name Preview labels in the new language
-        if (window.__renderNp) window.__renderNp();
-      }, 150);
-    }
-    buttons.forEach(b => b.addEventListener("click", () => setLang(b.getAttribute("data-set-lang"))));
-
-    try {
-      const saved = localStorage.getItem("ukm-lang");
-      if (saved && ["en", "ms", "zh"].includes(saved)) setLang(saved);
-    } catch (e) {}
-  })();
-
   // ════════ Name Preview (12 typefaces with Select buttons) ════════
   (function () {
     const npFonts = [
@@ -1072,6 +1047,7 @@
     });
 
     window.__renderNp = renderNp;
+    window.addEventListener("ukm:languagechange", renderNp);
     renderNp();
   })();
 

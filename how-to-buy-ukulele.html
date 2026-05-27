@@ -1233,40 +1233,6 @@
     document.title = `How to Buy a Ukulele — ${year} Buyer's Guide | Ukulele Malaysia`;
   })();
 
-  // Language switcher
-  const body = document.body;
-  const buttons = document.querySelectorAll('.lang-btn');
-
-  function setLang(lang) {
-    if (body.dataset.lang === lang) return;
-    body.classList.add('lang-changing');
-    setTimeout(() => {
-      body.dataset.lang = lang;
-      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : (lang === 'ms' ? 'ms' : 'en');
-      buttons.forEach(b => b.classList.toggle('active', b.dataset.setLang === lang));
-      // Save to localStorage replacement (in-memory)
-      try { sessionStorage.setItem('preferredLang', lang); } catch(e) {}
-      body.classList.remove('lang-changing');
-    }, 150);
-  }
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => setLang(btn.dataset.setLang));
-  });
-
-  // Restore preferred language
-  try {
-    const saved = sessionStorage.getItem('preferredLang');
-    if (saved && ['en','ms','zh'].includes(saved)) setLang(saved);
-  } catch(e) {}
-
-  // Auto-detect: if browser is Chinese, default to zh
-  if (!sessionStorage.getItem('preferredLang')) {
-    const userLang = (navigator.language || 'en').toLowerCase();
-    if (userLang.startsWith('zh')) setLang('zh');
-    else if (userLang.startsWith('ms') || userLang.startsWith('id')) setLang('ms');
-  }
-
   // Reveal on scroll
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {

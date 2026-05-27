@@ -718,24 +718,6 @@
 </footer>
 
 <script>
-  const body = document.body;
-  const buttons = document.querySelectorAll('.lang-btn');
-
-  function setLang(lang) {
-    if (body.dataset.lang === lang) return;
-    body.classList.add('lang-changing');
-    setTimeout(() => {
-      body.dataset.lang = lang;
-      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : (lang === 'ms' ? 'ms' : 'en');
-      buttons.forEach(b => b.classList.toggle('active', b.dataset.setLang === lang));
-      body.classList.remove('lang-changing');
-    }, 120);
-  }
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => setLang(btn.dataset.setLang));
-  });
-
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
