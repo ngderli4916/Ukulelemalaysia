@@ -549,8 +549,8 @@
         "value": "20mm Bag"
       }
     ],
-    "image": "",
-    "imageMissing": true,
+    "image": "assets/images/wholesale/uma-pulsesc.jpeg",
+    "imageMissing": false,
     "originalDealPrice": "RM 1,186.50",
     "promotionDealPrice": "RM 762.75"
   }
