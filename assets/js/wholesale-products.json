@@ -1,0 +1,557 @@
+[
+  {
+    "id": "uk-sun-ss1",
+    "model": "SUNSS1",
+    "sku": "UMASUNSS1",
+    "name": "Uma Ukulele 21\" Soprano Spruce Top Sapele UK-SUN-SS1",
+    "price": "RM 305",
+    "dealerPrice": "RM 167.75",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "available": 4,
+    "discount": "Wholesale 45% OFF",
+    "image": "assets/images/wholesale/uma-uk-sun-ss1.png",
+    "imageMissing": false,
+    "note": "Spruce top, Sapele back & sides. Includes 5mm Bag, Double C1U. No EQ.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "21\" Soprano"
+      },
+      {
+        "label": "Top",
+        "value": "Spruce"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Sapele"
+      },
+      {
+        "label": "Bag",
+        "value": "5mm Bag"
+      }
+    ],
+    "sizeFilter": "21",
+    "woodFilter": "other",
+    "discountPercent": 45,
+    "originalDealPrice": "RM 213.50",
+    "promotionDealPrice": "RM 167.75"
+  },
+  {
+    "id": "uk-04s",
+    "model": "04S",
+    "sku": "UMA04S",
+    "name": "Uma Ukulele 21\" Soprano Acacia Koa UK-04S",
+    "price": "RM 524",
+    "dealerPrice": "RM 288.20",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "available": 1,
+    "discount": "Wholesale 45% OFF",
+    "image": "assets/images/wholesale/uma-uk-04s.png",
+    "imageMissing": false,
+    "note": "Acacia Koa top, Acacia Koa back & sides. Includes 5mm Bag, Double C1U. No EQ.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "21\" Soprano"
+      },
+      {
+        "label": "Top",
+        "value": "Acacia Koa"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Acacia Koa"
+      },
+      {
+        "label": "Bag",
+        "value": "5mm Bag"
+      }
+    ],
+    "sizeFilter": "21",
+    "woodFilter": "other",
+    "discountPercent": 45,
+    "originalDealPrice": "RM 366.80",
+    "promotionDealPrice": "RM 288.20"
+  },
+  {
+    "id": "uk-15ss",
+    "model": "15SS",
+    "sku": "UMA15SS",
+    "name": "Uma Ukulele 21\" Soprano Acacia Koa UK-15SS",
+    "price": "RM 714",
+    "dealerPrice": "RM 357.00",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "available": 4,
+    "discount": "Wholesale 50% OFF",
+    "image": "assets/images/wholesale/uma-uk-15ss.png",
+    "imageMissing": false,
+    "note": "Acacia Koa top, Acacia Koa back & sides. Includes 20mm Bag, Double C1U. No EQ.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "21\" Soprano"
+      },
+      {
+        "label": "Top",
+        "value": "Acacia Koa"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Acacia Koa"
+      },
+      {
+        "label": "Bag",
+        "value": "20mm Bag"
+      }
+    ],
+    "sizeFilter": "21",
+    "woodFilter": "other",
+    "discountPercent": 50,
+    "originalDealPrice": "RM 499.80",
+    "promotionDealPrice": "RM 357.00"
+  },
+  {
+    "id": "uk-17sc-e",
+    "model": "17SC-EQ",
+    "sku": "UMA17SCEQ",
+    "name": "Uma Ukulele 23\" Concert Solid Mahogany EQ UK-17SC",
+    "price": "RM 915",
+    "dealerPrice": "RM 411.75",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "available": 14,
+    "discount": "Wholesale 55% OFF",
+    "image": "assets/images/wholesale/uma-uk-17sc-e.png",
+    "imageMissing": false,
+    "note": "Solid mahogany Concert with EQ pickup — warm tone and comfortable 23\" size.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "23\" Concert"
+      },
+      {
+        "label": "Top",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Mahogany"
+      },
+      {
+        "label": "Bag",
+        "value": "20mm Bag"
+      }
+    ],
+    "sizeFilter": "23",
+    "woodFilter": "solid-top",
+    "discountPercent": 55,
+    "originalDealPrice": "RM 640.50",
+    "promotionDealPrice": "RM 411.75"
+  },
+  {
+    "id": "uk-20ss-na",
+    "model": "20SS",
+    "sku": "UMA20SS",
+    "name": "Uma Ukulele 21\" Soprano Solid Mahogany UK-20SS",
+    "price": "RM 830",
+    "dealerPrice": "RM 373.50",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "available": 5,
+    "discount": "Wholesale 55% OFF",
+    "image": "assets/images/wholesale/uma-uk-20ss-na.png",
+    "imageMissing": false,
+    "note": "Solid Mahogany top, Solid Mahogany back & sides. Includes 20mm Bag, Double C1U. No EQ.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "21\" Soprano"
+      },
+      {
+        "label": "Top",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Bag",
+        "value": "20mm Bag"
+      }
+    ],
+    "sizeFilter": "21",
+    "woodFilter": "full-solid",
+    "discountPercent": 55,
+    "originalDealPrice": "RM 581",
+    "promotionDealPrice": "RM 373.50"
+  },
+  {
+    "id": "uk-20scp-na",
+    "model": "20SCP",
+    "sku": "UMA20SCP",
+    "name": "Uma Ukulele 23\" Concert Solid Mahogany Pineapple UK-20SCP",
+    "price": "RM 1,005",
+    "dealerPrice": "RM 452.25",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "available": 12,
+    "discount": "Wholesale 55% OFF",
+    "image": "assets/images/wholesale/uma-uk-20scp-na.png",
+    "imageMissing": false,
+    "note": "Solid Mahogany top, Solid Mahogany back & sides. Includes 20mm Bag, Double C1U. No EQ.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "23\" Concert"
+      },
+      {
+        "label": "Top",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Bag",
+        "value": "20mm Bag"
+      }
+    ],
+    "sizeFilter": "23",
+    "woodFilter": "full-solid",
+    "discountPercent": 55,
+    "originalDealPrice": "RM 703.50",
+    "promotionDealPrice": "RM 452.25"
+  },
+  {
+    "id": "uk-20ssp-na",
+    "model": "20SSP",
+    "sku": "UMA20SSP",
+    "name": "Uma Ukulele 21\" Soprano Solid Mahogany Pineapple UK-20SSP",
+    "price": "RM 830",
+    "dealerPrice": "RM 373.50",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "available": 6,
+    "discount": "Wholesale 55% OFF",
+    "image": "assets/images/wholesale/uma-uk-20ssp-na.png",
+    "imageMissing": false,
+    "note": "Solid Mahogany top, Solid Mahogany back & sides. Includes 20mm Bag, Double C1U. No EQ.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "21\" Soprano"
+      },
+      {
+        "label": "Top",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Bag",
+        "value": "20mm Bag"
+      }
+    ],
+    "sizeFilter": "21",
+    "woodFilter": "full-solid",
+    "discountPercent": 55,
+    "originalDealPrice": "RM 581",
+    "promotionDealPrice": "RM 373.50"
+  },
+  {
+    "id": "uk-20sc-bk",
+    "model": "20SC-BK",
+    "sku": "UMA20SCBK",
+    "name": "Uma Ukulele 23\" Concert Solid Mahogany Black UK-20SC-BK",
+    "price": "RM 1,005",
+    "dealerPrice": "RM 452.25",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "available": 6,
+    "discount": "Wholesale 55% OFF",
+    "image": "assets/images/wholesale/uma-uk-20sc-bk.jpg",
+    "imageMissing": false,
+    "note": "Solid Mahogany top, Solid Mahogany back & sides. Includes 20mm Bag, Double C1U. No EQ.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "23\" Concert"
+      },
+      {
+        "label": "Top",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Bag",
+        "value": "20mm Bag"
+      }
+    ],
+    "sizeFilter": "23",
+    "woodFilter": "full-solid",
+    "discountPercent": 55,
+    "originalDealPrice": "RM 703.50",
+    "promotionDealPrice": "RM 452.25"
+  },
+  {
+    "id": "uk-20scp-bk",
+    "model": "20SCP-BK",
+    "sku": "UMA20SCPBK",
+    "name": "Uma Ukulele 23\" Concert Solid Mahogany Pineapple Black UK-20SCP-BK",
+    "price": "RM 1,005",
+    "dealerPrice": "RM 452.25",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "available": 9,
+    "discount": "Wholesale 55% OFF",
+    "image": "assets/images/wholesale/uma-uk-20scp-bk.png",
+    "imageMissing": false,
+    "note": "Solid Mahogany top, Solid Mahogany back & sides. Includes 20mm Bag, Double C1U. No EQ.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "23\" Concert"
+      },
+      {
+        "label": "Top",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Bag",
+        "value": "20mm Bag"
+      }
+    ],
+    "sizeFilter": "23",
+    "woodFilter": "full-solid",
+    "discountPercent": 55,
+    "originalDealPrice": "RM 703.50",
+    "promotionDealPrice": "RM 452.25"
+  },
+  {
+    "id": "20st-bk",
+    "available": 2,
+    "sku": "UMA20STBK",
+    "model": "20ST-BK",
+    "price": "RM 1,055",
+    "dealerPrice": "RM 527.50",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "discount": "Wholesale 50% OFF",
+    "discountPercent": 50,
+    "sizeFilter": "26",
+    "woodFilter": "full-solid",
+    "name": "Uma Ukulele 26\" Tenor Solid Mahogany Black UK-20ST-BK",
+    "note": "Solid Mahogany top, Solid Mahogany back & sides. Includes 20mm Bag, Double C1U. No EQ.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "26\" Tenor"
+      },
+      {
+        "label": "Top",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Bag",
+        "value": "20mm Bag"
+      }
+    ],
+    "image": "assets/images/wholesale/uma-20st-bk.jpg",
+    "imageMissing": false,
+    "originalDealPrice": "RM 738.50",
+    "promotionDealPrice": "RM 527.50"
+  },
+  {
+    "id": "uk-20scp-bl",
+    "model": "20SCP-BL",
+    "sku": "UMA20SCPBL",
+    "name": "Uma Ukulele 23\" Concert Solid Mahogany Pineapple Blue UK-20SCP-BL",
+    "price": "RM 1,005",
+    "dealerPrice": "RM 502.50",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "available": 2,
+    "discount": "Wholesale 50% OFF",
+    "image": "assets/images/wholesale/uma-uk-20scp-bl.png",
+    "imageMissing": false,
+    "note": "Solid Mahogany top, Solid Mahogany back & sides. Includes 20mm Bag, Double C1U. No EQ.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "23\" Concert"
+      },
+      {
+        "label": "Top",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Bag",
+        "value": "20mm Bag"
+      }
+    ],
+    "sizeFilter": "23",
+    "woodFilter": "full-solid",
+    "discountPercent": 50,
+    "originalDealPrice": "RM 703.50",
+    "promotionDealPrice": "RM 502.50"
+  },
+  {
+    "id": "uk-20ssp-bl",
+    "model": "20SSP-BL",
+    "sku": "UMA20SSPBL",
+    "name": "Uma Ukulele 21\" Soprano Solid Mahogany Pineapple Blue UK-20SSP-BL",
+    "price": "RM 830",
+    "dealerPrice": "RM 373.50",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "available": 3,
+    "discount": "Wholesale 55% OFF",
+    "image": "assets/images/wholesale/uma-uk-20ssp-bl.png",
+    "imageMissing": false,
+    "note": "Solid Mahogany top, Solid Mahogany back & sides. Includes 20mm Bag, Double C1U. No EQ.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "21\" Soprano"
+      },
+      {
+        "label": "Top",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Bag",
+        "value": "20mm Bag"
+      }
+    ],
+    "sizeFilter": "21",
+    "woodFilter": "full-solid",
+    "discountPercent": 55,
+    "originalDealPrice": "RM 581",
+    "promotionDealPrice": "RM 373.50"
+  },
+  {
+    "id": "uk-20st-bl",
+    "model": "20ST-BL",
+    "sku": "UMA20STBL",
+    "name": "Uma Ukulele 26\" Tenor Solid Mahogany Blue UK-20ST-BL",
+    "price": "RM 1,055",
+    "dealerPrice": "RM 474.75",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "available": 3,
+    "discount": "Wholesale 55% OFF",
+    "image": "assets/images/wholesale/uma-uk-20st-bl.png",
+    "imageMissing": false,
+    "note": "Solid Mahogany top, Solid Mahogany back & sides. Includes 20mm Bag, Double C1U. No EQ.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "26\" Tenor"
+      },
+      {
+        "label": "Top",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Solid Mahogany"
+      },
+      {
+        "label": "Bag",
+        "value": "20mm Bag"
+      }
+    ],
+    "sizeFilter": "26",
+    "woodFilter": "full-solid",
+    "discountPercent": 55,
+    "originalDealPrice": "RM 738.50",
+    "promotionDealPrice": "RM 474.75"
+  },
+  {
+    "id": "pulse-kc",
+    "model": "PULSEKC",
+    "sku": "UMAPULSEKC",
+    "name": "Uma Ukulele 23\" Concert Solid Acacia Koa UMA-PULSEKC",
+    "price": "RM 1,895",
+    "dealerPrice": "RM 852.75",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "available": 4,
+    "discount": "Wholesale 55% OFF",
+    "image": "assets/images/wholesale/uma-pulse-kc.png",
+    "imageMissing": false,
+    "note": "Solid Acacia Koa top, Solid Acacia Koa back & sides. Includes 20mm Bag, Double C2U. No EQ.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "23\" Concert"
+      },
+      {
+        "label": "Top",
+        "value": "Solid Acacia Koa"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Solid Acacia Koa"
+      },
+      {
+        "label": "Bag",
+        "value": "20mm Bag"
+      }
+    ],
+    "sizeFilter": "23",
+    "woodFilter": "full-solid",
+    "discountPercent": 55,
+    "originalDealPrice": "RM 1,326.50",
+    "promotionDealPrice": "RM 852.75"
+  },
+  {
+    "id": "pulsesc",
+    "available": 6,
+    "sku": "UMAPULSESC",
+    "model": "PULSESC",
+    "price": "RM 1,695",
+    "dealerPrice": "RM 762.75",
+    "dealerNote": "Promotion dealer price after wholesale discount",
+    "discount": "Wholesale 55% OFF",
+    "discountPercent": 55,
+    "sizeFilter": "23",
+    "woodFilter": "full-solid",
+    "name": "Uma Ukulele 23\" Concert Solid Acacia Koa UMA-PULSESC",
+    "note": "Solid Acacia Koa top, Solid Acacia Koa back & sides. Includes 20mm Bag, Double C2U. No EQ.",
+    "specs": [
+      {
+        "label": "Size",
+        "value": "23\" Concert"
+      },
+      {
+        "label": "Top",
+        "value": "Solid Acacia Koa"
+      },
+      {
+        "label": "Back and Side",
+        "value": "Solid Acacia Koa"
+      },
+      {
+        "label": "Bag",
+        "value": "20mm Bag"
+      }
+    ],
+    "image": "",
+    "imageMissing": true,
+    "originalDealPrice": "RM 1,186.50",
+    "promotionDealPrice": "RM 762.75"
+  }
+]
