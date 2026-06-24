@@ -17,6 +17,7 @@ function pagePath(file) {
 const htmlFiles = fs.readdirSync(root)
   .filter(file => file.endsWith('.html'))
   .filter(file => !internalOnly.has(file))
+  .filter(file => !file.endsWith('-sptt.html'))
   .sort();
 
 const expectedPaths = new Set(htmlFiles.map(pagePath));

@@ -267,6 +267,22 @@ body[data-page-group] :where(.submit-btn, .help-whatsapp, .preview-action-btn, .
   flex: 0 0 18px;
 }
 
+body[data-channel="sptt"] :where(.submit-btn, .help-whatsapp, .preview-action-btn.platform-note, .cta-btn[href="#platformChatInfo"], .contact-card.wa) {
+  border-color: #ea580c !important;
+  background: #f97316 !important;
+  color: #fff7ed !important;
+  box-shadow: 0 12px 28px rgba(249, 115, 22, .22) !important;
+}
+
+body[data-channel="sptt"] :where(.submit-btn, .help-whatsapp, .preview-action-btn.platform-note, .cta-btn[href="#platformChatInfo"], .contact-card.wa):hover {
+  background: #ea580c !important;
+  color: #fff7ed !important;
+}
+
+body[data-channel="sptt"] :where(.submit-btn, .help-whatsapp, .cta-btn[href="#platformChatInfo"], .contact-card.wa) svg {
+  display: none;
+}
+
 @media (max-width: 640px) {
   body[data-page-group] :where(.submit-btn, .help-whatsapp, .preview-action-btn, .preview-download-btn, .btn-whatsapp, .pulse[href*="wa.me"], .cta-btn[href*="wa.me"], .btn[href*="wa.me"]) {
     width: 100% !important;

@@ -3,6 +3,7 @@
   const mount = document.getElementById("configurator");
   if (!mount) return;
   const actionsMount = document.getElementById("engravingActions");
+  const isSptt = document.body.dataset.channel === "sptt";
 
   const FONTS = [
     { id: "abril", name: "Abril Fatface", family: '"Abril Fatface", serif', weight: 400, style: "normal" },
@@ -39,10 +40,17 @@
       ms: "Langkah 1 hantar reka bentuk kepada kami. Langkah 2 kongsi imej pratonton kepada kami.",
       zh: "步骤 1 先发给我们。步骤 2 把预览图分享给我们。"
     },
+    shareNoteSptt: {
+      en: "Step 1: go back to your Shopee or TikTok order chat and send us the details. Step 2: share the preview image there too.",
+      ms: "Langkah 1: kembali ke chat pesanan Shopee atau TikTok dan hantar butiran kepada kami. Langkah 2: kongsi imej pratonton di sana juga.",
+      zh: "步骤 1：回到你的 Shopee 或 TikTok 订单聊天，把资料发给我们。步骤 2：也把预览图分享在那里。"
+    },
     stepOne: { en: "Step 1", ms: "Langkah 1", zh: "步骤 1" },
     stepTwo: { en: "Step 2", ms: "Langkah 2", zh: "步骤 2" },
     sendWhatsapp: { en: "Send via WhatsApp", ms: "Hantar melalui WhatsApp", zh: "通过 WhatsApp 发送" },
     sendDesign: { en: "Send design via WhatsApp", ms: "Hantar reka bentuk via WhatsApp", zh: "通过 WhatsApp 发送设计" },
+    sendPlatform: { en: "Send in Shopee / TikTok chat", ms: "Hantar di chat Shopee / TikTok", zh: "回到 Shopee / TikTok 聊天发送" },
+    sendPlatformDesign: { en: "Send these details in your Shopee or TikTok order chat", ms: "Hantar butiran ini di chat pesanan Shopee atau TikTok anda", zh: "请回到你的 Shopee 或 TikTok 订单聊天，把这些资料发给我们" },
     sharePreview: { en: "Share preview image", ms: "Kongsi imej pratonton", zh: "分享预览图" },
     shareButton: { en: "Share Preview", ms: "Kongsi Pratonton", zh: "分享预览图" },
     download: { en: "Download Preview", ms: "Muat Turun Pratonton", zh: "下载预览图" },
@@ -187,12 +195,14 @@
     if (!actionsMount) return;
     actionsMount.innerHTML = `
       <div class="submit-block submit-block-standalone">
-        <div class="submit-note">${t("shareNote")}</div>
+        <div class="submit-note">${isSptt ? t("shareNoteSptt") : t("shareNote")}</div>
         <div class="submit-actions">
           <div class="submit-step">
             <div class="submit-step-label">${t("stepOne")}</div>
-            <div class="submit-step-title">${t("sendWhatsapp")}</div>
-            <a class="preview-action-btn whatsapp" href="${whatsappHref()}" target="_blank" rel="noopener">${iconWhatsApp()}${t("sendDesign")}</a>
+            <div class="submit-step-title">${isSptt ? t("sendPlatform") : t("sendWhatsapp")}</div>
+            ${isSptt
+              ? `<div class="preview-action-btn platform-note" role="note">${t("sendPlatformDesign")}</div>`
+              : `<a class="preview-action-btn whatsapp" href="${whatsappHref()}" target="_blank" rel="noopener">${iconWhatsApp()}${t("sendDesign")}</a>`}
           </div>
           <div class="submit-step">
             <div class="submit-step-label">${t("stepTwo")}</div>
