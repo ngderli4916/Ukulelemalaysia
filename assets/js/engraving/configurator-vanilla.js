@@ -41,16 +41,16 @@
       zh: "步骤 1 先发给我们。步骤 2 把预览图分享给我们。"
     },
     shareNoteSptt: {
-      en: "Step 1: go back to your Shopee or TikTok order chat and send us the details. Step 2: share the preview image there too.",
-      ms: "Langkah 1: kembali ke chat pesanan Shopee atau TikTok dan hantar butiran kepada kami. Langkah 2: kongsi imej pratonton di sana juga.",
-      zh: "步骤 1：回到你的 Shopee 或 TikTok 订单聊天，把资料发给我们。步骤 2：也把预览图分享在那里。"
+      en: "Step 1: download this design preview. Step 2: send the image and details to us in your Shopee or TikTok order chat.",
+      ms: "Langkah 1: muat turun pratonton reka bentuk ini. Langkah 2: hantar imej dan butiran kepada kami di chat pesanan Shopee atau TikTok.",
+      zh: "步骤 1：先把设计预览图下载下来。步骤 2：到 Shopee 或 TikTok 订单聊天，把图片和资料发给我们。"
     },
     stepOne: { en: "Step 1", ms: "Langkah 1", zh: "步骤 1" },
     stepTwo: { en: "Step 2", ms: "Langkah 2", zh: "步骤 2" },
     sendWhatsapp: { en: "Send via WhatsApp", ms: "Hantar melalui WhatsApp", zh: "通过 WhatsApp 发送" },
     sendDesign: { en: "Send design via WhatsApp", ms: "Hantar reka bentuk via WhatsApp", zh: "通过 WhatsApp 发送设计" },
-    sendPlatform: { en: "Send in Shopee / TikTok chat", ms: "Hantar di chat Shopee / TikTok", zh: "回到 Shopee / TikTok 聊天发送" },
-    sendPlatformDesign: { en: "Send these details in your Shopee or TikTok order chat", ms: "Hantar butiran ini di chat pesanan Shopee atau TikTok anda", zh: "请回到你的 Shopee 或 TikTok 订单聊天，把这些资料发给我们" },
+    sendPlatform: { en: "Download first, then send in Shopee / TikTok", ms: "Muat turun dahulu, kemudian hantar di Shopee / TikTok", zh: "先下载设计，再去 Shopee / TikTok 发送" },
+    sendPlatformDesign: { en: "Download the design, then send it to us in Shopee or TikTok chat.", ms: "Muat turun reka bentuk, kemudian hantar kepada kami di chat Shopee atau TikTok.", zh: "把设计下载了，再到 Shopee / TikTok 那边发给我们。" },
     sharePreview: { en: "Share preview image", ms: "Kongsi imej pratonton", zh: "分享预览图" },
     shareButton: { en: "Share Preview", ms: "Kongsi Pratonton", zh: "分享预览图" },
     download: { en: "Download Preview", ms: "Muat Turun Pratonton", zh: "下载预览图" },
