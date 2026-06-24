@@ -700,7 +700,6 @@ function productCard(product){
         <div class="stock"><strong>${max}</strong><span data-label="available">Available</span></div>
       </div>
       <div class="dealer-box"><div class="deal-line original"><span class="deal-title" data-label="originalDealPrice">Original Deal Price</span><span class="deal-price">${escapeHtml(product.originalDealPrice || product.price || "TBC")}</span></div><div class="deal-line promotion"><span class="deal-title" data-label="promotionDealPrice">Promotion Deal Price</span><span class="deal-price">${escapeHtml(product.promotionDealPrice || product.dealerPrice || "TBC")}</span></div><span class="dealer-note">${escapeHtml(product.dealerNote || i18n[currentLang].dealerNote)}</span></div>
-      ${product.note ? `<p class="note">${escapeHtml(product.note)}</p>` : ""}
       ${specsHtml}
       <div class="qty-row"><label for="qty-${escapeHtml(product.id)}"><span data-label="quantity">Quantity</span></label><input class="qty" id="qty-${escapeHtml(product.id)}" data-id="${escapeHtml(product.id)}" type="number" min="0" max="${max}" step="1" value="0" inputmode="numeric" ${max <= 0 ? "disabled" : ""} /></div>
     </div>
