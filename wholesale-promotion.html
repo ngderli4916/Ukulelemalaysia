@@ -40,6 +40,8 @@
 
 .reserve-table-card{margin:0 0 22px;border:1px solid #fecaca;border-radius:18px;background:#fff;box-shadow:0 14px 38px rgba(185,28,28,.08);overflow:hidden}.reserve-table-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;background:linear-gradient(90deg,#fff1f2,#fff7ed);border-bottom:1px solid #fecaca}.reserve-table-head strong{display:block;color:#991b1b;font-size:16px;font-weight:950}.reserve-table-head span{display:block;color:#7a7167;font-size:12px;font-weight:800}.reserve-table-pill{width:max-content;padding:6px 10px;border-radius:999px;background:#dc2626!important;color:#fff!important;font-size:11px!important;font-weight:950!important;text-transform:uppercase;letter-spacing:.05em}.reserve-table-scroll{overflow:auto}.reserve-table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}.reserve-table th{position:sticky;top:0;background:#7f1d1d;color:#fff;text-align:left;padding:10px 12px;font-size:11px;text-transform:uppercase;letter-spacing:.07em;line-height:1.25}.reserve-table th:nth-child(1){width:34%}.reserve-table th:nth-child(2){width:30%}.reserve-table th:nth-child(3),.reserve-table th:nth-child(4),.reserve-table th:nth-child(5){width:12%;text-align:center}.reserve-table td{padding:10px 12px;border-bottom:1px solid #fee2e2;vertical-align:middle}.reserve-table tbody tr:nth-child(even){background:#fff7ed}.reserve-table tbody tr.hot{background:#fff1f2}.reserve-table .model-cell{font-weight:950;color:#1d1712;line-height:1.25}.reserve-table .price-cell{white-space:normal}.reserve-price-stack{display:grid;gap:3px;line-height:1.2}.reserve-price-line{display:flex;align-items:center;justify-content:space-between;gap:8px}.reserve-price-label{color:#7a7167;font-size:10px;font-weight:950;text-transform:uppercase;letter-spacing:.04em}.reserve-price-value{font-weight:950;white-space:nowrap}.reserve-price-line.retail .reserve-price-value{color:#534b42}.reserve-price-line.wholesale .reserve-price-value{color:#7a7167;text-decoration:line-through;text-decoration-thickness:2px}.reserve-price-line.promotion .reserve-price-value{color:#b91c1c;font-size:14px}.reserve-table .stock-count-cell,.reserve-table .reserved-cell,.reserve-table .left-cell{white-space:nowrap;font-weight:900;text-align:center}.reserve-table .left-badge{display:inline-flex;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:950}.reserve-table tr.hot .left-badge{background:#dc2626;color:#fff}.reserve-table tr.low .left-badge{background:#f97316;color:#fff}.reserve-table tr.normal .left-badge{background:#ecfdf5;color:#047857;border:1px solid #bbf7d0}@media(max-width:620px){.reserve-table-card{margin-bottom:16px;border-radius:14px}.reserve-table-head{align-items:flex-start;flex-direction:column;padding:12px}.reserve-table-scroll{overflow:visible}.reserve-table{font-size:10px;table-layout:fixed}.reserve-table th{position:static;padding:7px 5px;font-size:8px;letter-spacing:.02em}.reserve-table th:nth-child(1){width:36%}.reserve-table th:nth-child(2){width:34%}.reserve-table th:nth-child(3),.reserve-table th:nth-child(4),.reserve-table th:nth-child(5){width:10%}.reserve-table td{padding:7px 5px}.reserve-table .model-cell{font-size:10px;line-height:1.2;word-break:break-word}.reserve-price-stack{gap:2px}.reserve-price-line{display:grid;gap:1px}.reserve-price-label{font-size:7px;letter-spacing:0}.reserve-price-value{font-size:10px}.reserve-price-line.promotion .reserve-price-value{font-size:11px}.reserve-table .stock-count-cell,.reserve-table .reserved-cell{font-size:11px}.reserve-table .left-badge{font-size:9px;padding:4px 5px}}
 
+.eq-toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;border:1px solid #fed7aa;border-radius:14px;background:#fff7ed;color:#9a3412;padding:10px 12px;font:inherit;font-size:12px;font-weight:950;cursor:pointer;transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease}.eq-toggle strong{white-space:nowrap}.eq-toggle:hover{transform:translateY(-1px);border-color:#fb923c}.eq-toggle.active{background:#c2410c;border-color:#c2410c;color:#fff}.eq-included{border:1px solid #bbf7d0;border-radius:14px;background:#ecfdf5;color:#047857;padding:9px 11px;font-size:12px;font-weight:950;text-align:center}.eq-price-note{display:block;margin-top:2px;color:var(--muted);font-size:10px;font-weight:800}@media(max-width:620px){.eq-toggle,.eq-included{font-size:10px;padding:8px}.eq-price-note{font-size:9px}}
+
 </style>
 </head>
 <body>
@@ -718,6 +720,8 @@ const products = [
 
 const activeProducts = products.slice().sort((a, b) => Number(a.available || 0) - Number(b.available || 0));
 const state = new Map();
+const eqState = new Set();
+const EQ_ADDON_PRICE = 180;
 const grid = document.getElementById("productGrid");
 const emptyState = document.getElementById("emptyState");
 const search = document.getElementById("search");
@@ -735,6 +739,15 @@ function moneyValue(value){
 function formatRM(value){
   if (!Number.isFinite(value) || value <= 0) return "";
   return `RM ${value.toLocaleString("en-MY", {minimumFractionDigits: value % 1 ? 2 : 0, maximumFractionDigits: 2})}`;
+}
+function hasBuiltInEq(product){
+  const text = `${product.model || ""} ${product.sku || ""} ${product.name || ""} ${product.note || ""}`;
+  return /\bEQ\b/i.test(text) && !/No EQ/i.test(product.note || "");
+}
+function priceWithEq(product, value){
+  const amount = moneyValue(value);
+  if (!amount) return value || "TBC";
+  return formatRM(amount + (eqState.has(product.id) ? EQ_ADDON_PRICE : 0));
 }
 function stockAlert(product){
   const max = Number(product.available || 0);
@@ -762,14 +775,23 @@ function renderReserveTable(){
 }
 function productCard(product){
   const max = Number(product.available || 0);
+  const qty = Number(state.get(product.id) || 0);
+  const eqSelected = eqState.has(product.id);
+  const builtInEq = hasBuiltInEq(product);
   const imgHtml = product.imageMissing || !product.image
     ? `<div class="photo-missing">Photo pending<br>${escapeHtml(product.model || product.sku || product.id)}</div>`
     : `<img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" />`;
   const specs = Array.isArray(product.specs) ? product.specs.slice(0, 6) : [];
   const specsHtml = specs.length ? `<div class="specs">${specs.map(spec => `<div class="spec"><b>${escapeHtml(spec.label)}</b><span>${escapeHtml(spec.value)}</span></div>`).join("")}</div>` : "";
   const alert = stockAlert(product);
-  const saving = moneyValue(product.originalDealPrice || product.price) - moneyValue(product.promotionDealPrice || product.dealerPrice);
+  const sellingPrice = priceWithEq(product, product.price);
+  const originalDealPrice = priceWithEq(product, product.originalDealPrice || product.price);
+  const promotionDealPrice = priceWithEq(product, product.promotionDealPrice || product.dealerPrice);
+  const saving = moneyValue(originalDealPrice) - moneyValue(promotionDealPrice);
   const saveHtml = saving > 0 ? `<span class="save-tag">${escapeHtml(t("savePerUnit").replace("{amount}", formatRM(saving)))}</span>` : "";
+  const eqHtml = builtInEq
+    ? `<div class="eq-included">EQ C1U included</div>`
+    : `<button class="eq-toggle ${eqSelected ? "active" : ""}" type="button" data-id="${escapeHtml(product.id)}" aria-pressed="${eqSelected ? "true" : "false"}"><span>${eqSelected ? "Add EQ C1U" : "No EQ / Add EQ C1U"}</span><strong>+ RM 180</strong></button>`;
   return `<article class="product" data-missing="${product.imageMissing ? "true" : "false"}" data-size="${escapeHtml(product.sizeFilter || 'other')}" data-wood="${escapeHtml(product.woodFilter || 'other')}" data-name="${escapeHtml(product.name).toLowerCase()} ${escapeHtml(product.model || '').toLowerCase()}" data-sku="${escapeHtml(product.sku || product.id).toLowerCase()}">
     <div class="photo">${imgHtml}<span class="badge">${escapeHtml((product.discount || "Promotion").replace(/^Wholesale\s*/i, ""))}</span></div>
     <div class="product-body">
@@ -778,12 +800,13 @@ function productCard(product){
       <h3>${escapeHtml(product.name)}</h3>
       <div class="urgency-row"><span class="stock-alert ${alert.cls}">${escapeHtml(alert.text)}</span></div>
       <div class="price-row">
-        <div class="price-stack"><span class="selling" data-label="sellingPrice">Selling Price</span><div class="price">${escapeHtml(product.price)}</div></div>
+        <div class="price-stack"><span class="selling" data-label="sellingPrice">Selling Price</span><div class="price">${escapeHtml(sellingPrice)}</div>${eqSelected ? `<span class="eq-price-note">Includes EQ C1U + RM 180</span>` : ""}</div>
         <div class="stock"><strong>${max}</strong><span data-label="available">Available</span></div>
       </div>
-      <div class="dealer-box"><div class="deal-line original"><span class="deal-title" data-label="originalDealPrice">Original Deal Price</span><span class="deal-price">${escapeHtml(product.originalDealPrice || product.price || "TBC")}</span></div><div class="deal-line promotion"><span class="deal-title" data-label="promotionDealPrice">Promotion Deal Price</span><span class="deal-price">${escapeHtml(product.promotionDealPrice || product.dealerPrice || "TBC")}${saveHtml}</span></div><span class="dealer-note">${escapeHtml(product.dealerNote || i18n[currentLang].dealerNote)}</span></div>
+      <div class="dealer-box"><div class="deal-line original"><span class="deal-title" data-label="originalDealPrice">Original Deal Price</span><span class="deal-price">${escapeHtml(originalDealPrice)}</span></div><div class="deal-line promotion"><span class="deal-title" data-label="promotionDealPrice">Promotion Deal Price</span><span class="deal-price">${escapeHtml(promotionDealPrice)}${saveHtml}</span></div><span class="dealer-note">${escapeHtml(product.dealerNote || i18n[currentLang].dealerNote)}</span></div>
+      ${eqHtml}
       ${specsHtml}
-      <div class="qty-row"><label for="qty-${escapeHtml(product.id)}"><span data-label="quantity">Quantity</span></label><input class="qty" id="qty-${escapeHtml(product.id)}" data-id="${escapeHtml(product.id)}" type="number" min="0" max="${max}" step="1" value="0" inputmode="numeric" ${max <= 0 ? "disabled" : ""} /></div>
+      <div class="qty-row"><label for="qty-${escapeHtml(product.id)}"><span data-label="quantity">Quantity</span></label><input class="qty" id="qty-${escapeHtml(product.id)}" data-id="${escapeHtml(product.id)}" type="number" min="0" max="${max}" step="1" value="${qty}" inputmode="numeric" ${max <= 0 ? "disabled" : ""} /></div>
     </div>
   </article>`;
 }
@@ -792,8 +815,17 @@ function render(){
   grid.innerHTML = activeProducts.map(productCard).join("");
   emptyState.hidden = activeProducts.length > 0;
   document.querySelectorAll(".qty").forEach(input => input.addEventListener("input", onQtyChange));
+  document.querySelectorAll(".eq-toggle").forEach(button => button.addEventListener("click", onEqToggle));
   updateSummary();
   updateCountdown();
+}
+function onEqToggle(event){
+  const id = event.currentTarget.dataset.id;
+  const product = activeProducts.find(item => item.id === id);
+  if (!product || hasBuiltInEq(product)) return;
+  if (eqState.has(id)) eqState.delete(id); else eqState.add(id);
+  render();
+  applyFilters();
 }
 function onQtyChange(event){
   const input = event.currentTarget;
@@ -833,9 +865,14 @@ function sendWhatsApp(){
     "Wholesale Promotion Order"
   ];
   selected.forEach(({product, qty}, index) => {
+    const builtInEq = hasBuiltInEq(product);
+    const addEq = eqState.has(product.id);
     lines.push("");
     lines.push(`${index + 1}. SKU: ${product.sku || product.id}`);
-    lines.push(`Promotion Deal Price: ${product.promotionDealPrice || product.dealerPrice || "TBC"}`);
+    lines.push(`EQ: ${builtInEq ? "Included" : addEq ? "Add EQ C1U (+RM180)" : "No EQ"}`);
+    lines.push(`Selling Price: ${priceWithEq(product, product.price)}`);
+    lines.push(`Original Deal Price: ${priceWithEq(product, product.originalDealPrice || product.price)}`);
+    lines.push(`Promotion Deal Price: ${priceWithEq(product, product.promotionDealPrice || product.dealerPrice)}`);
     lines.push(`Qty: ${qty}`);
   });
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
