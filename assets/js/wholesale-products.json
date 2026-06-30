@@ -124,7 +124,7 @@
     "price": "RM 915",
     "dealerPrice": "RM 411.75",
     "dealerNote": "Promotion dealer price after wholesale discount",
-    "available": 9,
+    "available": 8,
     "discount": "Wholesale 55% OFF",
     "image": "assets/images/wholesale/uma-uk-17sc-e.png",
     "imageMissing": false,
@@ -153,7 +153,7 @@
     "originalDealPrice": "RM 640.50",
     "promotionDealPrice": "RM 411.75",
     "originalStock": 14,
-    "reserved": 5
+    "reserved": 6
   },
   {
     "id": "uk-20ss-na",
@@ -280,7 +280,7 @@
     "price": "RM 1,005",
     "dealerPrice": "RM 452.25",
     "dealerNote": "Promotion dealer price after wholesale discount",
-    "available": 3,
+    "available": 2,
     "discount": "Wholesale 55% OFF",
     "image": "assets/images/wholesale/uma-uk-20sc-bk.jpg",
     "imageMissing": false,
@@ -309,7 +309,7 @@
     "originalDealPrice": "RM 703.50",
     "promotionDealPrice": "RM 452.25",
     "originalStock": 6,
-    "reserved": 3
+    "reserved": 4
   },
   {
     "id": "uk-20scp-bk",
@@ -352,7 +352,7 @@
   },
   {
     "id": "20st-bk",
-    "available": 1,
+    "available": 0,
     "sku": "UMA20STBK",
     "model": "20ST-BK",
     "price": "RM 1,055",
@@ -387,7 +387,7 @@
     "originalDealPrice": "RM 738.50",
     "promotionDealPrice": "RM 527.50",
     "originalStock": 2,
-    "reserved": 1
+    "reserved": 2
   },
   {
     "id": "uk-20scp-bl",
@@ -475,7 +475,7 @@
     "price": "RM 1,055",
     "dealerPrice": "RM 474.75",
     "dealerNote": "Promotion dealer price after wholesale discount",
-    "available": 2,
+    "available": 1,
     "discount": "Wholesale 55% OFF",
     "image": "assets/images/wholesale/uma-uk-20st-bl.png",
     "imageMissing": false,
@@ -504,7 +504,7 @@
     "originalDealPrice": "RM 738.50",
     "promotionDealPrice": "RM 474.75",
     "originalStock": 3,
-    "reserved": 1
+    "reserved": 2
   },
   {
     "id": "pulse-kc",
@@ -547,7 +547,7 @@
   },
   {
     "id": "pulsesc",
-    "available": 4,
+    "available": 3,
     "sku": "UMAPULSESC",
     "model": "PULSESC",
     "price": "RM 1,695",
@@ -582,6 +582,6 @@
     "originalDealPrice": "RM 1,186.50",
     "promotionDealPrice": "RM 762.75",
     "originalStock": 6,
-    "reserved": 2
+    "reserved": 3
   }
 ]
