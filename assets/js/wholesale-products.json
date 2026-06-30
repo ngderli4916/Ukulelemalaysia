@@ -124,7 +124,7 @@
     "price": "RM 915",
     "dealerPrice": "RM 411.75",
     "dealerNote": "Promotion dealer price after wholesale discount",
-    "available": 8,
+    "available": 5,
     "discount": "Wholesale 55% OFF",
     "image": "assets/images/wholesale/uma-uk-17sc-e.png",
     "imageMissing": false,
@@ -153,7 +153,7 @@
     "originalDealPrice": "RM 640.50",
     "promotionDealPrice": "RM 411.75",
     "originalStock": 14,
-    "reserved": 6
+    "reserved": 9
   },
   {
     "id": "uk-20ss-na",
