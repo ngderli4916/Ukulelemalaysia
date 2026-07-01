@@ -93,6 +93,11 @@
         <div class="filter-group"><span data-t="filterSize">Size</span><button type="button" class="filter-btn active" data-filter-group="size" data-filter-value="all" data-t="filterAll">All</button><button type="button" class="filter-btn" data-filter-group="size" data-filter-value="21">21寸</button><button type="button" class="filter-btn" data-filter-group="size" data-filter-value="23">23寸</button><button type="button" class="filter-btn" data-filter-group="size" data-filter-value="26">26寸</button></div>
         <div class="filter-group"><span data-t="filterWood">Construction</span><button type="button" class="filter-btn active" data-filter-group="wood" data-filter-value="all" data-t="filterAll">All</button><button type="button" class="filter-btn" data-filter-group="wood" data-filter-value="solid-top">Solid Top</button><button type="button" class="filter-btn" data-filter-group="wood" data-filter-value="full-solid">Full Solid</button></div>
       </div>
+      <div class="grid" id="productGrid" aria-live="polite"></div>
+      <div class="empty" id="emptyState" hidden>
+        <strong>Wholesale product list is being updated.</strong>
+        Please WhatsApp us first, or check this page again after the product photos and prices are uploaded.
+      </div>
       <div class="reserve-table-card" aria-label="Quick reserve stock table">
         <div class="reserve-table-head">
           <div><strong data-t="reserveTableTitle">Fast Reserve List</strong><span data-t="reserveTableSub">Today sold: UK-20ST-BK x1, UK-17SC + EQ x4, UK-20SC-BK x1, UMA-PULSESC x1, UK-20ST-BL x1. Lowest stock appears first — reserve before another dealer takes it.</span></div>
@@ -104,11 +109,6 @@
             <tbody id="reserveTableBody"></tbody>
           </table>
         </div>
-      </div>
-      <div class="grid" id="productGrid" aria-live="polite"></div>
-      <div class="empty" id="emptyState" hidden>
-        <strong>Wholesale product list is being updated.</strong>
-        Please WhatsApp us first, or check this page again after the product photos and prices are uploaded.
       </div>
     </div>
   </section>
