@@ -42,6 +42,8 @@
 
 .reserve-price-line.save .reserve-price-value{color:#b91c1c;text-decoration:none}.hero .facts{grid-template-columns:repeat(3,1fr)}.hero-card{background:radial-gradient(circle at 18% 10%,#fed7aa 0,#f97316 25%,#dc2626 62%,#7f1d1d 100%);border:2px solid rgba(255,255,255,.42);box-shadow:0 28px 70px rgba(220,38,38,.32)}.hero-card:before{content:"";position:absolute;inset:12px;border:1px solid rgba(255,255,255,.24);border-radius:22px;pointer-events:none}.hero-card:after{background:rgba(255,255,255,.18);filter:blur(2px)}.hero-card .discount{color:#fff;text-shadow:0 6px 28px rgba(127,29,29,.45)}.hero-card .discount small{color:#fff7ed}.hero-card p{color:#fff7ed;font-size:18px;font-weight:800}.hero-card li{padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.15);color:#fff;font-weight:850}.hero-card li:before{color:#fde68a}.eq-toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;border:1px solid #fed7aa;border-radius:14px;background:#fff7ed;color:#9a3412;padding:10px 12px;font:inherit;font-size:12px;font-weight:950;cursor:pointer;transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease}.eq-toggle strong{white-space:nowrap}.eq-toggle:hover{transform:translateY(-1px);border-color:#fb923c}.eq-toggle.active{background:#c2410c;border-color:#c2410c;color:#fff}.eq-included{border:1px solid #bbf7d0;border-radius:14px;background:#ecfdf5;color:#047857;padding:9px 11px;font-size:12px;font-weight:950;text-align:center}.eq-price-note{display:block;margin-top:2px;color:var(--muted);font-size:10px;font-weight:800}@media(max-width:620px){.hero .facts{grid-template-columns:1fr}.eq-toggle,.eq-included{font-size:10px;padding:8px}.eq-price-note{font-size:9px}}
 
+.shopify-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;min-height:48px}.shopify-action{min-width:0}.shopify-action .shopify-buy__product{max-width:none!important;margin:0!important}.shopify-action .shopify-buy__btn{width:100%!important;min-height:46px!important;margin:0!important;padding:11px 14px!important;font-family:var(--sans)!important;font-weight:900!important}.shopify-pending{grid-column:1/-1;display:flex;align-items:center;justify-content:center;min-height:46px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);font-size:13px;font-weight:800;background:#fafafa}
+@media(max-width:620px){.shopify-actions{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -601,6 +603,21 @@ const products = [
   }
 ];
 
+const SHOPIFY_PRODUCT_IDS = {
+  UMASUNSS1: "9421990068447",
+  UMA15SS: "9417864642783",
+  UMA17SCEQ: "9417869557983",
+  UMA20SS: "9421990101215",
+  UMA20SCP: "9429418901727",
+  UMA20SSP: "9429418934495",
+  UMA20SCBK: "6203214954664",
+  UMA20SCPBK: "9421990133983",
+  UMA20SCPBL: "9421990822111",
+  UMA20SSPBL: "9421990887647",
+  UMAPULSEKC: "9421990920415"
+};
+const SHOPIFY_DOMAIN = "ukunili2u.myshopify.com";
+const SHOPIFY_STOREFRONT_TOKEN = "1340f7f184b8752e738fc7bcab25b7c3";
 const activeProducts = products.slice().sort((a, b) => Number(a.available || 0) - Number(b.available || 0));
 const state = new Map();
 const eqState = new Set();
@@ -616,8 +633,8 @@ const SKU_PROMOTION_DISCOUNTS = {
   UMA20SCPBL: 30,
   UMA20SSPBL: 30,
   UMA20SS: 30,
-  UMAPULSESC: 30,
-  UMA20SCBK: 30,
+  UMAPULSESC: 10,
+  UMA20SCBK: 5,
   UMA20SCP: 35,
   UMA20SCPBK: 35,
   UMA20SSP: 35
@@ -651,6 +668,9 @@ function priceWithEq(product, value){
 }
 function normalizedSku(product){
   return String(product.sku || product.model || product.id || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+}
+function shopifyProductId(product){
+  return SHOPIFY_PRODUCT_IDS[normalizedSku(product)] || "";
 }
 function discountPercent(product){
   return SKU_PROMOTION_DISCOUNTS[normalizedSku(product)] || DEFAULT_PROMOTION_DISCOUNT;
@@ -718,6 +738,10 @@ function productCard(product){
   const eqHtml = builtInEq
     ? `<div class="eq-included">EQ C1U included</div>`
     : `<button class="eq-toggle ${eqSelected ? "active" : ""}" type="button" data-id="${escapeHtml(product.id)}" aria-pressed="${eqSelected ? "true" : "false"}"><span>${eqSelected ? "Add EQ C1U" : "No EQ / Add EQ C1U"}</span><strong>+ RM 180</strong></button>`;
+  const shopifyId = shopifyProductId(product);
+  const shopifyHtml = shopifyId
+    ? `<div class="shopify-actions"><div class="shopify-action" id="shopify-buy-${escapeHtml(product.id)}" data-shopify-product="${shopifyId}" data-shopify-destination="checkout"></div><div class="shopify-action" id="shopify-view-${escapeHtml(product.id)}" data-shopify-product="${shopifyId}" data-shopify-destination="modal"></div></div>`
+    : `<div class="shopify-actions"><div class="shopify-pending">Product link pending</div></div>`;
   return `<article class="product" data-missing="${product.imageMissing ? "true" : "false"}" data-size="${escapeHtml(product.sizeFilter || 'other')}" data-wood="${escapeHtml(product.woodFilter || 'other')}" data-name="${escapeHtml(product.name).toLowerCase()} ${escapeHtml(product.model || '').toLowerCase()}" data-sku="${escapeHtml(product.sku || product.id).toLowerCase()}">
     <div class="photo">${imgHtml}<span class="badge">${escapeHtml(discountLabel(product))}</span></div>
     <div class="product-body">
@@ -733,8 +757,138 @@ function productCard(product){
       ${eqHtml}
       ${specsHtml}
       <div class="qty-row"><label for="qty-${escapeHtml(product.id)}"><span data-label="quantity">Quantity</span></label><input class="qty" id="qty-${escapeHtml(product.id)}" data-id="${escapeHtml(product.id)}" type="number" min="0" max="${max}" step="1" value="${qty}" inputmode="numeric" ${max <= 0 ? "disabled" : ""} /></div>
+      ${shopifyHtml}
     </div>
   </article>`;
+}
+let shopifyUiPromise;
+function loadShopifySdk(){
+  if (window.ShopifyBuy && window.ShopifyBuy.UI) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector('script[data-shopify-buy-sdk]');
+    if (existing){
+      existing.addEventListener("load", resolve, { once:true });
+      existing.addEventListener("error", reject, { once:true });
+      return;
+    }
+    const script = document.createElement("script");
+    script.async = true;
+    script.dataset.shopifyBuySdk = "true";
+    script.src = "https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js";
+    script.addEventListener("load", resolve, { once:true });
+    script.addEventListener("error", reject, { once:true });
+    document.head.appendChild(script);
+  });
+}
+function getShopifyUi(){
+  if (!shopifyUiPromise){
+    shopifyUiPromise = loadShopifySdk().then(() => {
+      const client = ShopifyBuy.buildClient({
+        domain: SHOPIFY_DOMAIN,
+        storefrontAccessToken: SHOPIFY_STOREFRONT_TOKEN
+      });
+      return ShopifyBuy.UI.onReady(client);
+    });
+  }
+  return shopifyUiPromise;
+}
+function shopifyButtonOptions(destination){
+  const isCheckout = destination === "checkout";
+  const color = isCheckout ? "#fa0909" : "#2bac1a";
+  const hover = isCheckout ? "#e10808" : "#279b17";
+  return {
+    product: {
+      styles: {
+        product: {
+          "max-width": "none",
+          "margin": "0"
+        },
+        button: {
+          "width": "100%",
+          "background-color": color,
+          ":hover": { "background-color": hover },
+          ":focus": { "background-color": hover },
+          "border-radius": "12px",
+          "padding-left": "14px",
+          "padding-right": "14px"
+        }
+      },
+      buttonDestination: destination,
+      contents: {
+        img: false,
+        title: false,
+        price: false,
+        options: false
+      },
+      text: {
+        button: isCheckout ? "Buy now" : "View product"
+      }
+    },
+    modalProduct: {
+      contents: {
+        img: false,
+        imgWithCarousel: true,
+        button: false,
+        buttonWithQuantity: true
+      },
+      styles: {
+        product: {
+          "@media (min-width: 601px)": {
+            "max-width": "100%",
+            "margin-left": "0",
+            "margin-bottom": "0"
+          }
+        },
+        button: {
+          "background-color": color,
+          ":hover": { "background-color": hover },
+          ":focus": { "background-color": hover },
+          "border-radius": "12px"
+        }
+      },
+      text: { button: "Add to cart" }
+    },
+    cart: {
+      styles: {
+        button: {
+          "background-color": color,
+          ":hover": { "background-color": hover },
+          ":focus": { "background-color": hover },
+          "border-radius": "12px"
+        }
+      },
+      text: { total: "Subtotal", button: "Checkout" }
+    },
+    toggle: {
+      styles: {
+        toggle: {
+          "background-color": color,
+          ":hover": { "background-color": hover },
+          ":focus": { "background-color": hover }
+        }
+      }
+    }
+  };
+}
+function initShopifyButtons(){
+  const nodes = [...document.querySelectorAll(".shopify-action[data-shopify-product]")];
+  if (!nodes.length) return;
+  getShopifyUi().then(ui => {
+    nodes.forEach(node => {
+      if (!node.isConnected || node.dataset.shopifyReady === "true") return;
+      node.dataset.shopifyReady = "true";
+      ui.createComponent("product", {
+        id: node.dataset.shopifyProduct,
+        node,
+        moneyFormat: "RM%7B%7Bamount%7D%7D",
+        options: shopifyButtonOptions(node.dataset.shopifyDestination)
+      });
+    });
+  }).catch(() => {
+    nodes.forEach(node => {
+      if (node.isConnected) node.innerHTML = '<div class="shopify-pending">Shopify button unavailable</div>';
+    });
+  });
 }
 function render(){
   renderReserveTable();
@@ -744,6 +898,7 @@ function render(){
   document.querySelectorAll(".eq-toggle").forEach(button => button.addEventListener("click", onEqToggle));
   updateSummary();
   updateCountdown();
+  initShopifyButtons();
 }
 function onEqToggle(event){
   const id = event.currentTarget.dataset.id;
@@ -812,6 +967,19 @@ const i18n = {
   zh: { whatsappUs:"WhatsApp 联系", heroCopy:"选择你要的数量，然后发送给我们确认 Uma Sales。", periodLabel:"活动日期", periodValue:"至 2026年7月15日 - 31日 结束", countdownLabel:"开始倒数", countdownExpired:"促销已结束", countdownFormat:"剩 {days}天 {hours}小时 {minutes}分 {seconds}秒", discountLabel:"折扣", discountValue:"高达 40%", clearance:"Uma Sales", discountHero:"高达 40%", soldoutCopy:"Uma Sales 精选型号优惠高达 40%，数量有限，先到先得。", bulletQty:"直接在页面选择数量", bulletWa:"可以直接点击购买", bulletConfirm:"西马免运费（原本运费 RM25/把）", bulletShippingAsk:"东马运费可以 WhatsApp 询问我们", availableItems:"促销产品", chooseQty:"选择数量", sectionCopy:"以下显示照片、Promotion Price、Original Price、You Save 和可用数量。", searchPlaceholder:"搜索产品 / SKU", filterSize:"尺寸", filterWood:"木材结构", filterAll:"全部", submitBtn:"点击购买", noItem:"还没有选择产品", enterQty:"输入你要的产品数量。", totalQty:"总数量", selectedProducts:"个产品已选择", sendNow:"现在发送订单。", itemsSelected:"把已选择", promotionPrice:"Promotion Price", originalPrice:"Original Price", youSave:"You Save", available:"可用数量", quantity:"数量", dealerNote:"Promotion Discount 会跟着 SKU 计算。最终库存以团队确认为准。", onlyLeft:"只剩 {count} 把", lowStock:"库存很少", limitedStock:"库存有限", reserveTableTitle:"快速预留表", reserveTableSub:"低库存排最前，请选择数量后发送给我们确认。", reserveTablePill:"现货 / Ready Stock", tableSku:"SKU Models", tablePriceStack:"PRICE", priceOriginalShort:"Original", pricePromoShort:"Promo", priceSaveShort:"Save", tableOriginalStock:"Original Stock", tableReserved:"Sold", tableLeft:"Left 多少个", onlyCount:"Only {count}" },
   ms: { whatsappUs:"WhatsApp Kami", heroCopy:"Pilih kuantiti dan hantar kepada kami untuk pengesahan Uma Sales.", periodLabel:"Tempoh Promosi", periodValue:"15 - 31 Julai 2026", countdownLabel:"Countdown bermula", countdownExpired:"Promosi tamat", countdownFormat:"{days}h {hours}j {minutes}m {seconds}s lagi", discountLabel:"Diskaun", discountValue:"Sehingga 40%", clearance:"Uma Sales", discountHero:"Sehingga 40%", soldoutCopy:"Uma Sales untuk model terpilih dengan diskaun sehingga 40%. Stok terhad.", bulletQty:"Pilih kuantiti terus di halaman ini", bulletWa:"Klik untuk beli terus", bulletConfirm:"Free shipping West Malaysia, biasa RM25 untuk setiap ukulele", bulletShippingAsk:"Shipping East Malaysia boleh tanya kami melalui WhatsApp", availableItems:"Item Promosi", chooseQty:"Pilih kuantiti", sectionCopy:"Gambar, promotion price, original price, savings dan kuantiti tersedia ditunjukkan di bawah.", searchPlaceholder:"Cari produk / SKU", filterSize:"Saiz", filterWood:"Construction", filterAll:"Semua", submitBtn:"Klik untuk Beli", noItem:"Belum pilih item", enterQty:"Masukkan kuantiti item yang anda mahu.", totalQty:"Jumlah kuantiti", selectedProducts:"produk dipilih", sendNow:"Klik untuk hantar order.", itemsSelected:"items selected", promotionPrice:"Promotion Price", originalPrice:"Original Price", youSave:"You Save", available:"Available", quantity:"Quantity", dealerNote:"Promotion discount dikira ikut SKU. Stok akhir perlu disahkan oleh team kami.", onlyLeft:"Only {count} left", lowStock:"Low stock", limitedStock:"Limited stock", reserveTableTitle:"Fast Reserve List", reserveTableSub:"Item low-stock dipaparkan dahulu. Pilih kuantiti dan hantar untuk confirmation.", reserveTablePill:"Ready Stock / 现货", tableSku:"SKU Models", tablePriceStack:"PRICE", priceOriginalShort:"Original", pricePromoShort:"Promo", priceSaveShort:"Save", tableOriginalStock:"Original Stock", tableReserved:"Sold", tableLeft:"Left", onlyCount:"Only {count}" }
 };
+Object.assign(i18n.en, {
+  countdownLabel: "Promotion starts in",
+  countdownEndLabel: "Promotion ends in"
+});
+Object.assign(i18n.zh, {
+  periodValue: "2026年7月15日至31日",
+  countdownLabel: "距离活动开始",
+  countdownEndLabel: "距离活动结束"
+});
+Object.assign(i18n.ms, {
+  countdownLabel: "Promosi bermula dalam",
+  countdownEndLabel: "Promosi tamat dalam"
+});
 function t(key){ return (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key] || key; }
 function applyLanguage(lang){
   currentLang = i18n[lang] ? lang : "en";
@@ -840,11 +1008,16 @@ function filterProducts(){
     card.classList.toggle('hidden-by-filter', !(textHit && sizeHit && woodHit));
   });
 }
+const promotionStart = new Date("2026-07-15T00:00:00+08:00");
 const promotionEnd = new Date("2026-07-31T23:59:59+08:00");
 function updateCountdown(){
   const el = document.getElementById("countdownTimer");
   if (!el) return;
-  const diff = promotionEnd.getTime() - Date.now();
+  const label = document.querySelector('[data-t="countdownLabel"]');
+  const now = Date.now();
+  const hasStarted = now >= promotionStart.getTime();
+  const diff = (hasStarted ? promotionEnd : promotionStart).getTime() - now;
+  if (label) label.textContent = t(hasStarted ? "countdownEndLabel" : "countdownLabel");
   if (diff <= 0){ el.textContent = t("countdownExpired"); return; }
   const totalSeconds = Math.floor(diff / 1000);
   const days = Math.floor(totalSeconds / 86400);
