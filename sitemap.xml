@@ -74,9 +74,15 @@
   </url>
   <url>
     <loc>https://www.ukulelemalaysia.com/uma-sales</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ukulelemalaysia.com/uma-buy-more-discount</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.ukulelemalaysia.com/payment-info</loc>
