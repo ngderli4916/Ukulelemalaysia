@@ -124,7 +124,7 @@
     "price": "RM 915",
     "dealerPrice": "RM 411.75",
     "dealerNote": "Promotion dealer price after wholesale discount",
-    "available": 7,
+    "available": 3,
     "discount": "Wholesale 55% OFF",
     "image": "assets/images/wholesale/uma-uk-17sc-e.png",
     "imageMissing": false,
@@ -152,7 +152,7 @@
     "discountPercent": 55,
     "originalDealPrice": "RM 640.50",
     "promotionDealPrice": "RM 411.75",
-    "originalStock": 14,
+    "originalStock": 3,
     "reserved": 7
   },
   {
@@ -163,7 +163,7 @@
     "price": "RM 830",
     "dealerPrice": "RM 373.50",
     "dealerNote": "Promotion dealer price after wholesale discount",
-    "available": 5,
+    "available": 3,
     "discount": "Wholesale 55% OFF",
     "image": "assets/images/wholesale/uma-uk-20ss-na.png",
     "imageMissing": false,
@@ -191,7 +191,7 @@
     "discountPercent": 55,
     "originalDealPrice": "RM 581",
     "promotionDealPrice": "RM 373.50",
-    "originalStock": 5,
+    "originalStock": 3,
     "reserved": 0
   },
   {
@@ -202,7 +202,7 @@
     "price": "RM 1,005",
     "dealerPrice": "RM 452.25",
     "dealerNote": "Promotion dealer price after wholesale discount",
-    "available": 12,
+    "available": 3,
     "discount": "Wholesale 55% OFF",
     "image": "assets/images/wholesale/uma-uk-20scp-na.png",
     "imageMissing": false,
@@ -230,7 +230,7 @@
     "discountPercent": 55,
     "originalDealPrice": "RM 703.50",
     "promotionDealPrice": "RM 452.25",
-    "originalStock": 12,
+    "originalStock": 3,
     "reserved": 0
   },
   {
@@ -241,7 +241,7 @@
     "price": "RM 830",
     "dealerPrice": "RM 373.50",
     "dealerNote": "Promotion dealer price after wholesale discount",
-    "available": 6,
+    "available": 3,
     "discount": "Wholesale 55% OFF",
     "image": "assets/images/wholesale/uma-uk-20ssp-na.png",
     "imageMissing": false,
@@ -269,7 +269,7 @@
     "discountPercent": 55,
     "originalDealPrice": "RM 581",
     "promotionDealPrice": "RM 373.50",
-    "originalStock": 6,
+    "originalStock": 3,
     "reserved": 0
   },
   {
@@ -319,7 +319,7 @@
     "price": "RM 1,005",
     "dealerPrice": "RM 452.25",
     "dealerNote": "Promotion dealer price after wholesale discount",
-    "available": 9,
+    "available": 3,
     "discount": "Wholesale 55% OFF",
     "image": "assets/images/wholesale/uma-uk-20scp-bk.png",
     "imageMissing": false,
@@ -347,7 +347,7 @@
     "discountPercent": 55,
     "originalDealPrice": "RM 703.50",
     "promotionDealPrice": "RM 452.25",
-    "originalStock": 9,
+    "originalStock": 3,
     "reserved": 0
   },
   {
@@ -547,7 +547,7 @@
   },
   {
     "id": "pulsesc",
-    "available": 5,
+    "available": 3,
     "sku": "UMAPULSESC",
     "model": "PULSESC",
     "price": "RM 1,695",
@@ -581,7 +581,7 @@
     "imageMissing": false,
     "originalDealPrice": "RM 1,186.50",
     "promotionDealPrice": "RM 762.75",
-    "originalStock": 6,
+    "originalStock": 3,
     "reserved": 1
   }
 ]
