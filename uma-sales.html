@@ -619,7 +619,9 @@ const SHOPIFY_PRODUCT_IDS = {
 };
 const SHOPIFY_DOMAIN = "ukunili2u.myshopify.com";
 const SHOPIFY_STOREFRONT_TOKEN = "1340f7f184b8752e738fc7bcab25b7c3";
-const activeProducts = products.slice().sort((a, b) => Number(a.available || 0) - Number(b.available || 0));
+const activeProducts = products
+  .filter(product => Number(product.available || 0) > 0)
+  .sort((a, b) => Number(a.available || 0) - Number(b.available || 0));
 const state = new Map();
 const eqState = new Set();
 const EQ_ADDON_PRICE = 180;

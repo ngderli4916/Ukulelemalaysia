@@ -268,7 +268,7 @@ const products = [
   {id:"uk-20ssp-bl",sku:"UMA20SSPBL",model:"20SSP-BL",name:"Full Solid Mahogany 21\" UK-20SSP-BL",price:"RM 830",available: 0,image:"assets/images/wholesale/uma-uk-20ssp-bl.png",baseDiscount:30,eq:false},
   {id:"pulse-kc",sku:"UMAPULSEKC",model:"PULSEKC",name:"Full Solid Acacia Koa 23\" UMA-PULSEKC",price:"RM 1,895",available:3,image:"assets/images/wholesale/uma-pulse-kc.png",baseDiscount:10,eq:false},
   {id:"pulsesc",sku:"UMAPULSESC",model:"PULSESC",name:"Full Solid Acacia Koa 23\" UMA-PULSESC",price:"RM 1,695",available:4,image:"assets/images/wholesale/uma-pulsesc.jpeg",baseDiscount:10,eq:false}
-];
+].filter(product => Number(product.available || 0) > 0);
 const selectedQty = new Map();
 const productGrid = document.getElementById("productGrid");
 const productSearch = document.getElementById("productSearch");
