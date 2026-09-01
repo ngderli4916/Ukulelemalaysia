@@ -92,7 +92,7 @@
           <button class="price-filter" type="button" data-price="120" aria-pressed="false">RM120</button>
         </div>
         <div class="selected-price" id="selectedPrice" aria-live="polite"></div>
-        <span class="count" id="count">13 guitars · 49 photos</span>
+        <span class="count" id="count">14 guitars · 58 photos</span>
       </div>
       <div class="guitar-grid" id="guitarGrid"></div>
       <div class="empty-state hidden" id="emptyState"></div>
@@ -115,19 +115,20 @@
 <script>
 const WHATSAPP_NUMBER = "60183877972";
 const guitars = [
+  { no: 28, price: 50, photos: 6 },
   { no: 29, price: 50, photos: 6 },
   { no: 31, price: 50, photos: 6 },
-  { no: 12, price: 90, photos: 3 },
-  { no: 13, price: 90, photos: 2 },
-  { no: 14, price: 90, photos: 4 },
-  { no: 16, price: 90, photos: 4 },
-  { no: 17, price: 90, photos: 4 },
-  { no: 19, price: 90, photos: 3 },
   { no: 21, price: 120, photos: 4 },
   { no: 23, price: 120, photos: 2 },
   { no: 24, price: 120, photos: 4 },
+  { no: 26, price: 120, photos: 4 },
+  { no: 19, price: 90, photos: 3 },
+  { no: 17, price: 90, photos: 4 },
+  { no: 16, price: 90, photos: 4 },
+  { no: 14, price: 90, photos: 4 },
+  { no: 12, price: 90, photos: 3 },
   { no: 25, price: 90, photos: 3 },
-  { no: 26, price: 120, photos: 4 }
+  { no: 15, price: 90, photos: 5 }
 ];
 const grid = document.getElementById("guitarGrid");
 const emptyState = document.getElementById("emptyState");
